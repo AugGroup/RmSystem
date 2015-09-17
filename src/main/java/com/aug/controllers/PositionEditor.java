@@ -5,13 +5,13 @@ import java.beans.PropertyEditorSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.aug.db.entities.Position;
-import com.aug.db.services.PositionService;
+/*import com.aug.db.entities.Position;
+import com.aug.db.services.PositionService;*/
 
 @Component
 public class PositionEditor extends PropertyEditorSupport {
 
-	@Autowired
+/*	@Autowired
 	private PositionService positionService;
 	 
 	public void setAsText(String text) {
@@ -30,7 +30,7 @@ public class PositionEditor extends PropertyEditorSupport {
 			tx = Integer.toString(position.getId());
 		}
 		return tx;
-	}
+	}*/
 
 
 }
