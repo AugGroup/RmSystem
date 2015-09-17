@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import com.aug.hrdb.dto.AugRequestDto;
 import com.aug.hrdb.services.AugRequestService;
 
 
@@ -41,12 +42,12 @@ public class AugRequestController implements Serializable {
 	/*-------------------- Search All Request ----Exception handler-------------*/
 	@RequestMapping(value = "/request/search", method = { RequestMethod.GET })
 	public @ResponseBody Object findAllRequest() throws Exception{
-		final List<AugRequestDTO> data = augRequestService.findAllAugRequest();	
-		if(data == null){+++++++++++++++++++++++++++
+		final List<AugRequestDto> data = augRequestService.findAllAugRequest();	
+		if(data == null){
 			throw new NullPointerException();
 		}
 		return new Object() {
-			public List<AugRequestDTO> getData() {
+			public List<AugRequestDto> getData() {
 				return data;
 			}
 		};
@@ -55,7 +56,7 @@ public class AugRequestController implements Serializable {
 	
 	/*-------------------- Search Request By Id--------------------*/
 	@RequestMapping(value = "/request/search/{id}", method = { RequestMethod.POST, RequestMethod.GET  })
-	public @ResponseBody AugRequestDTO searchRequestById(
+	public @ResponseBody AugRequestDto searchRequestById(
 			@PathVariable Integer id, Model model){
 		//AugRequestDTO augRequest = augRequestService.findAugRequestById(500);//test 404 resource not found
 		AugRequestDTO augRequest = augRequestService.findAugRequestById(id);

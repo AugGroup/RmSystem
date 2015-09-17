@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.aug.db.dto.AugRequestDTO;
-import com.aug.db.entities.AugRequest;
-import com.aug.db.services.AugRequestService;
+import com.aug.hrdb.dto.AugRequestDto;
+import com.aug.hrdb.entities.AugRequest;
+import com.aug.hrdb.services.AugRequestService;
 
 @Controller
 public class RequestApproveController implements Serializable {
@@ -43,7 +43,7 @@ public class RequestApproveController implements Serializable {
 
 	/*--------------------Update Approve Status ------------------*/
 	@RequestMapping(value = "/approve/update/{id}", method = { RequestMethod.POST })
-	public @ResponseBody AugRequestDTO editApprove(@RequestBody AugRequestDTO augRequestDTO,
+	public @ResponseBody AugRequestDto editApprove(@RequestBody AugRequestDto augRequestDTO,
 			@PathVariable Integer id) throws Exception{
 		AugRequest augRequest = augRequestService.findById(augRequestDTO.getId());
 		augRequest.setStatus(augRequestDTO.getStatus());

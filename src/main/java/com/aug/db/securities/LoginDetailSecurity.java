@@ -7,7 +7,7 @@ import java.util.Set;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import com.aug.db.entities.Login;
+import com.aug.hrdb.entities.Login;
 
 public class LoginDetailSecurity implements LoginDetail{
 	
@@ -19,7 +19,7 @@ public class LoginDetailSecurity implements LoginDetail{
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		if (grants == null) {
             grants = new HashSet<GrantedAuthority>();
-            if(login.getUserName().equals("admin")){
+            if(login.getUsername().equals("admin")){
             	grants.add(ADMIN_ROLE);
             }
         }
@@ -33,7 +33,7 @@ public class LoginDetailSecurity implements LoginDetail{
 
 	@Override
 	public String getUserName() {
-		return login.getUserName();
+		return login.getUsername();
 	}
 
 	@Override
