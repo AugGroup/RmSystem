@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<fontFamilies>
+
+	<fontFamily name="Angsana CRS">
+		<normal>fonts/ANGSA.TTF</normal>
+		<italic>fonts/ANGSA.TTF</italic>
+		<pdfEncoding>Identity-H</pdfEncoding>
+		<pdfEmbedded>true</pdfEmbedded>
+		<exportFonts>
+			<export key="net.sf.jasperreports.html">Angsana CRS, 'Angsana new', AngsanaUPC</export>
+			<export key="net.sf.jasperreports.xhtml">Angsana CRS, 'Angsana new', AngsanaUPC</export>
+		</exportFonts>
+	</fontFamily>
+
+	<fontFamily name="Cordia CRS">
+		<normal>fonts/CORDIA.TTF</normal>
+		<italic>fonts/CORDIA.TTF</italic>
+		<pdfEncoding>Identity-H</pdfEncoding>
+		<pdfEmbedded>true</pdfEmbedded>
+		<exportFonts>
+			<export key="net.sf.jasperreports.html">Cordia CRS, 'Cordia new', CordiaUPC</export>
+			<export key="net.sf.jasperreports.xhtml">Cordia CRS, 'Cordia new', CordiaUPC</export>
+		</exportFonts>
+	</fontFamily>
+
+</fontFamilies>

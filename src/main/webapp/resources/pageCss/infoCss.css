@@ -1,0 +1,679 @@
+.error{
+	color: red;
+	
+}
+#infomation{
+	background-color: #F7C11F;
+	color:white;
+	font-family: "Regular";
+    border:1px solid #F7C11F;
+    text-shadow: 2px 2px #EEBA10;
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom : 15px;
+}
+#general{
+	background-color: #F7C11F;
+	color:white;
+	font-family: "Regular";
+    border:1px solid #F7C11F;
+    text-shadow: 2px 2px #EEBA10;
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+#official{
+	background-color: #F7C11F;
+	color:white;
+	font-family: "Regular";
+    border:1px solid #F7C11F;
+    text-shadow: 2px 2px #EEBA10;
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;	
+}
+#info{
+	background: #E0DFDD;
+	
+}
+#applicantStatusStyle{
+	width:296px;
+	height:92px;
+	
+}
+#informationApplicant{ 
+ 	color:#414141;
+	background: #E0DFDD;
+	font-family: "Regular";
+	font-size: 16px;
+	color: #292929;
+	
+} 
+
+/*   	 #resumeMultipartFile{   */
+/*       color: white;   */
+/*       border: 1px #F7C11F;   */
+/*       border-radius: 5px;   */
+/*       background: #F7C11F;  */
+/*       text-align: right;  */
+/*       margin-bottom:10px; */
+/*       margin-top:10px; */
+/*       margin-right:25px; */
+/*       margin-left:25px; */
+/* }  */
+/* 	#transcriptMultipartFile{ */
+/* 	 color: white;   */
+/*       border: 1px #F7C11F;   */
+/*       border-radius: 5px;   */
+/*       background: #F7C11F;  */
+/*       text-align: right;  */
+/*       margin-bottom:10px; */
+/*       margin-top:10px; */
+/*       margin-right:25px; */
+/*       margin-left:25px; */
+/* 	} */
+
+#buttonSave{
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom:15px;
+	width: 150px;
+	height: 30px;
+	float:right;
+	font-family: "Regular";
+	font-size: 16px;
+}
+#buttonBack{
+	margin-top: 15px;
+	margin-right:15px;
+	margin-bottom:15px;
+	width: 90px;
+	height: 30px;
+	background-color: f4f4f4;
+	font-family: "Regular";
+	font-size: 14px;
+	color: #414141;
+}
+	#birthDay{ 
+     width:210px;
+     height:30px;
+     margin-bottom:10px;
+     margin-top:10px;
+     margin-right:25px;
+	 margin-left:25px; 
+   } 
+   #cardExpiryDay{ 
+     width:210px;
+     height:30px;
+     margin-bottom:10px;
+     margin-top:10px;
+     margin-right:25px;
+	 margin-left:25px; 
+   } 
+   #dateToBeDraft{ 
+     width:210px;
+     height:30px;
+     margin-bottom:10px;
+     margin-top:10px;
+     margin-right:25px;
+	 margin-left:25px; 
+   } 
+   #applyDay{ 
+     width:210px;
+     height:30px;
+     margin-bottom:10px;
+     margin-top:10px;
+     margin-right:25px;
+	 margin-left:25px; 
+   }
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+        margin-left: 85px;
+        color: #ffffff;
+        font-family: "Regular";
+        font-size: 13px;
+        width: 90px;
+        height: 25px;        
+        vertical-align: middle;
+    }
+.btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
+
+	#militaryNo{
+	 display:none;
+	}
+    #marriageAddress{
+    width:677px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    #email{
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+   #militaryReason{
+    width:677px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    
+    #nowEmployedYes{
+    margin-bottom:10px;
+    margin-top:10px;
+    }
+    
+    #nowEmployedNo{
+    margin-bottom:10px;
+    margin-top:10px;
+    }
+    
+    #nowEmployedKnow{
+    display:none;
+    }
+    
+    #emergencyAddress{
+    width:677px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+ 
+    #previousNo{
+    display:none;
+    }
+
+    #previousEmployersReason{
+/*     display:none; */
+    width:677px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+   
+    #militaryYes{
+    display:none;
+    }
+    #tel{
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+
+    #placeBirth{
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    
+    }
+    #age{
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    #religion{
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    #nationality{
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    #cardId{
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    #cardIssuedOffice{
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+
+   #height{
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+   } 
+   #weight{
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+   }
+   #numberOfChildren{
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+   }
+   #spouseName{
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+   }
+   #marriageCertificateNo{
+  	width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+   }
+   #issueOficeMarriage{
+   	width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+   }
+   #occupationMarriage{
+   	width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+   } 
+   #militaryFromYear{
+ 	width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+   }
+   #militarytoYear{
+  	width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+   } 
+   #branchService{
+  	width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+   } 
+    #militaryPlace{
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    #militaryServiceNo{
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    #noticeNewspaper{
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    #noticeMagazine{
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    #noticeWebSite{
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    #noticeFriend{
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    #noticeOther{
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    #employedName{
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    #employedPosition{
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    #employedRelation{
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    #emergencyName{
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    #emergencyTel{
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    
+    #expectedSalary{
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    
+    #sexRadioButton{
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    width:210px;
+    height:30px;
+    }
+    #applicantStatusRadioButton{
+    margin-bottom:10px;
+    margin-top:10px;
+    width:210px;
+    height:30px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    #married{
+    display:none;
+    }
+  
+    #drafted{
+    display:none;
+    }
+    #nowEmployedRadioButton{
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    width:210px;
+    height:30px;
+    }
+    #previousEmployersRadioButton{
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    #positionFirst{
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+	margin-left:25px;
+    }
+    #positionSecond{
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    #positionThird{
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+/*     #newspaper{ */
+/*     display:none; */
+/*     } */
+/*     #magazine{ */
+/*     display:none; */
+/*     } */
+/*     #webSite{ */
+/*     display:none; */
+/*     } */
+/*     #friend{ */
+/*     display:none; */
+/*     } */
+/*     #other{ */
+/*     display:none; */
+/*     } */
+    #applicantStatusStyle{
+    width:296px;
+    height:92px;
+    }
+  
+    #firstNameTH{
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    #lastNameTH{
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    #nickNameTH{
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    #firstNameEN{
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    #lastNameEN{ 
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+    #nickNameEN{ 
+    width:210px;
+    height:30px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-right:25px;
+    margin-left:25px;
+    }
+/*    #resumeMultipartFile{ */
+/*      color: #ffffff; */
+/*      font-family: "Regular"; */
+/*   	 font-size: 13px; */
+/*      width: 90px; */
+/*      height: 25px */
+/*    } */
+  #resume{
+   margin-bottom:10px;
+   margin-top:10px;
+   margin-right:25px;
+   margin-left:25px;
+  }
+/*   #file-upload { */
+/*     display: none; */
+/* } */
+
+/* .custom-file-upload { */
+/*       background: #ddd; */
+/*       border: 1px solid #aaa; */
+/* 	  border-top: 1px solid #ccc; */
+/* 	  border-left: 1px solid #ccc; */
+/* 	  -moz-border-radius: 3px; */
+/* 	  -webkit-border-radius: 3px; */
+/* 	  border-radius: 3px; */
+/* 	  color: #444; */
+/* 	  display: inline-block; */
+/* 	  font-size: 11px; */
+/* 	  font-weight: bold; */
+/* 	  text-decoration: none; */
+/* 	  text-shadow: 0 1px rgba(255, 255, 255, .75); */
+/* 	  cursor: pointer; */
+/* 	  margin-bottom: 20px; */
+/* 	  line-height: normal; */
+/* 	  padding: 8px 10px; } */
+  label.resume input[type="file"] {
+    position: fixed;
+    top: -1000px;
+}
+
+/***** Example custom styling **** */
+.resume {
+    border: 2px solid #AAA;
+    border-radius: 4px;
+    padding: 2px 5px;
+    margin: 2px;
+    background: #DDD;
+    display: inline-block;
+}
+.resume :hover {
+    background: #CCC;
+}
+.resume :active {
+    background: #CCF;
+}
+.resume :invalid + span {
+    color: #A44;
+}
+.resume :valid + span {
+    color: #4A4;
+}
+  label.transcript input[type="file"] {
+    position: fixed;
+    top: -1000px;
+}
+
+/***** Example custom styling **** */
+.transcript {
+    border: 2px solid #AAA;
+    border-radius: 4px;
+    padding: 2px 5px;
+    margin: 2px;
+    background: #DDD;
+    display: inline-block;
+}
+.transcript :hover {
+    background: #CCC;
+}
+.transcript :active {
+    background: #CCF;
+}
+.transcript :invalid + span {
+    color: #A44;
+}
+.transcript :valid + span {
+    color: #4A4;
+}
+   #transcript{
+   margin-bottom:10px;
+   margin-top:10px;
+   margin-right:25px;
+   margin-left:25px;
+   }
+

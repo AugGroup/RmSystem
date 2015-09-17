@@ -1,0 +1,235 @@
+#imagePreview {
+	margin-bottom: 5px;
+	margin-right: 75px;
+	margin-left: 75px;
+	width: 120px;
+	height: 120px;
+	background-position: center;
+	background-size: cover;
+	-webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, .3);
+	display: inline-block;
+}
+
+#headId {
+	margin-left: 40px;
+}
+#headId > a {
+	color: #ffffff; 
+	padding: 5px;
+}
+.user > a{
+	color: #707070; 
+	padding-left: 10px;
+}
+.user2 > a >img{
+	width: 40px; 
+	height: 25px;
+	margin-right: 2px;
+}
+.user2 > .btn-group{
+	float: right;
+	color: #ffffff;
+}
+#dropdown_report > li >a {
+	font-size: 14px; 
+	color: #292929;
+}
+#logo{
+	width: 170px; 
+	height: 75px;
+}
+
+#btn_report {
+	width: 75px;
+	height: 25px;
+	background: #707070;
+	border: 2px solid #ffffff;
+	padding: 2px;
+}
+
+.footer {
+	background: #FFC000;
+	height: 30px;
+	/* position: fixed;
+    bottom: 0;
+    width: 100%; */
+}
+
+.text-muted {
+	float: right;
+	margin: 4px;
+}
+
+.user {
+	width: 183px;
+	height: 25px;
+	background: white;
+	font-size: 16px;
+	font-family: "SemiBold";
+	margin-right: 95px;
+	float: right;
+}
+
+.user2 {
+	width: 183px;
+	height: 25px;
+	margin-top: 5px;
+	font-size: 16px;
+	font-family: "Regular";
+	font-weight: bold;
+}
+
+.btn btn-sm btn-info dropdown-toggle {
+	background: #707070;
+}
+
+.headed {
+	background: #707070;
+	height: 65px;
+}
+
+.body {
+	padding: 25px 0px 145px 0px;
+	background: #CAC9C7;
+}
+
+.container {
+	font-family: "Regular";
+	position: relative;
+	margin-left: 40px;
+	margin-right: 40px;
+	padding-right: 0px;
+	padding-left: 0px;
+	width: 94%;
+}
+
+.form-group {
+	margin: 3px;
+}
+
+.flag{
+ 	filter : alpha(opacity=50);
+ 	opacity : 0.5;
+}
+
+.error {
+	color: red;
+	padding: 3px;
+}
+
+/* -------- for titleHeader ------ */
+#titleHead {
+	background: #E0DFDD;
+}
+
+#textTitle {
+	height: 30px;
+	font-family: "SemiBold";
+    font-size: 18px;
+	color: #ffffff;
+    border: 1px #F7C11F; 
+    background: #ffc000;
+	padding-left: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+#buttonAdd{
+	width: 150px;
+	height: 30px;
+	font-family: "Regular";
+	font-size: 16px; 
+}
+
+#buttonBack{
+	width: 90px;
+	height: 30px;
+	background-color: f4f4f4;
+	font-family: "Regular";
+	font-size: 14px;
+	color: #414141;
+}
+
+#buttonNext{
+	margin-right:5px;
+	width: 90px;
+	height: 30px;
+	background-color: f4f4f4;
+	font-family: "Regular";
+	font-size: 14px;
+	color: #414141;
+}
+
+/* -------- for dataTable -------- */
+#table {
+	padding: 15px 5px 90px 5px;
+	margin-top: 25px; margin-bottom : 100px;
+	background: #E0DFDD;
+	margin-bottom: 100px;
+}
+
+.dataTable {
+	color: #414141;
+	background-color: #ababab;
+}
+
+td {
+	font-family: "Regular";
+	font-size: 18px;
+	color: #414141;
+}
+
+table.dataTable tr.odd {
+	background-color: #e7e7e7;
+}
+
+table.dataTable tr.even {
+	background-color: #d6d6d6;
+}
+
+#dataTable_previous, #dataTable_next, .paginate_button {
+	padding: 3px;
+}
+
+#btn_new_app, #btn_new_req {
+	float: right;
+	margin: 20px 5px 20px 5px;
+}
+
+/* -------- for report -------- */
+.report_search {
+	position: relative;
+	/* padding-left: 20%; */
+	padding-top: 50px;
+	/* height: 200px; */
+	width: 85%;
+}
+
+.search_inputgroup {
+	width: 1000px;
+	float: right;
+	margin: 5px;
+	padding: 5px;
+}
+#inputSearch.form-control{
+	margin-top: 27px;
+}
+
+#search_row {
+	margin: 30px;
+}
+
+#radio_inputgroup {
+	margin: 0px 15px 0px 5px;
+}
+
+#btn_search {
+	margin: 27px 5px 0px 5px;
+	float: right;
+	width: 95px;
+}
+
+#btn_preview {
+	margin: 0px 5px 0px 5px;
+	width: 95px;
+}
