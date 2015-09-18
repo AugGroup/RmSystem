@@ -46,7 +46,7 @@
 		<authentication-provider>
 			<jdbc-user-service data-source-ref="dataSource"
 				users-by-username-query="select username,password,1 from LOGIN where username=?"
-				authorities-by-username-query="select username,role from USER_ROLES where username=?" />
+				authorities-by-username-query="select username,role from LOGINROLE where username=?" />
 		</authentication-provider>
 	</authentication-manager>
 
@@ -55,8 +55,4 @@
 		<beans:property name="basename" value="springsecurity" />
 		<beans:property name="defaultEncoding" value="UTF-8" />
 	</beans:bean>
-	<!-- <beans:bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource"> -->
-	<!-- <beans:property name="basename" value="classpath:/i18n/messages"/> -->
-	<!-- <beans:property name="defaultEncoding" value="UTF-8"/> -->
-	<!-- </beans:bean> -->
 </beans:beans> 
