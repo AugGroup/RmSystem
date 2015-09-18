@@ -871,22 +871,30 @@ public class ApplicantController implements Serializable {
 	public @ResponseBody CertificationDto updateCertificates(@RequestBody CertificationDto certificationDto, @PathVariable Integer id) {
 		Certification certification = certificationService.findById(certificationDto.getId());
 		certification.setId(certificationDto.getId());
+		certification.setCertificationForm(certificationDto.getCertificationForm());
 		certification.setName(certificationDto.getName());
-		
+		certification.setDescricption(certificationDto.getDescricption());
+		certification.setYear(certificationDto.getYear());
 		certificationService.update(certification);
 		
 		return certificationDto;
 	}
 	
 	@RequestMapping(value = "skills/updateSkills/{id}", method = { RequestMethod.POST })
-	public @ResponseBody SkillDTO updateSkills(@RequestBody SkillDTO skillDTO, @PathVariable Integer id) {
-		Skill skill = masCoreSkillService.findById(skillDTO.getId());
-		skill.setId(skillDTO.getId());
-		skill.setSkillDetail(skillDTO.getSkillDetail());
-		
+	public @ResponseBody MasCoreSkill updateSkills(@RequestBody MasCoreSkill masCoreSkill, @PathVariable Integer id) {
+		MasCoreSkill skill = masCoreSkillService.find(masCoreSkill.getId());
+		skill.setId(masCoreSkill.getId());
+		skill.setIsActive(masCoreSkill.getIsActive());
+		skill.setName(masCoreSkill.getName());
+		skill.setCode(masCoreSkill.getCode());
+		skill.setAuditFlag(masCoreSkill.getAuditFlag());
+		skill.setCreatedTimeStamp(masCoreSkill.getCreatedTimeStamp());
+		skill.setCreatedBy(masCoreSkill.getCreatedBy());
+		skill.setUpdatedBy(masCoreSkill.getUpdatedBy());
+		skill.setUpdatedTimeStamp(masCoreSkill.getUpdatedTimeStamp());
 		masCoreSkillService.update(skill);
 		
-		return skillDTO;
+		return masCoreSkill;
 	}
 	
 	@RequestMapping(value = "languages/updateLanguage/{id}", method = { RequestMethod.POST })

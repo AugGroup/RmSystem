@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.bouncycastle.mail.smime.handlers.pkcs7_mime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import com.aug.hrdb.dto.AugRequestDto;
 import com.aug.hrdb.entities.AugRequest;
 import com.aug.hrdb.services.AugRequestService;
+import com.aug.hrdb.services.MasTechnologyService;
 
 
 /**
@@ -30,8 +32,11 @@ import com.aug.hrdb.services.AugRequestService;
 public class AugRequestController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	@Autowired private AugRequestService augRequestService;
+	@Autowired 
+	private AugRequestService augRequestService;
 //	@Autowired private PositionService positionService;
+	@Autowired
+	private MasTechnologyService masTechnologyService;
 	
 	
 	@RequestMapping(value = "/request", method = { RequestMethod.GET })
