@@ -39,7 +39,25 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.aug.hrdb.dto.AddressDto;
 import com.aug.hrdb.dto.ApplicantDto;
+import com.aug.hrdb.dto.CertificationDto;
+import com.aug.hrdb.dto.EducationDto;
+import com.aug.hrdb.dto.ExperienceDto;
+import com.aug.hrdb.dto.FamilyDto;
+import com.aug.hrdb.dto.LanguageDto;
+import com.aug.hrdb.dto.ReferenceDto;
+import com.aug.hrdb.dto.ReportApplicantDto;
+import com.aug.hrdb.dto.SearchReportDto;
+import com.aug.hrdb.entities.Address;
+import com.aug.hrdb.entities.Applicant;
+import com.aug.hrdb.entities.Certification;
+import com.aug.hrdb.entities.Education;
+import com.aug.hrdb.entities.Experience;
+import com.aug.hrdb.entities.Family;
+import com.aug.hrdb.entities.Language;
+import com.aug.hrdb.entities.MasCoreSkill;
+import com.aug.hrdb.entities.Reference;
 import com.aug.hrdb.services.AddressService;
 import com.aug.hrdb.services.ApplicantService;
 import com.aug.hrdb.services.CertificationService;
@@ -115,7 +133,7 @@ public class ApplicantController implements Serializable {
 				Locale.ENGLISH);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(
 				dateFormat, true));
-		 binder.registerCustomEditor(Position.class,positionEditor);
+//		 binder.registerCustomEditor(Position.class,positionEditor);
 		
 	}
 
@@ -135,9 +153,9 @@ public class ApplicantController implements Serializable {
 		if (StringUtils.isEmpty(technology)) {
 			data = applicantService.findAllApplicant();
 		}
-		final List<ApplicantDTO> datas = data;
+		final List<ApplicantDto> datas = data;
 		return new Object() {
-			public List<ApplicantDTO> getData() {
+			public List<ApplicantDto> getData() {
 				return datas;
 			}
 		};
@@ -145,13 +163,13 @@ public class ApplicantController implements Serializable {
 	@RequestMapping(value = "/applicant/searchJoblevel", method = { RequestMethod.POST })
 	public @ResponseBody Object searchByJoblevel(
 			@RequestParam final String joblevel) throws Exception {
-		List<ApplicantDTO> data = applicantService.findByTechnology(joblevel);
+		List<ApplicantDto> data = applicantService.findByTechnology(joblevel);
 		if (StringUtils.isEmpty(joblevel)) {
 			data = applicantService.findAllApplicant();
 		}
-		final List<ApplicantDTO> datas = data;
+		final List<ApplicantDto> datas = data;
 		return new Object() {
-			public List<ApplicantDTO> getData() {
+			public List<ApplicantDto> getData() {
 				return datas;
 			}
 		};
@@ -175,13 +193,13 @@ public class ApplicantController implements Serializable {
 
 	// Search Applicant By Id
 	@RequestMapping(value = "/applicant/search/{id}", method = { RequestMethod.POST })
-	public @ResponseBody ApplicantDTO findById(@PathVariable Integer id)
+	public @ResponseBody ApplicantDto findById(@PathVariable Integer id)
 			throws Exception {
 		return applicantService.findApplicantById(id);
 	}
 
 	@RequestMapping(value = "/findByIdApplication/{id}", method = { RequestMethod.POST })
-	public @ResponseBody ApplicantDTO findByIdApplication(
+	public @ResponseBody ApplicantDto findByIdApplication(
 			@PathVariable Integer id) throws Exception {
 
 		return applicantService.findApplicationById(id);
@@ -189,20 +207,20 @@ public class ApplicantController implements Serializable {
 
 	// Edit Applicant Score
 	@RequestMapping(value = "/update/score/{id}", method = { RequestMethod.POST })
-	public @ResponseBody ApplicantDTO updateUser(
-			@RequestBody ApplicantDTO applicantDTO, @PathVariable Integer id)
+	public @ResponseBody ApplicantDto updateUser(
+			@RequestBody ApplicantDto applicantDto, @PathVariable Integer id)
 			throws Exception {
 
-		Applicant applicant = applicantService.findById(applicantDTO.getId());
-		applicant.setScore(applicantDTO.getScore());
-		applicant.setTechScore(applicantDTO.getTechScore());
-		applicant.setAttitudeHome(applicantDTO.getAttitudeHome());
-		applicant.setAttitudeOffice(applicantDTO.getAttitudeOffice());
-		applicant.setTrackingStatus(applicantDTO.getTrackingStatus());
+		Applicant applicant = applicantService.findById(applicantDto.getId());
+		applicant.setScore(applicantDto.getScore());
+		applicant.setTechScore(applicantDto.getTechScore());
+		applicant.setAttitudeHome(applicantDto.getAttitudeHome());
+		applicant.setAttitudeOffice(applicantDto.getAttitudeOffice());
+		applicant.setTrackingStatus(applicantDto.getTrackingStatus());
 
 		applicantService.update(applicant);
 
-		return applicantDTO;
+		return applicantDto;
 
 	}
 
@@ -228,7 +246,7 @@ public class ApplicantController implements Serializable {
 			String degree, String major, String schoolName, Double gpa)
 			throws Exception {
 
-		final List<ReportApplicantDTO> data;
+		final List<ReportApplicantDto> data;
 		data = applicantService.findReportByCriteria(technology,joblevel, degree, major,
 				schoolName, gpa);
 
@@ -241,7 +259,7 @@ public class ApplicantController implements Serializable {
 		 */
 
 		return new Object() {
-			public List<ReportApplicantDTO> getData() {
+			public List<ReportApplicantDto> getData() {
 				return data;
 			}
 		};
@@ -251,9 +269,9 @@ public class ApplicantController implements Serializable {
 	@RequestMapping(value = "/report/preview", method = { RequestMethod.POST,
 			RequestMethod.GET })
 	public ModelAndView previewReport(
-			@ModelAttribute SearchReportDTO searchReportDTO,
+			@ModelAttribute SearchReportDto searchReportDTO,
 			HttpSession session, Locale locale) throws Exception {
-		List<ReportApplicantDTO> reportApplicantList = null;
+		List<ReportApplicantDto> reportApplicantList = null;
 		Integer technology = searchReportDTO.getTechnology();
 		Integer joblevel = searchReportDTO.getJoblevel();
 		String degree = searchReportDTO.getDegree();
@@ -288,7 +306,7 @@ public class ApplicantController implements Serializable {
 	public @ResponseBody Object searchReportByMonth(
 			@RequestParam String applyDateStr) throws NotFoundException {
 
-		List<ReportApplicantDTO> data;
+		List<ReportApplicantDto> data;
 
 		if (!applyDateStr.isEmpty()) {
 			String dateStr = applyDateStr;
@@ -302,9 +320,9 @@ public class ApplicantController implements Serializable {
 			data = applicantService.findReportByCriteria(-1,-1, "", "", "", null);
 
 		}
-		final List<ReportApplicantDTO> datas = data;
+		final List<ReportApplicantDto> datas = data;
 		return new Object() {
-			public List<ReportApplicantDTO> getData() {
+			public List<ReportApplicantDto> getData() {
 				return datas;
 			}
 		};
@@ -312,9 +330,9 @@ public class ApplicantController implements Serializable {
 
 	@RequestMapping(value = "/reportMonthly/preview", method = { RequestMethod.POST })
 	public ModelAndView searchMonthlyReport(
-			@ModelAttribute SearchReportDTO searchReportDTO,
+			@ModelAttribute SearchReportDto searchReportDTO,
 			HttpSession session, Locale locale) {
-		List<ReportApplicantDTO> reportApplicantList = null;
+		List<ReportApplicantDto> reportApplicantList = null;
 		String applyDate = searchReportDTO.getApplyDateStr();
 
 		String reportType = searchReportDTO.getReportType();
@@ -341,15 +359,15 @@ public class ApplicantController implements Serializable {
 	}
 
 	/*-------------------- Position List--------------------*/
-	@ModelAttribute("positionRequest")
-	public List<Position> getPosition() {
-		return positionService.findAll();
-
-	}
+//	@ModelAttribute("positionRequest")
+//	public List<Position> getPosition() {
+//		return positionService.findAll();
+//
+//	}
 
 	@ModelAttribute("searchReportDTO")
-	public SearchReportDTO getsearchReport() {
-		return new SearchReportDTO();
+	public SearchReportDto getsearchReport() {
+		return new SearchReportDto();
 
 	}
 	
@@ -365,37 +383,37 @@ public class ApplicantController implements Serializable {
 	//////////////////        SAVE METHOD        /////////////////////
 
 	@RequestMapping(value = "/saveInformations", method = { RequestMethod.POST })
-	public String saveInformations(@ModelAttribute ApplicantDTO applicantDTO, Model model,MultipartFile multipartFile)
+	public String saveInformations(@ModelAttribute ApplicantDto applicantDto, Model model,MultipartFile multipartFile)
 			throws ParseException {
 		
 		int year = Calendar.getInstance().get(Calendar.YEAR);
 		
-		applicantDTO.setCode("C"+year+(applicantService.getMaxApplicantId().getId()+1));
+		applicantDto.setCode("C"+year+(applicantService.getMaxApplicantId().getId()+1));
 		
-		if(applicantDTO.getImageMultipartFile()!=null&&applicantDTO.getImageMultipartFile().getSize()>0){
+		if(applicantDto.getImageMultipartFile()!=null&&applicantDto.getImageMultipartFile().getSize()>0){
 			try {
-				applicantDTO.setImage(applicantDTO.getImageMultipartFile().getOriginalFilename());
-				uploadService.upload("Applicant",applicantDTO.getImageMultipartFile().getOriginalFilename(),applicantDTO.getImageMultipartFile());
+				applicantDto.setImage(applicantDto.getImageMultipartFile().getOriginalFilename());
+				uploadService.upload("Applicant",applicantDto.getImageMultipartFile().getOriginalFilename(),applicantDto.getImageMultipartFile());
 			} catch (RuntimeException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		if(applicantDTO.getResumeMultipartFile()!=null&&applicantDTO.getResumeMultipartFile().getSize()>0){
+		if(applicantDto.getResumeMultipartFile()!=null&&applicantDto.getResumeMultipartFile().getSize()>0){
 			try {
-				applicantDTO.setResume(applicantDTO.getResumeMultipartFile().getOriginalFilename());
-				uploadService.upload("Applicant",applicantDTO.getResumeMultipartFile().getOriginalFilename(),applicantDTO.getResumeMultipartFile());
+				applicantDto.setResume(applicantDto.getResumeMultipartFile().getOriginalFilename());
+				uploadService.upload("Applicant",applicantDto.getResumeMultipartFile().getOriginalFilename(),applicantDto.getResumeMultipartFile());
 			} catch (RuntimeException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		if(applicantDTO.getTranscriptMultipartFile()!=null&&applicantDTO.getTranscriptMultipartFile().getSize()>0){
+		if(applicantDto.getTranscriptMultipartFile()!=null&&applicantDto.getTranscriptMultipartFile().getSize()>0){
 			try {
-				applicantDTO.setTranscript(applicantDTO.getTranscriptMultipartFile().getOriginalFilename());
-				uploadService.upload("Applicant",applicantDTO.getTranscriptMultipartFile().getOriginalFilename(),applicantDTO.getTranscriptMultipartFile());
+				applicantDto.setTranscript(applicantDto.getTranscriptMultipartFile().getOriginalFilename());
+				uploadService.upload("Applicant",applicantDto.getTranscriptMultipartFile().getOriginalFilename(),applicantDto.getTranscriptMultipartFile());
 			} catch (RuntimeException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -406,14 +424,11 @@ public class ApplicantController implements Serializable {
 //		if(applicantDTO.getPosition1().getId()<0) applicantDTO.setPosition1(null);
 //		if(applicantDTO.getPosition2().getId()<0) applicantDTO.setPosition2(null);
 //		if(applicantDTO.getPosition3().getId()<0) applicantDTO.setPosition3(null);
-//		applicantService.saveInformations(applicantDTO);
+		applicantService.saveInformations(applicantDto);
 
-		model.addAttribute("id", applicantDTO.getId());
-		model.addAttribute("applicant", applicantDTO);
-	/*	System.out.println("POSITION 1 : "+applicationDTO.getPosition1().getId());
-		System.out.println("POSITION 2 : "+applicationDTO.getPosition2().getId());
-		System.out.println("POSITION 3 : "+applicationDTO.getPosition3().getId());
-*/
+		model.addAttribute("id", applicantDto.getId());
+		model.addAttribute("applicant", applicantDto);
+	
 		return "informations";
 	}
 
@@ -430,7 +445,7 @@ public class ApplicantController implements Serializable {
 	public @ResponseBody Family saveFamily(@RequestBody Family family,@PathVariable Integer id,Model model) {
 		model.addAttribute("id",id);
 		familyService.create(family);
-		Family fam = familyService.findById(id);
+		Family fam = familyService.find(id);
 		
         return fam;
 	}
@@ -445,28 +460,28 @@ public class ApplicantController implements Serializable {
 	}
 	
 	@RequestMapping(value = "certificates/certificates/{id}", method = { RequestMethod.POST })
-	public @ResponseBody Certificate certificate(@RequestBody Certificate certificate,@PathVariable Integer id,Model model) {
+	public @ResponseBody Certification certification(@RequestBody Certification certification,@PathVariable Integer id,Model model) {
 		model.addAttribute("id",id);
-		certificatedService.create(certificate);
-		Certificate cer = certificatedService.findById(id);
+		certificationService.create(certification);
+		Certification cer = certificationService.findById(id);
         return cer;
 
 	}
 	
 	@RequestMapping(value = "/skills/{id}", method = { RequestMethod.POST })
-	public @ResponseBody Skill skills(@RequestBody Skill skill,@PathVariable Integer id,Model model) {
+	public @ResponseBody MasCoreSkill MasCoreSkills(@RequestBody MasCoreSkill masCoreSkill,@PathVariable Integer id,Model model) {
 		model.addAttribute("id",id);
-		skillService.create(skill);
-		Skill skills = skillService.findById(id);
+		masCoreSkillService.create(masCoreSkill);
+		MasCoreSkill skills = masCoreSkillService.find(id);
         return skills;
 
 	}
 	
 	@RequestMapping(value = "/languages/{id}", method = { RequestMethod.POST })
-	public @ResponseBody Languages languages(@RequestBody Languages languages,@PathVariable Integer id,Model model) {
+	public @ResponseBody Language language(@RequestBody Language language,@PathVariable Integer id,Model model) {
 		model.addAttribute("id",id);
-		languagesService.create(languages);
-		Languages lang = languagesService.findById(id);
+		languageService.create(language);
+		Language lang = languageService.find(id);
         return lang;
 
 	}
@@ -591,46 +606,46 @@ public class ApplicantController implements Serializable {
 		return "informations";
 	}
 	@RequestMapping(value = "/info/{id}", method = { RequestMethod.GET })
-	public String updateInfo(@ModelAttribute ApplicantDTO applicantDTO,
+	public String updateInfo(@ModelAttribute ApplicantDto applicantDto,
 			@PathVariable Integer id, Model  model) {
-		applicantDTO = applicantService.findByIdApplicant(id);
+		applicantDto = applicantService.findByIdApplicant(id);
 		String tag = "infomation";
 		model.addAttribute("tag","information");
-		applicantDTO.setTechnology(masTechnologyService.findById(applicantDTO.getTechnologyId()));
-		applicantDTO.setJoblevel(masJobLevelService.findById(applicantDTO.getJoblevelId()));
-		model.addAttribute("applicant", applicantDTO);
-		System.out.println("TECHNOLOGY : "+applicantDTO.getTechnology());
-		System.out.println("JOBLEVEL : "+applicantDTO.getJoblevel());
-		System.out.println("Tracking Status : "+applicantDTO.getTrackingStatus());
+		applicantDto.setTechnology(masTechnologyService.find(applicantDto.getTechnologyId()));
+		applicantDto.setJoblevel(masJoblevelService.find(applicantDto.getJoblevelId()));
+		model.addAttribute("applicant", applicantDto);
+		System.out.println("TECHNOLOGY : "+applicantDto.getTechnology());
+		System.out.println("JOBLEVEL : "+applicantDto.getJoblevel());
+		System.out.println("Tracking Status : "+applicantDto.getTrackingStatus());
 		return "informations";
 	}
 	
 	@RequestMapping(value = "/infoEdit/{id}", method = { RequestMethod.POST })
-	public String updateInformations(@ModelAttribute ApplicantDTO applicantDTO,@PathVariable Integer id,Model  model,MultipartFile multipartFile) {
-		if(applicantDTO.getImageMultipartFile()!=null&&applicantDTO.getImageMultipartFile().getSize()>0){
+	public String updateInformations(@ModelAttribute ApplicantDto applicantDto,@PathVariable Integer id,Model  model,MultipartFile multipartFile) {
+		if(applicantDto.getImageMultipartFile()!=null&&applicantDto.getImageMultipartFile().getSize()>0){
 			try {
-				applicantDTO.setImage(applicantDTO.getImageMultipartFile().getOriginalFilename());
-				uploadService.upload("Applicant",applicantDTO.getImageMultipartFile().getOriginalFilename(),applicantDTO.getImageMultipartFile());
+				applicantDto.setImage(applicantDto.getImageMultipartFile().getOriginalFilename());
+				uploadService.upload("Applicant",applicantDto.getImageMultipartFile().getOriginalFilename(),applicantDto.getImageMultipartFile());
 			} catch (RuntimeException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		if(applicantDTO.getResumeMultipartFile()!=null&&applicantDTO.getResumeMultipartFile().getSize()>0){
+		if(applicantDto.getResumeMultipartFile()!=null&&applicantDto.getResumeMultipartFile().getSize()>0){
 			try {
-				applicantDTO.setResume(applicantDTO.getResumeMultipartFile().getOriginalFilename());
-				uploadService.upload("Applicant",applicantDTO.getResumeMultipartFile().getOriginalFilename(),applicantDTO.getResumeMultipartFile());
+				applicantDto.setResume(applicantDto.getResumeMultipartFile().getOriginalFilename());
+				uploadService.upload("Applicant",applicantDto.getResumeMultipartFile().getOriginalFilename(),applicantDto.getResumeMultipartFile());
 			} catch (RuntimeException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		if(applicantDTO.getTranscriptMultipartFile()!=null&&applicantDTO.getTranscriptMultipartFile().getSize()>0){
+		if(applicantDto.getTranscriptMultipartFile()!=null&&applicantDto.getTranscriptMultipartFile().getSize()>0){
 			try {
-				applicantDTO.setTranscript(applicantDTO.getTranscriptMultipartFile().getOriginalFilename());
-				uploadService.upload("Applicant",applicantDTO.getTranscriptMultipartFile().getOriginalFilename(),applicantDTO.getTranscriptMultipartFile());
+				applicantDto.setTranscript(applicantDto.getTranscriptMultipartFile().getOriginalFilename());
+				uploadService.upload("Applicant",applicantDto.getTranscriptMultipartFile().getOriginalFilename(),applicantDto.getTranscriptMultipartFile());
 			} catch (RuntimeException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -638,55 +653,55 @@ public class ApplicantController implements Serializable {
 			}
 		}
 	
-		applicantService.update(applicantDTO);
-		model.addAttribute("applicant", applicantDTO);
+		applicantService.update(applicantDto);
+		model.addAttribute("applicant", applicantDto);
 
 		return "informations";
 	}
 	
 	@RequestMapping(value = "/findByIdApplicants/{id}", method = { RequestMethod.POST })
-	public @ResponseBody ApplicantDTO findByIdApplications(@RequestBody ApplicantDTO applicantDTO,@PathVariable Integer id) {
-		applicantDTO = applicantService.findApplicationById(id);
-		return applicantDTO;
+	public @ResponseBody ApplicantDto findByIdApplications(@RequestBody ApplicantDto applicantDto,@PathVariable Integer id) {
+		applicantDto = applicantService.findApplicationById(id);
+		return applicantDto;
 	}
 	
 	@RequestMapping(value = "address/findAddressId/{id}", method = { RequestMethod.POST })
-	public @ResponseBody AddressDTO findAddress(@PathVariable Integer id) {
+	public @ResponseBody AddressDto findAddress(@PathVariable Integer id) {
 		return addressService.findAddress(id);
 	}
 	
 	@RequestMapping(value = "family/findFamilyId/{id}", method = { RequestMethod.POST })
-	public @ResponseBody FamilyDTO findFamily(@PathVariable Integer id) {
+	public @ResponseBody FamilyDto findFamily(@PathVariable Integer id) {
 		return familyService.findFamily(id);
 	}
 	
 	@RequestMapping(value = "educations/findEducationId/{id}", method = { RequestMethod.POST })
-	public @ResponseBody EducationDTO findEducation(@PathVariable Integer id) {
+	public @ResponseBody EducationDto findEducation(@PathVariable Integer id) {
 		return educationService.findEducation(id);
 	}
 	
 	@RequestMapping(value = "certificates/findCertificateId/{id}", method = { RequestMethod.POST })
-	public @ResponseBody CertificatedDTO findCertificated(@PathVariable Integer id) {
-		return certificatedService.findCertificate(id);
+	public @ResponseBody CertificationDto findCertificated(@PathVariable Integer id) {
+		return certificationService.findCertificate(id);
 	}
 	
 	@RequestMapping(value = "skills/findSkillId/{id}", method = { RequestMethod.POST })
-	public @ResponseBody SkillDTO findSkill(@PathVariable Integer id) {
-		return skillService.findSkill(id);
+	public @ResponseBody MasCoreSkill findMasCoreSkill(@PathVariable Integer id) {
+		return masCoreSkillService.find(id);
 	}
 	
 	@RequestMapping(value = "languages/findLanguagesId/{id}", method = { RequestMethod.POST })
-	public @ResponseBody LanguagesDTO findLanguages(@PathVariable Integer id) {
-		return languagesService.findLanguages(id);
+	public @ResponseBody LanguageDto findLanguage(@PathVariable Integer id) {
+		return languageService.findLanguages(id);
 	}
 	
 	@RequestMapping(value = "references/findReferenceId/{id}", method = { RequestMethod.POST })
-	public @ResponseBody ReferenceDTO findReference(@PathVariable Integer id) {
+	public @ResponseBody ReferenceDto findReference(@PathVariable Integer id) {
 		return referenceService.findReference(id);
 	}
 	
 	@RequestMapping(value = "experiences/findExperienceId/{id}", method = { RequestMethod.POST })
-	public @ResponseBody ExperienceDTO findExperience(@PathVariable Integer id) {
+	public @ResponseBody ExperienceDto findExperience(@PathVariable Integer id) {
 		return experienceService.findExperience(id);
 	}
 	
@@ -694,20 +709,20 @@ public class ApplicantController implements Serializable {
 	
 	@RequestMapping(value = "address/findByIdAddress/{id}", method = { RequestMethod.POST })
 	public @ResponseBody Object findByIdAddress(@PathVariable Integer id) {
-		final List<AddressDTO> list= addressService.findAddressById(id);
-		for(AddressDTO address : list){
-			System.out.println(address.getAddressType());
-			System.out.println(address.getHouseNo());
-		}
+		final List<AddressDto> list= addressService.findAddressById(id);
+//		for(AddressDto address : list){
+//			System.out.println(address.getAddressType());
+//			System.out.println(address.getHouseNo());
+//		}
 		return new Object() {
-			public List<AddressDTO> getData() {
+			public List<AddressDto> getData() {
 				return list;
 			}
 		};
 	}
 	
 	@RequestMapping(value = "family/findByIdFamily/{id}", method = { RequestMethod.POST })
-	public @ResponseBody List<FamilyDTO> findByIdFamily(@PathVariable Integer id) {
+	public @ResponseBody List<FamilyDto> findByIdFamily(@PathVariable Integer id) {
 		return familyService.findFamilyById(id);
 //		for(FamilyDTO fa : list){
 //			System.out.println(fa.getName());
@@ -723,10 +738,10 @@ public class ApplicantController implements Serializable {
 	
 	@RequestMapping(value = "educations/findByIdEducation/{id}", method = { RequestMethod.POST })
 	public @ResponseBody Object findByIdEducation(@PathVariable Integer id) {
-		 final List<EducationDTO> list = educationService.findEducationById(id);
+		 final List<EducationDto> list = educationService.findEducationById(id);
 		 
 		return new Object() {
-			public List<EducationDTO> getData() {
+			public List<EducationDto> getData() {
 				return list;
 			}
 		};
@@ -734,24 +749,24 @@ public class ApplicantController implements Serializable {
 	
 	@RequestMapping(value = "certificates/findByIdCertificate/{id}", method = { RequestMethod.POST })
 	public @ResponseBody Object findByIdCertificaten(@PathVariable Integer id) {
-		final List<CertificatedDTO> list = certificatedService.findCertificateById(id);
-		for(CertificatedDTO cer : list){
-			System.out.println(cer.getCertificateName());
+		final List<CertificationDto> list = certificationService.findCertificateById(id);
+		for(CertificationDto cer : list){
+			System.out.println(cer.getName());
 		}
 		 
 		return new Object() {
-			public List<CertificatedDTO> getData() {
+			public List<CertificationDto> getData() {
 				return list;
 			}
 		};
 	}
 	
 	@RequestMapping(value = "skills/findByIdSkill/{id}", method = { RequestMethod.POST })
-	public @ResponseBody Object findByIdSkill(@PathVariable Integer id) {
-		 final List<SkillDTO> list = skillService.findSkillById(id);
+	public @ResponseBody Object findByIdMasCoreSkill(@PathVariable Integer id) {
+		 final List<MasCoreSkill> list = masCoreSkillService.findMasCoreSkillById(id);
 		 
 		return new Object() {
-			public List<SkillDTO> getData() {
+			public List<MasCoreSkill> getData() {
 				return list;
 			}
 			
@@ -760,10 +775,10 @@ public class ApplicantController implements Serializable {
 	
 	@RequestMapping(value = "languages/findByIdLanguages/{id}", method = { RequestMethod.POST })
 	public @ResponseBody Object findByIdLanguages(@PathVariable Integer id) {
-		 final List<LanguagesDTO> list = languagesService.findLanguagesById(id);
+		 final List<LanguageDto> list = languageService.findLanguagesById(id);
 		 
 		return new Object() {
-			public List<LanguagesDTO> getData() {
+			public List<LanguageDto> getData() {
 				return list;
 			}
 		};
@@ -771,10 +786,10 @@ public class ApplicantController implements Serializable {
 	
 	@RequestMapping(value = "references/findByIdReference/{id}", method = { RequestMethod.POST })
 	public @ResponseBody Object findByIdReference(@PathVariable Integer id) {
-		 final List<ReferenceDTO> list = referenceService.findReferenceById(id);
+		 final List<ReferenceDto> list = referenceService.findReferenceById(id);
 		 
 		return new Object() {
-			public List<ReferenceDTO> getData() {
+			public List<ReferenceDto> getData() {
 				return list;
 			}
 		};
@@ -782,22 +797,22 @@ public class ApplicantController implements Serializable {
 	
 	@RequestMapping(value = "experiences/findByIdExperience/{id}", method = { RequestMethod.POST })
 	public @ResponseBody Object findByIdExperience(@PathVariable Integer id) {
-		final List<ExperienceDTO> list= experienceService.findExperienceById(id);
+		final List<ExperienceDto> list= experienceService.findExperienceById(id);
 		 
-			for(ExperienceDTO fa : list){
-				System.out.println(fa.getAddress());
-				System.out.println(fa.getDescription());
-				System.out.println(fa.getEmployerName());
-				System.out.println(fa.getPosition());
-				System.out.println(fa.getPositionOfEmployer());
-				System.out.println(fa.getReason());
-				System.out.println(fa.getSalary());
-				System.out.println(fa.getSupervisor());
-				System.out.println(fa.getTypeOfBusiness());
-			}
+//			for(ExperienceDto fa : list){
+//				System.out.println(fa.getAddress());
+//				System.out.println(fa.getDescription());
+//				System.out.println(fa.getEmployerName());
+//				System.out.println(fa.getPosition());
+//				System.out.println(fa.getPositionOfEmployer());
+//				System.out.println(fa.getReason());
+//				System.out.println(fa.getSalary());
+//				System.out.println(fa.getSupervisor());
+//				System.out.println(fa.getTypeOfBusiness());
+//			}
 		 
 		return new Object() {
-			public List<ExperienceDTO> getData() {
+			public List<ExperienceDto> getData() {
 				return list;
 			}
 		};
@@ -806,123 +821,123 @@ public class ApplicantController implements Serializable {
 	//Update Data In DataTable
 	
 	@RequestMapping(value = "address/updateAddress/{id}", method = { RequestMethod.POST })
-	public @ResponseBody AddressDTO updateAddress(@RequestBody AddressDTO addressDTO, @PathVariable Integer id) {
-		Address address = addressService.findById(addressDTO.getId());
-		address.setAddressType(addressDTO.getAddressType());
-		address.setHouseNo(addressDTO.getHouseNo());
-		address.setRoad(addressDTO.getRoad());
-		address.setDistrict(addressDTO.getDistrict());
-		address.setSubDistrict(addressDTO.getSubDistrict());
-		address.setProvince(addressDTO.getProvince());
-		address.setZipcode(addressDTO.getZipcode());
+	public @ResponseBody AddressDto updateAddress(@RequestBody AddressDto addressDto, @PathVariable Integer id) {
+		Address address = addressService.findById(addressDto.getId());
+		address.setAddressType(addressDto.getAddressType());
+		address.setHouseNo(addressDto.getHouseNo());
+		address.setRoad(addressDto.getRoad());
+		address.setDistrict(addressDto.getDistrict());
+		address.setSubDistrict(addressDto.getSubDistrict());
+		address.setProvince(addressDto.getProvince());
+		address.setZipcode(addressDto.getZipcode());
 		
 		addressService.update(address);
 		
-		return addressDTO;
+		return addressDto;
 	}
 	
 	@RequestMapping(value = "family/updateFamily/{id}", method = { RequestMethod.POST })
-	public @ResponseBody FamilyDTO updateFamily(@RequestBody FamilyDTO familyDTO, @PathVariable Integer id) {
-		Family family = familyService.findById(familyDTO.getId());
-		family.setId(familyDTO.getId());
-		family.setAddress(familyDTO.getAddress());
-		family.setName(familyDTO.getName());
-		family.setOccupation(familyDTO.getOccupation());
-		family.setPositionFamily(familyDTO.getPositionFamily());
-		family.setRelation(familyDTO.getRelation());
+	public @ResponseBody FamilyDto updateFamily(@RequestBody FamilyDto familyDto, @PathVariable Integer id) {
+		Family family = familyService.find(familyDto.getId());
+		family.setId(familyDto.getId());
+		family.setAddress(familyDto.getAddress());
+		family.setName(familyDto.getName());
+		family.setOccupation(familyDto.getOccupation());
+		family.setPositionFamily(familyDto.getPositionFamily());
+		family.setRelation(familyDto.getRelation());
 		
 		familyService.update(family);
 		
-		return familyDTO;
+		return familyDto;
 	}
 	
 	@RequestMapping(value = "educations/updateEducations/{id}", method = { RequestMethod.POST })
-	public @ResponseBody EducationDTO updateEducations(@RequestBody EducationDTO educationDTO, @PathVariable Integer id) {
-		Education education = educationService.findById(educationDTO.getId());
-		education.setId(educationDTO.getId());
-		education.setDegree(educationDTO.getDegree());
-		education.setFaculty(educationDTO.getFaculty());
-		education.setGpa(educationDTO.getGpa());
-		education.setMajor(educationDTO.getMajor());
-		education.setSchoolName(educationDTO.getSchoolName());
-		education.setYearsOfGraduate(educationDTO.getYearsOfGraduate());
+	public @ResponseBody EducationDto updateEducations(@RequestBody EducationDto educationDto, @PathVariable Integer id) {
+		Education education = educationService.findById(educationDto.getId());
+		education.setId(educationDto.getId());
+		education.setDegree(educationDto.getDegree());
+		education.setFaculty(educationDto.getFaculty());
+		education.setGpa(educationDto.getGpa());
+		education.setMajor(educationDto.getMajor());
+		education.setSchoolName(educationDto.getSchoolName());
+		education.setYearsOfGraduate(educationDto.getYearsOfGraduate());
 		
 		educationService.update(education);
 		
-		return educationDTO;
+		return educationDto;
 	}
 	
 	@RequestMapping(value = "certificates/updateCertificates/{id}", method = { RequestMethod.POST })
-	public @ResponseBody CertificatedDTO updateCertificates(@RequestBody CertificatedDTO certificateDTO, @PathVariable Integer id) {
-		Certificate certificate = certificatedService.findById(certificateDTO.getId());
-		certificate.setId(certificateDTO.getId());
-		certificate.setCertificateName(certificateDTO.getCertificateName());
+	public @ResponseBody CertificationDto updateCertificates(@RequestBody CertificationDto certificationDto, @PathVariable Integer id) {
+		Certification certification = certificationService.findById(certificationDto.getId());
+		certification.setId(certificationDto.getId());
+		certification.setName(certificationDto.getName());
 		
-		certificatedService.update(certificate);
+		certificationService.update(certification);
 		
-		return certificateDTO;
+		return certificationDto;
 	}
 	
 	@RequestMapping(value = "skills/updateSkills/{id}", method = { RequestMethod.POST })
 	public @ResponseBody SkillDTO updateSkills(@RequestBody SkillDTO skillDTO, @PathVariable Integer id) {
-		Skill skill = skillService.findById(skillDTO.getId());
+		Skill skill = masCoreSkillService.findById(skillDTO.getId());
 		skill.setId(skillDTO.getId());
 		skill.setSkillDetail(skillDTO.getSkillDetail());
 		
-		skillService.update(skill);
+		masCoreSkillService.update(skill);
 		
 		return skillDTO;
 	}
 	
-	@RequestMapping(value = "languages/updateLanguages/{id}", method = { RequestMethod.POST })
-	public @ResponseBody LanguagesDTO updateLanguages(@RequestBody LanguagesDTO languagesDTO, @PathVariable Integer id) {
-		Languages languages = languagesService.findById(languagesDTO.getId());
-		languages.setId(languagesDTO.getId());
-		languages.setLanguagesName(languagesDTO.getLanguagesName());
-		languages.setReading(languagesDTO.getReading());
-		languages.setSpeaking(languagesDTO.getSpeaking());
-		languages.setUnderstanding(languagesDTO.getUnderstanding());
-		languages.setWriting(languagesDTO.getWriting());
+	@RequestMapping(value = "languages/updateLanguage/{id}", method = S{ RequestMethod.POST })
+	public @ResponseBody LanguageDto updateLanguage(@RequestBody LanguageDto languageDto, @PathVariable Integer id) {
+		Language languages = languageService.find(languageDto.getId());
+		languages.setId(languageDto.getId());
+		languages.setLanguagesName(languageDto.getLanguagesName());
+		languages.setReading(languageDto.getReading());
+		languages.setSpeaking(languageDto.getSpeaking());
+		languages.setUnderstanding(languageDto.getUnderstanding());
+		languages.setWriting(languageDto.getWriting());
 		
-		languagesService.update(languages);
+		languageService.update(languages);
 		
-		return languagesDTO;
+		return languageDto;
 	}
 	
 	@RequestMapping(value = "references/updateReferences/{id}", method = { RequestMethod.POST })
-	public @ResponseBody ReferenceDTO updateReferences(@RequestBody ReferenceDTO referenceDTO, @PathVariable Integer id) {
-		Reference reference = referenceService.findById(referenceDTO.getId());
-		reference.setId(referenceDTO.getId());
-		reference.setCompleteAddress(referenceDTO.getCompleteAddress());
-		reference.setFullName(referenceDTO.getFullName());
-		reference.setOccupation(referenceDTO.getOccupation());
-		reference.setTel(referenceDTO.getTel());
+	public @ResponseBody ReferenceDto updateReferences(@RequestBody ReferenceDto referenceDto, @PathVariable Integer id) {
+		Reference reference = referenceService.findById(referenceDto.getId());
+		reference.setId(referenceDto.getId());
+		reference.setCompleteAddress(referenceDto.getCompleteAddress());
+		reference.setFullName(referenceDto.getFullName());
+		reference.setOccupation(referenceDto.getOccupation());
+		reference.setTel(referenceDto.getTel());
 		
 		referenceService.update(reference);
 		
-		return referenceDTO;
+		return referenceDto;
 	}
 	
 	@RequestMapping(value = "experiences/updateExperience/{id}", method = { RequestMethod.POST })
-	public @ResponseBody ExperienceDTO updateExperience(@RequestBody ExperienceDTO experienceDTO, @PathVariable Integer id) throws Exception{
-		Experience experience = experienceService.findById(experienceDTO.getId());
-		experience.setId(experienceDTO.getId());
-		experience.setAddress(experienceDTO.getAddress());
-		experience.setDescription(experienceDTO.getDescription());
-		experience.setEmployerName(experienceDTO.getEmployerName());
-//		experience.setFromDate(experienceDTO.getFromDate());
-//		experience.setToDate(experienceDTO.getToDate());
-		experience.setPosition(experienceDTO.getPosition());
-		experience.setPositionOfEmployer(experienceDTO.getPositionOfEmployer());
-		experience.setReason(experienceDTO.getReason());
-		experience.setSalary(experienceDTO.getSalary());
-		experience.setSupervisor(experienceDTO.getSupervisor());
-		experience.setTypeOfBusiness(experienceDTO.getTypeOfBusiness());
-		experience.setApplyDateStr(experienceDTO.getApplyDateStr());
+	public @ResponseBody ExperienceDto updateExperience(@RequestBody ExperienceDto experienceDto, @PathVariable Integer id) throws Exception{
+		Experience experience = experienceService.findById(experienceDto.getId());
+		experience.setId(experienceDto.getId());
+		experience.setAddress(experienceDto.getAddress());
+		experience.setDescription(experienceDto.getDescription());
+		experience.setEmployerName(experienceDto.getEmployerName());
+		experience.setFromDate(experienceDto.getFromDate());
+		experience.setToDate(experienceDto.getToDate());
+		experience.setPosition(experienceDto.getPosition());
+		experience.setPositionOfEmployer(experienceDto.getPositionOfEmployer());
+		experience.setReason(experienceDto.getReason());
+		experience.setSalary(experienceDto.getSalary());
+		experience.setSupervisor(experienceDto.getSupervisor());
+		experience.setTypeOfBusiness(experienceDto.getTypeOfBusiness());
+		experience.setApplyDateStr(experienceDto.getApplyDateStr());
 		
 		experienceService.update(experience);
 			
-		return experienceDTO;
+		return experienceDto;
 	}
 	
 	////////////////// DELETE METHOD /////////////////////
@@ -947,19 +962,19 @@ public class ApplicantController implements Serializable {
 	
 	@RequestMapping(value = "certificates/deleteCertificate/{id}", method = RequestMethod.POST)
 	public @ResponseBody String deleteCertificate(@PathVariable("id") Integer id) {
-		certificatedService.deleteById(id);
+		certificationService.deleteById(id);
 		return "success";
 	}
 	
 	@RequestMapping(value = "skills/deleteSkill/{id}", method = RequestMethod.POST)
 	public @ResponseBody String deleteSkill(@PathVariable("id") Integer id) {
-		skillService.deleteById(id);
+		masCoreSkillService.deleteById(id);
 		return "success";
 	}
 	
 	@RequestMapping(value = "languages/deleteLanguages/{id}", method = RequestMethod.POST)
 	public @ResponseBody String delesteLanguages(@PathVariable("id") Integer id) {
-		languagesService.deleteById(id);
+		languageService.deleteById(id);
 		return "success";
 	}
 	
@@ -989,7 +1004,7 @@ public class ApplicantController implements Serializable {
 //		return positionService.findAll();
 //	}
 	@ModelAttribute("applicant")
-	public ApplicantDTO applicant() {
-		return new ApplicantDTO();
+	public ApplicantDto applicant() {
+		return new ApplicantDto();
 	}
 }

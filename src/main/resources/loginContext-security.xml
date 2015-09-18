@@ -31,7 +31,7 @@
 			password-parameter="j_password" always-use-default-target="true" />
 	</http>
 
-	<beans:bean id="loginService" class="com.aug.db.services.LoginServiceImpl"></beans:bean>
+	<beans:bean id="loginService" class="com.aug.hrdb.services.LoginServiceImpl"></beans:bean>
 
 	<!-- <authentication-manager> -->
 	<!-- <authentication-provider> -->

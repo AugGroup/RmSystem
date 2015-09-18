@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.aug.hrdb.dto.AugRequestDto;
+import com.aug.hrdb.entities.AugRequest;
 import com.aug.hrdb.services.AugRequestService;
 
 
@@ -59,7 +60,7 @@ public class AugRequestController implements Serializable {
 	public @ResponseBody AugRequestDto searchRequestById(
 			@PathVariable Integer id, Model model){
 		//AugRequestDTO augRequest = augRequestService.findAugRequestById(500);//test 404 resource not found
-		AugRequestDTO augRequest = augRequestService.findAugRequestById(id);
+		AugRequestDto augRequest = augRequestService.findAugRequestById(id);
 		
 		return augRequest;
 	}
@@ -68,8 +69,8 @@ public class AugRequestController implements Serializable {
 
 	/*-------------------- Save Request--------------------*/
 	@RequestMapping(value = "/request/save", method = RequestMethod.POST)
-	public @ResponseBody AugRequestDTO saveRequest(
-			@RequestBody AugRequestDTO augRequestDTO,HttpSession session){
+	public @ResponseBody AugRequestDto saveRequest(
+			@RequestBody AugRequestDto augRequestDTO,HttpSession session){
 		
 		AugRequest augRequest = new AugRequest();
 		augRequest.setId(augRequestDTO.getId());
@@ -78,8 +79,8 @@ public class AugRequestController implements Serializable {
 		augRequest.setStatus(augRequestDTO.getStatus());
 		augRequest.setApprovalName(augRequestDTO.getApprovalName());
 		augRequest.setApproveDate(augRequestDTO.getApproveDate());
-		Position position = positionService.findById(augRequestDTO.getPositionRequest());
-		augRequest.setPositionRequest(position);
+//		Position position = positionService.findById(augRequestDTO.getPositionRequest());
+//		augRequest.setPositionRequest(position);
 		augRequest.setNumberApplicant(augRequestDTO.getNumberApplicant());
 		augRequest.setSpecificSkill(augRequestDTO.getSpecificSkill());
 		augRequest.setYearExperience(augRequestDTO.getYearExperience());
@@ -91,28 +92,28 @@ public class AugRequestController implements Serializable {
 
 	/*-------------------- Update Request--------------------*/
 	@RequestMapping(value = "/request/edit/{id}", method = { RequestMethod.POST, RequestMethod.GET})
-	public @ResponseBody AugRequestDTO editAugRequest(
-			@RequestBody AugRequestDTO augRequestDTO, @PathVariable Integer id) throws Exception {
+	public @ResponseBody AugRequestDto editAugRequest(
+			@RequestBody AugRequestDto augRequestDto, @PathVariable Integer id) throws Exception {
 		
-		AugRequest augRequest = augRequestService.findById(augRequestDTO.getId());
-		augRequest.setId(augRequestDTO.getId());
-		augRequest.setRequestDate(augRequestDTO.getRequestDate());
-		augRequest.setRequesterName(augRequestDTO.getRequesterName());
-		augRequest.setStatus(augRequestDTO.getStatus());
-		augRequest.setApprovalName(augRequestDTO.getApprovalName());
-		augRequest.setApproveDate(augRequestDTO.getApproveDate());
-		Position position = positionService.findById(augRequestDTO.getPositionRequest());
-		augRequest.setPositionStr(position.getPositionName());
-		augRequest.setPositionRequest(position);
-		augRequest.setNumberApplicant(augRequestDTO.getNumberApplicant());
-		augRequest.setSpecificSkill(augRequestDTO.getSpecificSkill());
-		augRequest.setYearExperience(augRequestDTO.getYearExperience());
+		AugRequest augRequest = augRequestService.findById(augRequestDto.getId());
+		augRequest.setId(augRequestDto.getId());
+		augRequest.setRequestDate(augRequestDto.getRequestDate());
+		augRequest.setRequesterName(augRequestDto.getRequesterName());
+		augRequest.setStatus(augRequestDto.getStatus());
+		augRequest.setApprovalName(augRequestDto.getApprovalName());
+		augRequest.setApproveDate(augRequestDto.getApproveDate());
+//		Position position = positionService.findById(augRequestDTO.getPositionRequest());
+//		augRequest.setPositionStr(position.getPositionName());
+//		augRequest.setPositionRequest(position);
+		augRequest.setNumberApplicant(augRequestDto.getNumberApplicant());
+		augRequest.setSpecificSkill(augRequestDto.getSpecificSkill());
+		augRequest.setYearExperience(augRequestDto.getYearExperience());
 
 		augRequestService.update(augRequest);
 		
-		AugRequestDTO requestDTO = augRequestService.findAugRequestById(id);
-		requestDTO.setPositionStr(position.getPositionName());
-		return requestDTO;
+		AugRequestDto requestDto = augRequestService.findAugRequestById(id);
+//		requestDto.setPositionStr(position.getPositionName());
+		return requestDto;
 
 	}
 
@@ -126,11 +127,11 @@ public class AugRequestController implements Serializable {
 	}
 
 	/*-------------------- Position List--------------------*/
-	@ModelAttribute("positionRequest")
-	public List<Position> getPosition() {
-		return positionService.findAll();
-
-	}
+//	@ModelAttribute("positionRequest")
+//	public List<Position> getPosition() {
+//		return positionService.findAll();
+//
+//	}
 	
 	/*-------------------- Test Exception Handle 'SQLGrammarException'--------------------*/ //NameNativeQuery is wrong
 /*	@RequestMapping(value = "/request/search/testSQLGrammarException/{id}", method = { RequestMethod.POST, RequestMethod.GET })
