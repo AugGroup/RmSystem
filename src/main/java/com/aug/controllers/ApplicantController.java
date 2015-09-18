@@ -763,7 +763,7 @@ public class ApplicantController implements Serializable {
 	
 	@RequestMapping(value = "skills/findByIdSkill/{id}", method = { RequestMethod.POST })
 	public @ResponseBody Object findByIdMasCoreSkill(@PathVariable Integer id) {
-		 final List<MasCoreSkill> list = masCoreSkillService.findMasCoreSkillById(id);
+		 final List<MasCoreSkill> list = masCoreSkillService.findByIdMasCoreSkills(id);
 		 
 		return new Object() {
 			public List<MasCoreSkill> getData() {
@@ -861,7 +861,6 @@ public class ApplicantController implements Serializable {
 		education.setMajor(educationDto.getMajor());
 		education.setUniversity(education.getUniversity());
 		education.setGraduated_date(educationDto.getGraduated_date());
-		
 		educationService.update(education);
 		
 		return educationDto;
@@ -906,7 +905,6 @@ public class ApplicantController implements Serializable {
 		languages.setSpeaking(languageDto.getSpeaking());
 		languages.setUnderstanding(languageDto.getUnderstanding());
 		languages.setWriting(languageDto.getWriting());
-		
 		languageService.update(languages);
 		
 		return languageDto;
