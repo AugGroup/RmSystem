@@ -823,12 +823,12 @@ public class ApplicantController implements Serializable {
 	@RequestMapping(value = "address/updateAddress/{id}", method = { RequestMethod.POST })
 	public @ResponseBody AddressDto updateAddress(@RequestBody AddressDto addressDto, @PathVariable Integer id) {
 		Address address = addressService.findById(addressDto.getId());
-		address.setAddressType(addressDto.getAddressType());
+		address.setAddressType(address.getAddressType());
 		address.setHouseNo(addressDto.getHouseNo());
 		address.setRoad(addressDto.getRoad());
 		address.setDistrict(addressDto.getDistrict());
 		address.setSubDistrict(addressDto.getSubDistrict());
-		address.setProvince(addressDto.getProvince());
+		address.setProvince(address.getProvince());
 		address.setZipcode(addressDto.getZipcode());
 		
 		addressService.update(address);
@@ -841,10 +841,10 @@ public class ApplicantController implements Serializable {
 		Family family = familyService.find(familyDto.getId());
 		family.setId(familyDto.getId());
 		family.setAddress(familyDto.getAddress());
-		family.setName(familyDto.getName());
+		family.setName(familyDto.getFamilyName());
 		family.setOccupation(familyDto.getOccupation());
-		family.setPositionFamily(familyDto.getPositionFamily());
-		family.setRelation(familyDto.getRelation());
+		family.setPosition(familyDto.getPosition());
+		family.setMasRelationType(family.getMasRelationType());
 		
 		familyService.update(family);
 		
@@ -855,12 +855,12 @@ public class ApplicantController implements Serializable {
 	public @ResponseBody EducationDto updateEducations(@RequestBody EducationDto educationDto, @PathVariable Integer id) {
 		Education education = educationService.findById(educationDto.getId());
 		education.setId(educationDto.getId());
-		education.setDegree(educationDto.getDegree());
+		education.setMasdegreetype(education.getMasdegreetype());
 		education.setFaculty(educationDto.getFaculty());
 		education.setGpa(educationDto.getGpa());
 		education.setMajor(educationDto.getMajor());
-		education.setSchoolName(educationDto.getSchoolName());
-		education.setYearsOfGraduate(educationDto.getYearsOfGraduate());
+		education.setUniversity(education.getUniversity());
+		education.setGraduated_date(educationDto.getGraduated_date());
 		
 		educationService.update(education);
 		
@@ -889,11 +889,11 @@ public class ApplicantController implements Serializable {
 		return skillDTO;
 	}
 	
-	@RequestMapping(value = "languages/updateLanguage/{id}", method = S{ RequestMethod.POST })
+	@RequestMapping(value = "languages/updateLanguage/{id}", method = { RequestMethod.POST })
 	public @ResponseBody LanguageDto updateLanguage(@RequestBody LanguageDto languageDto, @PathVariable Integer id) {
 		Language languages = languageService.find(languageDto.getId());
 		languages.setId(languageDto.getId());
-		languages.setLanguagesName(languageDto.getLanguagesName());
+		languages.setNameLanguage(languageDto.getNameLanguage());
 		languages.setReading(languageDto.getReading());
 		languages.setSpeaking(languageDto.getSpeaking());
 		languages.setUnderstanding(languageDto.getUnderstanding());
@@ -908,8 +908,8 @@ public class ApplicantController implements Serializable {
 	public @ResponseBody ReferenceDto updateReferences(@RequestBody ReferenceDto referenceDto, @PathVariable Integer id) {
 		Reference reference = referenceService.findById(referenceDto.getId());
 		reference.setId(referenceDto.getId());
-		reference.setCompleteAddress(referenceDto.getCompleteAddress());
-		reference.setFullName(referenceDto.getFullName());
+		reference.setAddress(reference.getAddress());
+		reference.setName(reference.getName());
 		reference.setOccupation(referenceDto.getOccupation());
 		reference.setTel(referenceDto.getTel());
 		
@@ -923,17 +923,15 @@ public class ApplicantController implements Serializable {
 		Experience experience = experienceService.findById(experienceDto.getId());
 		experience.setId(experienceDto.getId());
 		experience.setAddress(experienceDto.getAddress());
-		experience.setDescription(experienceDto.getDescription());
-		experience.setEmployerName(experienceDto.getEmployerName());
-		experience.setFromDate(experienceDto.getFromDate());
-		experience.setToDate(experienceDto.getToDate());
+		experience.setReference(experienceDto.getReference());
 		experience.setPosition(experienceDto.getPosition());
-		experience.setPositionOfEmployer(experienceDto.getPositionOfEmployer());
 		experience.setReason(experienceDto.getReason());
 		experience.setSalary(experienceDto.getSalary());
-		experience.setSupervisor(experienceDto.getSupervisor());
 		experience.setTypeOfBusiness(experienceDto.getTypeOfBusiness());
-		experience.setApplyDateStr(experienceDto.getApplyDateStr());
+		experience.setCompanyName(experienceDto.getCompanyName());
+		experience.setDateFrom(experienceDto.getDateFrom());
+		experience.setDateTo(experienceDto.getDateTo());
+		experience.setResponsibility(experienceDto.getResponsibility());
 		
 		experienceService.update(experience);
 			
