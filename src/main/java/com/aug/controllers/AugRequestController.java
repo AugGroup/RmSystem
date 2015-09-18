@@ -19,7 +19,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.aug.hrdb.dto.AugRequestDto;
 import com.aug.hrdb.entities.AugRequest;
+import com.aug.hrdb.entities.MasJoblevel;
 import com.aug.hrdb.services.AugRequestService;
+import com.aug.hrdb.services.MasJoblevelService;
 import com.aug.hrdb.services.MasTechnologyService;
 
 
@@ -37,7 +39,8 @@ public class AugRequestController implements Serializable {
 //	@Autowired private PositionService positionService;
 	@Autowired
 	private MasTechnologyService masTechnologyService;
-	
+	@Autowired
+	private MasJoblevelService masJoblevelService;
 	
 	@RequestMapping(value = "/request", method = { RequestMethod.GET })
 	public String listRequest(){ 
@@ -75,24 +78,25 @@ public class AugRequestController implements Serializable {
 	/*-------------------- Save Request--------------------*/
 	@RequestMapping(value = "/request/save", method = RequestMethod.POST)
 	public @ResponseBody AugRequestDto saveRequest(
-			@RequestBody AugRequestDto augRequestDTO,HttpSession session){
+			@RequestBody AugRequestDto augRequestDto,HttpSession session){
 		
 		AugRequest augRequest = new AugRequest();
-		augRequest.setId(augRequestDTO.getId());
-		augRequest.setRequestDate(augRequestDTO.getRequestDate());
-		augRequest.setRequesterName(augRequestDTO.getRequesterName());
-		augRequest.setStatus(augRequestDTO.getStatus());
-		augRequest.setApprovalName(augRequestDTO.getApprovalName());
-		augRequest.setApproveDate(augRequestDTO.getApproveDate());
+		augRequest.setId(augRequestDto.getId());
+		augRequest.setRequestDate(augRequestDto.getRequestDate());
+		augRequest.setRequesterName(augRequestDto.getRequesterName());
+		augRequest.setStatus(augRequestDto.getStatus());
+		augRequest.setApprovalName(augRequestDto.getApprovalName());
+		augRequest.setApproveDate(augRequestDto.getApproveDate());
 //		Position position = positionService.findById(augRequestDTO.getPositionRequest());
 //		augRequest.setPositionRequest(position);
-		augRequest.setNumberApplicant(augRequestDTO.getNumberApplicant());
-		augRequest.setSpecificSkill(augRequestDTO.getSpecificSkill());
-		augRequest.setYearExperience(augRequestDTO.getYearExperience());
+//		MasJoblevel masJoblevel = masJoblevelService.find(augRequestDto.get);
+		augRequest.setNumberApplicant(augRequestDto.getNumberApplicant());
+		augRequest.setSpecificSkill(augRequestDto.getSpecificSkill());
+		augRequest.setYearExperience(augRequestDto.getYearExperience());
 		augRequestService.create(augRequest);
 
 		
-		return augRequestDTO;
+		return augRequestDto;
 	}
 
 	/*-------------------- Update Request--------------------*/

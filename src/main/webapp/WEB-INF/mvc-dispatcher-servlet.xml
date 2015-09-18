@@ -16,11 +16,9 @@
         http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
-	<context:component-scan base-package="com.aug.hrdb" />
-	<context:component-scan base-package="com.aug.hrdb.services" />
-	<context:component-scan base-package="com.aug.hrdb.repositories" />
+	
 	<context:component-scan base-package="com.aug.controllers" />
-	<context:component-scan base-package="com.aug.services" />
+	
 
 	<mvc:annotation-driven enable-matrix-variables="true" />
 	<mvc:resources mapping="/static/**" location="/" />
@@ -64,48 +62,6 @@
 	</bean>
 	<tx:annotation-driven />
 
-	<bean
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location">
-			<value>classpath:database.properties</value>
-		</property>
-	</bean>
-
-	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
-		<property name="driverClassName" value="${database.driverClassName}" />
-		<property name="url" value="${database.url}" />
-		<property name="username" value="${database.username}" />
-		<property name="password" value="${database.password}" />
-	</bean>
-
-	<!--Hibernate SessionFactory using p name space -->
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
-		p:dataSource-ref="dataSource" p:configLocation="classpath:hibernate.cfg.xml"
-		p:packagesToScan="com.aug.hrdb" />
-
-
-
-	<bean id="entityManagerFactory"
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="jpaVendorAdapter">
-			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
-		</property>
-		<property name="jpaProperties">
-			<map>
-				<entry key="hibernate.dialect" value="${hibernate.dialect}" />
-				<entry key="hibernate.hbm2ddl.auto" value="${hibernate.hbm2ddl.auto}" />
-				<entry key="hibernate.show_sql" value="${hibernate.show_sql}" />
-			</map>
-		</property>
-		<property name="packagesToScan" value="com.aug.hrdb.entities" />
-	</bean>
-
-	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
 
 <!-- SimpleMappingExceptionResolver use anotation java config -->
 	<bean

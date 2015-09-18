@@ -16,29 +16,25 @@
 
 
 	<!-- <import resource="spring-jpa-data.xml"/> -->
-	<import resource="spring-hibernate-db.xml" />
+	
 
 	<util:properties id="appProps"
 		location="classpath:applicationResources.properties" />
 	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location">
-			<!-- <list> -->
+		<property name="locations">
+			<list>
 			<!-- <value>classpath:application.properties</value> -->
 			<value>classpath:applicationResources.properties</value>
-			<!-- <value>classpath:database.properties</value> </list> -->
+			<value>classpath:rm-system-database.properties</value>
+			<!-- <value>classpath:database.properties</value> 
+			-->
+			</list> 
 		</property>
 		<property name="localOverride">
 			<value>true</value>
 		</property>
 	</bean>
 
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="${database.driverClassName}" />
-		<property name="url" value="${database.url}" />
-		<property name="username" value="${database.username}" />
-		<property name="password" value="${database.password}" />
-	</bean>
 
 </beans>
