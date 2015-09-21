@@ -47,9 +47,8 @@ $(document).ready(function(){
 				 columns:[{'data': "code"},
 				          {'data': "applyDate"},
 					      {'data' : "firstNameEN"},
-					      {'data' : "position1Str"},
-					      {'data' : "position2Str"},
-					      {'data' : "position3Str"},
+					      {'data' : "joblevelStr"},
+					      {'data' : "technologyStr"},
 					      {'data' : "trackingStatus"},
 					      { data : function(data){
 					    	  return '<a href="#EditStatusModal" id="btn_edit_score" data-id="'+data.id+'" data-toggle="modal" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-pencil"></span> '+editScore_text+'</b>'

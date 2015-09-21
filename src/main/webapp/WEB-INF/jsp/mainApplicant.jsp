@@ -40,7 +40,6 @@ var delete_text = "<spring:message code="main.delete"/>";
 						<th><spring:message code="main.name" /></th>
 						<th><spring:message code="main.position1" /></th>
 						<th><spring:message code="main.position2" /></th>
-						<th><spring:message code="main.position3" /></th>
 						<th><spring:message code="main.status" /></th>
 						<th><spring:message code="main.edit" /></th>
 						<th><spring:message code="main.edit.info" /></th>

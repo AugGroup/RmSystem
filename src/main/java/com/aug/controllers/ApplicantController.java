@@ -138,7 +138,7 @@ public class ApplicantController implements Serializable {
 	}
 
 	/*-------------------- search all applicant --------------------*/
-	 @RequestMapping(value = "/applicant/search", method = { RequestMethod.GET}) 
+	 @RequestMapping(value = "/applicant/search", method = { RequestMethod.POST}) 
 	 public @ResponseBody Object searchAllApplicant() { 
 		final List<ApplicantDto> data = applicantService.findAllApplicant(); 
 		return new Object() { public List<ApplicantDto> getData() { return data; } }; 
