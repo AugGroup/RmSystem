@@ -90,7 +90,7 @@ var delete_text = "<spring:message code="main.delete"/>";
 											<input type="text" class="form-control" id="inputAttitudeOffice" name="inputAttitudeOffice" placeholder="<spring:message code="edit.text.feild"/>">
 										</div>
 									</div>
-								</div>ฆ
+								</div>
 							</div>
 							<div class="form-group">
 								<label for="inputStatus"><spring:message code="edit.status" /></label> 
