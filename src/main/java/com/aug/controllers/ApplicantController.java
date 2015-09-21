@@ -84,12 +84,12 @@ public class ApplicantController implements Serializable {
 	private ApplicantService applicantService;
 //	@Autowired
 //	private PositionService positionService;
-	@Autowired
-	private ReportService reportService;
+/*	@Autowired
+	private ReportService reportService;*/
 //	@Autowired
 //	private DepartmentService departmentService;
-	@Autowired
-	private UploadService uploadService;
+/*	@Autowired
+	private UploadService uploadService;*/
 	@Autowired
 	private ReferenceService referenceService;
 	@Autowired
@@ -108,8 +108,8 @@ public class ApplicantController implements Serializable {
 	private FamilyService familyService;
 	@Autowired
 	private PositionEditor positionEditor;
-	@Autowired
-	private DownloadService downloadService;
+/*	@Autowired
+	private DownloadService downloadService;*/
 	@Autowired
 	private MasTechnologyService masTechnologyService;
 	@Autowired
@@ -266,7 +266,7 @@ public class ApplicantController implements Serializable {
 	}
 
 	/*-------------------- preview reports function--------------------*/
-	@RequestMapping(value = "/report/preview", method = { RequestMethod.POST,
+/*	@RequestMapping(value = "/report/preview", method = { RequestMethod.POST,
 			RequestMethod.GET })
 	public ModelAndView previewReport(
 			@ModelAttribute SearchReportDto searchReportDTO,
@@ -293,7 +293,7 @@ public class ApplicantController implements Serializable {
 		ModelAndView mv = reportService.getReport(reportApplicantList,
 				"Report_AugRmSystem", reportType, parameterMap);
 		return mv;
-	}
+	}*/
 
 	// Monthly report
 	@RequestMapping(value = "/monthlyReport", method = RequestMethod.GET)
@@ -302,7 +302,7 @@ public class ApplicantController implements Serializable {
 	}
 
 	/*-------------------- search all applicant and search applicant for Report dataTable--------------------*/
-	@RequestMapping(value = "/report/searchMonth", method = { RequestMethod.POST })
+/*	@RequestMapping(value = "/report/searchMonth", method = { RequestMethod.POST })
 	public @ResponseBody Object searchReportByMonth(
 			@RequestParam String applyDateStr) throws NotFoundException {
 
@@ -326,9 +326,9 @@ public class ApplicantController implements Serializable {
 				return datas;
 			}
 		};
-	}
+	}*/
 
-	@RequestMapping(value = "/reportMonthly/preview", method = { RequestMethod.POST })
+/*	@RequestMapping(value = "/reportMonthly/preview", method = { RequestMethod.POST })
 	public ModelAndView searchMonthlyReport(
 			@ModelAttribute SearchReportDto searchReportDTO,
 			HttpSession session, Locale locale) {
@@ -356,7 +356,7 @@ public class ApplicantController implements Serializable {
 		ModelAndView mv = reportService.getReport(reportApplicantList,
 				"applicantSummaryMonthly", reportType, parameterMap);
 		return mv;
-	}
+	}*/
 
 	/*-------------------- Position List--------------------*/
 //	@ModelAttribute("positionRequest")
@@ -373,7 +373,7 @@ public class ApplicantController implements Serializable {
 	
 	//================================== Application ===============================
 	
-	@RequestMapping(value = "/applicationMenu", method = { RequestMethod.GET })
+/*	@RequestMapping(value = "/applicationMenu", method = { RequestMethod.GET })
 	public String applicationMenu(Model model) {
 		LOGGER.info("**** Welcome to Application Controller ****");
 		return "applicationMenu";
@@ -430,7 +430,7 @@ public class ApplicantController implements Serializable {
 		model.addAttribute("applicant", applicantDto);
 	
 		return "informations";
-	}
+	}*/
 
 	@RequestMapping(value = "address/address/{id}", method = { RequestMethod.POST })
 	public @ResponseBody Address saveAddress(@RequestBody Address address,@PathVariable Integer id,Model model) {
@@ -590,7 +590,7 @@ public class ApplicantController implements Serializable {
 	
 	// Search Every Class By Id For Show In Text Box
 	
-	@RequestMapping(value = "/dowloadResume/{id}", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/dowloadResume/{id}", method = RequestMethod.GET)
 	public String dowloadResume(@PathVariable Integer id,HttpServletRequest request,HttpServletResponse response) {
  
 		String filename = applicantService.findApplicationById(id).getResume();
@@ -604,7 +604,7 @@ public class ApplicantController implements Serializable {
 		String filename = applicantService.findApplicationById(id).getTranscript();
 		downloadService.download(request,response,"Applicant", filename);
 		return "informations";
-	}
+	}*/
 	@RequestMapping(value = "/info/{id}", method = { RequestMethod.GET })
 	public String updateInfo(@ModelAttribute ApplicantDto applicantDto,
 			@PathVariable Integer id, Model  model) {
@@ -620,7 +620,7 @@ public class ApplicantController implements Serializable {
 		return "informations";
 	}
 	
-	@RequestMapping(value = "/infoEdit/{id}", method = { RequestMethod.POST })
+	/*@RequestMapping(value = "/infoEdit/{id}", method = { RequestMethod.POST })
 	public String updateInformations(@ModelAttribute ApplicantDto applicantDto,@PathVariable Integer id,Model  model,MultipartFile multipartFile) {
 		if(applicantDto.getImageMultipartFile()!=null&&applicantDto.getImageMultipartFile().getSize()>0){
 			try {
@@ -657,7 +657,7 @@ public class ApplicantController implements Serializable {
 		model.addAttribute("applicant", applicantDto);
 
 		return "informations";
-	}
+	}*/
 	
 	@RequestMapping(value = "/findByIdApplicants/{id}", method = { RequestMethod.POST })
 	public @ResponseBody ApplicantDto findByIdApplications(@RequestBody ApplicantDto applicantDto,@PathVariable Integer id) {
