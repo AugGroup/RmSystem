@@ -523,41 +523,41 @@
 		 </div>
 	
 <!-- 		 <div class="form-group"> -->
-		 <div class="row">
-			<div class="col-sm-12 col-xs-4 col-md-4 col-lg-4" >
-				<label for="position1"><spring:message code="main.position1"/></label><br>
-				 <div id="positionFirst">
-					 <f:select path="position1.id" id="position1" name="position1" class="form-control">
-						<f:option value="-1" label="please select data"/>
-						<c:forEach var="positionList" items="${positions}">
-							<f:option value="${positionList.id}">${positionList.positionName}</f:option>
-						</c:forEach> 
-					</f:select>  
-				</div>
-			</div>
-			<div class="col-sm-12 col-xs-4 col-md-4 col-lg-4" >
-				<label for="position2"><spring:message code="main.position2"/> </label><br>
-				 <div id="positionSecond">
-					 <f:select path="position2.id" id="position2" name="position2" class="form-control">
-						<f:option value="-1" label="please select data"/>
-						<c:forEach var="positionList" items="${positions}">
-							<f:option value="${positionList.id}">${positionList.positionName}</f:option>
-						</c:forEach> 
-					</f:select> 
-				</div>
-			</div>
-			<div class="col-sm-12 col-xs-4 col-md-4 col-lg-4" >
-				<label for="position3"><spring:message code="main.position3"/></label><br>
-				<div id="positionThird">
-					<f:select path="position3.id" id="position3" name="position3" class="form-control">
-						<f:option value="-1" label="please select data"/>
-						<c:forEach var="positionList" items="${positions}">
-							<f:option value="${positionList.id}">${positionList.positionName}</f:option>
-						</c:forEach> 
-					</f:select>
-				</div>
-			</div>
-		</div>
+<!-- 		 <div class="row"> -->
+<!-- 			<div class="col-sm-12 col-xs-4 col-md-4 col-lg-4" > -->
+<%-- 				<label for="position1"><spring:message code="main.position1"/></label><br> --%>
+<!-- 				 <div id="positionFirst"> -->
+<%-- 					 <f:select path="position1.id" id="position1" name="position1" class="form-control"> --%>
+<%-- 						<f:option value="-1" label="please select data"/> --%>
+<%-- 						<c:forEach var="positionList" items="${positions}"> --%>
+<%-- 							<f:option value="${positionList.id}">${positionList.positionName}</f:option> --%>
+<%-- 						</c:forEach>  --%>
+<%-- 					</f:select>   --%>
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div class="col-sm-12 col-xs-4 col-md-4 col-lg-4" > -->
+<%-- 				<label for="position2"><spring:message code="main.position2"/> </label><br> --%>
+<!-- 				 <div id="positionSecond"> -->
+<%-- 					 <f:select path="position2.id" id="position2" name="position2" class="form-control"> --%>
+<%-- 						<f:option value="-1" label="please select data"/> --%>
+<%-- 						<c:forEach var="positionList" items="${positions}"> --%>
+<%-- 							<f:option value="${positionList.id}">${positionList.positionName}</f:option> --%>
+<%-- 						</c:forEach>  --%>
+<%-- 					</f:select>  --%>
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div class="col-sm-12 col-xs-4 col-md-4 col-lg-4" > -->
+<%-- 				<label for="position3"><spring:message code="main.position3"/></label><br> --%>
+<!-- 				<div id="positionThird"> -->
+<%-- 					<f:select path="position3.id" id="position3" name="position3" class="form-control"> --%>
+<%-- 						<f:option value="-1" label="please select data"/> --%>
+<%-- 						<c:forEach var="positionList" items="${positions}"> --%>
+<%-- 							<f:option value="${positionList.id}">${positionList.positionName}</f:option> --%>
+<%-- 						</c:forEach>  --%>
+<%-- 					</f:select> --%>
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 			<div align="right">
 				<button type="submit" id="buttonSave" name="buttonSave" class="btn btn-warning" ><span class="glyphicon glyphicon-save"></span> <spring:message code="edit.button.save"/></button>
 				<button type="button" class="btn btn-default" id="buttonBack" name="buttonBack" onclick="window.location='${pageContext.request.contextPath}/applicant'"><span class="glyphicon glyphicon-step-backward"></span> Back </button>
