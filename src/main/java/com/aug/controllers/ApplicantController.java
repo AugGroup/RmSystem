@@ -138,12 +138,11 @@ public class ApplicantController implements Serializable {
 	}
 
 	/*-------------------- search all applicant --------------------*/
-	/*
-	 * @RequestMapping(value = "/applicant/search", method = { RequestMethod.GET
-	 * }) public @ResponseBody Object searchAllApplicant() { final
-	 * List<ApplicantDTO> data = applicantService.findAllApplicant(); return new
-	 * Object() { public List<ApplicantDTO> getData() { return data; } }; }
-	 */
+	 @RequestMapping(value = "/applicant/search", method = { RequestMethod.GET}) 
+	 public @ResponseBody Object searchAllApplicant() { 
+		final List<ApplicantDto> data = applicantService.findAllApplicant(); 
+		return new Object() { public List<ApplicantDto> getData() { return data; } }; 
+	 }
 
 	/*-- search all applicant and applicant by position for dataTable--*/
 	@RequestMapping(value = "/applicant/searchTechnology", method = { RequestMethod.POST })
