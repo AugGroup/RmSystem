@@ -33,22 +33,22 @@
 
 	<!-- <beans:bean id="loginService" class="com.aug.hrdb.services.LoginServiceImpl"></beans:bean> -->
 
-	<!-- <authentication-manager> -->
-	<!-- <authentication-provider> -->
-	<!-- <user-service> -->
-	<!-- <user name="user" password="user" authorities="ROLE_USER" /> -->
-	<!-- <user name="net" password="net" authorities="ROLE_ADMIN" /> -->
-	<!-- </user-service> -->
-	<!-- </authentication-provider> -->
-	<!-- </authentication-manager> -->
+	<authentication-manager>
+		<authentication-provider>
+			<user-service>
+				<user name="user" password="user" authorities="ROLE_USER" />
+				<user name="admin" password="admin" authorities="ROLE_ADMIN" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
 
-	<authentication-manager alias="authenManager">
+<!-- 	<authentication-manager alias="authenManager">
 		<authentication-provider>
 			<jdbc-user-service data-source-ref="dataSource"
 				users-by-username-query="select username,password,1 from LOGIN where username=?"
-				authorities-by-username-query="select username,role from LOGINROLE where username=?" />
+				authorities-by-username-query="select type from MAS_ROLE where type=?" />
 		</authentication-provider>
-	</authentication-manager>
+	</authentication-manager> -->
 
 	<beans:bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
