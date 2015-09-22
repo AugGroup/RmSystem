@@ -1010,4 +1010,20 @@ public class ApplicantController implements Serializable {
 	public ApplicantDto applicant() {
 		return new ApplicantDto();
 	}
+	
+	///////////////////////////////// CALENDAR PAGE ///////////////////////////////// 
+	
+	@RequestMapping(value = "calendar",method = RequestMethod.GET)
+	public String getCalendar(){
+		return "calendar";
+	}
+	
+	@RequestMapping(value = "findall", method = RequestMethod.GET)
+	public String findAllApplicant() {
+		
+		return "success";
+	}
+	
+	
+	
 }

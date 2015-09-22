@@ -52,6 +52,15 @@
 
 <link rel="stylesheet" type="text/css" href="<c:url value ="/static/resources/pageCss/infoCss.css"/>">
 
+<link href='<c:url value="/static/resources/css/bootstrap.min.css"/>' rel="stylesheet" type="text/css"></link>
+<link href='<c:url value="/static/resources/css/fullcalendar.css"/>' rel='stylesheet' type="text/css"/>
+<link href='<c:url value="/static/resources/css/fullcalendar.print.css"/>' rel='stylesheet' media='print' />
+
+
+<%-- <script src='<c:url value="/static/resources/js/moment.min.js"/>'></script> --%>
+<%-- <script src='<c:url value="/static/resources/js/jquery-1.11.3.min.js"/>'></script> --%>
+<script src='<c:url value="/static/resources/js/fullcalendar.min.js"/>'></script>
+
 </head>
 <%
 	User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
