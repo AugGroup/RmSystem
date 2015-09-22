@@ -1020,7 +1020,6 @@ public class ApplicantController implements Serializable {
 	
 	@RequestMapping(value = "findall", method = RequestMethod.GET)
 	public String findAllApplicant() {
-		
 		return "success";
 	}
 	
