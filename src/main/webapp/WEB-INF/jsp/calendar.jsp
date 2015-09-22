@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 	
 <style type="text/css">
+
 	div.fc-row>table>thead > tr:first-child {
 	background-color: orange;
 	}
