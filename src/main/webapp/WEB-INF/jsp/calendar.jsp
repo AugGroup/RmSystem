@@ -108,7 +108,7 @@
 		
 		$("#insBtn").on('click',function(){
 			insTitle = $("#appointmentTopic").val();
-			var insData;
+			var appointment;
 			if (insTitle) {
 				insData = {
 					id : 33,
@@ -116,6 +116,31 @@
 					start: insStart,
 					end: insEnd
 				};
+				
+				$.ajax({
+					url : "calendar/insertAppointment",
+					type : "POST",
+					contentType :"application/json; charset=utf-8", 
+					data : JSON.stringify(insData),
+					success : function(data){
+// 					 	new PNotify({
+// 					    	title: 'Edit score is successful',
+// 					    	text: '',
+// 					    	type: 'success',
+// 					    	delay: 3000,
+// 					    	buttons: {
+// 					    			closer_hover: false,
+// 					    	        sticker: false
+// 					    	    }
+// 						});
+						alert(data);
+					}
+				});
+				
+				
+				
+				
+				
 				
 				$('#calendar').fullCalendar('renderEvent', insData, true); // stick? = true
 				$('#insModal').modal('hide');	

@@ -28,7 +28,7 @@ public class CalendarController {
 	}
 	
 	@RequestMapping(value = "calendar/insertAppointment")
-	public String insertAppointment() {
+	public @ResponseBody String insertAppointment() {
 		return "success";
 	}
 	
