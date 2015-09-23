@@ -88,8 +88,8 @@ public class ApplicantController implements Serializable {
 	private ReportService reportService;*/
 //	@Autowired
 //	private DepartmentService departmentService;
-/*	@Autowired
-	private UploadService uploadService;*/
+	@Autowired
+	private UploadService uploadService;
 	@Autowired
 	private ReferenceService referenceService;
 	@Autowired
@@ -372,7 +372,7 @@ public class ApplicantController implements Serializable {
 	
 	//================================== Application ===============================
 	
-/*	@RequestMapping(value = "/applicationMenu", method = { RequestMethod.GET })
+	@RequestMapping(value = "/applicationMenu", method = { RequestMethod.GET })
 	public String applicationMenu(Model model) {
 		LOGGER.info("**** Welcome to Application Controller ****");
 		return "applicationMenu";
@@ -429,7 +429,7 @@ public class ApplicantController implements Serializable {
 		model.addAttribute("applicant", applicantDto);
 	
 		return "informations";
-	}*/
+	}
 
 	@RequestMapping(value = "address/address/{id}", method = { RequestMethod.POST })
 	public @ResponseBody Address saveAddress(@RequestBody Address address,@PathVariable Integer id,Model model) {
