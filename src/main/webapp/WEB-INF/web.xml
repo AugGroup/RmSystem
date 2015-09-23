@@ -74,36 +74,36 @@
 
 	<!-- Exception Handler -->
 	<!-- Bad Request -->
-	<error-page>
+	<!-- <error-page>
 		<error-code>400</error-code>
 		<location>/WEB-INF/jsp/errorPages/error400.jsp</location>
-	</error-page>
+	</error-page> -->
 	<!-- Unauthorized ( Missing login ) -->
-	<error-page>
+	<!-- <error-page>
 		<error-code>401</error-code>
 		<location>/WEB-INF/jsp/errorPages/error401.jsp</location>
-	</error-page>
+	</error-page> -->
 	<!-- Missing resource -->
-	<error-page>
+<!-- 	<error-page>
 		<error-code>404</error-code>
 		<location>/WEB-INF/jsp/errorPages/error404.jsp</location>
 	</error-page>
 	<error-page>
-		<error-code>415</error-code> <!-- Unsupported Media Type -->
+		<error-code>415</error-code> Unsupported Media Type
 		<location>/WEB-INF/jsp/errorPages/error415.jsp</location>
-	</error-page>
+	</error-page> -->
 	<!-- Uncaught exception (Internal Server Error) -->
-	<error-page>
+<!-- 	<error-page>
 		<error-code>500</error-code>
 		<location>/WEB-INF/jsp/errorPages/error500.jsp</location>
-	</error-page>
+	</error-page> -->
 	<!-- Unsupported servlet method -->
-	<error-page>
+<!-- 	<error-page>
 		<error-code>503</error-code>
 		<location>/WEB-INF/jsp/errorPages/error503.jsp</location>
 	</error-page>
 	<error-page>
 		<location>/WEB-INF/jsp/errorPages/errorCustom.jsp</location>
-	</error-page>
+	</error-page> -->
 
 </web-app>
