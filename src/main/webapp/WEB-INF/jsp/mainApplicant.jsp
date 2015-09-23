@@ -94,9 +94,7 @@ var delete_text = "<spring:message code="main.delete"/>";
 							<div class="form-group">
 								<label for="inputStatus"><spring:message code="edit.status" /></label> 
 								<select name="inputStatus" id="inputStatus" class="form-control">
-									<option value="Waiting for consider"><spring:message code="edit.wait.consider" /></option>
 									<option value="Pending Test"><spring:message code="edit.pending.test" /></option>
-									<option value="Pending Interview"><spring:message code="edit.pending.interview" /></option>
 									<option value="Pending Approve"><spring:message code="edit.pending.approve" /></option>
 									<option value="Approve"><spring:message code="edit.approve" /></option>
 									<option value="Not Approve"><spring:message code="edit.notApprove" /></option>
