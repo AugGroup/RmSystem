@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ControllerAdvice
+//@ControllerAdvice
 public class ExceptionControllerAdvice {
 	//BAD_REQUEST(400, "Bad Request")
 	//NOT_FOUND(404, "Not Found")

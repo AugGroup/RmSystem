@@ -140,33 +140,69 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title">Insert new appointment</h4>
+	        <h4 class="modal-title">Insert Appointment</h4>
 	      </div>
 	      <div class="modal-body">
 	        	<div class="container-fluid">
 	        		<div clas="row">
 	        		 <form id="formInsert">
 	        		 	<div class="row">
-	        			<div class="col-md-6 ">
-			        		<label for="applicant_fname">Firstname</label>
-			        		<input id="applicant_fname"class="form-control" placeholder="Firstname"></input>
-			        	</div>
-			        	<div class="col-md-6 ">
-			        		<label for="applicant_lname">Lastname</label>
-			        		<input id="applicant_lname"class="form-control" placeholder="Lastname"></input>
-			        	</div>
-	        			<div class="col-md-6">
-	        				<label for="applicant_email">Email</label>
-	        				<input id="applicant_email" class="form-control" placeholder="ex : applicant@gmail.com"></input>
-	        			</div>
-	        			<div class="col-md-6">
-	        				<label for="applicant_tel">Tel</label>
-	        				<input id="applicant_tel" class="form-control" placeholder="ex : 082-xxxxxxx"></input>
-	        			</div>
-	        			<div class="col-md-6">
-	        				<label for="applicant_position">Position</label>
-	        				<input id="applicant_position" class="form-control" placeholder="Title"></input>
-	        			</div>
+<!-- 	        			<div class="col-md-6 "> -->
+<!-- 			        		<label for="applicant_fname">Firstname</label> -->
+<!-- 			        		<input id="applicant_fname"class="form-control" placeholder="Firstname"></input> -->
+<!-- 			        	</div> -->
+<!-- 			        	<div class="col-md-6 "> -->
+<!-- 			        		<label for="applicant_lname">Lastname</label> -->
+<!-- 			        		<input id="applicant_lname"class="form-control" placeholder="Lastname"></input> -->
+<!-- 			        	</div> -->
+<!-- 	        			<div class="col-md-6"> -->
+<!-- 	        				<label for="applicant_email">Email</label> -->
+<!-- 	        				<input id="applicant_email" class="form-control" placeholder="ex : applicant@gmail.com"></input> -->
+<!-- 	        			</div> -->
+<!-- 	        			<div class="col-md-6"> -->
+<!-- 	        				<label for="applicant_tel">Tel</label> -->
+<!-- 	        				<input id="applicant_tel" class="form-control" placeholder="ex : 082-xxxxxxx"></input> -->
+<!-- 	        			</div> -->
+		        			
+							<div class="col-md-6">
+								<label for="applicantFilter">Applicant Filter</label> 
+								<select name="applicantfilter" id="applicantFilter" class="form-control">
+									<option value="Pending Test">Pending Test/Interview</option>
+									<option value="Approve">Pending Approve</option>
+								</select>
+							</div>
+							
+							<div class="col-md-6">
+									<label for="applicantName">Applicant Name</label> 
+									<select name="applicantname" id="applicantName" class="form-control">
+										<option></option>
+									</select>
+							</div>
+						</div>
+						
+						<hr>
+						
+						<div class="row">
+						
+						<div class="col-md-6">
+								<div class="radio">
+								  <label>
+								    <input type="radio" name="appointmentType" id="appointmentType1" value="testAndInterview" checked>
+								    Test and Interview
+								  </label>
+								</div>
+								<div class="radio">
+								  <label>
+								    <input type="radio" name="appointmentType" id="appointmentType2" value="signContract">
+								    Sign Contract
+								  </label>
+								</div>
+						</div>
+						<div class="col-md-6">
+								<label for="remarkOther">Remark</label>
+								<input id="remarkOther" class="form-control" placeholder="Remark"></input>
+						</div>
+	        			
 	        			</div>
 	        			<hr>
 	        			<div class="row">

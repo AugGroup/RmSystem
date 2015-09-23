@@ -23,13 +23,16 @@ public class CalendarController {
 	public ModelAndView getCalendar(){
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("calendar");
-		
-		
-		
-		
-		
 		return modelAndView;
 	}
+	
+	@RequestMapping(value = "calendar/insertAppointment")
+	public String insertAppointment() {
+		return "success";
+	}
+	
+	
+	
 	
 	@RequestMapping(value = "findAllAppointment", method = RequestMethod.GET)
 		public @ResponseBody List<Appointment> findAllApplicant() {
