@@ -88,8 +88,8 @@ public class ApplicantController implements Serializable {
 	private ReportService reportService;*/
 //	@Autowired
 //	private DepartmentService departmentService;
-	@Autowired
-	private UploadService uploadService;
+//	@Autowired
+//	private UploadService uploadService;
 	@Autowired
 	private ReferenceService referenceService;
 	@Autowired
@@ -389,36 +389,36 @@ public class ApplicantController implements Serializable {
 		
 		applicantDto.setCode("C"+year+(applicantService.getMaxApplicantId().getId()+1));
 		
-		if(applicantDto.getImageMultipartFile()!=null&&applicantDto.getImageMultipartFile().getSize()>0){
-			try {
-				applicantDto.setImage(applicantDto.getImageMultipartFile().getOriginalFilename());
-				uploadService.upload("Applicant",applicantDto.getImageMultipartFile().getOriginalFilename(),applicantDto.getImageMultipartFile());
-			} catch (RuntimeException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		if(applicantDto.getResumeMultipartFile()!=null&&applicantDto.getResumeMultipartFile().getSize()>0){
-			try {
-				applicantDto.setResume(applicantDto.getResumeMultipartFile().getOriginalFilename());
-				uploadService.upload("Applicant",applicantDto.getResumeMultipartFile().getOriginalFilename(),applicantDto.getResumeMultipartFile());
-			} catch (RuntimeException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		if(applicantDto.getTranscriptMultipartFile()!=null&&applicantDto.getTranscriptMultipartFile().getSize()>0){
-			try {
-				applicantDto.setTranscript(applicantDto.getTranscriptMultipartFile().getOriginalFilename());
-				uploadService.upload("Applicant",applicantDto.getTranscriptMultipartFile().getOriginalFilename(),applicantDto.getTranscriptMultipartFile());
-			} catch (RuntimeException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+//		if(applicantDto.getImageMultipartFile()!=null&&applicantDto.getImageMultipartFile().getSize()>0){
+//			try {
+//				applicantDto.setImage(applicantDto.getImageMultipartFile().getOriginalFilename());
+//				uploadService.upload("Applicant",applicantDto.getImageMultipartFile().getOriginalFilename(),applicantDto.getImageMultipartFile());
+//			} catch (RuntimeException e) {
+//				e.printStackTrace();
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		if(applicantDto.getResumeMultipartFile()!=null&&applicantDto.getResumeMultipartFile().getSize()>0){
+//			try {
+//				applicantDto.setResume(applicantDto.getResumeMultipartFile().getOriginalFilename());
+//				uploadService.upload("Applicant",applicantDto.getResumeMultipartFile().getOriginalFilename(),applicantDto.getResumeMultipartFile());
+//			} catch (RuntimeException e) {
+//				e.printStackTrace();
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		if(applicantDto.getTranscriptMultipartFile()!=null&&applicantDto.getTranscriptMultipartFile().getSize()>0){
+//			try {
+//				applicantDto.setTranscript(applicantDto.getTranscriptMultipartFile().getOriginalFilename());
+//				uploadService.upload("Applicant",applicantDto.getTranscriptMultipartFile().getOriginalFilename(),applicantDto.getTranscriptMultipartFile());
+//			} catch (RuntimeException e) {
+//				e.printStackTrace();
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		}
 //		
 //		if(applicantDTO.getPosition1().getId()<0) applicantDTO.setPosition1(null);
 //		if(applicantDTO.getPosition2().getId()<0) applicantDTO.setPosition2(null);
