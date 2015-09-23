@@ -89,7 +89,7 @@ public class AugRequestController implements Serializable {
 		augRequest.setApproveDate(augRequestDto.getApproveDate());
 //		Position position = positionService.findById(augRequestDTO.getPositionRequest());
 //		augRequest.setPositionRequest(position);
-//		MasJoblevel masJoblevel = masJoblevelService.find(augRequestDto.get);
+		MasJoblevel masJoblevel = masJoblevelService.find(augRequestDto.get);
 		augRequest.setNumberApplicant(augRequestDto.getNumberApplicant());
 		augRequest.setSpecificSkill(augRequestDto.getSpecificSkill());
 		augRequest.setYearExperience(augRequestDto.getYearExperience());

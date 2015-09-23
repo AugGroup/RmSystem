@@ -384,7 +384,7 @@ public class ApplicantController implements Serializable {
 	
 	//////////////////        SAVE METHOD        /////////////////////
 
-	@RequestMapping(value = "/saveInformations", method = { RequestMethod.POST })
+	/*@RequestMapping(value = "/saveInformations", method = { RequestMethod.POST })
 	public String saveInformations(@ModelAttribute ApplicantDto applicantDto, Model model,MultipartFile multipartFile)
 			throws ParseException {
 		
