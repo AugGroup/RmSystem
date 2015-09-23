@@ -20,6 +20,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import com.aug.hrdb.dto.AugRequestDto;
 import com.aug.hrdb.entities.AugRequest;
 import com.aug.hrdb.entities.MasJoblevel;
+import com.aug.hrdb.entities.MasTechnology;
 import com.aug.hrdb.services.AugRequestService;
 import com.aug.hrdb.services.MasJoblevelService;
 import com.aug.hrdb.services.MasTechnologyService;
@@ -87,9 +88,10 @@ public class AugRequestController implements Serializable {
 		augRequest.setStatus(augRequestDto.getStatus());
 		augRequest.setApprovalName(augRequestDto.getApprovalName());
 		augRequest.setApproveDate(augRequestDto.getApproveDate());
-//		Position position = positionService.findById(augRequestDTO.getPositionRequest());
-//		augRequest.setPositionRequest(position);
-		MasJoblevel masJoblevel = masJoblevelService.find(augRequestDto.get);
+		MasJoblevel masJoblevel = masJoblevelService.find(augRequestDto.getRequestJoblevel());
+		augRequest.setRequestJoblevel(masJoblevel);
+		MasTechnology masTechnology = masTechnologyService.find(augRequestDto.getRequestTechnology());
+		augRequest.setRequestTechnology(masTechnology);
 		augRequest.setNumberApplicant(augRequestDto.getNumberApplicant());
 		augRequest.setSpecificSkill(augRequestDto.getSpecificSkill());
 		augRequest.setYearExperience(augRequestDto.getYearExperience());
@@ -111,9 +113,12 @@ public class AugRequestController implements Serializable {
 		augRequest.setStatus(augRequestDto.getStatus());
 		augRequest.setApprovalName(augRequestDto.getApprovalName());
 		augRequest.setApproveDate(augRequestDto.getApproveDate());
-//		Position position = positionService.findById(augRequestDTO.getPositionRequest());
-//		augRequest.setPositionStr(position.getPositionName());
-//		augRequest.setPositionRequest(position);
+		MasJoblevel masJoblevel = masJoblevelService.find(augRequestDto.getRequestJoblevel());
+		augRequest.setJobLevelStr(masJoblevel.getName());
+		augRequest.setRequestJoblevel(masJoblevel);
+		MasTechnology masTechnology = masTechnologyService.find(augRequestDto.getRequestTechnology());
+		augRequest.setTechnologyStr(masTechnology.getName());
+		augRequest.setRequestTechnology(masTechnology);
 		augRequest.setNumberApplicant(augRequestDto.getNumberApplicant());
 		augRequest.setSpecificSkill(augRequestDto.getSpecificSkill());
 		augRequest.setYearExperience(augRequestDto.getYearExperience());
@@ -121,7 +126,9 @@ public class AugRequestController implements Serializable {
 		augRequestService.update(augRequest);
 		
 		AugRequestDto requestDto = augRequestService.findAugRequestById(id);
-//		requestDto.setPositionStr(position.getPositionName());
+		requestDto.setJobLevelStr(masJoblevel.getName());
+		requestDto.setTechnologyStr(masTechnology.getName());
+		
 		return requestDto;
 
 	}

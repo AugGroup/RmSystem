@@ -6,7 +6,8 @@
         var $inputNumberApplicant = $('#inputNumberApplicant');
         var $inputSpecificSkill = $('#inputSpecificSkill');
         var $inputYearExperience = $('#inputYearExperience');
-        var $inputPosition = $('#inputPosition');
+        var $inputJoblevel = $('#inputJoblevel');
+        var $inputTechnology = $('#inputTechnology');
         var $inputStatus = $('#inputStatus');
         
     	/* ------------------ Date picker format ------------------ */
@@ -54,7 +55,8 @@
 			rules:{
 				inputRequesterName:{required: true},
 				inputRequestDate:{required: true},
-				inputPosition:{required: true},
+				inputJoblevel:{required: true},
+				inputTechnology:{required: true},
 			  	inputApprovalName:{required: true},
 				inputApproveDate:{required: true},
 				inputNumberApplicant:{required: true,digits: true},
@@ -65,7 +67,8 @@
 			messages:{
 				inputRequesterName:{required: reqName },
 			  	inputRequestDate:{required: reqDate},
-			  	inputPosition:{required: reqPosition },
+			  	inputJoblevel:{required: reqJoblevel },
+			  	inputTechnology:{required: reqTechnology },
 			  	inputApprovalName:{required: reqApproval},
 				inputApproveDate:{required: approveDate},
 				inputNumberApplicant:{required: reqApplicant ,
@@ -102,7 +105,8 @@
         	          {"data": "id"},
         	          {"data": "requestDate"},
         	          {"data": "requesterName"},
-        	          {"data": "positionStr"},
+        	          {"data": "jobLevelStr"},
+        	          {"data": "technologyStr"},
         	          {"data": "numberApplicant"},
         	          {"data": "status"},
         	          {data: function (data) {
@@ -181,7 +185,8 @@
         			numberApplicant : $inputNumberApplicant.val(),
         			specificSkill: $inputSpecificSkill.val(),
         			yearExperience : $inputYearExperience.val(),
-        			positionRequest : $inputPosition.val(),
+        			requestTechnology : $inputTechnology.val(),
+        			requestJoblevel : $inputJoblevel.val(),
         			status: $inputStatus.val()
         			};
         	//console.log(request);
@@ -234,7 +239,8 @@
             $('#inputNumberApplicant').val(data.numberApplicant);
             $('#inputSpecificSkill').val(data.specificSkill);
             $('#inputYearExperience').val(data.yearExperience);
-            $('#inputPosition').val(data.positionRequest);
+            $('#inputJoblevel').val(data.requestJoblevel);
+            $('#inputTechnology').val(data.requestTechnology);
             $('#inputStatus').val(data.status);
         }
        
@@ -248,7 +254,8 @@
             var numberApplicant = $inputNumberApplicant.val();
             var specificSkill = $inputSpecificSkill.val();
             var yearExperience = $inputYearExperience.val();
-            var positionRequest = $inputPosition.val();
+            var requestTechnology = $inputTechnology.val();
+            var requestJoblevel = $inputJoblevel.val();
             var status = $inputStatus.val();
             
             var index = dtRequest.row(button.closest("tr")).index();
@@ -262,7 +269,8 @@
                 'numberApplicant': numberApplicant,
                 'specificSkill': specificSkill,
                 'yearExperience': yearExperience, 
-                'positionRequest':positionRequest,
+                'requestTechnology':requestTechnology,
+                'requestJoblevel':requestJoblevel,
                 'status': status
             };
             if($("#requestForm").valid()){
@@ -283,7 +291,8 @@
                     dt.specificSkill = data.specificSkill;
                     dt.yearExperience = data.yearExperience;
                     dt.status = data.status;
-                    dt.positionStr = data.positionStr;
+                    dt.jobLevelStr = data.jobLevelStr;
+                    dt.technologyStr = data.technologyStr;
                     dtRequest.row(index).data(dt).draw();  
                    
                     $("#addRequestModal").modal('hide');
@@ -330,7 +339,8 @@
             $('#tx_noOfApplicant').text(data.numberApplicant);
             $('#tx_specificSkill').text(data.specificSkill);
             $('#tx_yearExperience').text(data.yearExperience);
-            $('#tx_position').text(data.positionRequest);
+            $('#tx_jobLevel').text(data.requestJoblevel);
+            $('#tx_technology').text(data.requestTechnology);
             $('#tx_status').text(data.status);
             }
         });

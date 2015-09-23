@@ -10,7 +10,8 @@
 <script type="text/javascript">
 var reqName = "<spring:message code="valid.req.name"/>"; 
 var reqDate = "<spring:message code="valid.req.date"/>"; 
-var reqPosition = "<spring:message code="valid.req.position"/>"; 
+var reqJoblevel = "<spring:message code="valid.req.joblevel"/>"; 
+var reqTechnology = "<spring:message code="valid.req.technology"/>"; 
 var reqApproval = "<spring:message code="valid.req.approval"/>"; 
 var approveDate = "<spring:message code="valid.req.approve.date"/>"; 
 var reqApplicant = "<spring:message code="valid.req.applicant"/>"; 
@@ -34,7 +35,8 @@ var delete_tx = "<spring:message code="main.delete"/>";
 					<th><spring:message code="request.id" /></th>
 					<th><spring:message code="request.date" /></th>
 					<th><spring:message code="request.human" /></th>
-					<th><spring:message code="info.position" /></th>
+					<th><spring:message code="main.position1" /></th>
+					<th><spring:message code="main.position2" /></th>
 					<th><spring:message code="request.number" /></th>
 					<th><spring:message code="main.status" /></th>
 					<th><spring:message code="request.preview" /></th>
@@ -76,10 +78,18 @@ var delete_tx = "<spring:message code="main.delete"/>";
 							<label for="inputRequestDate" class="error"></label>
 						</div>
 						<div class="form-group">
-							<label for="inputPosition"><spring:message code="info.position" /></label> 
-							<select name="inputPosition" id="inputPosition" class="form-control">
-								<c:forEach items="${positionRequest}" var="items">
-									<option value="${items.id}">${items.positionName }</option>
+							<label for="inputJoblevel"><spring:message code="main.position1" /></label> 
+							<select name="inputJoblevel" id="inputJoblevel" class="form-control">
+								<c:forEach items="${requestJoblevel}" var="items">
+									<option value="${items.id}">${items.name }</option>
+								</c:forEach>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="inputTechnology"><spring:message code="main.position2" /></label> 
+							<select name="inputTechnology" id="inputTechnology" class="form-control">
+								<c:forEach items="${requestTechnology}" var="items">
+									<option value="${items.id}">${items.name }</option>
 								</c:forEach>
 							</select>
 						</div>
@@ -189,8 +199,12 @@ var delete_tx = "<spring:message code="main.delete"/>";
 						<div class="col-md-6"><p id="tx_requestDate"></p></div>
 					</div>
 					<div class="row">
-						<div class="col-md-4" style="width: 170px;"><spring:message code="request.pos" /></div>
-						<div class="col-md-6"><p id="tx_position"></p></div>
+						<div class="col-md-4" style="width: 170px;"><spring:message code="request.job" /></div>
+						<div class="col-md-6"><p id="tx_jobLevel"></p></div>
+					</div>
+					<div class="row">
+						<div class="col-md-4" style="width: 170px;"><spring:message code="request.tech" /></div>
+						<div class="col-md-6"><p id="tx_technology"></p></div>
 					</div>
 					<div class="row">
 						<div class="col-md-4 col-md-offset-2" style="width: 170px;"><spring:message code="request.approv.name" /></div>
