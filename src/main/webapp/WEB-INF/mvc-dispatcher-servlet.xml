@@ -64,7 +64,7 @@
 
 
 <!-- SimpleMappingExceptionResolver use anotation java config -->
-	<bean
+<!-- 	<bean
 		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="exceptionMappings">
 			<props>
@@ -72,11 +72,11 @@
 				<prop key="IOException">errorPages/errorPageCustom</prop>
 			</props>
 
-			<!-- <entry key="Exception">errorpages/errorPage404</entry> <entry key="IOException">errorpages/errorPage404</entry> 
-				<entry key="IndexOutOfBoundsException">errorpages/errorPage404</entry> -->
+			<entry key="Exception">errorpages/errorPage404</entry> <entry key="IOException">errorpages/errorPage404</entry> 
+				<entry key="IndexOutOfBoundsException">errorpages/errorPage404</entry>
 
 		</property>
 		<property name="defaultErrorView" value="errorpages/errorPageCustom" />
-	</bean>
+	</bean> -->
 
 </beans>

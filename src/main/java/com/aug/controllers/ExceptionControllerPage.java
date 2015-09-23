@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ExceptionControllerPage implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+/*	private static final long serialVersionUID = 1L;
 	
-	/*-------------- error page (by throws)---------------------*/
+	-------------- error page (by throws)---------------------
 	@RequestMapping(value = "/exception/custom", method = { RequestMethod.GET })
 	public String errorPageCustom() {
 		return "errorPages/errorPageCustom";
@@ -37,7 +37,7 @@ public class ExceptionControllerPage implements Serializable {
 		return "errorPages/errorPage500";
 	}
 	
-	/*-------------- error page (web.xml)---------------------*/
+	-------------- error page (web.xml)---------------------
 	@RequestMapping(value = "/errorPages/error400", method = { RequestMethod.GET })
 	public String errorPage400ByWebXML() {
 		return "errorPages/errorPage400";
@@ -71,5 +71,5 @@ public class ExceptionControllerPage implements Serializable {
 	@RequestMapping(value = "/errorPages/errorCustom", method = { RequestMethod.GET })
 	public String errorPageCustomByWebXML() {
 		return "errorPages/errorPageCustom";
-	}
+	}*/
 }
