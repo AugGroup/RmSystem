@@ -118,8 +118,7 @@ public class ApplicantController implements Serializable {
 	private MasJoblevelService masJoblevelService;
 	@Autowired
 	private MasCoreSkillService masCoreSkillService;
-	@Autowired
-	private AppointmentService appointmentService;
+	
 	
 	@RequestMapping(value = "/applicant", method = { RequestMethod.GET })
 	public String helloPage(Model model) {
@@ -1015,20 +1014,6 @@ public class ApplicantController implements Serializable {
 		return new ApplicantDto();
 	}
 	
-	///////////////////////////////// CALENDAR PAGE ///////////////////////////////// 
 	
-	@RequestMapping(value = "calendar",method = RequestMethod.GET)
-	public ModelAndView getCalendar(){
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("calendar");
-		return modelAndView;
-	}
-	
-	@RequestMapping(value = "findAllAppointment", method = RequestMethod.GET)
-	public @ResponseBody List<Appointment> findAllApplicant() {
-		return appointmentService.findAll();
-	}
-	
-	////////////////////////////////////////////////////////////////////////////////
 	
 }
