@@ -17,8 +17,9 @@ public class CalendarController {
 	
 	@Autowired
 	private AppointmentService appointmentService;
+	
 	///////////////////////////////// CALENDAR PAGE ///////////////////////////////// 
-		
+	
 	@RequestMapping(value = "calendar",method = RequestMethod.GET)
 	public ModelAndView getCalendar(){
 		ModelAndView modelAndView = new ModelAndView();
