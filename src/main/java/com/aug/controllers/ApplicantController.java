@@ -61,6 +61,7 @@ import com.aug.hrdb.entities.Language;
 import com.aug.hrdb.entities.MasAddressType;
 import com.aug.hrdb.entities.MasCoreSkill;
 import com.aug.hrdb.entities.MasJoblevel;
+import com.aug.hrdb.entities.MasProvince;
 import com.aug.hrdb.entities.MasTechnology;
 import com.aug.hrdb.entities.Reference;
 import com.aug.hrdb.services.AddressService;
@@ -74,6 +75,7 @@ import com.aug.hrdb.services.LanguageService;
 import com.aug.hrdb.services.MasAddressTypeService;
 import com.aug.hrdb.services.MasCoreSkillService;
 import com.aug.hrdb.services.MasJoblevelService;
+import com.aug.hrdb.services.MasProvinceService;
 import com.aug.hrdb.services.MasTechnologyService;
 import com.aug.hrdb.services.ReferenceService;
 import com.aug.services.DownloadService;
@@ -125,6 +127,8 @@ public class ApplicantController implements Serializable {
 	private MasCoreSkillService masCoreSkillService;
 	@Autowired
 	private MasAddressTypeService masAddressTypeService;
+	@Autowired
+	private MasProvinceService masProvinceService;
 	
 	
 	@RequestMapping(value = "/applicant", method = { RequestMethod.GET })
@@ -1037,6 +1041,12 @@ public class ApplicantController implements Serializable {
 	@Transactional
 	public List<MasAddressType> addressList(){
 		return masAddressTypeService.findAll();
+	}
+	
+	@ModelAttribute("provinces")
+	@Transactional
+	public List<MasProvince> provinceList(){
+		return masProvinceService.findAll();
 	}	
 	
 }

@@ -1,16 +1,16 @@
 $(document).ready(function () {
 	
-	var $inputAddress = $('#inputAddress');
+	var $addressType = $('#addressType option:selected');
 	var $houseNo = $("#houseNo");
 	var $road = $("#road");
 	var $district = $("#district");
 	var $subDistrict = $("#subDistrict")
 	var $zipcode = $("#zipcode");
-	var $province = $('#province')
+	var $province = $('#province option:selected');
 		
 	$('#addressForm').validate({
 		rules : {
-			inputAddress : {required : true},
+			addressType : {required : true},
 			houseNo : {required : true},
 			road : {required : true},
 			district : {required : true},
@@ -19,7 +19,7 @@ $(document).ready(function () {
 			province : {required : true}
 		},
 		messages : {
-			inputAddress : {required : valAddress},
+			addressType : {required : valAddress},
 			houseNo : {required : valHouseNo},
 			road : {required : valRoad},
 			district : {required : valDistrict},
@@ -49,13 +49,13 @@ $(document).ready(function () {
 					url : 'findByIdAddress/'+id,
 					type : 'POST'
 				},
-				columns : [ {data : "addressType"},
+				columns : [ {data : "masaddresstypeName"},
 							{data : "houseNo"},
 							{data : "road"},
 							{data : "district"},
 							{data : "subDistrict"},
 							{data : "zipcode"},
-							{data : "province"},
+							{data : "masprovinceName"},
 							{data : function(data) {
 						 		return '<button id="buttonEdit" data-id="'+data.id+'" data-toggle="modal" data-target="#addressModal" class="btn btn-warning btn-mini"><span class="glyphicon glyphicon-pencil"></span> '+ valEdit +'</button>';
 							}},
@@ -69,20 +69,20 @@ $(document).ready(function () {
 		
 		function saveAddress(){
 			if($('#addressForm').valid()){
-				var addressType = $inputAddress.val();
+				var addressType = $('#addressType option:selected').text();
 				var houseNo = $houseNo.val();
 				var district = $district.val();
 				var subDistrict = $subDistrict.val();
 				var road = $road.val();
-				var province = $province.val();
+				var province = $('#province option:selected').text();
 				var zipcode = $zipcode.val();
 				var json = {"applicant" : {"id" : id},
-							"addressType" : addressType,
+							"addressType" : {"masaddresstypeName" : addressType},
 							"houseNo" : houseNo,
 							"district" : district,
 							"subDistrict" : subDistrict,
 							"road" : road,
-							"province":province,
+							"province": {"masprovinceName" : province},
 							"zipcode":zipcode};
 			
 				$.ajax({
@@ -123,7 +123,7 @@ $(document).ready(function () {
 		
 		//Show data on inputField
 		function showFillData(data){
-			$('#addressType').val(data.addressType);
+			$('#addressType').val(data.addressTypeId);
 			$("#houseNo").val(data.houseNo);
 			$("#road").val(data.road);
 			$("#district").val(data.district);
@@ -131,20 +131,20 @@ $(document).ready(function () {
 			$("#zipcode").val(data.zipcode);
 			console.log(data.houseNo);
 			
-			$("#province").val(data.province);
+			$("#province").val(data.masprovinceId);
 		}
 		
 		//Update function
 		function updateAddress(button){
 			if ($('#addressForm').valid()) {
 			var id = $(button).data("id");
-			var addressType = $('#addressType').val();
-			var houseNo = $("#houseNo").val();
-			var road = $('#road').val();
-			var district = $("#district").val();
-			var subDistrict = $("#subDistrict").val();
-			var zipcode = $("#zipcode").val();
-			var province = $("#province").val();
+			var addressType = $('#addressType option:selected').text();
+			var houseNo = $houseNo.val();
+			var road = $road.val();
+			var district = $district.val();
+			var subDistrict = $subDistrict.val();
+			var zipcode = $zipcode.val();
+			var province = $('#province option:selected').text();
 			console.log(id);
 			
 			var json = {
@@ -171,13 +171,13 @@ $(document).ready(function () {
 				 	var d = table.row(rowData).data();
 				 		console.log(data.houseNo);
 
-				 		d.addressType = data.addressType;
+				 		d.addressType = data.addressTypeId;
 				 		d.houseNo = data.houseNo;
 						d.road = data.road;
 				 		d.district = data.district;
 				 		d.subDistrict = data.subDistrict;
 				 		d.zipcode = data.zipcode;
-				 		d.province = data.province;
+				 		d.province = data.provinceId;
 				 		
 				 		table.row(rowData).data(d).draw();
 				 		
