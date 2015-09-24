@@ -27,7 +27,9 @@
 		<f:hidden path="attitudeHome" />
 		<f:hidden path="attitudeOffice" />
 		<f:hidden path="trackingStatus" />
-
+		<f:hidden path="createdTimeStamp" id="createdTimeStamp" />
+		<f:hidden path="createdBy" id="createdBy" />
+		
 		<h3 id="infomation"> INFORMATION</h3>
 		
 			<div class="form-group">
