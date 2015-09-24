@@ -95,8 +95,8 @@ public class ApplicantController implements Serializable {
 	private ReportService reportService;*/
 //	@Autowired
 //	private DepartmentService departmentService;
-//	@Autowired
-//	private UploadService uploadService;
+	@Autowired
+	private UploadService uploadService;
 	@Autowired
 	private ReferenceService referenceService;
 	@Autowired
@@ -113,10 +113,10 @@ public class ApplicantController implements Serializable {
 	private CertificationService certificationService;
 	@Autowired
 	private FamilyService familyService;
-/*	@Autowired
-	private PositionEditor positionEditor;*/
-/*	@Autowired
-	private DownloadService downloadService;*/
+	@Autowired
+	private PositionEditor positionEditor;
+	@Autowired
+	private DownloadService downloadService;
 	@Autowired
 	private MasTechnologyService masTechnologyService;
 	@Autowired
@@ -311,7 +311,7 @@ public class ApplicantController implements Serializable {
 	}
 
 	/*-------------------- search all applicant and search applicant for Report dataTable--------------------*/
-/*	@RequestMapping(value = "/report/searchMonth", method = { RequestMethod.POST })
+	@RequestMapping(value = "/report/searchMonth", method = { RequestMethod.POST })
 	public @ResponseBody Object searchReportByMonth(
 			@RequestParam String applyDateStr) throws NotFoundException {
 
@@ -335,37 +335,37 @@ public class ApplicantController implements Serializable {
 				return datas;
 			}
 		};
-	}*/
+	}
 
-/*	@RequestMapping(value = "/reportMonthly/preview", method = { RequestMethod.POST })
-	public ModelAndView searchMonthlyReport(
-			@ModelAttribute SearchReportDto searchReportDTO,
-			HttpSession session, Locale locale) {
-		List<ReportApplicantDto> reportApplicantList = null;
-		String applyDate = searchReportDTO.getApplyDateStr();
-
-		String reportType = searchReportDTO.getReportType();
-		if (!applyDate.isEmpty()) {
-			String dateStr = applyDate;
-			System.out.println("dateStr :" + dateStr);
-			String[] parts = dateStr.split(" \\- ");
-			String startDate = parts[0];
-			System.out.println("startDate : " + startDate);
-			String endDate = parts[1];
-			System.out.println("endDate : " + endDate);
-			System.out.println("endDate123 : ");
-			reportApplicantList = applicantService.findReportByMonth(startDate,
-					endDate);
-		} else {
-			reportApplicantList = applicantService.reportApplicant();
-		}
-		Map<String, Object> parameterMap = new HashMap<String, Object>();
-		parameterMap.put("date", new java.util.Date());
-		parameterMap.put(JRParameter.REPORT_LOCALE, Locale.ENGLISH);
-		ModelAndView mv = reportService.getReport(reportApplicantList,
-				"applicantSummaryMonthly", reportType, parameterMap);
-		return mv;
-	}*/
+//	@RequestMapping(value = "/reportMonthly/preview", method = { RequestMethod.POST })
+//	public ModelAndView searchMonthlyReport(
+//			@ModelAttribute SearchReportDto searchReportDTO,
+//			HttpSession session, Locale locale) {
+//		List<ReportApplicantDto> reportApplicantList = null;
+//		String applyDate = searchReportDTO.getApplyDateStr();
+//
+//		String reportType = searchReportDTO.getReportType();
+//		if (!applyDate.isEmpty()) {
+//			String dateStr = applyDate;
+//			System.out.println("dateStr :" + dateStr);
+//			String[] parts = dateStr.split(" \\- ");
+//			String startDate = parts[0];
+//			System.out.println("startDate : " + startDate);
+//			String endDate = parts[1];
+//			System.out.println("endDate : " + endDate);
+//			System.out.println("endDate123 : ");
+//			reportApplicantList = applicantService.findReportByMonth(startDate,
+//					endDate);
+//		} else {
+//			reportApplicantList = applicantService.reportApplicant();
+//		}
+//		Map<String, Object> parameterMap = new HashMap<String, Object>();
+//		parameterMap.put("date", new java.util.Date());
+//		parameterMap.put(JRParameter.REPORT_LOCALE, Locale.ENGLISH);
+//		ModelAndView mv = reportService.getReport(reportApplicantList,
+//				"applicantSummaryMonthly", reportType, parameterMap);
+//		return mv;
+//	}
 
 	/*-------------------- Position List--------------------*/
 //	@ModelAttribute("positionRequest")
@@ -399,37 +399,37 @@ public class ApplicantController implements Serializable {
 		
 		applicantDto.setCode("C"+year+(applicantService.getMaxApplicantId().getId()+1));
 		
-//		if(applicantDto.getImageMultipartFile()!=null&&applicantDto.getImageMultipartFile().getSize()>0){
-//			try {
-//				applicantDto.setImage(applicantDto.getImageMultipartFile().getOriginalFilename());
-//				uploadService.upload("Applicant",applicantDto.getImageMultipartFile().getOriginalFilename(),applicantDto.getImageMultipartFile());
-//			} catch (RuntimeException e) {
-//				e.printStackTrace();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		if(applicantDto.getResumeMultipartFile()!=null&&applicantDto.getResumeMultipartFile().getSize()>0){
-//			try {
-//				applicantDto.setResume(applicantDto.getResumeMultipartFile().getOriginalFilename());
-//				uploadService.upload("Applicant",applicantDto.getResumeMultipartFile().getOriginalFilename(),applicantDto.getResumeMultipartFile());
-//			} catch (RuntimeException e) {
-//				e.printStackTrace();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		if(applicantDto.getTranscriptMultipartFile()!=null&&applicantDto.getTranscriptMultipartFile().getSize()>0){
-//			try {
-//				applicantDto.setTranscript(applicantDto.getTranscriptMultipartFile().getOriginalFilename());
-//				uploadService.upload("Applicant",applicantDto.getTranscriptMultipartFile().getOriginalFilename(),applicantDto.getTranscriptMultipartFile());
-//			} catch (RuntimeException e) {
-//				e.printStackTrace();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		
+		if(applicantDto.getImageMultipartFile()!=null&&applicantDto.getImageMultipartFile().getSize()>0){
+			try {
+				applicantDto.setImage(applicantDto.getImageMultipartFile().getOriginalFilename());
+				uploadService.upload("Applicant",applicantDto.getImageMultipartFile().getOriginalFilename(),applicantDto.getImageMultipartFile());
+			} catch (RuntimeException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		if(applicantDto.getResumeMultipartFile()!=null&&applicantDto.getResumeMultipartFile().getSize()>0){
+			try {
+				applicantDto.setResume(applicantDto.getResumeMultipartFile().getOriginalFilename());
+				uploadService.upload("Applicant",applicantDto.getResumeMultipartFile().getOriginalFilename(),applicantDto.getResumeMultipartFile());
+			} catch (RuntimeException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		if(applicantDto.getTranscriptMultipartFile()!=null&&applicantDto.getTranscriptMultipartFile().getSize()>0){
+			try {
+				applicantDto.setTranscript(applicantDto.getTranscriptMultipartFile().getOriginalFilename());
+				uploadService.upload("Applicant",applicantDto.getTranscriptMultipartFile().getOriginalFilename(),applicantDto.getTranscriptMultipartFile());
+			} catch (RuntimeException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
 //		if(applicantDTO.getPosition1().getId()<0) applicantDTO.setPosition1(null);
 //		if(applicantDTO.getPosition2().getId()<0) applicantDTO.setPosition2(null);
 //		if(applicantDTO.getPosition3().getId()<0) applicantDTO.setPosition3(null);
