@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.bouncycastle.mail.smime.handlers.pkcs7_mime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,8 +18,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.aug.hrdb.dto.AugRequestDto;
 import com.aug.hrdb.entities.AugRequest;
-import com.aug.hrdb.entities.MasJoblevel;
-import com.aug.hrdb.entities.MasTechnology;
 import com.aug.hrdb.services.AugRequestService;
 import com.aug.hrdb.services.MasJoblevelService;
 import com.aug.hrdb.services.MasTechnologyService;

@@ -58,7 +58,10 @@ import com.aug.hrdb.entities.Education;
 import com.aug.hrdb.entities.Experience;
 import com.aug.hrdb.entities.Family;
 import com.aug.hrdb.entities.Language;
+import com.aug.hrdb.entities.MasAddressType;
 import com.aug.hrdb.entities.MasCoreSkill;
+import com.aug.hrdb.entities.MasJoblevel;
+import com.aug.hrdb.entities.MasTechnology;
 import com.aug.hrdb.entities.Reference;
 import com.aug.hrdb.services.AddressService;
 import com.aug.hrdb.services.ApplicantService;
@@ -68,6 +71,7 @@ import com.aug.hrdb.services.EducationService;
 import com.aug.hrdb.services.ExperienceService;
 import com.aug.hrdb.services.FamilyService;
 import com.aug.hrdb.services.LanguageService;
+import com.aug.hrdb.services.MasAddressTypeService;
 import com.aug.hrdb.services.MasCoreSkillService;
 import com.aug.hrdb.services.MasJoblevelService;
 import com.aug.hrdb.services.MasTechnologyService;
@@ -119,6 +123,8 @@ public class ApplicantController implements Serializable {
 	private MasJoblevelService masJoblevelService;
 	@Autowired
 	private MasCoreSkillService masCoreSkillService;
+	@Autowired
+	private MasAddressTypeService masAddressTypeService;
 	
 	
 	@RequestMapping(value = "/applicant", method = { RequestMethod.GET })
@@ -1015,12 +1021,22 @@ public class ApplicantController implements Serializable {
 		return new ApplicantDto();
 	}
 	
-/*	@ModelAttribute("addresses")
+	@ModelAttribute("jobLevels")
 	@Transactional
-	public List<Address> addressList(){
-		return addressService.findAll();
-	}*/
+	public List<MasJoblevel> jobLevelList(){
+		return masJoblevelService.findAll();
+	}
 	
+	@ModelAttribute("technologies")
+	@Transactional
+	public List<MasTechnology> technologyList(){
+		return masTechnologyService.findAll();
+	}
 	
+	@ModelAttribute("addresses")
+	@Transactional
+	public List<MasAddressType> addressList(){
+		return masAddressTypeService.findAll();
+	}	
 	
 }
