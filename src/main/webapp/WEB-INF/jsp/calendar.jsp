@@ -31,16 +31,21 @@
 		var insStart;
 		var insEnd;
 		
-		var Appointment = function(id,title,detail,applicant_name,day,time){
-			this.Id = id;
-			this.Title = title;
-			this.Detail = detail;
-			this.Applicant_name = applicant_name;
-			this.Day = day;
-			this.Time = time;
+		if (!document.getElementById('appointmentType3').checked) {
+			document.getElementById("remarkOther").disabled = true;
 		}
 		
-		var app1 = new Appointment('1','java senior','first interview','appname','2015-10-01','16:00');
+		$('input[type=radio][name=appointmentType]').change(function() {
+	        if (this.value == 'other') {
+	        	document.getElementById("remarkOther").disabled = false;
+	        }
+	        else {
+	        	document.getElementById("remarkOther").disabled = true;
+	        }
+	    });
+		
+		
+		
 		
 		
 		$('#calendar').fullCalendar({
@@ -59,38 +64,17 @@
 				$('#calendar').fullCalendar('unselect');
 			},
 			editable: true,
+			timezone : 'local',
 			eventLimit: true, // allow "more" link when too many events
 			events: [
-// 				{
-// 					id: app1.Id,
-// 					title: app1.Title,
-// 					className : app1.Detail,
-// 					start: app1.Day
-// 				},
-// 				{
-// 					id:2,
-// 					title: 'Dot net interview',
-// 					start: '2015-09-29',
-// 					end: '2015-10-01'
-// 				},
-// 				{
-// 					id: 3,
-// 					title: 'Repeating Interview',
-// 					start: '2015-10-07T16:00:00'
-// 				},
-// 				{
-// 					id: 4,
-// 					title: 'Repeating Interview',
-// 					start: '2015-10-12T16:00:00'
-// 				}
 			],
 			eventClick: function(event, element) {
 		        $("#myModal").modal("show");
+		        $("#detail_topic").text(event.title);
 				$("#detail_title").text(event.title);
-				//$("#detail_desciption").text(event.className);
 				$("#detail_datetime").text(event.start);
 				eventdata = event;
-		    }
+		    },timeFormat: 'H(:mm)'
 		}); // end full calendar
 
 		
@@ -107,8 +91,28 @@
 		})
 		
 		$("#insBtn").on('click',function(){
-			insTitle = $("#appointmentTopic").val();
-			var appointment;
+			insTitle = $("#applicantName option:selected").val();
+			var appointmentType;
+			
+			if (document.getElementById('appointmentType1').checked) {
+				appointmentType = $("#appointmentType1").val();
+			}else if (document.getElementById('appointmentType2').checked) {
+				appointmentType = $("#appointmentType2").val();
+			}else if (document.getElementById('appointmentType3').checked) {
+				appointmentType = $("#remarkOther").val();
+			}
+			var appointment = { 
+					topic : $("#appointmentTopic").val(),
+					detail : $("#appoint_detail").val(),
+					start: insStart,
+					end : insEnd,
+					/* applicant : $("#applicantName").val() */
+					/* login : $("#applicantName").val() */
+			};
+			
+			
+			alert(insStart);
+			var insData;
 			if (insTitle) {
 				insData = {
 					id : 33,
@@ -121,32 +125,16 @@
 					url : "calendar/insertAppointment",
 					type : "POST",
 					contentType :"application/json; charset=utf-8", 
-					data : JSON.stringify(insData),
+					data : JSON.stringify(appointment),
 					success : function(data){
-// 					 	new PNotify({
-// 					    	title: 'Edit score is successful',
-// 					    	text: '',
-// 					    	type: 'success',
-// 					    	delay: 3000,
-// 					    	buttons: {
-// 					    			closer_hover: false,
-// 					    	        sticker: false
-// 					    	    }
-// 						});
-						alert(data);
+						$('#calendar').fullCalendar('renderEvent', insData, true); // stick? = true
+						$('#insModal').modal('hide');	
+						$('#formInsert').trigger('reset');
+						//alert(data);
 					}
-				});
-				
-				
-				
-				
-				
-				
-				$('#calendar').fullCalendar('renderEvent', insData, true); // stick? = true
-				$('#insModal').modal('hide');	
-				$('#formInsert').trigger('reset');
-			}
-		})
+				});//end ajax
+			}//end if
+		})//endonclick 'insBtn'
 		
 		
 		
@@ -176,6 +164,7 @@
 						<div class="col-md-6">
 							<label for="applicantFilter">Applicant Filter</label> 
 							<select name="applicantfilter" id="applicantFilter" class="form-control">
+								<option value="All">All</option>
 								<option value="Pending Test">Pending Test/Interview</option>
 								<option value="Approve">Pending Approve</option>
 							</select>
@@ -184,7 +173,7 @@
 						<div class="col-md-6">
 								<label for="applicantName">Applicant Name</label> 
 								<select name="applicantname" id="applicantName" class="form-control">
-									<option></option>
+									<option>test Applicant</option>
 								</select>
 						</div>
 					</div>
@@ -197,7 +186,11 @@
 	        			</div>
 	        		
 					</div>
-					<div class="row">
+					<div class="row">	
+	        			<div class="col-md-12">
+	        				<label for="appoint_detail">Detail</label>
+	        				<textarea id="appoint_detail" class="form-control" rows="4" placeholder="Insert detail here..."></textarea>
+	        			</div>
 	        			<div class="col-md-12"><br>
 	        				<label >Appoint for</label>
 								<div class="radio">
@@ -219,11 +212,7 @@
 								  </label>
 								  <input id="remarkOther" class="form-control" placeholder="Remark"></input>
 								</div>
-						</div>	
-	        			<div class="col-md-12">
-	        				<label for="appoint_detail">Detail</label>
-	        				<textarea id="appoint_detail" class="form-control" rows="4" placeholder="Insert detail here..."></textarea>
-	        			</div>
+						</div>
         			</div></form>
 	        		</div>
 	      </div><!-- /.modal-body -->
@@ -257,8 +246,8 @@
 	        			<td colspan="2"><h4 id="detail_datetime"></h4></td>
 	        		</tr>
 	        		<tr>
-	        			<td><h4>Title</h4></td>
-	        			<td colspan="2"><h4 id="detail_title"></h4></td>
+	        			<td><h4>Topic</h4></td>
+	        			<td colspan="2"><h4 id="detail_topic"></h4></td>
 	        		</tr>
 	        		<tr>
 	        			<td colspan="1"><h4 >Detail</h4></td>
