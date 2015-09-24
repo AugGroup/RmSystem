@@ -25,7 +25,7 @@ public class ExceptionControllerAdvice {
 
 
 	//BAD_REQUEST(400, "Bad Request")
-	@ExceptionHandler(BadHttpRequest.class)
+/*	@ExceptionHandler(BadHttpRequest.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ResponseBody
 	public ExceptionVO handleBadRequest(BadHttpRequest ex,
@@ -86,7 +86,7 @@ public class ExceptionControllerAdvice {
 		System.out.println("Exception : INTERNAL_SERVER_ERROR");
 		System.out.println(ex.getMessage()+" "+ex.getClass().getSimpleName());
 		return exceptionVO;
-	}
+	}*/
 
 	// Custom
 	// Exception
