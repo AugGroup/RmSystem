@@ -88,10 +88,10 @@ public class AugRequestController implements Serializable {
 		augRequest.setStatus(augRequestDto.getStatus());
 		augRequest.setApprovalName(augRequestDto.getApprovalName());
 		augRequest.setApproveDate(augRequestDto.getApproveDate());
-		MasJoblevel masJoblevel = masJoblevelService.find(augRequestDto.getRequestJoblevel());
-		augRequest.setRequestJoblevel(masJoblevel);
-		MasTechnology masTechnology = masTechnologyService.find(augRequestDto.getRequestTechnology());
-		augRequest.setRequestTechnology(masTechnology);
+//		MasJoblevel masJoblevel = masJoblevelService.find(augRequestDto.getRequestJoblevel());
+//		augRequest.setRequestJoblevel(masJoblevel);
+//		MasTechnology masTechnology = masTechnologyService.find(augRequestDto.getRequestTechnology());
+//		augRequest.setRequestTechnology(masTechnology);
 		augRequest.setNumberApplicant(augRequestDto.getNumberApplicant());
 		augRequest.setSpecificSkill(augRequestDto.getSpecificSkill());
 		augRequest.setYearExperience(augRequestDto.getYearExperience());
@@ -113,12 +113,12 @@ public class AugRequestController implements Serializable {
 		augRequest.setStatus(augRequestDto.getStatus());
 		augRequest.setApprovalName(augRequestDto.getApprovalName());
 		augRequest.setApproveDate(augRequestDto.getApproveDate());
-		MasJoblevel masJoblevel = masJoblevelService.find(augRequestDto.getRequestJoblevel());
-		augRequest.setJobLevelStr(masJoblevel.getName());
-		augRequest.setRequestJoblevel(masJoblevel);
-		MasTechnology masTechnology = masTechnologyService.find(augRequestDto.getRequestTechnology());
-		augRequest.setTechnologyStr(masTechnology.getName());
-		augRequest.setRequestTechnology(masTechnology);
+//		MasJoblevel masJoblevel = masJoblevelService.find(augRequestDto.getRequestJoblevel());
+//		augRequest.setJobLevelStr(masJoblevel.getName());
+//		augRequest.setRequestJoblevel(masJoblevel);
+//		MasTechnology masTechnology = masTechnologyService.find(augRequestDto.getRequestTechnology());
+//		augRequest.setTechnologyStr(masTechnology.getName());
+//		augRequest.setRequestTechnology(masTechnology);
 		augRequest.setNumberApplicant(augRequestDto.getNumberApplicant());
 		augRequest.setSpecificSkill(augRequestDto.getSpecificSkill());
 		augRequest.setYearExperience(augRequestDto.getYearExperience());
@@ -126,8 +126,8 @@ public class AugRequestController implements Serializable {
 		augRequestService.update(augRequest);
 		
 		AugRequestDto requestDto = augRequestService.findAugRequestById(id);
-		requestDto.setJobLevelStr(masJoblevel.getName());
-		requestDto.setTechnologyStr(masTechnology.getName());
+//		requestDto.setJobLevelStr(masJoblevel.getName());
+//		requestDto.setTechnologyStr(masTechnology.getName());
 		
 		return requestDto;
 
