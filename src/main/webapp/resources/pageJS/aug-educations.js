@@ -32,12 +32,12 @@ $(document).ready(function() {
 					type : 'POST'
 				},
 
-				columns : [ {data : "schoolName"},
+				columns : [ {data : "university"},
 				            {data : "degree"}, 
 				            {data : "faculty"}, 
 				            {data : "major"},
 				            {data : "gpa"},
-				            {data : "yearsOfGraduate"},
+				            {data : "graduated_date"},
 				            {data : function(data) {
 								return '<button id="buttonEdit" data-id="'+data.id+'" data-toggle="modal" data-target="#educationModal" class="btn btn-warning btn-mini"><span class="glyphicon glyphicon-pencil"></span> '+ valEdit +'</button>';
 							}},
@@ -53,21 +53,21 @@ $(document).ready(function() {
 		
 		function saveEducation(){
 				if ($('#educationsForm').valid()) {
-				var schoolName = $("#university").val();
+				var university = $("#university").val();
 				var degree = $("#degree").val();
 				var faculty = $("#faculty").val();
 				var major = $("#major").val();
-				var yearsOfGraduate = $("#graduate").val();
+				var graduated_date = $("#graduate").val();
 				var gpa = $("#gpa").val();
 				console.log(id);
 				
 				var json = {
 						"applicant" : {"id" : id},
-						"schoolName" : schoolName,
+						"university" : university,
 						"degree" : degree,
 						"faculty" : faculty,
 						"major" : major,
-						"yearsOfGraduate" : yearsOfGraduate,
+						"graduated_date" : graduated_date,
 						"gpa" : gpa,
 						};
 				
@@ -111,11 +111,11 @@ $(document).ready(function() {
 		
  		//Show data on inputField
 		function showFillData(data){
-			$("#university").val(data.schoolName);
+			$("#university").val(data.university);
 			$("#degree").val(data.degree);
 			$("#faculty").val(data.faculty);
 			$("#major").val(data.major);
-			$("#graduate").val(data.yearsOfGraduate);
+			$("#graduate").val(data.graduated_date);
 			$("#gpa").val(data.gpa);
 		}
 		
@@ -123,21 +123,21 @@ $(document).ready(function() {
 		function updated(button){
 			if ($('#educationsForm').valid()) {
 			var id = $(button).data("id");
-			var schoolName = $("#university").val();
+			var university = $("#university").val();
 			var degree = $("#degree").val();
 			var faculty = $("#faculty").val();
 			var major = $("#major").val();
-			var yearsOfGraduate = $("#graduate").val();
+			var graduated_date = $("#graduate").val();
 			var gpa = $("#gpa").val();
 			console.log(id);
 			
 			var json = {
 					"id" : id,
-					"schoolName" : schoolName,
+					"university" : university,
 					"degree" : degree,
 					"faculty" : faculty,
 					"major" : major,
-					"yearsOfGraduate" : yearsOfGraduate,
+					"graduated_date" : graduated_date,
 					"gpa" : gpa,
 					};
 			
@@ -154,11 +154,11 @@ $(document).ready(function() {
 				 	var d = table.row(rowData).data();
 				 		console.log(data.houseNo);
 
-				 		d.schoolName = data.schoolName;
+				 		d.university = data.university;
 				 		d.degree = data.degree;
 						d.faculty = data.faculty;
 				 		d.major = data.major;
-				 		d.yearsOfGraduate = data.yearsOfGraduate;
+				 		d.graduated_date = data.graduated_date;
 				 		d.gpa = data.gpa;
 				 		
 				 		table.row(rowData).data(d).draw();
