@@ -51,6 +51,7 @@ import com.aug.hrdb.dto.ReportApplicantDto;
 import com.aug.hrdb.dto.SearchReportDto;
 import com.aug.hrdb.entities.Address;
 import com.aug.hrdb.entities.Applicant;
+import com.aug.hrdb.entities.Appointment;
 import com.aug.hrdb.entities.Certification;
 import com.aug.hrdb.entities.Education;
 import com.aug.hrdb.entities.Experience;
@@ -60,6 +61,7 @@ import com.aug.hrdb.entities.MasCoreSkill;
 import com.aug.hrdb.entities.Reference;
 import com.aug.hrdb.services.AddressService;
 import com.aug.hrdb.services.ApplicantService;
+import com.aug.hrdb.services.AppointmentService;
 import com.aug.hrdb.services.CertificationService;
 import com.aug.hrdb.services.EducationService;
 import com.aug.hrdb.services.ExperienceService;
@@ -116,6 +118,7 @@ public class ApplicantController implements Serializable {
 	private MasJoblevelService masJoblevelService;
 	@Autowired
 	private MasCoreSkillService masCoreSkillService;
+	
 	
 	@RequestMapping(value = "/applicant", method = { RequestMethod.GET })
 	public String helloPage(Model model) {
@@ -1010,4 +1013,7 @@ public class ApplicantController implements Serializable {
 	public ApplicantDto applicant() {
 		return new ApplicantDto();
 	}
+	
+	
+	
 }
