@@ -46,14 +46,15 @@ var id = ${id};
 								value="${id}">
 						</div>
 						<div class="form-group">
-							<label for="inputAddress"><spring:message
-									code="address.name" /> </label> <select class="form-control"
-								id="inputAddress" name="inputAddress">
-								<option value="Present"><spring:message
-										code="address.present" /></option>
-								<option value="Permanent"><spring:message
-										code="address.permanent" /></option>
-							</select>
+ 							<label for="position1"><spring:message code="main.position1"/></label><br>
+ 							<div id="positionFirst">
+ 								<f:select path="position1.id" id="position1" name="position1" class="form-control">
+ 									<f:option value="-1" label="please select data"/>
+ 									<c:forEach var="addressList" items="${addresses}">
+ 										<f:option value="${addressList.id}">${addressList.name}</f:option>
+ 									</c:forEach>
+ 								</f:select>
+ 							</div>
 						</div>
 						<div class="form-group">
 							<label for="houseNo"><spring:message

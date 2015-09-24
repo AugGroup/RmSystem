@@ -25,6 +25,7 @@ import org.springframework.security.acls.model.NotFoundException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.WebDataBinder;
@@ -108,8 +109,8 @@ public class ApplicantController implements Serializable {
 	private CertificationService certificationService;
 	@Autowired
 	private FamilyService familyService;
-	@Autowired
-	private PositionEditor positionEditor;
+/*	@Autowired
+	private PositionEditor positionEditor;*/
 /*	@Autowired
 	private DownloadService downloadService;*/
 	@Autowired
@@ -1013,6 +1014,12 @@ public class ApplicantController implements Serializable {
 	public ApplicantDto applicant() {
 		return new ApplicantDto();
 	}
+	
+/*	@ModelAttribute("addresses")
+	@Transactional
+	public List<Address> addressList(){
+		return addressService.findAll();
+	}*/
 	
 	
 	
