@@ -599,7 +599,7 @@ public class ApplicantController implements Serializable {
 	
 	// Search Every Class By Id For Show In Text Box
 	
-/*	@RequestMapping(value = "/dowloadResume/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/dowloadResume/{id}", method = RequestMethod.GET)
 	public String dowloadResume(@PathVariable Integer id,HttpServletRequest request,HttpServletResponse response) {
  
 		String filename = applicantService.findApplicationById(id).getResume();
@@ -613,7 +613,7 @@ public class ApplicantController implements Serializable {
 		String filename = applicantService.findApplicationById(id).getTranscript();
 		downloadService.download(request,response,"Applicant", filename);
 		return "informations";
-	}*/
+	}
 	@RequestMapping(value = "/info/{id}", method = { RequestMethod.GET })
 	public String updateInfo(@ModelAttribute ApplicantDto applicantDto,
 			@PathVariable Integer id, Model  model) {
@@ -629,7 +629,7 @@ public class ApplicantController implements Serializable {
 		return "informations";
 	}
 	
-	/*@RequestMapping(value = "/infoEdit/{id}", method = { RequestMethod.POST })
+	@RequestMapping(value = "/infoEdit/{id}", method = { RequestMethod.POST })
 	public String updateInformations(@ModelAttribute ApplicantDto applicantDto,@PathVariable Integer id,Model  model,MultipartFile multipartFile) {
 		if(applicantDto.getImageMultipartFile()!=null&&applicantDto.getImageMultipartFile().getSize()>0){
 			try {
@@ -666,7 +666,7 @@ public class ApplicantController implements Serializable {
 		model.addAttribute("applicant", applicantDto);
 
 		return "informations";
-	}*/
+	}
 	
 	@RequestMapping(value = "/findByIdApplicants/{id}", method = { RequestMethod.POST })
 	public @ResponseBody ApplicantDto findByIdApplications(@RequestBody ApplicantDto applicantDto,@PathVariable Integer id) {
