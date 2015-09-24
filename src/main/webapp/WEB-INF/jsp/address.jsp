@@ -46,11 +46,11 @@ var id = ${id};
 								value="${id}">
 						</div>
  						<div class="form-group">
- 							<label for="addressType"><spring:message code="main.position1"/></label><br>
- 							<select class="form-control" id="addressType">
+ 							<label for="name"><spring:message code="main.position1"/></label><br>
+ 							<select class="form-control" id="name" name="name">
 								<option value="-1" label="---Select Address Type---" />
 								<c:forEach var="obj" items="${addresses}">
-									<option value="${obj.id}">${ obj.name}</option>
+									<option value="${obj.id}">${obj.name}</option>
 								</c:forEach>
 							</select>
 						</div> 

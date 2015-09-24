@@ -123,7 +123,7 @@ $(document).ready(function () {
 		
 		//Show data on inputField
 		function showFillData(data){
-			$('#inputAddress').val(data.addressType);
+			$('#addressType').val(data.addressType);
 			$("#houseNo").val(data.houseNo);
 			$("#road").val(data.road);
 			$("#district").val(data.district);
@@ -138,7 +138,7 @@ $(document).ready(function () {
 		function updateAddress(button){
 			if ($('#addressForm').valid()) {
 			var id = $(button).data("id");
-			var addressType = $('#inputAddress').val();
+			var addressType = $('#addressType').val();
 			var houseNo = $("#houseNo").val();
 			var road = $('#road').val();
 			var district = $("#district").val();
