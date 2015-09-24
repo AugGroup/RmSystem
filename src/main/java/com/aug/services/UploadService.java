@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 
-@Service
+@Service(value = "uploadService")
 public class UploadService {
 	private static Logger LOGGER = LoggerFactory.getLogger(UploadService.class);
 	@Value("#{appProps['file.path']}")

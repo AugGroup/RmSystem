@@ -37,7 +37,11 @@
     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
           p:dataSource-ref="dataSource"
           p:configLocation="classpath:hibernate.cfg.xml"
-          p:packagesToScan="com.aug.hrdb"/>
+          p:packagesToScan="com.aug.hrdb">
+      <property name="entityInterceptor" ref="auditInterceptor"></property>
+          
+          
+          </bean>
          <!--  p:packagesToScan="com.aug.db.entities"/> -->
 
 
