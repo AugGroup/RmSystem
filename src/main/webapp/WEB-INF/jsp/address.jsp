@@ -53,14 +53,6 @@ var id = ${id};
 									<option value="${obj.id}">${ obj.name}</option>
 								</c:forEach>
 							</select>
-<%-- 							<div id="positionFirst">
- 								<f:select path="addressType.id" id="addressType" name="addressType" class="form-control">
- 									<f:option value="-1" label="please select data"/>
- 									<c:forEach var="addressList" items="${addresses}">
- 										<f:option value="${addressList.id}">${addressList.name}</f:option>
- 									</c:forEach>
- 								</f:select>
- 							</div>--%>
 						</div> 
 						<div class="form-group">
 							<label for="houseNo"><spring:message
