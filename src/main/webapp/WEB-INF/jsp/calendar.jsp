@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	<script src='<c:url value ="/static/resources/js/moment.js"/>'></script>
+	<script src='<c:url value="/static/resources/js/moment-timezone.js"/>'></script>
 <style type="text/css">
 
 	div.fc-row>table>thead > tr:first-child {
@@ -26,10 +28,14 @@
 <script>
 
 	$(document).ready(function() {
+		//moment().tz("Asia/Bangkok").format();
 		var eventdata;
 		var insTitle;
 		var insStart;
 		var insEnd;
+		var bangkok = 'Asia/Bangkok';
+		
+		
 		
 		if (!document.getElementById('appointmentType3').checked) {
 			document.getElementById("remarkOther").disabled = true;
@@ -43,10 +49,6 @@
 	        	document.getElementById("remarkOther").disabled = true;
 	        }
 	    });
-		
-		
-		
-		
 		
 		$('#calendar').fullCalendar({
 			header: {
@@ -64,17 +66,24 @@
 				$('#calendar').fullCalendar('unselect');
 			},
 			editable: true,
-			timezone : 'local',
-			eventLimit: true, // allow "more" link when too many events
-			events: [
-			],
+			eventLimit: true, 
+			events :[],
 			eventClick: function(event, element) {
 		        $("#myModal").modal("show");
-		        $("#detail_topic").text(event.title);
-				$("#detail_title").text(event.title);
+		        $("#detail_app_name").text(event.title);
 				$("#detail_datetime").text(event.start);
+				var id = event.id;
+				$.ajax({
+					url : "calendar/getAppointment/"+id,
+					type : "GET",
+					success : function(data){
+					    $("#detail_topic").text(data.topic);
+						$("#detail_desciption").text(data.detail); 
+						//alert(data.detail);
+					}
+				});//end ajax
 				eventdata = event;
-		    },timeFormat: 'H(:mm)'
+		    }
 		}); // end full calendar
 
 		
@@ -106,20 +115,12 @@
 					detail : $("#appoint_detail").val(),
 					start: insStart,
 					end : insEnd,
-					/* applicant : $("#applicantName").val() */
+					/* applicant : $("#applicantName option:selected").text() */ 
 					/* login : $("#applicantName").val() */
 			};
-			
-			
-			alert(insStart);
 			var insData;
 			if (insTitle) {
-				insData = {
-					id : 33,
-					title: insTitle,
-					start: insStart,
-					end: insEnd
-				};
+				console.log(JSON.stringify(appointment));
 				
 				$.ajax({
 					url : "calendar/insertAppointment",
@@ -127,10 +128,18 @@
 					contentType :"application/json; charset=utf-8", 
 					data : JSON.stringify(appointment),
 					success : function(data){
+						insData = {
+							id : data.id,
+							title: data.applicant,
+							start: insStart,
+							end: insEnd
+						};
+						
 						$('#calendar').fullCalendar('renderEvent', insData, true); // stick? = true
 						$('#insModal').modal('hide');	
 						$('#formInsert').trigger('reset');
 						//alert(data);
+						//alert(data.id);
 					}
 				});//end ajax
 			}//end if
@@ -238,8 +247,7 @@
 	        	<table class="table">
 	        		<tr>
 	        			<td><h4>Name</h4></td>
-	        			<td><h4 id="detail_app_fname"></h4></td>
-	        			<td><h4 id="detail_app_lname"></h4></td>
+	        			<td><h4 id="detail_app_name"></h4></td>
 	        		</tr>
 	        		<tr>
 	        			<td><h4>Date</h4></td>
@@ -251,13 +259,7 @@
 	        		</tr>
 	        		<tr>
 	        			<td colspan="1"><h4 >Detail</h4></td>
-	        		
-	        			<td colspan="2"><h4 id="detail_desciption">If you are using the indented form, place your address at
-  the top, with the left edge of the address aligned with the
-  center of the page. Skip a line and type the date so that it
-  lines up underneath your address.  Type the inside address and
-  salutation flush left; the salutation should be followed by a
-  colon. For formal letters, avoid abbreviations.</h4></td>
+	        			<td colspan="2"><h4 id="detail_desciption"></h4></td>
 	        		</tr>
 	        	</table>
 	        
