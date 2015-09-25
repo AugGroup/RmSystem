@@ -160,7 +160,7 @@ $(document).ready(function() {
 		function updated(button){
 			if ($('#experiencesForm').valid()) {
 				var id = $(button).data("id");
-				var toDate = $("#toWorkYear").val();
+				var dateTo = $("#toWorkYear").val();
 				var employerName = $("#emp").val();
 				var address = $("#addressBackground").val();
 

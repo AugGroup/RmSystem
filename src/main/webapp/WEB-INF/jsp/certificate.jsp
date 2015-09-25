@@ -39,22 +39,22 @@ var id = ${id};
 							<input type="hidden" id="applicant" name="applicant"
 								value="${id}">
 						</div>
+<!-- 						<div class="form-group"> -->
+<%-- 							<label for="certificate"><spring:message code="cer.name" /> --%>
+<!-- 							</label> <input type="text" class="form-control" id="certificate" -->
+<!-- 								name="certificate" -->
+<%-- 								placeholder="<spring:message code="cer.text.name"/>"> --%>
+<!-- 						</div> -->
 						<div class="form-group">
-							<label for="certificate"><spring:message code="cer.name" />
-							</label> <input type="text" class="form-control" id="certificate"
-								name="certificate"
-								placeholder="<spring:message code="cer.text.name"/>">
-						</div>
-						<div class="form-group">
-<%-- 						    <label class="required"><spring:message code="certification.certification.name" var="name"/>${name} :</label> --%>
+ 						    <label class="required">Name :</label>
 						    <input type="text" class="form-control" id="name" name="name" placeholder="${enter }${name}"/>
 	  					</div>
 	  					<div class="form-group">
-<%-- 	  						<label class="required"><spring:message code="certification.certification.form" var="certificationForm"/>${certificationForm} :</label> --%>
+	  						<label class="required">Certification Form :</label> 
 	   						<input type="text" class="form-control" id="certificationForm" name="certificationForm" placeholder="${certificationForm} "/>
 	 					 </div>
 	  					<div class="form-group">
-<%-- 	   						<label class="required"><spring:message code="certification.description" var="description"/>${description} :</label> --%>
+	   						<label class="required">Description :</label>
 	    					<textarea type="text" class="form-control" id="description" name="description" placeholder="${enter }${description}"></textarea>
 	  </div>
 				<div class="form-group">
@@ -239,7 +239,10 @@ var id = ${id};
 			width="100%">
 			<thead>
 				<tr>
-					<th><spring:message code="cer.data" /></th>
+					<th>NAME</th>
+					<th>CERTIFICATION_FORM</th>
+					<th>DESCRIPTION</th>
+					<th>YEAR</th>
 					<th><spring:message code="main.edit.info" /></th>
 					<th><spring:message code="main.delete" /></th>
 

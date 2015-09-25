@@ -1,14 +1,20 @@
 $(document).ready(function() {
 	
-	$('#certificateForm').validate({
-		rules : {
-			certificate : {required : true}
-		},
-		messages : {
-			certificate : {required : valCer}
-		}
-	});
-	
+//	$('#certificateForm').validate({
+//		rules : {
+//			certificationForm : {required : true},
+//			description : {required : true},
+//			name : {required : true},
+//			year : {required : true}
+//		},
+//		messages : {
+//			certificationForm : {required : valCer},
+//			description : {required : valCer},
+//			name : {required : valCer},
+//			year : {required : valCer}
+//		}
+//	});
+//	
 //	$.ajaxSetup({
 //		/* statusCode: */
 //			statusCode : {
@@ -49,7 +55,10 @@ $(document).ready(function() {
 				url : 'findByIdCertificate/'+id,
 				type : 'POST'
 			},
-			columns : [ {data : "certificateName"},
+			columns : [ {data : "name"},
+			            {data: "certificationForm"},
+			            {data: "description"},
+			            {data: "year"},
 			            { data : function(data) {
 				 			return '<button id="buttonEdit" data-id="'+data.id+'" data-toggle="modal" data-target="#certificateModal" class="btn btn-warning btn-mini"><span class="glyphicon glyphicon-pencil"></span> '+ valEdit +'</button>';
 						}},
@@ -64,10 +73,17 @@ $(document).ready(function() {
 
 	function saveCertificate(){
 		if ($('#certificateForm').valid()) {
-		var certificateName = $("#certificate").val();
+		var name = $("#name").val();
+		var certificationForm = $("#certificationForm").val();
+		var description = $("#description").val();
+		var year = $("#year").val();
+		
 		var json = {
 				"applicant" : {"id" : id},
-				"certificateName" : certificateName,
+				"name" : name,
+				"certificationForm" : certificationForm,
+				"description" : description,
+				"year" : year,
 				};
 		
 		$.ajax({
@@ -108,18 +124,27 @@ $(document).ready(function() {
 	
 	//Show data on inputField
 	function showFillData(data){
-		$("#certificate").val(data.certificateName);
+		$("#name").val(data.name);
+		$("#certificationForm").val(data.certificationForm);
+		$("#description").val(data.description);
+		$("#year").val(data.year);
  	}
 	
 	//Update function
 	function updated(button){
 		if ($('#certificateForm').valid()) {
 		var id = $(button).data("id");
-		var certificateName = $("#certificate").val();
+		var name = $("#name").val();
+		var certificationForm = $("#certificationForm").val();
+		var description = $("#description").val();
+		var year = $("#year").val();
 		
 		var json = {
-				"id" : id,
-				"certificateName" : certificateName,
+				"applicant" : {"id" : id},
+				"name" : name,
+				"certificationForm" : certificationForm,
+				"description" : description,
+				"year" : year,
 				};
 		
 		$.ajax({
@@ -134,7 +159,10 @@ $(document).ready(function() {
 			 	var rowData = table.row(button.closest('tr')).index(); 
 			 	var d = table.row(rowData).data();
 			 	
-				d.certificateName = data.certificateName;
+				d.name = data.name;
+				d.certificationForm = data.certificationForm;
+				d.description = data.description;
+				d.year = data.year;
 			 	
 		 		table.row(rowData).data(d).draw();
 		 		

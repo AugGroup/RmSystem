@@ -62,6 +62,7 @@ import com.aug.hrdb.entities.MasDegreetype;
 import com.aug.hrdb.entities.MasJoblevel;
 import com.aug.hrdb.entities.MasProvince;
 import com.aug.hrdb.entities.MasRelationType;
+import com.aug.hrdb.entities.MasSpecialty;
 import com.aug.hrdb.entities.MasTechnology;
 import com.aug.hrdb.entities.Reference;
 import com.aug.hrdb.services.AddressService;
@@ -78,6 +79,7 @@ import com.aug.hrdb.services.MasDegreetypeService;
 import com.aug.hrdb.services.MasJoblevelService;
 import com.aug.hrdb.services.MasProvinceService;
 import com.aug.hrdb.services.MasRelationTypeService;
+import com.aug.hrdb.services.MasSpecialtyService;
 import com.aug.hrdb.services.MasTechnologyService;
 import com.aug.hrdb.services.ReferenceService;
 import com.aug.services.DownloadService;
@@ -134,6 +136,7 @@ public class ApplicantController implements Serializable {
 	@Autowired
 	private MasDegreetypeService masDegreeTypeService;
 	
+	private MasSpecialtyService masSpecialtyService;
 	
 	@RequestMapping(value = "/applicant", method = { RequestMethod.GET })
 	public String helloPage(Model model) {
@@ -1091,4 +1094,9 @@ public class ApplicantController implements Serializable {
 		return masDegreeTypeService.findAll();
 	}
 	
+	@ModelAttribute("masspecialties")
+	@Transactional
+	public List<MasSpecialty> masspecialtyList(){
+		return masSpecialtyService.findAll();
+	}	
 }

@@ -1,15 +1,15 @@
 $(document).ready(function() {
 	
-	$('#skillForm').validate({
-		rules : {
-			skill : {required : true},
-			rank : {required: true}
-		},
-		messages : {
-			skill : {required : valSkill},
-			rank : {required: valSkillRank}
-		}
-	});
+//	$('#skillForm').validate({
+//		rules : {
+//			skill : {required : true},
+//			rank : {required: true}
+//		},
+//		messages : {
+//			skill : {required : valSkill},
+//			rank : {required: valSkillRank}
+//		}
+//	});
 	
 	if(dtApplicant) {
 		dtApplicant.ajax.reload();
@@ -23,9 +23,9 @@ $(document).ready(function() {
 				url : 'findByIdSkill/'+id,
 				type : 'POST'
 			},
-			columns : [ {
-				data : "name"
-			},{ data : function(data) {
+			columns : [ {data : "masspecialty"},
+			            {data: "rank"},
+			{ data : function(data) {
 				 return '<button id="buttonEdit" data-id="'+data.id+'" data-toggle="modal" data-target="#skillModal" class="btn btn-warning btn-mini"><span class="glyphicon glyphicon-pencil"></span> '+ valEdit +'</button>';
 			}
 			},{ data : function(data) {
@@ -41,10 +41,10 @@ $(document).ready(function() {
 	
 	function saveSkill(){
 		if ($('#skillForm').valid()) {
-		var name = $("#skill").val();
+		var masspecialty = $("#skill").val();
 		var json = {
 				"applicant" : {"id" : id},
-				"name" : name,
+				"masspecialty" : masspecialty,
 				};
 		
 		$.ajax({

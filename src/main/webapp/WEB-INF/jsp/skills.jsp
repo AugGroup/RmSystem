@@ -39,10 +39,10 @@ var id = ${id};
 								value="${id}">
 						</div>
 						<div class="form-group">
-							<label for="skill"><spring:message code="skill.detail" /></label>
+							<label for="skill">SPECIALTY :</label>
 							 <select class="form-control" id="skill" name="skill">
-								<option value="-1" label="---Select Address Type---" />
-								<c:forEach var="skillList" items="${technologies}">
+								<option value="-1" label="---Select Skills---" />
+								<c:forEach var="skillList" items="${masspecialties}">
 									<option value="${skillList.id}">${ skillList.name}</option>
 								</c:forEach>
 							</select>
@@ -127,7 +127,8 @@ var id = ${id};
 		<table id="skillTable" class="display" cellspacing="0" width="100%">
 			<thead>
 				<tr>
-					<th><spring:message code="skill.data" /></th>
+					<th>SPECIALTY</th>
+					<th>RANK</th>
 					<th><spring:message code="main.edit.info" /></th>
 					<th><spring:message code="main.delete" /></th>
 
