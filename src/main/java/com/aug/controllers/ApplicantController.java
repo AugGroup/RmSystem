@@ -883,7 +883,7 @@ public class ApplicantController implements Serializable {
 		certification.setId(certificationDto.getId());
 		certification.setCertificationForm(certificationDto.getCertificationForm());
 		certification.setName(certificationDto.getName());
-		certification.setDescricption(certificationDto.getDescricption());
+		certification.setDescription(certificationDto.getDescription());
 		certification.setYear(certificationDto.getYear());
 		certificationService.update(certification);
 		
