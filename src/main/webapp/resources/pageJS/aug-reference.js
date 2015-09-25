@@ -29,11 +29,11 @@ $(document).ready(function() {
 					url : 'findByIdReference/'+id,
 					type : 'POST'
 				},
-				columns : [ {
-					data : "fullName"}, 
+				columns : [ 
+				    {data : "name"}, 
 					{data : "tel"}, 
 					{data : "occupation"},
-					{data : "completeAddress"},
+					{data : "address"},
 					{data : function(data) {
 						return '<button id="buttonEdit" data-type="edit" data-id="'+data.id+'" data-toggle="modal" data-target="#referenceModal" class="btn btn-warning btn-mini"><span class="glyphicon glyphicon-pencil"></span>'+ valEdit +'</button>';
 					}},
@@ -49,15 +49,15 @@ $(document).ready(function() {
 
 		function saveReference(){
 			if ($('#referenceForm').valid()) {
-			var fullName = $("#fullName").val();
-			var completeAddress = $("#completeAddress").val();
+			var name = $("#name").val();
+			var address = $("#address").val();
 			var tel= $("#telNo").val();
 			var occupation = $("#occupationRef").val();
 			
 			var json = {
 					"applicant" : {"id" : id},
-					"fullName" : fullName,
-					"completeAddress" : completeAddress,
+					"name" : name,
+					"address" : address,
 					"tel" : tel,
 					"occupation" : occupation,
 					};
@@ -101,8 +101,8 @@ $(document).ready(function() {
 		
 		//Show data on inputField
 		function showFillData(data){
-			$("#fullName").val(data.fullName);
-			$("#completeAddress").val(data.completeAddress);
+			$("#name").val(data.name);
+			$("#address").val(data.address);
 			$("#telNo").val(data.tel);
 			$("#occupationRef").val(data.occupation);
 	 	}
@@ -111,15 +111,15 @@ $(document).ready(function() {
 		function updated(button){
 			if ($('#referenceForm').valid()) {
 			var id = $(button).data("id");
-			var fullName = $("#fullName").val();
-			var completeAddress = $("#completeAddress").val();
+			var name = $("#name").val();
+			var address = $("#address").val();
 			var tel= $("#telNo").val();
 			var occupation = $("#occupationRef").val();
 			
 			var json = {
 					"id" : id,
-					"fullName" : fullName,
-					"completeAddress" : completeAddress,
+					"name" : name,
+					"address" : address,
 					"tel" : tel,
 					"occupation" : occupation,
 					};
@@ -135,8 +135,8 @@ $(document).ready(function() {
 					var table = $('#referenceTable').DataTable();	
 				 	var rowData = table.row(button.closest('tr')).index(); 
 				 	var d = table.row(rowData).data();
-			 		d.fullName = data.fullName;
-			 		d.completeAddress = data.completeAddress;
+			 		d.name = data.name;
+			 		d.address = data.address;
 			 		d.tel = data.tel;
 			 		d.occupation = data.occupation;
 			 		

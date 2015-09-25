@@ -48,13 +48,13 @@ var id = ${id};
 						<div class="form-group">
 							<label for="fullNameRef"><spring:message
 									code="ref.fullName" /> </label> <input type="text" class="form-control"
-								id="fullName" name="fullName"
+								id="name" name="name"
 								placeholder="<spring:message code="ref.text.fullname"/>">
 						</div>
 						<div class="form-group">
 							<label for="completeAddress"><spring:message
 									code="ref.address" /> </label> <input type="text" class="form-control"
-								id="completeAddress" name="completeAddress"
+								id="address" name="address"
 								placeholder="<spring:message code="ref.text.address"/>">
 						</div>
 						<div class="form-group">
