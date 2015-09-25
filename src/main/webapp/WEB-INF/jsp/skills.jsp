@@ -32,8 +32,8 @@ var id = ${id};
 						<span class="glyphicon glyphicon-lock"></span>
 						<spring:message code="skill.name" />
 					</h4>
-				<div class="modal-body" style="padding: 40px 50px;">
-					<form role="form" id="skillForm">
+			<div class="modal-body" style="padding: 40px 50px;">
+				<form role="form" id="skillForm">
 						<div class="form-group">
 							<input type="hidden" id="applicant" name="applicant"
 								value="${id}">
@@ -47,8 +47,31 @@ var id = ${id};
 								</c:forEach>
 							</select>
 						</div>
-						
-						<br> <br>
+				<div class="form-group">
+					<div class="row">
+						<label class="radio-inline" for="rank" > 
+		 			     	<input id="rank1" name="rank" value="1" type="radio" />1</label>
+		 			     <label class="radio-inline" for="rank" > 
+		 			     	<input id="rank2" name="rank" value="2" type="radio" />2</label>
+		 			     <label class="radio-inline" for="rank" > 
+		 			     	<input id="rank3" name="rank" value="3" type="radio" />3</label>
+		 			     <label class="radio-inline" for="rank" > 
+		 			     	<input id="rank4" name="rank" value="4" type="radio" />4</label>
+		 			     <label class="radio-inline" for="rank" > 
+		 			     	<input id="rank5" name="rank" value="5" type="radio" />5</label>
+		 			     <label class="radio-inline" for="rank" > 
+		 			     	<input id="rank6" name="rank" value="6" type="radio" />6</label>
+		 			     <label class="radio-inline" for="rank" > 
+		 			     	<input id="rank7" name="rank" value="7" type="radio" />7</label>
+		 			     <label class="radio-inline" for="rank" > 
+		 			     	<input id="rank8" name="rank" value="8" type="radio" />8</label>
+		 			     <label class="radio-inline" for="rank" > 
+		 			     	<input id="rank9" name="rank" value="9" type="radio" />9</label>
+		 			     <label class="radio-inline" for="rank" > 
+		 			     	<input id="rank10" name="rank" value="10" type="radio" />10</label>
+		 			  </div>	
+		 		</div>
+	 <br> <br>
 						<button type="button" class="btn btn-success" id="btn_save">
 							<span class="glyphicon glyphicon-save"></span>
 							<spring:message code="edit.button.save" />

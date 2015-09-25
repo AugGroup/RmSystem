@@ -2,10 +2,12 @@ $(document).ready(function() {
 	
 	$('#skillForm').validate({
 		rules : {
-			skill : {required : true}
+			skill : {required : true},
+			rank : {required: true}
 		},
 		messages : {
-			skill : {required : valSkill}
+			skill : {required : valSkill},
+			rank : {required: valSkillRank}
 		}
 	});
 	
