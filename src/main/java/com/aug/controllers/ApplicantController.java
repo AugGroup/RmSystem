@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import net.sf.jasperreports.engine.JRParameter;
 
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -502,6 +503,8 @@ public class ApplicantController implements Serializable {
 		model.addAttribute("id",id);
 		referenceService.create(reference);
 		Reference ref = referenceService.findById(id);
+		Hibernate.initialize(ref.getApplicant().getTechnology());
+		Hibernate.initialize(ref.getApplicant().getJoblevel());
         return ref;
 
 	}
