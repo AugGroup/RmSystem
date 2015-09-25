@@ -22,7 +22,7 @@ $(document).ready(function() {
 				type : 'POST'
 			},
 			columns : [ {
-				data : "skillDetail"
+				data : "name"
 			},{ data : function(data) {
 				 return '<button id="buttonEdit" data-id="'+data.id+'" data-toggle="modal" data-target="#skillModal" class="btn btn-warning btn-mini"><span class="glyphicon glyphicon-pencil"></span> '+ valEdit +'</button>';
 			}
@@ -39,10 +39,10 @@ $(document).ready(function() {
 	
 	function saveSkill(){
 		if ($('#skillForm').valid()) {
-		var skillDetail = $("#skill").val();
+		var name = $("#skill").val();
 		var json = {
 				"applicant" : {"id" : id},
-				"skillDetail" : skillDetail,
+				"name" : name,
 				};
 		
 		$.ajax({
@@ -83,17 +83,17 @@ $(document).ready(function() {
 	
 	//Show data on inputField
 	function showFillData(data){
-		$("#skill").val(data.skillDetail);
+		$("#skill").val(data.name);
  	}
 	
 	//Update function
 	function updated(button){
 		if ($('#skillForm').valid()) {
 			var id = $(button).data("id");
-			var skillDetail = $("#skill").val();
+			var name = $("#name").val();
 			var json = {
 					"id" : id,
-					"skillDetail" : skillDetail,
+					"name" : name,
 					};
 			
 			$.ajax({
@@ -108,7 +108,7 @@ $(document).ready(function() {
 				 	var rowData = table.row(button.closest('tr')).index(); 
 				 	var d = table.row(rowData).data();
 				 	
-			 		d.skillDetail = data.skillDetail;
+			 		d.name = data.name;
 			 		
 			 		table.row(rowData).data(d).draw();
 			 		

@@ -7,7 +7,7 @@
 <script src="<c:url value ="/static/resources/pageJS/aug-skill.js"/>"></script> 
 
 <script>
-var valSkill = "<spring:message code="valid.skill.skill"/>";
+var name = "<spring:message code="valid.skill.skill"/>";
 var valEdit = "<spring:message code="main.edit.info"/>";
 var valDelete = "<spring:message code="main.delete"/>";
 var id = ${id};
@@ -39,10 +39,15 @@ var id = ${id};
 								value="${id}">
 						</div>
 						<div class="form-group">
-							<label for="skill"><spring:message code="skill.detail" />
-							</label> <input type="text" class="form-control" id="skill" name="skill"
-								placeholder="<spring:message code="skill.text.detail"/>">
+							<label for="skill"><spring:message code="skill.detail" /></label>
+							 <select class="form-control" id="skill" name="skill">
+								<option value="-1" label="---Select Address Type---" />
+								<c:forEach var="skillList" items="${technologies}">
+									<option value="${skillList.id}">${ skillList.name}</option>
+								</c:forEach>
+							</select>
 						</div>
+						
 						<br> <br>
 						<button type="button" class="btn btn-success" id="btn_save">
 							<span class="glyphicon glyphicon-save"></span>

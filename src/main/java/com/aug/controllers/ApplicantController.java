@@ -124,8 +124,6 @@ public class ApplicantController implements Serializable {
 	@Autowired
 	private MasJoblevelService masJoblevelService;
 	@Autowired
-	private MasCoreSkillService masCoreSkillService;
-	@Autowired
 	private MasAddressTypeService masAddressTypeService;
 	@Autowired
 	private MasProvinceService masProvinceService;
@@ -482,10 +480,10 @@ public class ApplicantController implements Serializable {
 	}
 	
 	@RequestMapping(value = "/skills/{id}", method = { RequestMethod.POST })
-	public @ResponseBody MasCoreSkill MasCoreSkills(@RequestBody MasCoreSkill masCoreSkill,@PathVariable Integer id,Model model) {
+	public @ResponseBody MasTechnology skill(@RequestBody MasTechnology masTechnology,@PathVariable Integer id,Model model) {
 		model.addAttribute("id",id);
-		masCoreSkillService.create(masCoreSkill);
-		MasCoreSkill skills = masCoreSkillService.find(id);
+		masTechnologyService.create(masTechnology);
+		MasTechnology skills = masTechnologyService.find(id);
         return skills;
 
 	}
@@ -699,8 +697,8 @@ public class ApplicantController implements Serializable {
 	}
 	
 	@RequestMapping(value = "skills/findSkillId/{id}", method = { RequestMethod.POST })
-	public @ResponseBody MasCoreSkill findMasCoreSkill(@PathVariable Integer id) {
-		return masCoreSkillService.find(id);
+	public @ResponseBody MasTechnology findSkill(@PathVariable Integer id) {
+		return masTechnologyService.find(id);
 	}
 	
 	@RequestMapping(value = "languages/findLanguagesId/{id}", method = { RequestMethod.POST })
@@ -773,18 +771,18 @@ public class ApplicantController implements Serializable {
 			}
 		};
 	}
-	
-	@RequestMapping(value = "skills/findByIdSkill/{id}", method = { RequestMethod.POST })
-	public @ResponseBody Object findByIdMasCoreSkill(@PathVariable Integer id) {
-		 final List<MasCoreSkill> list = masCoreSkillService.findByIdMasCoreSkills(id);
-		 
-		return new Object() {
-			public List<MasCoreSkill> getData() {
-				return list;
-			}
-			
-		};
-	}
+//	
+//	@RequestMapping(value = "skills/findByIdSkill/{id}", method = { RequestMethod.POST })
+//	public @ResponseBody Object findByIdSkill(@PathVariable Integer id) {
+//		 final List<MasTechnology> list = masTechnologyService.findByIdMasTechnology(id);
+//		 
+//		return new Object() {
+//			public List<MasTechnology> getData() {
+//				return list;
+//			}
+//			
+//		};
+//	}
 	
 	@RequestMapping(value = "languages/findByIdLanguages/{id}", method = { RequestMethod.POST })
 	public @ResponseBody Object findByIdLanguages(@PathVariable Integer id) {
@@ -893,20 +891,20 @@ public class ApplicantController implements Serializable {
 	}
 	
 	@RequestMapping(value = "skills/updateSkills/{id}", method = { RequestMethod.POST })
-	public @ResponseBody MasCoreSkill updateSkills(@RequestBody MasCoreSkill masCoreSkill, @PathVariable Integer id) {
-		MasCoreSkill skill = masCoreSkillService.find(masCoreSkill.getId());
-		skill.setId(masCoreSkill.getId());
-		skill.setIsActive(masCoreSkill.getIsActive());
-		skill.setName(masCoreSkill.getName());
-		skill.setCode(masCoreSkill.getCode());
-		skill.setAuditFlag(masCoreSkill.getAuditFlag());
-		skill.setCreatedTimeStamp(masCoreSkill.getCreatedTimeStamp());
-		skill.setCreatedBy(masCoreSkill.getCreatedBy());
-		skill.setUpdatedBy(masCoreSkill.getUpdatedBy());
-		skill.setUpdatedTimeStamp(masCoreSkill.getUpdatedTimeStamp());
-		masCoreSkillService.update(skill);
+	public @ResponseBody MasTechnology updateSkills(@RequestBody MasTechnology masTechnology, @PathVariable Integer id) {
+		MasTechnology skill = masTechnologyService.find(masTechnology.getId());
+		skill.setId(masTechnology.getId());
+		skill.setIsActive(masTechnology.getIsActive());
+		skill.setName(masTechnology.getName());
+		skill.setCode(masTechnology.getCode());
+		skill.setAuditFlag(masTechnology.getAuditFlag());
+		skill.setCreatedTimeStamp(masTechnology.getCreatedTimeStamp());
+		skill.setCreatedBy(masTechnology.getCreatedBy());
+		skill.setUpdatedBy(masTechnology.getUpdatedBy());
+		skill.setUpdatedTimeStamp(masTechnology.getUpdatedTimeStamp());
+		masTechnologyService.update(skill);
 		
-		return masCoreSkill;
+		return masTechnology;
 	}
 	
 	@RequestMapping(value = "languages/updateLanguage/{id}", method = { RequestMethod.POST })
@@ -982,12 +980,12 @@ public class ApplicantController implements Serializable {
 		certificationService.deleteById(id);
 		return "success";
 	}
-	
-	@RequestMapping(value = "skills/deleteSkill/{id}", method = RequestMethod.POST)
-	public @ResponseBody String deleteSkill(@PathVariable("id") Integer id) {
-		masCoreSkillService.deleteById(id);
-		return "success";
-	}
+//	
+//	@RequestMapping(value = "skills/deleteSkill/{id}", method = RequestMethod.POST)
+//	public @ResponseBody String deleteSkill(@PathVariable("id") Integer id) {
+//		masTechnologyService.deleteById(id);
+//		return "success";
+//	}
 	
 	@RequestMapping(value = "languages/deleteLanguages/{id}", method = RequestMethod.POST)
 	public @ResponseBody String delesteLanguages(@PathVariable("id") Integer id) {
