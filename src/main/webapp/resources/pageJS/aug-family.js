@@ -7,7 +7,9 @@ $(document).ready(function() {
 				occupationFamily : {required : true},
 				addressFamily : {required : true},
 				occupation : {required : true},
-				positionFamily : {required : true}
+				positionFamily : {required : true},
+/*				ageFamily : {required : true},
+				genderFamily : {required : true}*/
 			},
 			messages : {
 				nameFamily : {required : valName},
@@ -15,7 +17,9 @@ $(document).ready(function() {
 				occupationFamily : {required : valOccupationFamily},
 				addressFamily : {required : valAddress},
 				occupation : {required : valOccupation},
-				positionFamily : {required : valPositionFamily}
+				positionFamily : {required : valPositionFamily},
+/*				ageFamily : {required : valAgeFamily},
+				genderFamily : {required : valSexFamily},*/
 			}
 		});
 		
@@ -33,7 +37,7 @@ $(document).ready(function() {
 					dataSrc : ""
 				},
 				columns : [ {data : "name"},
-							{data : "relation"},
+							{data : "masRelationTypeName"},
 							{data : "occupation"},
 							{data : "address"},
 							{data : "positionFamily"},
@@ -51,14 +55,14 @@ $(document).ready(function() {
 		function saveFamily(){
 			if ($('#familyForm').valid()) {
 			var name = $("#nameFamily").val();
-			var relation = $("#relationFamily").val();
+			var relation = $('#relationFamily option:selected').text();
 			var occupation = $("#occupationFamily").val();
 			var address = $("#addressFamily").val();
 			var positionFamily = $("#positionFamily").val();
 			
 			var json = {"applicant" : {"id" : id},
 						"name" : name,
-						"relation" : relation,
+						"relation" : {"masRelationTypeId" : id,"masRelationTypeName" : relation},
 						"occupation" : occupation,
 						"address" : address,
 						"positionFamily" : positionFamily,
@@ -102,10 +106,10 @@ $(document).ready(function() {
 		//Show data on inputField
 		function showFillData(data){
 			$("#nameFamily").val(data.name);
-			$("#relationFamily").val(data.relation);
+			$("#relationFamily").val(data.masRelationTypeId);
 			$("#occupationFamily").val(data.occupation);
 			$("#addressFamily").val(data.address);
-			$("#positionFamily").val(data.positionFamily);
+			$("#positionFamily").val(data.position);
 	 	}
 		
 		//Update function
@@ -113,7 +117,7 @@ $(document).ready(function() {
 			if ($('#familyForm').valid()) {
 			var id = $(button).data("id");
 			var name = $("#nameFamily").val();
-			var relation = $("#relationFamily").val();
+			var relation = $('#relationFamily option:selected').text();
 			var occupation = $("#occupationFamily").val();
 			var address = $("#addressFamily").val();
 			var positionFamily = $("#positionFamily").val();
@@ -121,7 +125,7 @@ $(document).ready(function() {
 			var json = {
 					"id" : id,
 					"name" : name,
-					"relation" : relation,
+					"relation" : {"masRelationTypeId" : id,"masRelationTypeName" : relation},
 					"occupation" : occupation,
 					"address" : address,
 					"positionFamily" : positionFamily,
@@ -140,7 +144,7 @@ $(document).ready(function() {
 				 	var d = table.row(rowData).data();
 				 	
 					d.name = data.name,
-					d.relation = data.relation,
+					d.relation = data.masRelationTypeId,
 					d.occupation = data.occupation,
 					d.address = data.address,
 					d.positionFamily = data.positionFamily,

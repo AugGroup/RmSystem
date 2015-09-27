@@ -13,6 +13,8 @@ var valOccupationFamily = "<spring:message code="valid.fam.occ"/>";
 var valAddress = "<spring:message code="valid.addr.addr"/>";
 var valOccupation = "<spring:message code="valid.fam.occ"/>";
 var valPositionFamily = "<spring:message code="valid.ex.position"/>";
+var valAgeFamily = "<spring:message code="valid.info.age"/>";
+var valSexFamily = "<spring:message code="valid.info.sex"/>";
 var valEdit = "<spring:message code="main.edit.info"/>";
 var valDelete = "<spring:message code="main.delete"/>";
 var id = ${id};
@@ -50,19 +52,46 @@ var id = ${id};
 								id="nameFamily" name="nameFamily"
 								placeholder="<spring:message code="family.text.name"/>">
 						</div>
-
+<!-- 						<div class="form-inline"> -->
+							<div class="form-group">
+								<label for="ageFamily"><spring:message
+										code="info.age" /> </label> <input type="text" class="form-control"
+									id="age" name="age"
+									placeholder="<spring:message code="info.text.age"/>">
+							</div>
+							<div class="form-group">
+								<label for="genderFamily"><spring:message
+										code="info.sex" /> </label> <input type="text" class="form-control"
+									id="gender" name="gender"
+									placeholder="<spring:message code="family.text.name"/>">
+							</div>
+<!-- 						</div> -->
 						<div class="form-group">
-							<label for="relationFamily"><spring:message
-									code="family.relation" /> </label> <input type="text"
-								class="form-control" id="relationFamily" name="relationFamily"
-								placeholder="<spring:message code="family.text.relation"/>">
+							<label for="telNo"><spring:message code="ref.tel" /> </label> <input
+								type="text" class="form-control" id="telNo" name="telNo"
+								placeholder="<spring:message code="ref.text.tel"/>">
 						</div>
+						<div class="form-group">
+ 							<label for="relationFamily"><spring:message code="family.text.relation"/></label><br>
+ 							<select class="form-control" id="relationFamily" name="relationFamily">
+								<option value="-1" label="---Select Address Type---" />
+								<c:forEach var="obj" items="${relations}">
+									<option value="${obj.id}">${obj.relationType}</option>
+								</c:forEach>
+							</select>
+						</div> 
 						<div class="form-group">
 							<label for="occupationFamily"><spring:message
 									code="family.occupation" /> </label> <input type="text"
 								class="form-control" id="occupationFamily"
 								name="occupationFamily"
 								placeholder="<spring:message code="info.text.occupation"/> ">
+						</div>
+						<div class="form-group">
+							<label for="positionFamily"><spring:message
+									code="info.position" /> </label> <input type="text"
+								class="form-control" id="positionFamily" name="positionFamily"
+								placeholder="<spring:message code="exp.text.position"/>">
 						</div>
 
 						<div class="form-group">
@@ -73,12 +102,6 @@ var id = ${id};
 								placeholder="<spring:message code="info.text.address"/>"></textarea>
 						</div>
 
-						<div class="form-group">
-							<label for="positionFamily"><spring:message
-									code="info.position" /> </label> <input type="text"
-								class="form-control" id="positionFamily" name="positionFamily"
-								placeholder="<spring:message code="exp.text.position"/>">
-						</div>
 						<br> <br>
 						<button type="button" class="btn btn-success" id="btn_save">
 							<span class="glyphicon glyphicon-save"></span>

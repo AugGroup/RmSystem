@@ -41,6 +41,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.MasDegreeTypeServiceTest;
+
 import com.aug.hrdb.dto.AddressDto;
 import com.aug.hrdb.dto.ApplicantDto;
 import com.aug.hrdb.dto.CertificationDto;
@@ -61,8 +63,10 @@ import com.aug.hrdb.entities.Family;
 import com.aug.hrdb.entities.Language;
 import com.aug.hrdb.entities.MasAddressType;
 import com.aug.hrdb.entities.MasCoreSkill;
+import com.aug.hrdb.entities.MasDegreetype;
 import com.aug.hrdb.entities.MasJoblevel;
 import com.aug.hrdb.entities.MasProvince;
+import com.aug.hrdb.entities.MasRelationType;
 import com.aug.hrdb.entities.MasTechnology;
 import com.aug.hrdb.entities.Reference;
 import com.aug.hrdb.services.AddressService;
@@ -75,8 +79,10 @@ import com.aug.hrdb.services.FamilyService;
 import com.aug.hrdb.services.LanguageService;
 import com.aug.hrdb.services.MasAddressTypeService;
 import com.aug.hrdb.services.MasCoreSkillService;
+import com.aug.hrdb.services.MasDegreetypeService;
 import com.aug.hrdb.services.MasJoblevelService;
 import com.aug.hrdb.services.MasProvinceService;
+import com.aug.hrdb.services.MasRelationTypeService;
 import com.aug.hrdb.services.MasTechnologyService;
 import com.aug.hrdb.services.ReferenceService;
 import com.aug.services.DownloadService;
@@ -128,6 +134,10 @@ public class ApplicantController implements Serializable {
 	private MasAddressTypeService masAddressTypeService;
 	@Autowired
 	private MasProvinceService masProvinceService;
+	@Autowired
+	private MasRelationTypeService masRelationService;
+	@Autowired
+	private MasDegreetypeService masDegreeTypeService;
 	
 	
 	@RequestMapping(value = "/applicant", method = { RequestMethod.GET })
@@ -449,6 +459,8 @@ public class ApplicantController implements Serializable {
 		model.addAttribute("id",id);
 		addressService.create(address);
 		Address addr = addressService.findById(id);
+		Hibernate.initialize(addr.getApplicant().getTechnology());
+		Hibernate.initialize(addr.getApplicant().getJoblevel());
 		
         return addr;
 	}
@@ -458,6 +470,8 @@ public class ApplicantController implements Serializable {
 		model.addAttribute("id",id);
 		familyService.create(family);
 		Family fam = familyService.find(id);
+		Hibernate.initialize(fam.getApplicant().getTechnology());
+		Hibernate.initialize(fam.getApplicant().getJoblevel());
 		
         return fam;
 	}
@@ -465,8 +479,17 @@ public class ApplicantController implements Serializable {
 	@RequestMapping(value = "educations/educations/{id}", method = { RequestMethod.POST })
 	public @ResponseBody Education educations(@RequestBody Education education,@PathVariable Integer id,Model model) {
 		model.addAttribute("id",id);
-		educationService.create(education);
+		EducationDto edDto = new EducationDto();
 		Education ed = educationService.findById(id);
+//		MasDegreetype masDegree = masDegreeTypeService.find(edDto.getMasdegreetypeId());
+//		System.out.println("MASSSSSSSSSSSSSSSSSSS : "+masDegree.getId());
+//		ed.setMasdegreetype(masDegree);
+		
+		Hibernate.initialize(ed.getApplicant().getTechnology());
+		Hibernate.initialize(ed.getApplicant().getJoblevel());
+		
+		educationService.create(education);
+		
         return ed;
 
 	}
@@ -485,6 +508,7 @@ public class ApplicantController implements Serializable {
 		model.addAttribute("id",id);
 		masTechnologyService.create(masTechnology);
 		MasTechnology skills = masTechnologyService.find(id);
+		
         return skills;
 
 	}
@@ -494,6 +518,9 @@ public class ApplicantController implements Serializable {
 		model.addAttribute("id",id);
 		languageService.create(language);
 		Language lang = languageService.find(id);
+		Hibernate.initialize(lang.getApplicant().getTechnology());
+		Hibernate.initialize(lang.getApplicant().getJoblevel());
+		
         return lang;
 
 	}
@@ -513,8 +540,11 @@ public class ApplicantController implements Serializable {
 	public @ResponseBody Experience experiences(@RequestBody Experience experience,@PathVariable Integer id,Model model) {
 		model.addAttribute("id",id);
 		experienceService.create(experience);
-		Experience exper = experienceService.findById(id);
-        return exper;
+		Experience exp = experienceService.findById(id);
+		Hibernate.initialize(exp.getApplicant().getTechnology());
+		Hibernate.initialize(exp.getApplicant().getJoblevel());
+		
+        return exp;
 
 	}
 
@@ -684,7 +714,7 @@ public class ApplicantController implements Serializable {
 		return addressService.findAddress(id);
 	}
 	
-	@RequestMapping(value = "family/findFamilyId/{id}", method = { RequestMethod.POST })
+	@RequestMapping(value = "family/$findFamilyId/{id}", method = { RequestMethod.POST })
 	public @ResponseBody FamilyDto findFamily(@PathVariable Integer id) {
 		return familyService.findFamily(id);
 	}
@@ -1048,6 +1078,22 @@ public class ApplicantController implements Serializable {
 	@Transactional
 	public List<MasProvince> provinceList(){
 		return masProvinceService.findAll();
-	}	
+	}
+	
+	@ModelAttribute("relations")
+	@Transactional
+	public List<MasRelationType> relationList(){
+		return masRelationService.findAll();
+	}
+	
+	@ModelAttribute("degreeTypes")
+	@Transactional
+	public List<MasDegreetype> degreeTypesList(){
+/*		Model model = null;
+		EducationDto educationDto = new EducationDto();
+		Integer ed = educationDto.getMasdegreetypeId();
+		model.addAttribute("masdegreetypeId", ed);*/
+		return masDegreeTypeService.findAll();
+	}
 	
 }

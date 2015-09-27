@@ -59,8 +59,18 @@ var id = ${id};
 <!-- 									class="form-control" id="degree" name="degree" -->
 <%-- 									placeholder="<spring:message code="education.text.degree"/>"> --%>
 <!-- 							</div> -->
+
+	 						<div class="form-group">
+	 							<label for="degree"><spring:message code="education.degree"/></label><br>
+	 							<f:select path="degreeTypes" class="form-control" id="degree" name="degree" style="width: 165px">
+									<option value="-1" label="---Select DegreeType---" />
+									<c:forEach var="obj" items="${degreeTypes}">
+										<option value="${obj.id}">${obj.name}</option>
+									</c:forEach>
+								</f:select>
+							</div> 
 							
-							<div class="form-group" style="width: 165px">
+<%-- 							<div class="form-group" style="width: 165px">
 								<label for="degree"><spring:message code="education.degree" /></label>
 								<select name="degree" id='degree' class="form-control"
 										style="width: 165px">
@@ -69,7 +79,7 @@ var id = ${id};
 									<option value='Master'><spring:message code="report.master"/></option>
 									<option value='Doctor'><spring:message code="report.doctor"/></option>
 								</select>
-							</div>
+							</div> --%>
 
 							<div class="form-group">
 								<label for="faculty"><spring:message
@@ -88,11 +98,18 @@ var id = ${id};
 								</label> <input type="text" class="form-control" id="gpa" name="gpa"
 									placeholder="<spring:message code="education.text.gpa"/>">
 							</div>
+							
+							<div class="form-group">
+								<label for="startDate"><spring:message
+										code="education.start" /> </label> 
+								<input type="text" class="form-control" id="startDate" name="startDate"
+									placeholder="<spring:message code="education.text.start"/>">
+							</div>
 
 							<div class="form-group">
 								<label for="graduate"><spring:message
-										code="education.graduate" /> </label> <input type="text"
-									class="form-control" id="graduate" name="graduate"
+										code="education.graduate" /> </label> 
+								<input type="text" class="form-control" id="graduate" name="graduate"
 									placeholder="<spring:message code="education.text.graduate"/>">
 							</div>
 							<br> <br>

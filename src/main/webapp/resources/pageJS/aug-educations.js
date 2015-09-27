@@ -1,4 +1,19 @@
 $(document).ready(function() {
+	
+		$('#startDate').datepicker({
+			startView : 2,
+			todayBtn : "linked",
+			format : "dd-mm-yyyy",
+			autoclose: true
+		});
+		
+		$('#graduate').datepicker({
+				startView : 2,
+				todayBtn : "linked",
+				format : "dd-mm-yyyy",
+				autoclose: true
+		});
+	
 		$('#educationsForm').validate({
 			rules : {
 				university : {required : true},
@@ -33,7 +48,7 @@ $(document).ready(function() {
 				},
 
 				columns : [ {data : "university"},
-				            {data : "degree"}, 
+				            {data : "masdegreetype"}, 
 				            {data : "faculty"}, 
 				            {data : "major"},
 				            {data : "gpa"},
@@ -54,9 +69,11 @@ $(document).ready(function() {
 		function saveEducation(){
 				if ($('#educationsForm').valid()) {
 				var university = $("#university").val();
-				var degree = $("#degree").val();
+				var masdegreetypeId = $("#degreeTypes").val();
+				var degree = $("#degree option:selected").text();
 				var faculty = $("#faculty").val();
 				var major = $("#major").val();
+				var start_date = $('#startDate').val();
 				var graduated_date = $("#graduate").val();
 				var gpa = $("#gpa").val();
 				console.log(id);
@@ -64,6 +81,7 @@ $(document).ready(function() {
 				var json = {
 						"applicant" : {"id" : id},
 						"university" : university,
+						"masdegreetypeId" : masdegreetypeId,
 						"degree" : degree,
 						"faculty" : faculty,
 						"major" : major,
@@ -112,7 +130,7 @@ $(document).ready(function() {
  		//Show data on inputField
 		function showFillData(data){
 			$("#university").val(data.university);
-			$("#degree").val(data.degree);
+			$("#degree").val(data.masdegreetypeId);
 			$("#faculty").val(data.faculty);
 			$("#major").val(data.major);
 			$("#graduate").val(data.graduated_date);
