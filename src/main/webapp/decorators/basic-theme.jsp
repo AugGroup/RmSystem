@@ -77,6 +77,9 @@
 			<a href="${pageContext.request.contextPath}/applicant"><span class="glyphicon glyphicon-home"></span></a>
 			<a href="${pageContext.request.contextPath}/request"><spring:message code="request.button" /></a>
 			<a href="${pageContext.request.contextPath}/approve"><spring:message code="request.approve" /></a>
+			<a href="${pageContext.request.contextPath}/calendar"><spring:message code="request.calendar" /></a>
+			<a href="${pageContext.request.contextPath}/email"><spring:message code="request.email" /></a>
+			
 			
 			<div class="user">
 				<a href="<c:url value="/logout"/>"><span class="glyphicon glyphicon-log-out"></span> <spring:message code="sitemesh.logout" /></a>

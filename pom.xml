@@ -303,6 +303,27 @@
 			<version>2.1</version>
 			<scope>provided</scope>
 		</dependency>
+		
+		<!-- Email -->
+		<!-- Java Mail -->
+    	<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+		<!-- Velocity -->
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.7</version>
+		</dependency>
+		<!-- CKEditor -->
+		 <dependency>
+			<groupId>com.ckeditor</groupId>
+			<artifactId>ckeditor-java-core</artifactId>
+			<version>3.5.3</version>
+		</dependency>
+		<!-- /Email -->
 
 	</dependencies>
 
