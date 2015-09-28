@@ -497,6 +497,8 @@ public class ApplicantController implements Serializable {
 		model.addAttribute("id",id);
 		certificationService.create(certification);
 		Certification cer = certificationService.findById(id);
+		Hibernate.initialize(cer.getApplicant().getTechnology());
+		Hibernate.initialize(cer.getApplicant().getJoblevel());
         return cer;
 
 	}
@@ -911,11 +913,13 @@ public class ApplicantController implements Serializable {
 	@RequestMapping(value = "certificates/updateCertificates/{id}", method = { RequestMethod.POST })
 	public @ResponseBody CertificationDto updateCertificates(@RequestBody CertificationDto certificationDto, @PathVariable Integer id) {
 		Certification certification = certificationService.findById(certificationDto.getId());
+		System.out.println(certification+"=======test======");
 		certification.setId(certificationDto.getId());
 		certification.setCertificationForm(certificationDto.getCertificationForm());
 		certification.setName(certificationDto.getName());
 		certification.setDescription(certificationDto.getDescription());
 		certification.setYear(certificationDto.getYear());
+		
 		certificationService.update(certification);
 		
 		return certificationDto;
