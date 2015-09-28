@@ -38,6 +38,7 @@ var id = ${id};
 						<div class="form-group">
 							<input type="hidden" id="applicant" name="applicant"
 								value="${id}">
+								<input type="hidden" id="certificationId">
 						</div>
 <!-- 						<div class="form-group"> -->
 <%-- 							<label for="certificate"><spring:message code="cer.name" /> --%>

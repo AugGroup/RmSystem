@@ -1098,9 +1098,9 @@ public class ApplicantController implements Serializable {
 		return masDegreeTypeService.findAll();
 	}
 	
-	@ModelAttribute("masspecialties")
-	@Transactional
-	public List<MasSpecialty> masspecialtyList(){
-		return masSpecialtyService.findAll();
-	}	
+//	@ModelAttribute("masspecialties")
+//	@Transactional
+//	public List<MasSpecialty> masspecialtyList(){
+//		return masSpecialtyService.findAll();
+//	}	
 }

@@ -77,7 +77,7 @@ $(document).ready(function() {
 		var certificationForm = $("#certificationForm").val();
 		var description = $("#description").val();
 		var year = $("#year").val();
-		
+		alert(id);
 		var json = {
 				"applicant" : {"id" : id},
 				"name" : name,
@@ -124,6 +124,7 @@ $(document).ready(function() {
 	
 	//Show data on inputField
 	function showFillData(data){
+		$("#certificationId").val(data.id);
 		$("#name").val(data.name);
 		$("#certificationForm").val(data.certificationForm);
 		$("#description").val(data.description);
@@ -134,6 +135,7 @@ $(document).ready(function() {
 	function updated(button){
 		if ($('#certificateForm').valid()) {
 		var id = $(button).data("id");
+		var certificationId = $("#certificationId").val();
 		var name = $("#name").val();
 		var certificationForm = $("#certificationForm").val();
 		var description = $("#description").val();
@@ -141,6 +143,7 @@ $(document).ready(function() {
 		
 		var json = {
 				"applicant" : {"id" : id},
+				"id" : certificationId,
 				"name" : name,
 				"certificationForm" : certificationForm,
 				"description" : description,

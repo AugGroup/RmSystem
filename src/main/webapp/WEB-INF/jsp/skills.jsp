@@ -40,10 +40,10 @@ var id = ${id};
 						</div>
 						<div class="form-group">
 							<label for="skill">SPECIALTY :</label>
-							 <select class="form-control" id="skill" name="skill">
+							 <select class="form-control" id="masspecialties" name="masspecialties">
 								<option value="-1" label="---Select Skills---" />
-								<c:forEach var="skillList" items="${masspecialties}">
-									<option value="${skillList.id}">${ skillList.name}</option>
+								<c:forEach var="masspecialtiesist" items="${masspecialties}">
+									<option value="${masspecialtiesist.id}">${ masspecialtiesist.name}</option>
 								</c:forEach>
 							</select>
 						</div>
