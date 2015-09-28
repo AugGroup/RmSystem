@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-	<script src='<c:url value ="/static/resources/js/moment.js"/>'></script>
-	<script src='<c:url value="/static/resources/js/moment-timezone.js"/>'></script>
-
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-	
-
 <style type="text/css">
 
 	div.fc-row>table>thead > tr:first-child {
@@ -32,17 +25,28 @@
 
 <script>
 
+	function currentDate(){
+		var date = new Date();
+		var month = date.getMonth()+1;
+		var day = date.getDate();
+	
+		var output = date.getFullYear() + '-' +
+		    (month<10 ? '0' : '') + month + '-' +
+		    (day<10 ? '0' : '') + day;
+		return output;
+	}
+	
 	$(document).ready(function() {
-		//moment().tz("Asia/Bangkok").format();
+		
+		var id;
 		var eventdata;
 		var insTitle;
 		var insStart;
 		var insEnd;
-		var bangkok = 'Asia/Bangkok';
+		var type;
 		
 		
-		
-		if (!document.getElementById('appointmentType3').checked) {
+		/* if (!document.getElementById('appointmentType3').checked) {
 			document.getElementById("remarkOther").disabled = true;
 		}
 		
@@ -53,10 +57,12 @@
 	        else {
 	        	document.getElementById("remarkOther").disabled = true;
 	        }
-	    });
+	    }); */
+		//var calendar = $('#calendar').fullCalendar('getCalendar');
+		
 		
 
-		$('#calendar').fullCalendar({
+		var calendar = $('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
 				center: 'title',
@@ -74,13 +80,13 @@
 			},
 			editable: true,
 			eventLimit: true, 
-			events :[],
+			events : [],//"findAllAppointment",
 			eventClick: function(event, element) {
 
 		        $("#myModal").modal("show");
 		        $("#detail_app_name").text(event.title);
 				$("#detail_datetime").text(event.start);
-				var id = event.id;
+				id = event.id;
 				$.ajax({
 					url : "calendar/getAppointment/"+id,
 					type : "GET",
@@ -99,15 +105,25 @@
 		    }
 		}); // end full calendar
 
-		
+		$('#calendar').fullCalendar('gotoDate', currentDate());
 		
 		$("#deleteBtn" ).on('click',function(){
 			$('#delModal').modal("show");
-			
 		})
 		
+		$("#editBtn").on('click',function(){
+			$("#editModal").modal("show");
+		})
+		
+		
 	 	$('#confirmDel').on('click',function(){
-			$('#calendar').fullCalendar('removeEvents',eventdata.id )
+	 		$.ajax({
+	 			url : "calendar/deleteAppointment/"+id,
+				type : "GET",
+				success : function(data){
+					$('#calendar').fullCalendar('removeEvents',eventdata.id );
+				}
+	 		})
 			$('#myModal').modal("hide");
 			$('#delModal').modal("hide");
 		})
@@ -254,7 +270,7 @@
 	        				<label for="appoint_detail">Detail</label>
 	        				<textarea id="appoint_detail" class="form-control" rows="4" placeholder="Insert detail here..."></textarea>
 	        			</div>
-	        			<div class="col-md-12"><br>
+	        			<!-- <div class="col-md-12"><br>
 	        				<label >Appoint for</label>
 								<div class="radio">
 								  <label>
@@ -275,7 +291,7 @@
 								  </label>
 								  <input id="remarkOther" class="form-control" placeholder="Remark"></input>
 								</div>
-						</div>
+						</div> -->
         			</div></form>
 	        		</div>
 	      </div><!-- /.modal-body -->
@@ -318,7 +334,7 @@
 	        	</table>
 	        
 	        <div class="text-right">
-		        <button type="button" class="btn btn-warning" data-dissmiss="modal">Edit</button>
+		        <button id="editBtn" type="button" class="btn btn-warning" data-dissmiss="modal">Edit</button>
 		        <button id="deleteBtn" type="button" class="btn btn-danger" data-dissmiss="modal">Delete</button><br><br>
 	        </div>
 	      </div>
@@ -328,6 +344,52 @@
 	    </div>
 	  </div>
 	</div>
+	
+	<!-- Insert Modal -->
+	<div class="modal fade" id="editModal">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	    
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Edit Appointment</h4>
+	      </div>
+	      
+	      <div class="modal-body">
+	        	<div class="container-fluid"><form id="formInsert">
+	        		<div class="row">
+						<div class="col-md-6">
+							
+						</div>
+					</div>
+						
+        			<hr>
+        			<div class="row">
+	        			<div class="col-md-6">
+	        				<label for="appointmentTopic">Appointment Topic</label>
+	        				<input id="appointmentTopic" class="form-control" placeholder="Topic"></input>
+	        			</div>
+	        		
+					</div>
+					<div class="row">	
+	        			<div class="col-md-12">
+	        				<label for="appoint_detail">Detail</label>
+	        				<textarea id="appoint_detail" class="form-control" rows="4" placeholder="Insert detail here..."></textarea>
+	        			</div>
+        			</div></form>
+	        		</div>
+	      </div><!-- /.modal-body -->
+	      
+	      <div class="modal-footer">
+	        <button id="insBtn" type="button" class="btn btn-primary">Insert</button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	      
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	
+	
 	
 	
 	
@@ -343,8 +405,8 @@
 		        <p>Are you sure you want to delete this ?</p>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal"> Close</button>
-		        <button type="button" id="confirmDel" class="btn btn-danger glyphicon glyphicon-trash" > Delete</button>
+		        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Close</button>
+		        <button type="button" id="confirmDel" class="btn btn-danger" ><span class=""></span> Delete</button>
 		      </div>
 		    </div><!-- /.modal-content -->
 		  </div><!-- /.modal-dialog -->

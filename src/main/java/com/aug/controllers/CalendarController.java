@@ -13,14 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
-import org.springframework.ui.Model;
-
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -107,15 +103,7 @@ public class CalendarController {
 		return appointmentService.findById(id);
 		
 	}
-	
 
-
-	@RequestMapping(value = "findAllAppointment", method = RequestMethod.GET)
-		public @ResponseBody List<Appointment> findAllAppointment() {
-		return appointmentService.findAll();
-	}
-	
-	
 	@RequestMapping(value = "findByTrackingStatus/{trackingStatus}", method = RequestMethod.GET)
 	public @ResponseBody List<ApplicantDto> findByTrackingStatus(@PathVariable String trackingStatus){
 		
@@ -130,6 +118,12 @@ public class CalendarController {
 		}
 		
 		return null;
+	}
+	
+	@RequestMapping(value = "calendar/deleteAppointment/{id}", method = RequestMethod.GET)
+	public @ResponseBody String findAllApplicant(@PathVariable Integer id) {
+		appointmentService.deleteById(id);
+	return "success";
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////
