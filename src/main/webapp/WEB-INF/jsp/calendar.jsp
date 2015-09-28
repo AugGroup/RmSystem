@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<script src='<c:url value ="/static/resources/js/moment.js"/>'></script>
 	<script src='<c:url value="/static/resources/js/moment-timezone.js"/>'></script>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	
+
 <style type="text/css">
 
 	div.fc-row>table>thead > tr:first-child {
@@ -50,6 +55,7 @@
 	        }
 	    });
 		
+
 		$('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
@@ -60,6 +66,7 @@
 			selectable: true,
 			selectHelper: true,
 			select: function(start, end) {
+				setApplicant("all"); 
 				$('#insModal').modal('show');
 				insStart = start;
 				insEnd = end;
@@ -69,6 +76,7 @@
 			eventLimit: true, 
 			events :[],
 			eventClick: function(event, element) {
+
 		        $("#myModal").modal("show");
 		        $("#detail_app_name").text(event.title);
 				$("#detail_datetime").text(event.start);
@@ -82,6 +90,11 @@
 						//alert(data.detail);
 					}
 				});//end ajax
+
+				$("#detail_topic").text(event.title);
+				$("#detail_title").text(event.title);
+				$("#detail_datetime").text(event.start);
+		        $("#myModal").modal("show");
 				eventdata = event;
 		    }
 		}); // end full calendar
@@ -145,6 +158,44 @@
 			}//end if
 		})//endonclick 'insBtn'
 		
+/* 		
+		$('#applicantFilter').on('click',function(){
+			var trackingStatus = $(this).data("trackingStatus");
+			$.ajax({
+				url : "findByTrackingStatus/" + trackingStatus,
+				type : "GET",
+				contentType :"application/json; charset=utf-8", 
+				data : JSON.stringify(appointment),
+				success : function(data){
+					
+				}
+			});//end ajax
+		}); */
+		
+		
+		function setApplicant(trackingStatus){
+			$.ajax({
+				url : "/RmSystem/findByTrackingStatus/" + trackingStatus,
+				type : "GET",
+				dataType : "json",
+				success : function(data){
+					$('#applicantName').empty().append('<option value="-1">-- Select Applicant --</option>');
+					
+					$.each(data, function(i, item) {
+					    //alert(data[i].firstNameEN);
+					    var name = "<option value='" + data[i].id +  "'> " + data[i].firstNameEN +" " + data[i].lastNameEN +" ( " + data[i].technologyStr + " " + data[i].joblevelStr + "  )</option>"
+					    $('#applicantName').append(name);
+					})
+					
+					console.log(data);
+				},
+				error : function(){
+					alert("error");
+				}
+					
+			});//end ajax
+		}
+		
 		
 		
 	});
@@ -182,7 +233,10 @@
 						<div class="col-md-6">
 								<label for="applicantName">Applicant Name</label> 
 								<select name="applicantname" id="applicantName" class="form-control">
-									<option>test Applicant</option>
+								<option value="-1">-- Select Applicant --</option>
+									<c:forEach items="${applicants}" var="applicant">
+								<option value="${applicant.id}">${applicant.firstNameEN}  ${applicant.lastNameEN} ( ${applicant.technology.name} ${applicant.joblevel.name} )</option>
+							</c:forEach>
 								</select>
 						</div>
 					</div>

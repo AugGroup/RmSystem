@@ -8,11 +8,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +24,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.aug.hrdb.dto.ApplicantDto;
 import com.aug.hrdb.entities.Appointment;
+import com.aug.hrdb.services.ApplicantService;
 import com.aug.hrdb.services.AppointmentService;
 
 @Controller
@@ -29,6 +34,10 @@ public class CalendarController {
 	
 	@Autowired
 	private AppointmentService appointmentService;
+	
+	@Autowired
+	private ApplicantService applicantService;
+	
 	
 	///////////////////////////////// CALENDAR PAGE ///////////////////////////////// 
 	
@@ -90,6 +99,7 @@ public class CalendarController {
 	}
 	
 	
+
 	@RequestMapping(value = "calendar/getAppointment/{id}",method = RequestMethod.GET)
 	public @ResponseBody Appointment getAppointmentData(@PathVariable Integer id) {
 		//appointmentService.create(appointment);
@@ -98,18 +108,28 @@ public class CalendarController {
 		
 	}
 	
-	//getAllAppointment
-	@RequestMapping(value = "calendar/getAllAppointment",method = RequestMethod.GET)
-	public String getAllAppointment(HttpServletRequest request) {
-		System.out.println(request.getParameter("start"));
-		return "success";
+
+
+	@RequestMapping(value = "findAllAppointment", method = RequestMethod.GET)
+		public @ResponseBody List<Appointment> findAllAppointment() {
+		return appointmentService.findAll();
 	}
 	
 	
-	
-	@RequestMapping(value = "findAllAppointment", method = RequestMethod.GET)
-		public @ResponseBody List<Appointment> findAllApplicant() {
-		return appointmentService.findAll();
+	@RequestMapping(value = "findByTrackingStatus/{trackingStatus}", method = RequestMethod.GET)
+	public @ResponseBody List<ApplicantDto> findByTrackingStatus(@PathVariable String trackingStatus){
+		
+		if (trackingStatus.equals("test")) {
+			return applicantService.findByTrackingStatus("Pending Test/Interview");
+		}
+		if (trackingStatus.equals("pendingapprove")){
+			return  applicantService.findByTrackingStatus("Pending Approve");
+		}
+		if (trackingStatus.equals("all")) {
+			return applicantService.findAllApplicant();
+		}
+		
+		return null;
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////
