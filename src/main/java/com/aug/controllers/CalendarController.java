@@ -111,8 +111,7 @@ public class CalendarController {
 		return appointmentService.findById(id);
 		
 	}
-
-
+	
 	@RequestMapping(value = "calendar/findAppointment",method = RequestMethod.GET)
 		public @ResponseBody List<AppointmentDto> findAppointment(@RequestParam(value="start") String start,
 		@RequestParam(value="end") String end, @RequestParam(value="_",required = false) String underscore) throws ParseException {

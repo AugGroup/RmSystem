@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <style type="text/css">
 
@@ -36,7 +37,48 @@
 		return output;
 	}
 	
+	function setApplicant(trackingStatus){
+		$.ajax({
+			url : "calendar/findByTrackingStatus/" + trackingStatus,
+			type : "GET",
+			dataType : "json",
+			success : function(data){
+				$('#applicantName').empty().append('<option value="-1">-- Select Applicant --</option>');
+				
+				if(trackingStatus==="all"){
+					$.each(data, function(i, item) {
+					    //alert(data[i].firstNameEN);
+					    var name = "<option value='" + data[i].id +  "'> " + data[i].firstNameEN +" " + data[i].lastNameEN +" ( " + data[i].technologyStr + " " + data[i].joblevelStr + "  )</option>"
+					    $('#applicantName').append(name);
+					})
+				}else{
+					$.each(data, function(i, item) {
+					    //alert(data[i].firstNameEN);
+					    var name = "<option value='" + data[i].id +  "'> " + data[i].firstNameEN +" " + data[i].lastNameEN +" ( " + data[i].masTechnologyName + " " + data[i].masJobLevelName + "  )</option>"
+					    $('#applicantName').append(name);
+					})
+				}
+				
+				
+				console.log(data);
+			},
+			error : function(error){
+				alert("error");
+				console.log(error);
+			}
+				
+		});//end ajax
+	}
+	
+	
+	
+	
 	$(document).ready(function() {
+		
+		$('#applicantFilter').on('change',function () {
+	 		var trackingString = $("#applicantFilter option:selected").val();
+	 		setApplicant(trackingString);
+	    });
 		
 		var id;
 		var eventdata;
@@ -72,34 +114,42 @@
 			selectable: true,
 			selectHelper: true,
 			select: function(start, end) {
-				setApplicant("all"); 
-				$('#insModal').modal('show');
-				insStart = start;
-				insEnd = end;
-				$('#calendar').fullCalendar('unselect');
+				var view = $('#calendar').fullCalendar('getView');//get view object
+				//console.log(viewname.name)
+				if(view.name == "month"){ //if event that selected is month then show agendaDay view 
+					$('#calendar').fullCalendar('changeView', 'agendaDay');
+					$('#calendar').fullCalendar( 'gotoDate', start );
+				}else{
+					//if current view is date(and choose time range) when click on it insert modal should show
+					setApplicant("all"); 
+					$('#insModal').modal('show');
+					insStart = start;
+					insEnd = end;
+					$('#calendar').fullCalendar('unselect');
+				}
 			},
-			editable: true,
+			editable: false,//can't drage to move event to editing
 			eventLimit: true, 
 			events : [],//"findAllAppointment",
 			eventClick: function(event, element) {
-
+				
 		        $("#myModal").modal("show");
-		        $("#detail_app_name").text(event.title);
-				$("#detail_datetime").text(event.start);
 				id = event.id;
 				$.ajax({
 					url : "calendar/getAppointment/"+id,
 					type : "GET",
 					success : function(data){
+						$("#detail_app_name").text(data.applicant.id);
 					    $("#detail_topic").text(data.topic);
 						$("#detail_desciption").text(data.detail); 
 						//alert(data.detail);
+					},
+					error : function (error) {
+						console.log(error)
 					}
 				});//end ajax
 
-				$("#detail_topic").text(event.title);
-				$("#detail_title").text(event.title);
-				$("#detail_datetime").text(event.start);
+				//$("#detail_topic").text(event.title);
 		        $("#myModal").modal("show");
 				eventdata = event;
 		    }
@@ -129,22 +179,21 @@
 		})
 		
 		$("#insBtn").on('click',function(){
-			insTitle = $("#applicantName option:selected").val();
-			var appointmentType;
-			
-			if (document.getElementById('appointmentType1').checked) {
-				appointmentType = $("#appointmentType1").val();
-			}else if (document.getElementById('appointmentType2').checked) {
-				appointmentType = $("#appointmentType2").val();
-			}else if (document.getElementById('appointmentType3').checked) {
-				appointmentType = $("#remarkOther").val();
-			}
+			insTitle = $("#applicantName option:selected").text();
+// 			var appointmentType;
+// 			if (document.getElementById('appointmentType1').checked) {
+// 				appointmentType = $("#appointmentType1").val();
+// 			}else if (document.getElementById('appointmentType2').checked) {
+// 				appointmentType = $("#appointmentType2").val();
+// 			}else if (document.getElementById('appointmentType3').checked) {
+// 				appointmentType = $("#remarkOther").val();
+// 			}
 			var appointment = { 
 					topic : $("#appointmentTopic").val(),
 					detail : $("#appoint_detail").val(),
 					start: insStart,
 					end : insEnd,
-					/* applicant : $("#applicantName option:selected").text() */ 
+					applicant : { id :$("#applicantName option:selected").val() }
 					/* login : $("#applicantName").val() */
 			};
 			var insData;
@@ -159,7 +208,7 @@
 					success : function(data){
 						insData = {
 							id : data.id,
-							title: data.applicant,
+							title: insTitle,
 							start: insStart,
 							end: insEnd
 						};
@@ -173,21 +222,6 @@
 				});//end ajax
 			}//end if
 		})//endonclick 'insBtn'
-		
-/* 		
-		$('#applicantFilter').on('click',function(){
-			var trackingStatus = $(this).data("trackingStatus");
-			$.ajax({
-				url : "findByTrackingStatus/" + trackingStatus,
-				type : "GET",
-				contentType :"application/json; charset=utf-8", 
-				data : JSON.stringify(appointment),
-				success : function(data){
-					
-				}
-			});//end ajax
-		}); */
-		
 		
 		function setApplicant(trackingStatus){
 			$.ajax({
@@ -211,9 +245,6 @@
 					
 			});//end ajax
 		}
-		
-		
-		
 	});
 
 </script>
@@ -240,19 +271,19 @@
 						<div class="col-md-6">
 							<label for="applicantFilter">Applicant Filter</label> 
 							<select name="applicantfilter" id="applicantFilter" class="form-control">
-								<option value="All">All</option>
-								<option value="Pending Test">Pending Test/Interview</option>
-								<option value="Approve">Pending Approve</option>
+								<option value="all">All</option>
+								<option value="test">Pending Test/Interview</option>
+								<option value="pendingapprove">Pending Approve</option>
 							</select>
 						</div>
 						
 						<div class="col-md-6">
 								<label for="applicantName">Applicant Name</label> 
 								<select name="applicantname" id="applicantName" class="form-control">
-								<option value="-1">-- Select Applicant --</option>
+									<option value="-1">-- Select Applicant --</option>
 									<c:forEach items="${applicants}" var="applicant">
-								<option value="${applicant.id}">${applicant.firstNameEN}  ${applicant.lastNameEN} ( ${applicant.technology.name} ${applicant.joblevel.name} )</option>
-							</c:forEach>
+										<option value="${applicant.id}">${applicant.firstNameEN}  ${applicant.lastNameEN} ( ${applicant.technology.name} ${applicant.joblevel.name} )</option>
+									</c:forEach>
 								</select>
 						</div>
 					</div>
@@ -320,8 +351,12 @@
 	        			<td><h4 id="detail_app_name"></h4></td>
 	        		</tr>
 	        		<tr>
-	        			<td><h4>Date</h4></td>
-	        			<td colspan="2"><h4 id="detail_datetime"></h4></td>
+	        			<td><h4>Start </h4></td>
+	        			<td colspan="2"><h4 id="start_date"></h4></td>
+	        		</tr>
+	        		<tr>
+	        			<td><h4>End </h4></td>
+	        			<td colspan="2"><h4 id="end_date"></h4></td>
 	        		</tr>
 	        		<tr>
 	        			<td><h4>Topic</h4></td>
