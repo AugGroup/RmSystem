@@ -51,14 +51,8 @@ public class EmailController {
 		
 		try {
 			
-	        //set template's header
-	        String mailHeader = "<!DOCTYPE html><html><head><meta charset='UTF-8'></head>";
-	         
-	        //set finalTemplate
-	        String finalTemplate = mailHeader + "<body>" + template + "</body></html>";
-	        
-	        //encoding
-	        final String encode = new String(finalTemplate.getBytes("UTF-8"),"UTF-8");
+	        //encoding template
+	        final String encode = new String(template.getBytes("UTF-8"),"UTF-8");
 	
 	        //add template to db
 	        MailTemplate mailTemplate = new MailTemplate();
@@ -67,7 +61,7 @@ public class EmailController {
 			
 	        //console input
 			System.out.println("templateName : " + name);
-			System.out.println("finalTemplate : " + encode);
+			System.out.println("finalTemplate : " + template);
 			
 			mailTemplateService.create(mailTemplate);
 			
@@ -87,15 +81,15 @@ public class EmailController {
 	public String sendEmail(Model model, HttpServletRequest request, 
 			@RequestParam(value="name",required=false) String name) throws UnsupportedEncodingException {
 		
-		String firstName = "Chalisa";
+		String firstName = "Anat";
 	    String date = "15 June 2015";
 	    String time = "9.30 AM.";
 	    String recruitFirstName = "Achiraya";
 	    String recruitLastName = "Janjiratavorn";
 	    String recruitPosition = "Recruitment Professional";
-	    String recruitPhone = "66 8 4751 6665";
+	    String recruitPhone = "+66 8 4751 6665";
 	    
-	    final String recipientAddress = "bp_clash@hotmail.com";
+	    final String recipientAddress = "anat.pantera@gmail.com";
         final String subject = "Test & Interview with Augmentis (Thailand) Limited (Java Consultant - New Grad)";
         final String path = request.getSession().getServletContext().getRealPath("/") + "/resources/mail-attachment/";
         
@@ -113,22 +107,14 @@ public class EmailController {
         context.put("RECRUIT_POSITION", recruitPosition);
         context.put("RECRUIT_PHONE", recruitPhone);
         
-        MailTemplate mailTemplate = mailTemplateService.findByName("table");
-        //String encodeTemplate = new String(mailTemplate.getTemplate().getBytes("UTF-8"),"UTF-8");
-        
-        model.addAttribute("text",mailTemplate.getTemplate());
-        
+        //get template
+        MailTemplate mailTemplate = mailTemplateService.findByName("JAVA");
+      
         //merge context and writer to String 
         velocityEngine.evaluate(context, writer, "SimpleVelocity", mailTemplate.getTemplate()); 
         
-        
-        String mailHeader = "<!DOCTYPE html><html><head><meta charset='UTF-8'></head>";
-         
-        //define finalTemplate
-        String finalTemplate = mailHeader + "<body>" + writer.toString() + "</body></html>";
-        
-        //encode finalTemplate
-        final String encode = new String(finalTemplate.getBytes("UTF-8"),"UTF-8");
+        //encode Template
+        final String encode = new String(writer.toString().getBytes("UTF-8"),"UTF-8");
         
         //create mime message
 	    MimeMessagePreparator preparator = new MimeMessagePreparator() {
