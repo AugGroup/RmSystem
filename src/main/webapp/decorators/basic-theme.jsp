@@ -78,7 +78,7 @@
 			<a href="${pageContext.request.contextPath}/request"><spring:message code="request.button" /></a>
 			<a href="${pageContext.request.contextPath}/approve"><spring:message code="request.approve" /></a>
 			<a href="${pageContext.request.contextPath}/calendar"><spring:message code="request.calendar" /></a>
-			<a href="${pageContext.request.contextPath}/email"><spring:message code="request.email" /></a>
+			<a href="${pageContext.request.contextPath}/email/create"><spring:message code="request.email" /></a>
 			
 			
 			<div class="user">

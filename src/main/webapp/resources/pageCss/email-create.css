@@ -8,5 +8,10 @@
 
 #email-hints {
 	background-color: #F2F0AE;
-	min-height: 50px;
+	padding: 10px;
+}
+
+#email-hints-header {
+	font-size: 2em;
+	text-decoration: underline;
 }

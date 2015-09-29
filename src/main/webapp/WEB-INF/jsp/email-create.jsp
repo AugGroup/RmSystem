@@ -41,8 +41,16 @@
 			</div>
 			<div class="col-sm-5">
 				<div id="email-hints">
-					<h3 class="text-center">Hints</h3>
-					<p>$FIRSTNAME_EN</p>
+					<p class="text-center"><strong id="email-hints-header">Hints</strong></p>
+					<p><b>$FIRST_NAME</b> : Applicant's first name.</p>
+					<p><b>$LAST_NAME</b> : Applicant's last name.</p>
+					<p><b>$TECHNOLOGY</b> : Applicant's technology.</p>
+					<p><b>$DATE</b> : Appointment date.</p>
+					<p><b>$TIME</b> : Appointment time.</p>
+					<p><b>$RECRUIT_FIRST_NAME</b> : Recruiter's first name.</p>
+					<p><b>$RECRUIT_LAST_NAME</b> : Recruiter's last name.</p>
+					<p><b>$RECRUIT_POSITION</b> : Recruiter's position</p>
+					<p><b>$RECRUIT_PHONE</b> : Recruiter's phone number</p>
 				</div>
 			</div>
 		</div>
