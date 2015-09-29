@@ -231,11 +231,21 @@
 				success : function(data){
 					$('#applicantName').empty().append('<option value="-1">-- Select Applicant --</option>');
 					
-					$.each(data, function(i, item) {
-					    //alert(data[i].firstNameEN);
-					    var name = "<option value='" + data[i].id +  "'> " + data[i].firstNameEN +" " + data[i].lastNameEN +" ( " + data[i].technologyStr + " " + data[i].joblevelStr + "  )</option>"
-					    $('#applicantName').append(name);
-					})
+					if("all"=== trackingStatus){
+						$.each(data, function(i, item) {
+						    //alert(data[i].firstNameEN);
+						    var name = "<option value='" + data[i].id +  "'> " + data[i].firstNameEN +" " + data[i].lastNameEN +" ( " + data[i].technologyStr + " " + data[i].joblevelStr + "  )</option>"
+						    $('#applicantName').append(name);
+						})
+					}else{
+						$.each(data, function(i, item) {
+						    //alert(data[i].firstNameEN);
+						    var name = "<option value='" + data[i].id +  "'> " + data[i].firstNameEN +" " + data[i].lastNameEN +" ( " + data[i].masTechnologyName + " " + data[i].masJobLevelName + "  )</option>"
+						    $('#applicantName').append(name);
+						})
+					}
+					
+					
 					
 					console.log(data);
 				},
