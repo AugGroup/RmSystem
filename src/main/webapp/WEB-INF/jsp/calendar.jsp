@@ -132,15 +132,18 @@
 			eventLimit: true, 
 			events : [],//"findAllAppointment",
 			eventClick: function(event, element) {
-				
+				console.log(event.id)
 		        $("#myModal").modal("show");
 				id = event.id;
+				console.log(id);
 				$.ajax({
 					url : "calendar/getAppointment/"+id,
 					type : "GET",
 					success : function(data){
-						$("#detail_app_name").text(data.applicant.id);
+						$("#detail_app_name").text(data.applicantName+" ( "+data.applicantPosition+" )");
 					    $("#detail_topic").text(data.topic);
+					    $("#start_date").text(data.start);
+					    $("#end_date").text(data.end);
 						$("#detail_desciption").text(data.detail); 
 						//alert(data.detail);
 					},
@@ -212,7 +215,7 @@
 							start: insStart,
 							end: insEnd
 						};
-						
+						console.log(data);
 						$('#calendar').fullCalendar('renderEvent', insData, true); // stick? = true
 						$('#insModal').modal('hide');	
 						$('#formInsert').trigger('reset');
