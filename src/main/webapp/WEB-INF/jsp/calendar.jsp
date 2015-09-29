@@ -191,7 +191,7 @@
 		
 		function setApplicant(trackingStatus){
 			$.ajax({
-				url : "/RmSystem/findByTrackingStatus/" + trackingStatus,
+				url : "/RmSystem/calendar/findByTrackingStatus/" + trackingStatus,
 				type : "GET",
 				dataType : "json",
 				success : function(data){

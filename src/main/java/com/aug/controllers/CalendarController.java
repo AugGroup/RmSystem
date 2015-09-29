@@ -12,15 +12,23 @@ import java.util.TimeZone;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+
+
+import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.aug.hrdb.dto.ApplicantDto;
+import com.aug.hrdb.dto.AppointmentDto;
 import com.aug.hrdb.entities.Appointment;
 import com.aug.hrdb.services.ApplicantService;
 import com.aug.hrdb.services.AppointmentService;
@@ -97,23 +105,30 @@ public class CalendarController {
 	
 
 	@RequestMapping(value = "calendar/getAppointment/{id}",method = RequestMethod.GET)
-	public @ResponseBody Appointment getAppointmentData(@PathVariable Integer id) {
+	public @ResponseBody AppointmentDto getAppointmentData(@PathVariable Integer id) {
 		//appointmentService.create(appointment);
 		System.out.println(id);
 		return appointmentService.findById(id);
 		
 	}
 
-	@RequestMapping(value = "findByTrackingStatus/{trackingStatus}", method = RequestMethod.GET)
+
+	@RequestMapping(value = "calendar/findAppointment",method = RequestMethod.GET)
+		public @ResponseBody List<AppointmentDto> findAppointment(@RequestParam(value="start") String start,
+		@RequestParam(value="end") String end, @RequestParam(value="_",required = false) String underscore) throws ParseException {
+	    return appointmentService.findAppointment(start, end);
+	}
+	
+	@RequestMapping(value = "calendar/findByTrackingStatus/{trackingStatus}", method = RequestMethod.GET)
 	public @ResponseBody List<ApplicantDto> findByTrackingStatus(@PathVariable String trackingStatus){
 		
 		if (trackingStatus.equals("test")) {
 			return applicantService.findByTrackingStatus("Pending Test/Interview");
 		}
-		if (trackingStatus.equals("pendingapprove")){
+		else if (trackingStatus.equals("pendingapprove")){
 			return  applicantService.findByTrackingStatus("Pending Approve");
 		}
-		if (trackingStatus.equals("all")) {
+		else if (trackingStatus.equals("all")) {
 			return applicantService.findAllApplicant();
 		}
 		
