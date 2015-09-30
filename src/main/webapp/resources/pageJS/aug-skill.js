@@ -41,10 +41,12 @@ $(document).ready(function() {
 	
 	function saveSkill(){
 		if ($('#skillForm').valid()) {
-		var masspecialty = $("#skill").val();
+		var masspecialty = $("#masspecialty").val();
 		var json = {
-				"applicant" : {"id" : id},
-				"masspecialty" : masspecialty,
+				applicant : {"id" : id},
+				masspecialtyId : $("#masspecialty").val(), 
+				masspecialty : $("#masspecialty option:selected").text(),
+				rank : rank,
 				};
 		
 		$.ajax({
@@ -85,8 +87,9 @@ $(document).ready(function() {
 	
 	//Show data on inputField
 	function showFillData(data){
-		$("#skill").val(data.name);
- 	}
+		$("#masspecialty").val(data.masspecialty);
+		$("#rank1").val(data.rank);
+	}
 	
 	//Update function
 	function updated(button){
