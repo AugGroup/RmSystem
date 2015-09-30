@@ -20,12 +20,20 @@
 		max-width: 900px;
 		margin: 0 auto;
 	}
+	
+	textarea {
+    overflow-y: scroll;
+    resize: none; 
+    } 
+
 
 </style>
 
 
 <script>
 
+	var $applicantName = $('#applicantName');
+	
 	function currentDate(){
 		var date = new Date();
 		var month = date.getMonth()+1;
@@ -37,28 +45,18 @@
 		return output;
 	}
 	
+	
 	function setApplicant(trackingStatus){
 		$.ajax({
 			url : "calendar/findByTrackingStatus/" + trackingStatus,
 			type : "GET",
 			dataType : "json",
 			success : function(data){
-				$('#applicantName').empty().append('<option value="-1">-- Select Applicant --</option>');
-				
-				if(trackingStatus==="all"){
+				$applicantName.empty().append('<option value="">-- Select Applicant --</option>');
 					$.each(data, function(i, item) {
-					    //alert(data[i].firstNameEN);
 					    var name = "<option value='" + data[i].id +  "'> " + data[i].firstNameEN +" " + data[i].lastNameEN +" ( " + data[i].technologyStr + " " + data[i].joblevelStr + "  )</option>"
-					    $('#applicantName').append(name);
+					    $applicantName.append(name);
 					})
-				}else{
-					$.each(data, function(i, item) {
-					    //alert(data[i].firstNameEN);
-					    var name = "<option value='" + data[i].id +  "'> " + data[i].firstNameEN +" " + data[i].lastNameEN +" ( " + data[i].masTechnologyName + " " + data[i].masJobLevelName + "  )</option>"
-					    $('#applicantName').append(name);
-					})
-				}
-				
 				
 				console.log(data);
 			},
@@ -70,18 +68,35 @@
 		});//end ajax
 	}
 	
-	
-	function toTimeZone(time) {
-	    var format = 'MM/DD/YYYY HH:mm:ss z';
-	    var zone = "Asia/Bangkok"
-	    var expect = moment(time, format).tz(zone).format(format);
-	    
-	    var date = new Date(time);
-	    console.log(date);
-	    return expect;
-	}
-	
 	$(document).ready(function() {
+		
+		var $validform = $("#formInsert").validate({			
+			rules:{
+				appointmentTopic:{
+					required:true,
+					minlength:4,
+					maxlength:15	
+				},
+				appoint_detail:{
+					required:true
+				},
+				 applicantName: {
+					required:true
+				}
+			},
+			
+			messages: {
+				applicantName:{
+					required: 'Please Select Applicant.'
+				}
+			},
+			
+		 	invalidHandler: function(event, validator) {
+				$('#appointmentTopic').focus();
+			} 
+			
+		 });
+		
 		
 		$('#applicantFilter').on('change',function () {
 	 		var trackingString = $("#applicantFilter option:selected").val();
@@ -94,29 +109,7 @@
 		var insStart;
 		var insEnd;
 		var type;
-		
-		
-		var startDate , endDate;
-	    function getMonthDateRange(year, month) {
-	        //var moment = require('moment');
 
-	        // month in moment is 0 based, so 9 is actually october, subtract 1 to compensate
-	        // array is 'year', 'month', 'day', etc
-	        startDate = moment([year, month - 1]);
-			startDate = moment(startDate).format("YYYY-MM-DD");
-	        // Clone the value before .endOf()
-	        endDate = moment(startDate).endOf('month');
-	        endDate = moment(endDate).format("YYYY-MM-DD");
-	        // just for demonstration:
-	        console.log(startDate.toString());
-	        console.log(endDate.toString());
-			
-	        // make sure to call toDate() for plain JavaScript date type
-	        //return { start: startDate, end: endDate };
-	    }
-		
-	    //var currentDate = moment().format("YYYY-MM-DD");
-	    //getMonthDateRange("2015", "09");
 	    var calendar = $('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
@@ -135,6 +128,8 @@
 					$('#calendar').fullCalendar( 'gotoDate', start );
 				}else{
 					//if current view is date(and choose time range) when click on it insert modal should show
+					$validform.resetForm();
+					$('#formInsert').trigger('reset');
 					setApplicant("all"); 
 					$('#insModal').modal('show');
 					insStart = start;
@@ -213,7 +208,9 @@
 		})
 		
 		$("#insBtn").on('click',function(){
+			if( $('#formInsert').valid() ) {
 			insTitle = $("#applicantName option:selected").text();
+
 			var appointment = { 
 					topic : $("#appointmentTopic").val(),
 					detail : $("#appoint_detail").val(),
@@ -242,10 +239,9 @@
 						$('#calendar').fullCalendar('renderEvent', insData, true); // stick? = true
 						$('#insModal').modal('hide');	
 						$('#formInsert').trigger('reset');
-						//alert(data);
-						//alert(data.id);
 					}
 				});//end ajax
+			}
 			}//end if
 		})//endonclick 'insBtn'
 		
@@ -255,7 +251,7 @@
 				type : "GET",
 				dataType : "json",
 				success : function(data){
-					$('#applicantName').empty().append('<option value="-1">-- Select Applicant --</option>');
+					$('#applicantName').empty().append('<option value="">-- Select Applicant --</option>');
 					
 						$.each(data, function(i, item) {
 						    //alert(data[i].firstNameEN);
@@ -304,8 +300,8 @@
 						
 						<div class="col-md-6">
 								<label for="applicantName">Applicant Name</label> 
-								<select name="applicantname" id="applicantName" class="form-control">
-									<option value="-1">-- Select Applicant --</option>
+								<select id="applicantName" class="form-control" name = "applicantName">
+									<option value="">-- Select Applicant --</option>
 									<c:forEach items="${applicants}" var="applicant">
 										<option value="${applicant.id}">${applicant.firstNameEN}  ${applicant.lastNameEN} ( ${applicant.technology.name} ${applicant.joblevel.name} )</option>
 									</c:forEach>
@@ -317,14 +313,14 @@
         			<div class="row">
 	        			<div class="col-md-6">
 	        				<label for="appointmentTopic">Appointment Topic</label>
-	        				<input id="appointmentTopic" class="form-control" placeholder="Topic"></input>
+	        				<input id="appointmentTopic" class="form-control" placeholder="Topic" name="appointmentTopic"  ></input>
 	        			</div>
 	        		
 					</div>
 					<div class="row">	
 	        			<div class="col-md-12">
 	        				<label for="appoint_detail">Detail</label>
-	        				<textarea id="appoint_detail" class="form-control" rows="4" placeholder="Insert detail here..."></textarea>
+	        				<textarea id="appoint_detail" name ="appoint_detail" class="form-control" rows="4" placeholder="Insert detail here..."></textarea>
 	        			</div>
 	        			<!-- <div class="col-md-12"><br>
 	        				<label >Appoint for</label>
@@ -438,7 +434,7 @@
 					<div class="row">	
 	        			<div class="col-md-12">
 	        				<label for="appoint_detail">Detail</label>
-	        				<textarea id="appoint_detail" class="form-control" rows="4" placeholder="Insert detail here..."></textarea>
+	        				<textarea id="appoint_detail" class="form-control" rows="4" placeholder="Insert detail here..." name ="appoint_detail"></textarea>
 	        			</div>
         			</div></form>
 	        		</div>
@@ -477,3 +473,7 @@
 		</div><!-- /.modal -->
 	
 </div>
+
+<!-- Validate -->
+<script type="text/javascript" src="static/resources/js/jquery.validate.min.js"></script>
+
