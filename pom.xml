@@ -318,11 +318,11 @@
 			<version>1.7</version>
 		</dependency>
 		<!-- CKEditor -->
-		 <dependency>
+		<!--  <dependency>
 			<groupId>com.ckeditor</groupId>
 			<artifactId>ckeditor-java-core</artifactId>
 			<version>3.5.3</version>
-		</dependency>
+		</dependency> -->
 		<!-- /Email -->
 
 	</dependencies>

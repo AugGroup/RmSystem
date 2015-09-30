@@ -31,7 +31,7 @@ $(document).ready(function() {
 				url : 'findByIdLanguages/' +id,
 				type : 'POST'
 			},
-			columns : [ {data : "languagesName"},
+			columns : [ {data : "nameLanguage"},
 			            {data : "speaking"},
 			            {data : "reading"},
 			            {data : "understanding"},
@@ -47,30 +47,74 @@ $(document).ready(function() {
 		});
 
 	}
+	//================================================
+	 $("#languages").prop('readonly','readonly');
+		
+		
+	  $('#languages').change(function() {
+		  
+		  if($("#languages option:selected").text()=='Other'){
+			  
+				$("#nameLanguage").prop('readonly',false);
+			    $('#nameLanguage').val('');
 	
+		   }
+		  
+		  if($("#languages option:selected").text()=='English'){
+			  
+				$("#nameLanguage").prop('readonly',true);
+			    $('#nameLanguage').val($("#languages option:selected").text());
+	
+		   }
+		  
+		  if($("#languages option:selected").text()=='Thai'){
+			  
+				$("#nameLanguage").prop('readonly',true);
+			    $('#nameLanguage').val($("#languages option:selected").text());
+	
+		   }
+				
+		});
+	//========================================================  
 	function saveLanguages(){
 		if ($('#languagesForm').valid()) {
-		var languagesName = $("#languages").val();
+			
+		var languages = $("#languages option:selected").text();
+		var languagesName = $("#nameLanguage").val();
 		var speaking = $('input[name="speaking"]:checked').val();
 		var reading = $('input[name="reading"]:checked').val();
 		var understanding = $('input[name="understanding"]:checked').val();
 		var writing = $('input[name="writing"]:checked').val();
 		
+		if($("#languages option:selected").text()=='Other'){
 		var json = {
 				"applicant" : {"id" : id},
-				"languagesName" : languagesName,
+				"nameLanguage" : languagesName,
 				"speaking" : speaking,
 				"reading" : reading,
 				"understanding" : understanding,
 				"writing" : writing
 				};
-
+		}
+		else{
+			var json = {
+					"applicant" : {"id" : id},
+					"nameLanguage" : languages,
+					"speaking" : speaking,
+					"reading" : reading,
+					"understanding" : understanding,
+					"writing" : writing
+					};
+			}
+			
+			
  		$.ajax({
 			contentType : "application/json",
 			type : "POST",
 			url : 'languages/'+id,
 			data : JSON.stringify(json),
 			success : function(data) {
+				alert(data.nameLanguage);
 				$('#languagesModal').modal('hide');
 				dtApplicant.ajax.reload();
 				
@@ -102,7 +146,16 @@ $(document).ready(function() {
 	
 	//Show data on inputField
 	function showFillData(data){
-		$("#languages").val(data.languagesName);
+        $('#applicant').val(data.applicantId);
+
+		if(data.nameLanguage=='English'||data.nameLanguage=='Thai'){
+	    		$('#languages').val(data.nameLanguage);
+	    	}else{
+	    		$('#languages').val('Other');
+	    		$("#nameLanguage").prop('readonly',false);
+	    	}
+	        $('#nameLanguage').val(data.nameLanguage);
+	        
 		$("input[name=speaking]:radio[value=" + data.speaking +"]").prop('checked', true);
 		$("input[name=reading]:radio[value=" + data.reading +"]").prop('checked', true);
 		$("input[name=understanding]:radio[value=" + data.understanding +"]").prop('checked', true);
@@ -113,15 +166,18 @@ $(document).ready(function() {
 	function updated(button){
 		if ($('#languagesForm').valid()) {
 		var id = $(button).data("id");
-		var languagesName = $("#languages").val();
+        var applicantId = $('#applicant').val();
+		var languages= $("#languages option:selected").text();
+		var nameLanguage = $("#nameLanguage").val();
 		var speaking = $('input[name="speaking"]:checked').val();
 		var reading = $('input[name="reading"]:checked').val();
 		var understanding = $('input[name="understanding"]:checked').val();
 		var writing = $('input[name="writing"]:checked').val();
 		
 		var json = {
+				"applicant" : {"id" : applicantId},
 				"id" : id,
-				"languagesName" : languagesName,
+				"nameLanguage" : languages,
 				"speaking" : speaking,
 				"reading" : reading,
 				"understanding" : understanding,
@@ -140,7 +196,7 @@ $(document).ready(function() {
 			 	var rowData = table.row(button.closest('tr')).index(); 
 			 	var d = table.row(rowData).data();
 			 	
-			 		d.languagesName = data.languagesName;
+			 		d.nameLanguage = data.nameLanguage;
 			 		d.speaking = data.speaking;
 			 		d.reading = data.reading;
 			 		d.understanding = data.understanding;

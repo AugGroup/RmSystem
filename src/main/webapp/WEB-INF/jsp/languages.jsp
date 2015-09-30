@@ -42,13 +42,32 @@ var id = ${id};
 							<input type="hidden" id="applicant" name="applicant"
 								value="${id}">
 						</div>
-						<div class="form-group">
-
-							<label for="languages"><spring:message
-									code="languages.name.less" /> </label> <input type="text"
-								class="form-control" id="languages" name="languages"
-								placeholder="<spring:message code="languages.text.name"/>">
-						<label for="languages" class="error" style="display:none;"></label><br>
+							
+						
+			<div class="form-group">
+				<div class="row">
+						<div class='col-sm-6' align="left">
+								
+									<select id="languages" name="languages" class="form-control ">
+										<option value="" label="---Select languages---"></option>
+										<option value="Thai">Thai</option>
+										<option value="English">English</option>
+										<option value="Other">Other</option>
+		
+									</select>
+				
+							</div>
+				<div class="form-group">
+					 <div class="col-md-6">
+								<input type="text" class="form-control" id="nameLanguage" name="nameLanguage"/>
+					</div>
+				</div>
+			</div>
+<%-- 							<label for="languages"><spring:message --%>
+<%-- 									code="languages.name.less" /> </label> <input type="text" --%>
+<!-- 								class="form-control" id="languages" name="languages" -->
+<%-- 								placeholder="<spring:message code="languages.text.name"/>"> --%>
+<!-- 						<label for="languages" class="error" style="display:none;"></label><br> -->
 							<label for="speaking"><spring:message
 									code="languages.speak.less" /></label>
 							<div class="radio-inline">
@@ -125,7 +144,7 @@ var id = ${id};
 							</div><br>
 					<label for="writing" class="error" style="display:none;"></label>
 							
-						</div>
+	</div>
 						<br> <br>
 						<button type="button" class="btn btn-success" id="btn_save">
 							<span class="glyphicon glyphicon-save"></span>

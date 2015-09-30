@@ -101,6 +101,7 @@ $(document).ready(function() {
 		
 		//Show data on inputField
 		function showFillData(data){
+			$("#referenceId").val(data.id);
 			$("#name").val(data.name);
 			$("#address").val(data.address);
 			$("#telNo").val(data.tel);
@@ -111,12 +112,14 @@ $(document).ready(function() {
 		function updated(button){
 			if ($('#referenceForm').valid()) {
 			var id = $(button).data("id");
+			var referenceId = $("#referenceId").val();
 			var name = $("#name").val();
 			var address = $("#address").val();
 			var tel= $("#telNo").val();
 			var occupation = $("#occupationRef").val();
 			
 			var json = {
+//					"applicant" : {"id" : id},
 					"id" : id,
 					"name" : name,
 					"address" : address,

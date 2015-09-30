@@ -36,8 +36,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import services.MasDegreeTypeServiceTest;
+// import services.MasDegreeTypeServiceTest;
 
+import com.aug.hrdb.dto.AbilityDto;
 import com.aug.hrdb.dto.AddressDto;
 import com.aug.hrdb.dto.ApplicantDto;
 import com.aug.hrdb.dto.CertificationDto;
@@ -48,6 +49,7 @@ import com.aug.hrdb.dto.LanguageDto;
 import com.aug.hrdb.dto.ReferenceDto;
 import com.aug.hrdb.dto.ReportApplicantDto;
 import com.aug.hrdb.dto.SearchReportDto;
+import com.aug.hrdb.entities.Ability;
 import com.aug.hrdb.entities.Address;
 import com.aug.hrdb.entities.Applicant;
 import com.aug.hrdb.entities.Appointment;
@@ -57,7 +59,6 @@ import com.aug.hrdb.entities.Experience;
 import com.aug.hrdb.entities.Family;
 import com.aug.hrdb.entities.Language;
 import com.aug.hrdb.entities.MasAddressType;
-import com.aug.hrdb.entities.MasCoreSkill;
 import com.aug.hrdb.entities.MasDegreetype;
 import com.aug.hrdb.entities.MasJoblevel;
 import com.aug.hrdb.entities.MasProvince;
@@ -65,6 +66,7 @@ import com.aug.hrdb.entities.MasRelationType;
 import com.aug.hrdb.entities.MasSpecialty;
 import com.aug.hrdb.entities.MasTechnology;
 import com.aug.hrdb.entities.Reference;
+import com.aug.hrdb.services.AbilityService;
 import com.aug.hrdb.services.AddressService;
 import com.aug.hrdb.services.ApplicantService;
 import com.aug.hrdb.services.AppointmentService;
@@ -111,8 +113,6 @@ public class ApplicantController implements Serializable {
 	private ExperienceService experienceService;
 	@Autowired
 	private EducationService educationService;
-//	@Autowired
-//	private SkillService skillService;
 	@Autowired
 	private LanguageService languageService;
 	@Autowired
@@ -135,8 +135,10 @@ public class ApplicantController implements Serializable {
 	private MasRelationTypeService masRelationService;
 	@Autowired
 	private MasDegreetypeService masDegreeTypeService;
-	
+	@Autowired
 	private MasSpecialtyService masSpecialtyService;
+	@Autowired
+	private AbilityService abilityService;
 	
 	@RequestMapping(value = "/applicant", method = { RequestMethod.GET })
 	public String helloPage(Model model) {
@@ -504,23 +506,23 @@ public class ApplicantController implements Serializable {
 	}
 	
 	@RequestMapping(value = "/skills/{id}", method = { RequestMethod.POST })
-	public @ResponseBody MasTechnology skill(@RequestBody MasTechnology masTechnology,@PathVariable Integer id,Model model) {
+	public @ResponseBody Ability skill(@RequestBody Ability ability,@PathVariable Integer id,Model model) {
 		model.addAttribute("id",id);
-		masTechnologyService.create(masTechnology);
-		MasTechnology skills = masTechnologyService.find(id);
+		abilityService.create(ability);
+		Ability ab = abilityService.find(id);
 		
-        return skills;
+        return ab;
 
 	}
 	
-	@RequestMapping(value = "languages/languages{id}", method = { RequestMethod.POST })
+	@RequestMapping(value = "languages/languages/{id}", method = { RequestMethod.POST })
 	public @ResponseBody Language language(@RequestBody Language language,@PathVariable Integer id,Model model) {
 		model.addAttribute("id",id);
 		languageService.create(language);
 		Language lang = languageService.find(id);
-		Hibernate.initialize(lang.getApplicant().getTechnology());
-		Hibernate.initialize(lang.getApplicant().getJoblevel());
-		
+//		Hibernate.initialize(lang.getApplicant().getTechnology());
+//		Hibernate.initialize(lang.getApplicant().getJoblevel());
+//		
         return lang;
 
 	}
@@ -730,8 +732,8 @@ public class ApplicantController implements Serializable {
 	}
 	
 	@RequestMapping(value = "skills/findSkillId/{id}", method = { RequestMethod.POST })
-	public @ResponseBody MasTechnology findSkill(@PathVariable Integer id) {
-		return masTechnologyService.find(id);
+	public @ResponseBody AbilityDto findSkill(@PathVariable Integer id) {
+		return abilityService.findAbility(id);
 	}
 	
 	@RequestMapping(value = "languages/findLanguagesId/{id}", method = { RequestMethod.POST })
@@ -804,18 +806,18 @@ public class ApplicantController implements Serializable {
 			}
 		};
 	}
-//	
-//	@RequestMapping(value = "skills/findByIdSkill/{id}", method = { RequestMethod.POST })
-//	public @ResponseBody Object findByIdSkill(@PathVariable Integer id) {
-//		 final List<MasTechnology> list = masTechnologyService.findByIdMasTechnology(id);
-//		 
-//		return new Object() {
-//			public List<MasTechnology> getData() {
-//				return list;
-//			}
-//			
-//		};
-//	}
+	
+	@RequestMapping(value = "skills/findByIdSkill/{id}", method = { RequestMethod.POST })
+	public @ResponseBody Object findByIdSkill(@PathVariable Integer id) {
+		 final List<AbilityDto> list = abilityService.findAbilityList(id);
+		 
+		return new Object() {
+			public List<AbilityDto> getData() {
+				return list;
+			}
+			
+		};
+	}
 	
 	@RequestMapping(value = "languages/findByIdLanguages/{id}", method = { RequestMethod.POST })
 	public @ResponseBody Object findByIdLanguages(@PathVariable Integer id) {
@@ -926,23 +928,18 @@ public class ApplicantController implements Serializable {
 	}
 	
 	@RequestMapping(value = "skills/updateSkills/{id}", method = { RequestMethod.POST })
-	public @ResponseBody MasTechnology updateSkills(@RequestBody MasTechnology masTechnology, @PathVariable Integer id) {
-		MasTechnology skill = masTechnologyService.find(masTechnology.getId());
-		skill.setId(masTechnology.getId());
-		skill.setIsActive(masTechnology.getIsActive());
-		skill.setName(masTechnology.getName());
-		skill.setCode(masTechnology.getCode());
-		skill.setAuditFlag(masTechnology.getAuditFlag());
-		skill.setCreatedTimeStamp(masTechnology.getCreatedTimeStamp());
-		skill.setCreatedBy(masTechnology.getCreatedBy());
-		skill.setUpdatedBy(masTechnology.getUpdatedBy());
-		skill.setUpdatedTimeStamp(masTechnology.getUpdatedTimeStamp());
-		masTechnologyService.update(skill);
+	public @ResponseBody AbilityDto updateSkills(@RequestBody AbilityDto abilityDto, @PathVariable Integer id) {
+		Ability skill = abilityService.find(abilityDto.getId());
+		MasSpecialty masSpecialty=masSpecialtyService.findById(abilityDto.getMasspecialtyId());
+		skill.setId(abilityDto.getId());
+		skill.setRank(abilityDto.getRank());
+		skill.setMasspecialty(masSpecialty);
+		abilityService.update(skill);
 		
-		return masTechnology;
+		return abilityDto;
 	}
 	
-	@RequestMapping(value = "languages/updateLanguage/{id}", method = { RequestMethod.POST })
+	@RequestMapping(value = "languages/updateLanguages/{id}", method = { RequestMethod.POST })
 	public @ResponseBody LanguageDto updateLanguage(@RequestBody LanguageDto languageDto, @PathVariable Integer id) {
 		Language languages = languageService.find(languageDto.getId());
 		languages.setId(languageDto.getId());
@@ -1098,9 +1095,9 @@ public class ApplicantController implements Serializable {
 		return masDegreeTypeService.findAll();
 	}
 	
-//	@ModelAttribute("masspecialties")
-//	@Transactional
-//	public List<MasSpecialty> masspecialtyList(){
-//		return masSpecialtyService.findAll();
-//	}	
+	@ModelAttribute("masspecialties")
+	@Transactional
+	public List<MasSpecialty> masspecialtyList(){
+		return masSpecialtyService.findAll();
+	}	
 }

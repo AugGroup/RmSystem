@@ -3,6 +3,7 @@ package com.aug.controllers;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -111,12 +112,12 @@ public class CalendarController {
 		return appointmentService.findById(id);
 		
 	}
-
-
+	
 	@RequestMapping(value = "calendar/findAppointment",method = RequestMethod.GET)
 		public @ResponseBody List<AppointmentDto> findAppointment(@RequestParam(value="start") String start,
 		@RequestParam(value="end") String end, @RequestParam(value="_",required = false) String underscore) throws ParseException {
-	    return appointmentService.findAppointment(start, end);
+		
+		return  appointmentService.findAppointment(start, end);
 	}
 	
 	@RequestMapping(value = "calendar/findByTrackingStatus/{trackingStatus}", method = RequestMethod.GET)

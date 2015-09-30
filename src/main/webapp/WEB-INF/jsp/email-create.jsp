@@ -3,11 +3,13 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="f"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://ckeditor.com" prefix="ckeditor" %>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/resources/pageCss/email-create.css" />
 
+<title>Create Template</title>
+
 <div class="container">
+	
 	<div class="col-sm-12" id="email-section">
 		
 		<div class="row">
@@ -22,6 +24,25 @@
 		
 		<div class="row">
 			<div class="col-sm-7">
+				<c:choose>
+					<c:when test="${sendStatus == true}">
+			       		<div class="alert alert-success alert-dismissible" role="alert">
+				       		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	  							<span aria-hidden="true">&times;</span>
+							</button>Save template success.
+						</div>
+			    	</c:when>
+			    	<c:when test="${sendStatus == false}">
+			       		<div class="alert alert-danger alert-dismissible" role="alert">
+				       		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	  							<span aria-hidden="true">&times;</span>
+							</button>Save template fail.
+						</div>
+			    	</c:when>
+			    	<c:when test="${empty sendStatus}">
+			    		
+			    	</c:when>
+				</c:choose>
 				<div id="email-template">
 					<form action="${ pageContext.request.contextPath }/email/setTemplate" method="POST">
 						<div class="form-group">
@@ -34,9 +55,6 @@
 						</div>
 						<input type="submit" class="btn btn-info" value="Submit" />
 					</form>
-					<ckeditor:replace replace="editor1" basePath="${ pageContext.request.contextPath }/static/resources/ckeditor/" />
-					<%-- <ckeditor:replace replace="editor1" basePath="${ pageContext.request.contextPath }/static/ckeditor/" 
-						config="<%= Config.createConfig() %>" events="<%= Config.createEventHandlers() %>" /> --%>
 				</div>
 			</div>
 			<div class="col-sm-5">
@@ -57,3 +75,8 @@
 			
 	</div>
 </div>
+<script type="text/javascript">
+	var contextPath = "${pageContext.request.contextPath}";
+</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/pageJS/email-create.js"></script>
