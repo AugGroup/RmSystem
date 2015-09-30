@@ -71,7 +71,15 @@
 	}
 	
 	
-	
+	function toTimeZone(time) {
+	    var format = 'MM/DD/YYYY HH:mm:ss z';
+	    var zone = "Asia/Bangkok"
+	    var expect = moment(time, format).tz(zone).format(format);
+	    
+	    var date = new Date(time);
+	    console.log(date);
+	    return expect;
+	}
 	
 	$(document).ready(function() {
 		
@@ -88,19 +96,6 @@
 		var type;
 		
 		
-		/* if (!document.getElementById('appointmentType3').checked) {
-			document.getElementById("remarkOther").disabled = true;
-		}
-		
-		$('input[type=radio][name=appointmentType]').change(function() {
-	        if (this.value == 'other') {
-	        	document.getElementById("remarkOther").disabled = false;
-	        }
-	        else {
-	        	document.getElementById("remarkOther").disabled = true;
-	        }
-	    }); */
-		//var calendar = $('#calendar').fullCalendar('getCalendar');
 		var startDate , endDate;
 	    function getMonthDateRange(year, month) {
 	        //var moment = require('moment');
@@ -129,6 +124,7 @@
 				right: 'month,agendaWeek,agendaDay'
 			},
 			defaultDate: currentDate(),
+			timezone: 'Asia/Bangkok',
 			selectable: true,
 			selectHelper: true,
 			select: function(start, end) {
@@ -158,8 +154,8 @@
             error: function() {
                 alert('there was an error while fetching events!');
             },
-            color: 'yellow',   // a non-ajax option
-            textColor: 'black' // a non-ajax option
+            color: '#4C48BD',   // a non-ajax option
+            textColor: 'white' // a non-ajax option
         }
 
         // any other sources...
@@ -176,11 +172,13 @@
 					url : "calendar/getAppointment/"+id,
 					type : "GET",
 					success : function(data){
+						console.log(data)
 						$("#detail_app_name").text(data.applicantName+" ( "+data.applicantPosition+" )");
 					    $("#detail_topic").text(data.topic);
-					    $("#start_date").text(data.start);
-					    $("#end_date").text(data.end);
+					    $("#start_date").text(new Date(data.start));
+					    $("#end_date").text(new Date(data.end));
 						$("#detail_desciption").text(data.detail); 
+						$("#appoint_by").text(data.loginName);
 						//alert(data.detail);
 					},
 					error : function (error) {
@@ -219,14 +217,6 @@
 		
 		$("#insBtn").on('click',function(){
 			insTitle = $("#applicantName option:selected").text();
-// 			var appointmentType;
-// 			if (document.getElementById('appointmentType1').checked) {
-// 				appointmentType = $("#appointmentType1").val();
-// 			}else if (document.getElementById('appointmentType2').checked) {
-// 				appointmentType = $("#appointmentType2").val();
-// 			}else if (document.getElementById('appointmentType3').checked) {
-// 				appointmentType = $("#remarkOther").val();
-// 			}
 			var appointment = { 
 					topic : $("#appointmentTopic").val(),
 					detail : $("#appoint_detail").val(),
@@ -247,7 +237,7 @@
 					success : function(data){
 						insData = {
 							id : data.id,
-							title: insTitle,
+							title: data.title,
 							start: insStart,
 							end: insEnd
 						};
@@ -403,6 +393,10 @@
 	        		<tr>
 	        			<td colspan="1"><h4 >Detail</h4></td>
 	        			<td colspan="2"><h4 id="detail_desciption"></h4></td>
+	        		</tr>
+	        		<tr>
+	        			<td colspan="1"><h5 >Appoint By</h5></td>
+	        			<td colspan="2"><h4 id="appoint_by"></h4></td>
 	        		</tr>
 	        	</table>
 	        
