@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.context.Context;
-import org.hibernate.SessionFactory;
-import org.hibernate.persister.entity.AbstractEntityPersister;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -22,16 +20,15 @@ import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.aug.hrdb.dto.ApplicantDto;
-import com.aug.hrdb.entities.Applicant;
 import com.aug.hrdb.entities.MailTemplate;
 import com.aug.hrdb.services.MailTemplateService;
-
 
 @Controller
 public class EmailController {
@@ -151,5 +148,31 @@ public class EmailController {
 		mailTemplateService.create(mailTemplate);
 		
 		return template;
+	}
+	
+
+	@RequestMapping(value="/email/edit", method={RequestMethod.GET})
+	public String editEmail(){ 
+		return "email-edit";
+	}
+	
+	@RequestMapping(value="/email/edit/update", method={RequestMethod.POST})
+	public void updateDbEmail(@RequestBody MailTemplate mailTemplate){ 
+		mailTemplateService.update(mailTemplate);
+	}
+	
+	@RequestMapping(value="/email/edit/update/{id}", method={RequestMethod.GET},produces = "text/plain;charset=UTF-8")
+	public @ResponseBody String editEmailId(@PathVariable Integer id){ 
+		return mailTemplateService.findById(id).getTemplate();
+	}
+	
+	@RequestMapping(value="/email/edit/delete/{id}", method={RequestMethod.GET})
+	public @ResponseBody void deleteEmail(@PathVariable Integer id){ 
+		mailTemplateService.deleteById(id);
+	}
+	
+	@ModelAttribute("mailTemplate")
+	public List<MailTemplate> getListDepartment(){		
+		return mailTemplateService.findAll();
 	}
 }
