@@ -60,7 +60,9 @@
 <script src='<c:url value="/static/resources/js/moment-timezone.js"/>'></script>
 <%-- <script src='<c:url value="/static/resources/js/jquery-1.11.3.min.js"/>'></script> --%>
 <script src='<c:url value="/static/resources/js/fullcalendar.min.js"/>'></script>
-
+<script type="text/javascript">
+	var contextPath = "${pageContext.request.contextPath}";
+</script>
 </head>
 <%
 	User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

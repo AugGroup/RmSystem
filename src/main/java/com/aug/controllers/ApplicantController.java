@@ -505,12 +505,13 @@ public class ApplicantController implements Serializable {
 
 	}
 	
-	@RequestMapping(value = "/skills/{id}", method = { RequestMethod.POST })
+	@RequestMapping(value = "/skills/skills/{id}", method = { RequestMethod.POST })
 	public @ResponseBody Ability skill(@RequestBody Ability ability,@PathVariable Integer id,Model model) {
 		model.addAttribute("id",id);
 		abilityService.create(ability);
 		Ability ab = abilityService.find(id);
-		
+		//Hibernate.initialize(ab.getApplicant().getTechnology());
+		//Hibernate.initialize(ab.getApplicant().getJoblevel());
         return ab;
 
 	}
@@ -1012,12 +1013,12 @@ public class ApplicantController implements Serializable {
 		certificationService.deleteById(id);
 		return "success";
 	}
-//	
-//	@RequestMapping(value = "skills/deleteSkill/{id}", method = RequestMethod.POST)
-//	public @ResponseBody String deleteSkill(@PathVariable("id") Integer id) {
-//		masTechnologyService.deleteById(id);
-//		return "success";
-//	}
+	
+	@RequestMapping(value = "skills/deleteSkill/{id}", method = RequestMethod.POST)
+	public @ResponseBody String deleteSkill(@PathVariable("id") Integer id) {
+		abilityService.deleteById(id);
+		return "success";
+	}
 	
 	@RequestMapping(value = "languages/deleteLanguages/{id}", method = RequestMethod.POST)
 	public @ResponseBody String delesteLanguages(@PathVariable("id") Integer id) {

@@ -42,15 +42,17 @@ $(document).ready(function() {
 	function saveSkill(){
 		if ($('#skillForm').valid()) {
 		var masspecialty = $("#masspecialty").val();
+		var masspecialtyId = $("#masspecialty").val();
+
+		var rank = $('input:radio[name=rank]:checked').val();
 		var json = {
 				applicant : {"id" : id},
-				masspecialtyId : $("#masspecialty").val(), 
-				masspecialty : $("#masspecialty option:selected").text(),
-				rank : rank,
+				masspecialty : {"id": masspecialtyId, "name": $("#masspecialty option:selected").text()},
+				rank : rank
 				};
 		
 		$.ajax({
-			url : "skills/"+id,
+			url : contextPath + "/skills/skills/"+id,
 			type : "POST",
 			contentType :"application/json; charset=utf-8",
 			data : JSON.stringify(json),
@@ -70,6 +72,7 @@ $(document).ready(function() {
 				});
 			 }
 		});
+		console.log(json);
 		};
 	}
 
@@ -87,18 +90,26 @@ $(document).ready(function() {
 	
 	//Show data on inputField
 	function showFillData(data){
+        $('#applicant').val(data.applicantId);
+		$("#skillsId").val(data.id);
 		$("#masspecialty").val(data.masspecialty);
-		$("#rank1").val(data.rank);
+//		$("#masspecialty").val(data.masspecialtyId);
+		$("input[name=rank]:radio[value=" + data.rank +"]").prop('checked', true);
 	}
 	
 	//Update function
 	function updated(button){
 		if ($('#skillForm').valid()) {
 			var id = $(button).data("id");
-			var name = $("#name").val();
+			var applicantId = $("#applicant").val();
+			var masspecialty = $("#masspecialty").val();
+			var rank = $('input:radio[name=rank]:checked').val();
 			var json = {
-					"id" : id,
-					"name" : name,
+					applicant : {"id" : applicantId},
+					id : id,
+					masspecialtyId : $("#masspecialty").val(), 
+					masspecialty : $("#masspecialty option:selected").text(),
+					rank : rank
 					};
 			
 			$.ajax({
@@ -112,9 +123,9 @@ $(document).ready(function() {
 					var table = $('#skillTable').DataTable();	
 				 	var rowData = table.row(button.closest('tr')).index(); 
 				 	var d = table.row(rowData).data();
-				 	
-			 		d.name = data.name;
-			 		
+				 	d.masspecialtyId = data.masspecialtyId;
+			 		d.masspecialty = data.masspecialty;
+			 		d.rank = data.rank;
 			 		table.row(rowData).data(d).draw();
 			 		
 					new PNotify({
