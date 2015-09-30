@@ -16,7 +16,7 @@
 			
 			<div class="col-sm-12">
 				<div class="page-header">
-					<h1>Create Email</h1>
+					<h1><spring:message code="request.email.header.create" /></h1>
 				</div>
 			</div>
 			
@@ -29,14 +29,14 @@
 			       		<div class="alert alert-success alert-dismissible" role="alert">
 				       		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 	  							<span aria-hidden="true">&times;</span>
-							</button>Save template success.
+							</button><spring:message code="request.email.status.success" />
 						</div>
 			    	</c:when>
 			    	<c:when test="${sendStatus == false}">
 			       		<div class="alert alert-danger alert-dismissible" role="alert">
 				       		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 	  							<span aria-hidden="true">&times;</span>
-							</button>Save template fail.
+							</button><spring:message code="request.email.status.fail" />
 						</div>
 			    	</c:when>
 			    	<c:when test="${empty sendStatus}">
@@ -46,29 +46,29 @@
 				<div id="email-template">
 					<form action="${ pageContext.request.contextPath }/email/setTemplate" method="POST">
 						<div class="form-group">
-							<label for="name">Template Name :</label>
+							<label for="name"><spring:message code="request.email.form.name" /> :</label>
 							<input type="text" name="name" class="form-control" placeholder="Template Name">
 						</div>
 						<div class="form-group">
-							<label for="template">Template :</label>
-							<textarea id="editor1" name="template"></textarea>
+							<label for="template"><spring:message code="request.email.form.template" /> :</label>
+							<textarea id="template" name="template"></textarea>
 						</div>
-						<input type="submit" class="btn btn-info" value="Submit" />
+						<button type="submit" class="btn btn-primary"><spring:message code="request.email.form.submit" /></button>
 					</form>
 				</div>
 			</div>
 			<div class="col-sm-5">
 				<div id="email-hints">
-					<p class="text-center"><strong id="email-hints-header">Hints</strong></p>
-					<p><b>$FIRST_NAME</b> : Applicant's first name.</p>
-					<p><b>$LAST_NAME</b> : Applicant's last name.</p>
-					<p><b>$TECHNOLOGY</b> : Applicant's technology.</p>
-					<p><b>$DATE</b> : Appointment date.</p>
-					<p><b>$TIME</b> : Appointment time.</p>
-					<p><b>$RECRUIT_FIRST_NAME</b> : Recruiter's first name.</p>
-					<p><b>$RECRUIT_LAST_NAME</b> : Recruiter's last name.</p>
-					<p><b>$RECRUIT_POSITION</b> : Recruiter's position</p>
-					<p><b>$RECRUIT_PHONE</b> : Recruiter's phone number</p>
+					<p class="text-center"><strong id="email-hints-header"><spring:message code="request.email.description" /></strong></p>
+					<p><b>$FIRST_NAME</b> : <spring:message code="request.email.hints.firstName" /></p>
+					<p><b>$LAST_NAME</b> : <spring:message code="request.email.hints.lastName" /></p>
+					<p><b>$TECHNOLOGY</b> : <spring:message code="request.email.hints.technology" /></p>
+					<p><b>$DATE</b> : <spring:message code="request.email.hints.date" /></p>
+					<p><b>$TIME</b> : <spring:message code="request.email.hints.time" /></p>
+					<p><b>$RECRUIT_FIRST_NAME</b> : <spring:message code="request.email.hints.recruitFirstName" /></p>
+					<p><b>$RECRUIT_LAST_NAME</b> : <spring:message code="request.email.hints.recruitLastName" /></p>
+					<p><b>$RECRUIT_POSITION</b> : <spring:message code="request.email.hints.recruitPosition" /></p>
+					<p><b>$RECRUIT_PHONE</b> : <spring:message code="request.email.hints.recruitPhone" /></p>
 				</div>
 			</div>
 		</div>

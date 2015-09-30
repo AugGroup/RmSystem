@@ -1,3 +1,7 @@
+.page-header {
+	border-bottom:	1px solid #00000;
+}
+
 #email-section {
 	-webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
@@ -15,3 +19,4 @@
 	font-size: 2em;
 	text-decoration: underline;
 }
+

@@ -83,7 +83,7 @@
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
 		<property name="username" value="anat.pantera@gmail.com" />
-		<property name="password" value="**********" />
+		<property name="password" value="5430301094" />
 
  
 		<!-- The name of the property, following JavaBean naming conventions -->

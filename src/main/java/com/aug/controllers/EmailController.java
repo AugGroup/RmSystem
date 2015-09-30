@@ -83,7 +83,7 @@ public class EmailController {
 	
 	@RequestMapping(value="/email/send", method={RequestMethod.GET})
 	public String sendEmail(Model model, HttpServletRequest request, 
-			@RequestParam(value="name",required=false) String name) throws UnsupportedEncodingException {
+			@RequestParam(value="name") String name) throws UnsupportedEncodingException {
 		
 		String firstName = "Anat";
 	    String date = "15 June 2015";
@@ -128,8 +128,8 @@ public class EmailController {
 	              message.setTo(recipientAddress);
 	              message.setSubject(subject);
 	              
-	              FileSystemResource logo = new FileSystemResource(path + "logo.png");
-	              message.addAttachment(logo.getFilename(), logo);
+//	              FileSystemResource logo = new FileSystemResource(path + "logo.png");
+//	              message.addAttachment(logo.getFilename(), logo);
 	              
 	              FileSystemResource map = new FileSystemResource(path + "map.jpg");
 	              message.addAttachment(map.getFilename(), map);
@@ -144,7 +144,7 @@ public class EmailController {
         System.out.println("templateName : " + mailTemplate.getName());
         System.out.println("finalTemplate : " + mailTemplate.getTemplate());
     
-        return "email-create";
+        return "redirect:/email/create";
 	}
 	
 	@RequestMapping(value="/email/setTemplate", method={RequestMethod.POST})
