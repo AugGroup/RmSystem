@@ -114,7 +114,6 @@ $(document).ready(function() {
 			url : 'languages/'+id,
 			data : JSON.stringify(json),
 			success : function(data) {
-				alert(data.nameLanguage);
 				$('#languagesModal').modal('hide');
 				dtApplicant.ajax.reload();
 				

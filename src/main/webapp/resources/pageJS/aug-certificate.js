@@ -77,7 +77,6 @@ $(document).ready(function() {
 		var certificationForm = $("#certificationForm").val();
 		var description = $("#description").val();
 		var year = $("#year").val();
-		alert(id);
 		var json = {
 				"applicant" : {"id" : id},
 				"name" : name,
