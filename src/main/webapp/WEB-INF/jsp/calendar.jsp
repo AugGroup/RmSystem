@@ -101,16 +101,34 @@
 	        }
 	    }); */
 		//var calendar = $('#calendar').fullCalendar('getCalendar');
-		
-		
+		var startDate , endDate;
+	    function getMonthDateRange(year, month) {
+	        //var moment = require('moment');
 
-		var calendar = $('#calendar').fullCalendar({
+	        // month in moment is 0 based, so 9 is actually october, subtract 1 to compensate
+	        // array is 'year', 'month', 'day', etc
+	        startDate = moment([year, month - 1]);
+			startDate = moment(startDate).format("YYYY-MM-DD");
+	        // Clone the value before .endOf()
+	        endDate = moment(startDate).endOf('month');
+	        endDate = moment(endDate).format("YYYY-MM-DD");
+	        // just for demonstration:
+	        console.log(startDate.toString());
+	        console.log(endDate.toString());
+			
+	        // make sure to call toDate() for plain JavaScript date type
+	        //return { start: startDate, end: endDate };
+	    }
+		
+	    //var currentDate = moment().format("YYYY-MM-DD");
+	    //getMonthDateRange("2015", "09");
+	    var calendar = $('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
 				center: 'title',
 				right: 'month,agendaWeek,agendaDay'
 			},
-			defaultDate: '2015-10-01',
+			defaultDate: currentDate(),
 			selectable: true,
 			selectHelper: true,
 			select: function(start, end) {
@@ -130,7 +148,25 @@
 			},
 			editable: false,//can't drage to move event to editing
 			eventLimit: true, 
-			events : [],//"findAllAppointment",
+		//	events : "calendar/findAppointment" , //findAllAppointment
+			eventSources: [
+
+        // your event source
+        {
+            url: 'calendar/findAppointment',
+            type: 'GET',
+            error: function() {
+                alert('there was an error while fetching events!');
+            },
+            color: 'yellow',   // a non-ajax option
+            textColor: 'black' // a non-ajax option
+        }
+
+        // any other sources...
+
+    ],
+
+
 			eventClick: function(event, element) {
 				console.log(event.id)
 		        $("#myModal").modal("show");
@@ -234,22 +270,11 @@
 				success : function(data){
 					$('#applicantName').empty().append('<option value="-1">-- Select Applicant --</option>');
 					
-					if("all"=== trackingStatus){
 						$.each(data, function(i, item) {
 						    //alert(data[i].firstNameEN);
 						    var name = "<option value='" + data[i].id +  "'> " + data[i].firstNameEN +" " + data[i].lastNameEN +" ( " + data[i].technologyStr + " " + data[i].joblevelStr + "  )</option>"
 						    $('#applicantName').append(name);
 						})
-					}else{
-						$.each(data, function(i, item) {
-						    //alert(data[i].firstNameEN);
-						    var name = "<option value='" + data[i].id +  "'> " + data[i].firstNameEN +" " + data[i].lastNameEN +" ( " + data[i].masTechnologyName + " " + data[i].masJobLevelName + "  )</option>"
-						    $('#applicantName').append(name);
-						})
-					}
-					
-					
-					
 					console.log(data);
 				},
 				error : function(){
