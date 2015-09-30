@@ -108,7 +108,7 @@ public class EmailController {
         context.put("RECRUIT_PHONE", recruitPhone);
         
         //get template
-        MailTemplate mailTemplate = mailTemplateService.findByName("JAVA");
+        MailTemplate mailTemplate = mailTemplateService.findByName(name);
       
         //merge context and writer to String 
         velocityEngine.evaluate(context, writer, "SimpleVelocity", mailTemplate.getTemplate()); 

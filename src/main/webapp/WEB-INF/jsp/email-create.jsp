@@ -75,6 +75,8 @@
 			
 	</div>
 </div>
-
+<script type="text/javascript">
+	var contextPath = "${pageContext.request.contextPath}";
+</script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/pageJS/email-create.js"></script>
