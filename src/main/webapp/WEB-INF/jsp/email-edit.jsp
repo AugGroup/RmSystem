@@ -6,115 +6,6 @@
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/resources/pageCss/email-create.css" />
 
-<script type="text/javascript">
-function showModal(title, detail,btn) {
-	$("#showModal").modal("show");
-	$("#title-detail").text(title);
-	$("#body-detail").text(detail);
-	$("#btnActive").addClass(btn);
-}
-
-function cleanModal() {
-	$("#btnActive").removeClass("btn-warning");
-	$("#btnActive").removeClass("btn-danger")
-	$("#btnActive").removeClass("btn-success")
-}
-$( document ).ready(function() {
-	var $id = -1;
-	$("#mailTemplate").change(function(){		
-		$id = $("#mailTemplate").val();
-		
-		if($id == -1){
-			CKEDITOR.instances.editor.setData("");	
-		}else{
-			$.ajax({
-			    url: '${pageContext.request.contextPath}/email/edit/update/'+$id,
-			    type : 'GET',
-			    success : function(data){
-			    	CKEDITOR.instances.editor.setData(data);
-			    },
-			    error:function (jqXHR, textStatus, error){
-			    	alert('CallBack error');
-			    }
-		   	});
-		}
-	});
-	
-	$("#update").on('click',function(){
-		
-		if($id == -1){
-			var title = "Select Template";
-			var detail = "Please Select The Template";
-			var btn = "btn-warning";
-			showModal(title,detail,btn);
-			$("#btnActive").off().on("click",function(){
-				cleanModal(btn);
-			});
-		}else{
-			var title = "Update Template";
-			var detail = "Do You Want To Update The Template?";
-			var btn = "btn-success";
-			showModal(title,detail,btn);			
-			$("#btnActive").off().on("click",function(){
-				var data = {
-						'id':$id,
-						'template':CKEDITOR.instances.editor.getData()
-				}
-				$.ajax({
-				 	data:JSON.stringify(data),
-				    url: '${pageContext.request.contextPath}/email/edit/update',
-				    type :'POST',
-				    contentType : 'application/json',
-				    success : function(data){	
-				    	cleanModal(btn);
-				    },
-				    error:function (jqXHR, textStatus, error){
-				    	alert('CallBack error');
-				    }
-				});
-			});
-		}
-	});
-	
-	$("#delete").on('click',function(){
-		
-		if($id == -1){
-			var title = "Select Template";
-			var detail = "Please Select The Template";
-			var btn = "btn-warning";
-			showModal(title,detail,btn);
-			$("#btnActive").off().on("click",function(){
-				cleanModal(btn);
-			});
-		}else{
-			var title  = "Delete Template";
-			var detail = "Do You Want To Delete The Template?";
-			var btn	   = "btn-danger";
-			showModal(title,detail,btn);	
-			$("#btnActive").off().on("click",function(){
-				$.ajax({
-				    url: '${pageContext.request.contextPath}/email/edit/delete/'+$id,
-				    type : 'GET', 
-				    success : function(data){	
-				    	CKEDITOR.instances.editor.setData("");
-				    	$('select option[value="-1"]').attr("selected",true);
-				    	$id = -1;
-				    	cleanModal(btn);
-				    },
-				    error:function (jqXHR, textStatus, error){
-				    	alert('CallBack error');
-				    }
-				});
-			});
-		}
-	});
-	
-	$("#btnClose").off().on("click",function(){
-		cleanModal();
-	});
-});
-</script>
-
 <div class="container">
 	<div class="col-sm-12" id="email-section">
 		
@@ -143,14 +34,11 @@ $( document ).ready(function() {
 						</div>
 						<div class="form-group">
 							<label for="template">Template :</label>
-							<textarea id="editor" name="template"></textarea>
+							<textarea id="template" name="template"></textarea>
 						</div>
 						<button type="button" class="btn btn-success" id="update" >Update</button>
 						<button type="button" class="btn btn-danger" id="delete">Delete</button>
 					</form>
-					<ckeditor:replace replace="editor" basePath="${ pageContext.request.contextPath }/static/resources/ckeditor/" />
-					<%-- <ckeditor:replace replace="editor1" basePath="${ pageContext.request.contextPath }/static/ckeditor/" 
-						config="<%= Config.createConfig() %>" events="<%= Config.createEventHandlers() %>" /> --%>
 				</div>
 			</div>
 			<div class="col-sm-5">
@@ -192,3 +80,10 @@ $( document ).ready(function() {
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<script type="text/javascript">
+	var contextPath = "${pageContext.request.contextPath}";
+</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/pageJS/email-create.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/pageJS/email-edit.js"></script>

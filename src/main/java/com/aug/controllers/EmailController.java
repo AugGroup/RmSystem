@@ -153,7 +153,7 @@ public class EmailController {
 	}
 	
 	@RequestMapping(value="/email/edit/update", method={RequestMethod.POST})
-	public void updateDbEmail(@RequestBody MailTemplate mailTemplate){ 
+	public @ResponseBody void updateDbEmail(@RequestBody MailTemplate mailTemplate){ 
 		mailTemplateService.update(mailTemplate);
 	}
 	

@@ -5,6 +5,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/resources/pageCss/email-create.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/resources/css/pnotify.custom.min.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/js/pnotify.custom.min.js"></script>
 
 <title>Create Template</title>
 
@@ -79,5 +81,6 @@
 	var contextPath = "${pageContext.request.contextPath}";
 	var languageNow = "${pageContext.response.locale}";
 </script>
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/pageJS/email-create.js"></script>
