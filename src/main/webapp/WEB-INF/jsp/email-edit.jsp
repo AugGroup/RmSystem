@@ -13,7 +13,7 @@
 			
 			<div class="col-sm-12">
 				<div class="page-header">
-					<h1>Edit Email</h1>
+					<h1><spring:message code="request.email.header.edit" /></h1>
 				</div>
 			</div>
 			
@@ -24,35 +24,35 @@
 				<div id="email-template">
 					<form>
 						<div class="form-group">
-							<label for="name">Template Name :</label>
+							<label for="name"><spring:message code="request.email.form.name" /> :</label>
 							<select class="form-control" id="mailTemplate">
-								<option value="-1" label="--- Select Template ---" />
+								<option value="-1" label="<spring:message code="request.email.form.select" />" />
 								<c:forEach items="${mailTemplate}" var="mailTemplate">
 									<option value="${mailTemplate.id}">${mailTemplate.name}</option>
 								</c:forEach>
 							</select>
 						</div>
 						<div class="form-group">
-							<label for="template">Template :</label>
+							<label for="template"><spring:message code="request.email.form.template" /> :</label>
 							<textarea id="template" name="template"></textarea>
 						</div>
-						<button type="button" class="btn btn-success" id="update" >Update</button>
-						<button type="button" class="btn btn-danger" id="delete">Delete</button>
+						<button type="button" class="btn btn-success" id="update" ><spring:message code="request.email.form.update" /></button>
+						<button type="button" class="btn btn-danger" id="delete"><spring:message code="request.email.form.delete" /></button>
 					</form>
 				</div>
 			</div>
 			<div class="col-sm-5">
 				<div id="email-hints">
-					<p class="text-center"><strong id="email-hints-header">Hints</strong></p>
-					<p><b>$FIRST_NAME</b> : Applicant's first name.</p>
-					<p><b>$LAST_NAME</b> : Applicant's last name.</p>
-					<p><b>$TECHNOLOGY</b> : Applicant's technology.</p>
-					<p><b>$DATE</b> : Appointment date.</p>
-					<p><b>$TIME</b> : Appointment time.</p>
-					<p><b>$RECRUIT_FIRST_NAME</b> : Recruiter's first name.</p>
-					<p><b>$RECRUIT_LAST_NAME</b> : Recruiter's last name.</p>
-					<p><b>$RECRUIT_POSITION</b> : Recruiter's position</p>
-					<p><b>$RECRUIT_PHONE</b> : Recruiter's phone number</p>
+					<p class="text-center"><strong id="email-hints-header"><spring:message code="request.email.description" /></strong></p>
+					<p><b>$FIRST_NAME</b> : <spring:message code="request.email.hints.firstName" /></p>
+					<p><b>$LAST_NAME</b> : <spring:message code="request.email.hints.lastName" /></p>
+					<p><b>$TECHNOLOGY</b> : <spring:message code="request.email.hints.technology" /></p>
+					<p><b>$DATE</b> : <spring:message code="request.email.hints.date" /></p>
+					<p><b>$TIME</b> : <spring:message code="request.email.hints.time" /></p>
+					<p><b>$RECRUIT_FIRST_NAME</b> : <spring:message code="request.email.hints.recruitFirstName" /></p>
+					<p><b>$RECRUIT_LAST_NAME</b> : <spring:message code="request.email.hints.recruitLastName" /></p>
+					<p><b>$RECRUIT_POSITION</b> : <spring:message code="request.email.hints.recruitPosition" /></p>
+					<p><b>$RECRUIT_PHONE</b> : <spring:message code="request.email.hints.recruitPhone" /></p>
 				</div>
 			</div>
 		</div>
@@ -83,6 +83,7 @@
 
 <script type="text/javascript">
 	var contextPath = "${pageContext.request.contextPath}";
+	var languageNow = "${pageContext.response.locale}";
 </script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/pageJS/email-create.js"></script>
