@@ -1,5 +1,10 @@
 .page-header {
-	border-bottom:	1px solid #00000;
+	border-bottom:	1px solid #858C8F;
+}
+
+h1.page-header {
+	font-family: regular;
+	font-size: 18px;
 }
 
 #email-section {

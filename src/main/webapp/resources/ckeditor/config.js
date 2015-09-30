@@ -5,4 +5,5 @@
 
 CKEDITOR.editorConfig = function( config ) {
 	config.skin = 'office2013';
+	config.language = languageNow;
 };

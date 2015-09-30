@@ -78,8 +78,16 @@
 			<a href="${pageContext.request.contextPath}/request"><spring:message code="request.button" /></a>
 			<a href="${pageContext.request.contextPath}/approve"><spring:message code="request.approve" /></a>
 			<a href="${pageContext.request.contextPath}/calendar"><spring:message code="request.calendar" /></a>
-			<a href="${pageContext.request.contextPath}/email/create"><spring:message code="request.email" /></a>
-			
+			<%-- <a href="${pageContext.request.contextPath}/email/create"><spring:message code="request.email" /></a> --%>
+			<div class="btn-group">
+				<button type="button" class="btn btn-defult dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+					id="btn_email"> <spring:message code="request.email" /> <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" id="dropdown_report">
+					<li><a href="${pageContext.request.contextPath}/email/create"><spring:message code="request.email.header.create" /></a></li>
+					<li><a href="${pageContext.request.contextPath}/email/edit"><spring:message code="request.email.header.edit" /></a></li>
+				</ul>
+			</div>
 			
 			<div class="user">
 				<a href="<c:url value="/logout"/>"><span class="glyphicon glyphicon-log-out"></span> <spring:message code="sitemesh.logout" /></a>

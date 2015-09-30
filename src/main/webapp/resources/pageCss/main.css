@@ -47,6 +47,12 @@
 	padding: 2px;
 }
 
+#btn_email {
+	background: #707070;
+	border: 2px solid #ffffff;
+	color: #FFFFFF;
+}
+
 .footer {
 	background: #FFC000;
 	height: 30px;

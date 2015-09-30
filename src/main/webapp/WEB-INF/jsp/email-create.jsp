@@ -47,7 +47,7 @@
 					<form action="${ pageContext.request.contextPath }/email/setTemplate" method="POST">
 						<div class="form-group">
 							<label for="name"><spring:message code="request.email.form.name" /> :</label>
-							<input type="text" name="name" class="form-control" placeholder="Template Name">
+							<input type="text" name="name" class="form-control" placeholder="<spring:message code="request.email.form.name" />">
 						</div>
 						<div class="form-group">
 							<label for="template"><spring:message code="request.email.form.template" /> :</label>
@@ -77,6 +77,7 @@
 </div>
 <script type="text/javascript">
 	var contextPath = "${pageContext.request.contextPath}";
+	var languageNow = "${pageContext.response.locale}";
 </script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/pageJS/email-create.js"></script>
