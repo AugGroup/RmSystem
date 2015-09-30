@@ -146,41 +146,6 @@ public class EmailController {
     
         return "redirect:/email/create";
 	}
-	
-	@RequestMapping(value="/email/setTemplate", method={RequestMethod.POST})
-	public @ResponseBody String setTemplate(final HttpServletRequest request, 
-			@RequestParam(value="template") String template, 
-			@RequestParam(value="name") String name) throws UnsupportedEncodingException{
-        		
-        //create template
-        velocityEngine.init();
-        StringWriter writer = new StringWriter();
-        //define variable in mail template
-        Context context = new VelocityContext();
-        velocityEngine.evaluate(context, writer, name, template); 
-        
-        String mailHeader = "<!DOCTYPE html><html><head><meta charset='UTF-8'></head>";
-         
-        //define finalTemplate
-        String finalTemplate = mailHeader + "<body>" + writer.toString() + "</body></html>";
-        
-        //encoding
-        final String encode = new String(finalTemplate.getBytes("UTF-8"),"UTF-8");
-
-        //add template to db
-        MailTemplate mailTemplate = new MailTemplate();
-		mailTemplate.setName(name);
-		mailTemplate.setTemplate(encode);
-		
-        //console input
-		System.out.println("templateName : " + name);
-		System.out.println("finalTemplate : " + encode);
-		
-		mailTemplateService.create(mailTemplate);
-		
-		return template;
-	}
-	
 
 	@RequestMapping(value="/email/edit", method={RequestMethod.GET})
 	public String editEmail(){ 
