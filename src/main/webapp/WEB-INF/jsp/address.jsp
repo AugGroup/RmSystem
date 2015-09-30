@@ -44,6 +44,8 @@ var id = ${id};
 						<div class="form-group">
 							<input type="hidden" id="applicant" name="applicant"
 								value="${id}">
+							<input type="hidden" id="addressId" name="addressId">
+							<input type="hidden" id="provinceId" name="provinceId">
 						</div>
  						<div class="form-group">
  							<label for="addressType"><spring:message code="main.position1"/></label><br>

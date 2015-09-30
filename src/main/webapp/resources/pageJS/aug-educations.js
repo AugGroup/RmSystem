@@ -69,7 +69,7 @@ $(document).ready(function() {
 		function saveEducation(){
 				if ($('#educationsForm').valid()) {
 				var university = $("#university").val();
-				var masdegreetypeId = $("#degreeTypes").val();
+				var masdegreetype = $("#degree").val();
 				var degree = $("#degree option:selected").text();
 				var faculty = $("#faculty").val();
 				var major = $("#major").val();
@@ -81,10 +81,11 @@ $(document).ready(function() {
 				var json = {
 						"applicant" : {"id" : id},
 						"university" : university,
-						"masdegreetypeId" : masdegreetypeId,
+						"masdegreetype" : masdegreetype,
 						"degree" : degree,
 						"faculty" : faculty,
 						"major" : major,
+						"start_date" : start_date,
 						"graduated_date" : graduated_date,
 						"gpa" : gpa,
 						};

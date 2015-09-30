@@ -1,11 +1,13 @@
 $(document).ready(function () {
 	
+	var $addressTypeId = $("#addressType");
 	var $addressType = $('#addressType option:selected');
 	var $houseNo = $("#houseNo");
 	var $road = $("#road");
 	var $district = $("#district");
 	var $subDistrict = $("#subDistrict")
 	var $zipcode = $("#zipcode");
+	var $provinceId = $("#province");
 	var $province = $('#province option:selected');
 		
 	$('#addressForm').validate({
@@ -69,20 +71,22 @@ $(document).ready(function () {
 		
 		function saveAddress(){
 			if($('#addressForm').valid()){
+				var addressTypeId = $addressTypeId.val();
 				var addressType = $('#addressType option:selected').text();
 				var houseNo = $houseNo.val();
 				var district = $district.val();
 				var subDistrict = $subDistrict.val();
 				var road = $road.val();
+				var provinceId = $provinceId.val();
 				var province = $('#province option:selected').text();
 				var zipcode = $zipcode.val();
 				var json = {"applicant" : {"id" : id},
-							"addressType" : {"masaddresstypeName" : addressType},
+							"addressType" : {"id" : addressTypeId,"name" : $('#addressType option:selected').text()},
 							"houseNo" : houseNo,
 							"district" : district,
 							"subDistrict" : subDistrict,
 							"road" : road,
-							"province": {"masprovinceName" : province},
+							"provinceId" : {"id" : provinceId,"name" : $('#province option:selected').text()},
 							"zipcode":zipcode};
 			
 				$.ajax({
