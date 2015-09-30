@@ -532,8 +532,8 @@ public class ApplicantController implements Serializable {
 		model.addAttribute("id",id);
 		referenceService.create(reference);
 		Reference ref = referenceService.findById(id);
-		Hibernate.initialize(ref.getApplicant().getTechnology());
-		Hibernate.initialize(ref.getApplicant().getJoblevel());
+//		Hibernate.initialize(ref.getApplicant().getTechnology());
+//		Hibernate.initialize(ref.getApplicant().getJoblevel());
         return ref;
 
 	}
@@ -957,8 +957,8 @@ public class ApplicantController implements Serializable {
 	public @ResponseBody ReferenceDto updateReferences(@RequestBody ReferenceDto referenceDto, @PathVariable Integer id) {
 		Reference reference = referenceService.findById(referenceDto.getId());
 		reference.setId(referenceDto.getId());
-		reference.setAddress(reference.getAddress());
-		reference.setName(reference.getName());
+		reference.setAddress(referenceDto.getAddress());
+		reference.setName(referenceDto.getName());
 		reference.setOccupation(referenceDto.getOccupation());
 		reference.setTel(referenceDto.getTel());
 		
