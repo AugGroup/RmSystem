@@ -144,7 +144,6 @@
 			},
 			editable: false,//can't drage to move event to editing
 			eventLimit: true, 
-		//	events : "calendar/findAppointment" , //findAllAppointment
 			eventSources: [
 
         // your event source
@@ -161,10 +160,8 @@
         // any other sources...
 
     ],
-
-
 			eventClick: function(event, element) {
-				console.log(event.id)
+				console.log(event.id);
 		        $("#myModal").modal("show");
 				id = event.id;
 				console.log(id);
@@ -172,7 +169,7 @@
 					url : "calendar/getAppointment/"+id,
 					type : "GET",
 					success : function(data){
-						console.log(data)
+						console.log(data);
 						$("#detail_app_name").text(data.applicantName+" ( "+data.applicantPosition+" )");
 					    $("#detail_topic").text(data.topic);
 					    $("#start_date").text(new Date(data.start));

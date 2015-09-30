@@ -108,8 +108,46 @@ public class CalendarController {
 	@RequestMapping(value = "calendar/getAppointment/{id}",method = RequestMethod.GET)
 	public @ResponseBody AppointmentDto getAppointmentData(@PathVariable Integer id) {
 		//appointmentService.create(appointment);
-		System.out.println(id);
-		return appointmentService.findById(id);
+		//System.out.println(id);
+		AppointmentDto apmDto = appointmentService.findById(id);
+		System.out.println(apmDto.getStart());
+		System.out.println(apmDto.getEnd());
+//		set Timezone for time return
+		
+		
+		
+		
+		
+//		Date dateStart = apmDto.getStart();//get date from appointment
+//		Date dateEnd = apmDto.getEnd();
+//		
+//		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.ENGLISH);
+//		formatter.setTimeZone(TimeZone.getTimeZone("ICT"));//set Timezone to be GMT
+//		
+//		String startString = formatter.format(dateStart);//convert date's timezone but it return String
+//		String endString = formatter.format(dateEnd);
+//		
+//		System.out.println("after set timezone : "+startString);
+//		System.out.println("after set timezone : "+endString);
+//		//String string = "January 2, 2010";
+//		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);//new format to convert String to Date
+//		try {
+//			System.out.println(format.parse(startString));
+//			apmDto.setStart(format.parse(startString));//set date with new timezone 
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		try {
+//			System.out.println(format.parse(endString));
+//			apmDto.setEnd(format.parse(endString));
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+
+		return apmDto;
 		
 	}
 	
