@@ -68,6 +68,28 @@
 		});//end ajax
 	}
 	
+	function setApplicant(trackingStatus){
+		$.ajax({
+			url : "/RmSystem/calendar/findByTrackingStatus/" + trackingStatus,
+			type : "GET",
+			dataType : "json",
+			success : function(data){
+				$('#applicantName').empty().append('<option value="-1">-- Select Applicant --</option>');
+				
+					$.each(data, function(i, item) {
+					    //alert(data[i].firstNameEN);
+					    var name = "<option value='" + data[i].id +  "'> " + data[i].firstNameEN +" " + data[i].lastNameEN +" ( " + data[i].technologyStr + " " + data[i].joblevelStr + "  )</option>"
+					    $('#applicantName').append(name);
+					})
+				console.log(data);
+			},
+			error : function(){
+				alert("error");
+			}
+				
+		});//end ajax
+	}
+	
 	$(document).ready(function() {
 		
 		var $validform = $("#formInsert").validate({			
@@ -109,7 +131,7 @@
 		var insStart;
 		var insEnd;
 		var type;
-
+		
 	    var calendar = $('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
@@ -117,7 +139,7 @@
 				right: 'month,agendaWeek,agendaDay'
 			},
 			defaultDate: currentDate(),
-			timezone: 'Asia/Bangkok',
+			//timezone: 'Asia/Bangkok',
 			selectable: true,
 			selectHelper: true,
 			select: function(start, end) {
@@ -131,6 +153,10 @@
 					$validform.resetForm();
 					$('#formInsert').trigger('reset');
 					setApplicant("all"); 
+					//$("#insStartDate").text(new Date(start));
+					$("#insStartDate").text(start);
+					//$("#insEndDate").text(new Date(end));
+					$("#insEndDate").text(end);
 					$('#insModal').modal('show');
 					insStart = start;
 					insEnd = end;
@@ -232,8 +258,8 @@
 						insData = {
 							id : data.id,
 							title: data.title,
-							start: insStart,
-							end: insEnd
+							start: new Date(data.start),
+							end: new Date(data.end),color: '#FF528E'
 						};
 						console.log(data);
 						$('#calendar').fullCalendar('renderEvent', insData, true); // stick? = true
@@ -245,27 +271,6 @@
 			}//end if
 		})//endonclick 'insBtn'
 		
-		function setApplicant(trackingStatus){
-			$.ajax({
-				url : "/RmSystem/calendar/findByTrackingStatus/" + trackingStatus,
-				type : "GET",
-				dataType : "json",
-				success : function(data){
-					$('#applicantName').empty().append('<option value="">-- Select Applicant --</option>');
-					
-						$.each(data, function(i, item) {
-						    //alert(data[i].firstNameEN);
-						    var name = "<option value='" + data[i].id +  "'> " + data[i].firstNameEN +" " + data[i].lastNameEN +" ( " + data[i].technologyStr + " " + data[i].joblevelStr + "  )</option>"
-						    $('#applicantName').append(name);
-						})
-					console.log(data);
-				},
-				error : function(){
-					alert("error");
-				}
-					
-			});//end ajax
-		}
 	});
 
 </script>
@@ -288,6 +293,19 @@
 	      
 	      <div class="modal-body">
 	        	<div class="container-fluid"><form id="formInsert">
+	        		<div class="row">
+	        			<div class="col-md-12">
+	        			<label for="insStartDate">เพิ่มการนัดหมายสำหรับวันที่</label>
+	        			<h4 id="insStartDate"></h4>
+	        			</div>
+	        		</div>
+	        		<div class="row">
+	        			<div class="col-md-12">
+	        			<label for="insEndDate">ถึงวันที่</label>
+	        			<h4 id="insEndDate"></h4>
+	        			</div>
+	        		</div>
+	        		<hr>
 	        		<div class="row">
 						<div class="col-md-6">
 							<label for="applicantFilter">Applicant Filter</label> 
