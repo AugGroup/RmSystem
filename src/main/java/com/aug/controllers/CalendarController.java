@@ -119,7 +119,11 @@ public class CalendarController {
 		public @ResponseBody List<AppointmentDto> findAppointment(@RequestParam(value="start") String start,
 		@RequestParam(value="end") String end, @RequestParam(value="_",required = false) String underscore) throws ParseException {
 		
-		return  appointmentService.findAppointment(start, end);
+		List<AppointmentDto> list = appointmentService.findAppointment(start, end);
+		
+		System.out.println("test: " + list.get(0).getStart());
+		
+		return list;
 	}
 	
 	@RequestMapping(value = "calendar/findByTrackingStatus/{trackingStatus}", method = RequestMethod.GET)
