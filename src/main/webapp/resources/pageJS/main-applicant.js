@@ -40,17 +40,18 @@ $(document).ready(function(){
 					url : 'applicant/search',
 					type : 'POST',
 					data : function(d){
-						d.position = $('#inputSearch').val();
+						d.masJobLevelName = $('#inputSearch').val();
+						d.masTechnologyName = $('#inputSearch').val();
 						/* console.log(d.position) */
 					},
 				 },
-				 columns:[{'data': "code"},
-				          {'data': "applyDate"},
-					      {'data' : "firstNameEN"},
-					      {'data' : "joblevelStr"},
-					      {'data' : "technologyStr"},
-					      {'data' : "trackingStatus"},
-					      { data : function(data){
+				 columns:[{data : "code"},
+				          {data : "applyDate"},
+					      {data : "firstNameEN"},
+					      {data : "joblevelStr"},
+					      {data : "technologyStr"},
+					      {data : "trackingStatus"},
+					      {data : function(data){
 					    	  return '<a href="#EditStatusModal" id="btn_edit_score" data-id="'+data.id+'" data-toggle="modal" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-pencil"></span> '+editScore_text+'</b>'
 					       }},
 					       { data : function(data){

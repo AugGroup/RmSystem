@@ -41,7 +41,7 @@ $(document).ready(function () {
 				       {"data": "fullNameEN"},
 				       {"data": "positionName1"},
 				       {"data": "positionName2"},
-				       {"data": "positionName3"},
+//				       {"data": "positionName3"},
 				       {"data": "schoolName"},
 				       {"data": "degree"},
 				       {"data": "gpa"},
