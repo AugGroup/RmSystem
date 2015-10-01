@@ -63,7 +63,7 @@ public class EmailController {
 	public String createEmail(){ 
 		return "email-create";
 	}
-		
+	
 	@RequestMapping(value="/email/create", method={RequestMethod.POST})
 	public @ResponseBody String setTemplate(@RequestBody MailTemplate mailTemplate) throws UnsupportedEncodingException{
 		try {
