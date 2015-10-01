@@ -712,7 +712,7 @@ public class ApplicantController implements Serializable {
 		return addressService.findAddress(id);
 	}
 	
-	@RequestMapping(value = "family/$findFamilyId/{id}", method = { RequestMethod.POST })
+	@RequestMapping(value = "family/findFamilyId/{id}", method = { RequestMethod.POST })
 	public @ResponseBody FamilyDto findFamily(@PathVariable Integer id) {
 		return familyService.findFamily(id);
 	}
@@ -885,12 +885,17 @@ public class ApplicantController implements Serializable {
 	@RequestMapping(value = "family/updateFamily/{id}", method = { RequestMethod.POST })
 	public @ResponseBody FamilyDto updateFamily(@RequestBody FamilyDto familyDto, @PathVariable Integer id) {
 		Family family = familyService.find(familyDto.getId());
+		MasRelationType masRelationType = masRelationService.find(familyDto.getMasRelationTypeId());
+		
 		family.setId(familyDto.getId());
 		family.setAddress(familyDto.getAddress());
-		family.setName(familyDto.getFamilyName());
+		family.setFamilyName(familyDto.getFamilyName());
 		family.setOccupation(familyDto.getOccupation());
 		family.setPosition(familyDto.getPosition());
-		family.setMasRelationType(family.getMasRelationType());
+		family.setAge(familyDto.getAge());
+		family.setGender(familyDto.getGender());
+		family.setMobile(familyDto.getMobile());
+		family.setMasRelationType(masRelationType);
 		
 		familyService.update(family);
 		

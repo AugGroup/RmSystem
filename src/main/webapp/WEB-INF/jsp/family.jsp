@@ -45,6 +45,8 @@ var id = ${id};
 						<div class="form-group">
 							<input type="hidden" id="applicant" name="applicant"
 								value="${id}">
+							<input type="hidden" id="relationId" name="relationId">
+							<input type="hidden" id="familyId" name="familyId">
 						</div>
 						<div class="form-group">
 							<label for="nameFamily"><spring:message
@@ -54,13 +56,13 @@ var id = ${id};
 						</div>
 <!-- 						<div class="form-inline"> -->
 							<div class="form-group">
-								<label for="ageFamily"><spring:message
+								<label for="age"><spring:message
 										code="info.age" /> </label> <input type="text" class="form-control"
 									id="age" name="age"
 									placeholder="<spring:message code="info.text.age"/>">
 							</div>
 							<div class="form-group">
-								<label for="genderFamily"><spring:message
+								<label for="gender"><spring:message
 										code="info.sex" /> </label> <input type="text" class="form-control"
 									id="gender" name="gender"
 									placeholder="<spring:message code="family.text.name"/>">
@@ -160,6 +162,9 @@ var id = ${id};
 					<th><spring:message code="family.data.relation" /></th>
 					<th><spring:message code="family.data.occupation" /></th>
 					<th><spring:message code="family.data.address" /></th>
+					<th>mobile</th>
+					<th>age</th>
+					<th>gender</th>
 					<th><spring:message code="family.data.position" /></th>
 					<th><spring:message code="main.edit.info" /></th>
 					<th><spring:message code="main.delete" /></th>

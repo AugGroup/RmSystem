@@ -8,8 +8,8 @@ $(document).ready(function() {
 				addressFamily : {required : true},
 				occupation : {required : true},
 				positionFamily : {required : true},
-/*				ageFamily : {required : true},
-				genderFamily : {required : true}*/
+				ageFamily : {required : true},
+				genderFamily : {required : true}
 			},
 			messages : {
 				nameFamily : {required : valName},
@@ -18,11 +18,10 @@ $(document).ready(function() {
 				addressFamily : {required : valAddress},
 				occupation : {required : valOccupation},
 				positionFamily : {required : valPositionFamily},
-/*				ageFamily : {required : valAgeFamily},
-				genderFamily : {required : valSexFamily},*/
+				ageFamily : {required : valAgeFamily},
+				genderFamily : {required : valSexFamily},
 			}
 		});
-		
 		var dtApplicant;
 		if(dtApplicant) {
 			dtApplicant.ajax.reload();
@@ -36,11 +35,14 @@ $(document).ready(function() {
 					type : 'POST',
 					dataSrc : ""
 				},
-				columns : [ {data : "name"},
+				columns : [ {data : "familyName"},
 							{data : "masRelationTypeName"},
 							{data : "occupation"},
 							{data : "address"},
-							{data : "positionFamily"},
+							{data : "mobile"},
+							{data : "age"},
+							{data : "gender"},
+							{data : "position"},
 							{data : function(data) {
 					 			return '<button id="buttonEdit" data-id="'+data.id+'" data-toggle="modal" data-target="#familyModal" class="btn btn-warning btn-mini"><span class="glyphicon glyphicon-pencil"></span> '+ valEdit +'</button>';
 							}},
@@ -55,17 +57,24 @@ $(document).ready(function() {
 		function saveFamily(){
 			if ($('#familyForm').valid()) {
 			var name = $("#nameFamily").val();
+			var relationId = $('#relationFamily').val();
 			var relation = $('#relationFamily option:selected').text();
 			var occupation = $("#occupationFamily").val();
 			var address = $("#addressFamily").val();
-			var positionFamily = $("#positionFamily").val();
+			var tel = $('#telNo').val();
+			var age = $('#age').val();
+			var gender = $('#gender').val();
+			var position = $("#positionFamily").val();
 			
 			var json = {"applicant" : {"id" : id},
-						"name" : name,
-						"relation" : {"masRelationTypeId" : id,"masRelationTypeName" : relation},
+						"familyName" : name,
+						"masRelationType" : {"id" : relationId},
 						"occupation" : occupation,
 						"address" : address,
-						"positionFamily" : positionFamily,
+						"mobile" : tel,
+						"age" : age,
+						"gender": gender,
+						"position" : position,
 						};
 			$.ajax({
 				contentType : "application/json; charset=utf-8",
@@ -95,7 +104,7 @@ $(document).ready(function() {
 		//Update 
 		function findById(id){
 			$.ajax({
-				url : "$findFamilyId/" + id,
+				url : "findFamilyId/" + id,
 				type : "POST",
 				success : function(data){
 					showFillData(data);
@@ -105,10 +114,14 @@ $(document).ready(function() {
 		
 		//Show data on inputField
 		function showFillData(data){
-			$("#nameFamily").val(data.name);
+			$("#familyId").val(data.id);
+			$("#nameFamily").val(data.familyName);
 			$("#relationFamily").val(data.masRelationTypeId);
 			$("#occupationFamily").val(data.occupation);
 			$("#addressFamily").val(data.address);
+			$("#telNo").val(data.mobile);
+			$("#age").val(data.age);
+			$("#gender").val(data.gender);
 			$("#positionFamily").val(data.position);
 	 	}
 		
@@ -116,19 +129,29 @@ $(document).ready(function() {
 		function updated(button){
 			if ($('#familyForm').valid()) {
 			var id = $(button).data("id");
+			var applicantId = $("#applicant").val();
 			var name = $("#nameFamily").val();
+			var relationId = $('#relationFamily').val();
 			var relation = $('#relationFamily option:selected').text();
 			var occupation = $("#occupationFamily").val();
 			var address = $("#addressFamily").val();
+			var tel = $('#telNo').val();
+			var age = $('#age').val();
+			var gender = $('#gender').val();
 			var positionFamily = $("#positionFamily").val();
 			
 			var json = {
+					applicant : {"id" : applicantId},
 					"id" : id,
-					"name" : name,
-					"relation" : {"masRelationTypeId" : id,"masRelationTypeName" : relation},
+					"familyName" : name,
+					"masRelationTypeId" : relationId,
+					"masRelationTypeName" : $('#relationFamily option:selected').text(),
 					"occupation" : occupation,
 					"address" : address,
-					"positionFamily" : positionFamily,
+					"mobile" : tel,
+					"age" : age,
+					"gender": gender,
+					"position" : positionFamily,
 					};
 			
 			$.ajax({
@@ -143,11 +166,14 @@ $(document).ready(function() {
 				 	var rowData = table.row(button.closest('tr')).index(); 
 				 	var d = table.row(rowData).data();
 				 	
-					d.name = data.name,
-					d.relation = data.masRelationTypeId,
+					d.familyName = data.familyName,
+					d.masRelationTypeName = data.masRelationTypeName,
 					d.occupation = data.occupation,
 					d.address = data.address,
-					d.positionFamily = data.positionFamily,
+					d.mobile = data.mobile,
+					d.age = data.age,
+					d.gender = data.gender,
+					d.position = data.position,
 				 	
 			 		table.row(rowData).data(d).draw();
 			 		
