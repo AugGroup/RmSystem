@@ -56,10 +56,10 @@ $(document).ready(function() {
 				type : 'POST'
 			},
 			columns : [ {data : "position"},
-			            {data : "employerName"},
+			            {data : "companyName"},
 			            {data : "address"},
 			            {data : "typeOfBusiness"},
-			            {data : "supervisor"},
+			            {data : "reference"},
 			            {data : "salary"},
 			            {data : "applyDateStr"},
 			            {data : function(data) {
@@ -76,30 +76,26 @@ $(document).ready(function() {
 		
 	function saveExperience(){
 		if ($('#experiencesForm').valid()) {
-		var position = $("#workBackground").val();
-		var employerName = $("#emp").val();
-		var address = $("#addressBackground").val();
-
-		var typeOfBusiness = $("#business").val();
-		var positionOfEmployer = $("#positionBackground").val();
-		var reason = $("#reasonLeaving").val();
-		var supervisor = $("#supervisorBackground").val();
-		var salary = $("#salaryBackground").val();
-		
-		var description = $("#descriptionBackground").val();
+		var position = $("#position").val();
+		var companyName = $("#companyName").val();
+		var address = $("#address").val();
+		var typeOfBusiness = $("#typeOfBusiness").val();
+		var reference = $("#reference").val();
+		var reason = $("#reason").val();
+		var salary = $("#salary").val();
+		var responsibility = $("#responsibility").val();
 		var applyDateStr = $("#applyDateStr").val();
 		
 		var json = {
 				"applicant" : {"id" : id},
 				"position" : position,
-				"employerName" : employerName,
+				"companyName" : companyName,
 				"address" : address,
 				"typeOfBusiness" : typeOfBusiness,
-				"positionOfEmployer" : positionOfEmployer,
-				"supervisor" : supervisor,
-				"salary" : salary,
-				"description" : description,
+				"reference" : reference,
 				"reason" : reason,
+				"salary" : salary,
+				"responsibility" : responsibility,
 				"applyDateStr" : applyDateStr
 				};
 		
@@ -141,18 +137,14 @@ $(document).ready(function() {
 		
 		//Show data on inputField
 		function showFillData(data){
-			$("#workBackground").val(data.position);
-			$("#emp").val(data.employerName);
-			$("#addressBackground").val(data.address);
-
-			$("#business").val(data.typeOfBusiness);
-			$("#positionBackground").val(data.positionOfEmployer);
-			$("#reasonLeaving").val(data.reason);
-			$("#supervisorBackground").val(data.supervisor);
-			$("#salaryBackground").val(data.salary);
-			
-			$("#descriptionBackground").val(data.description);
-			
+			$("#position").val(data.position);
+			$("#companyName").val(data.companyName);
+			$("#address").val(data.address);
+			$("#typeOfBusiness").val(data.typeOfBusiness);
+			$("#reference").val(data.reference);
+			$("#salary").val(data.salary);
+			$("#responsibility").val(data.responsibility);
+			$("#reason").val(data.reason);
 			$("#applyDateStr").val(data.applyDateStr);
 		}
 		
@@ -160,31 +152,28 @@ $(document).ready(function() {
 		function updated(button){
 			if ($('#experiencesForm').valid()) {
 				var id = $(button).data("id");
-				var dateTo = $("#toWorkYear").val();
-				var employerName = $("#emp").val();
-				var address = $("#addressBackground").val();
-
-				var typeOfBusiness = $("#business").val();
-				var positionOfEmployer = $("#positionBackground").val();
-				var reason = $("#reasonLeaving").val();
-				var supervisor = $("#supervisorBackground").val();
-				var salary = $("#salaryBackground").val();
-				
-				var description = $("#descriptionBackground").val();
-				
+				var applicantId = $("#applicant").val();
+				var position = $("#position").val();
+				var companyName = $("#companyName").val();
+				var address = $("#address").val();
+				var typeOfBusiness = $("#typeOfBusiness").val();
+				var reference = $("#reference").val();
+				var salary = $("#salary").val();
+				var responsibility = $("#responsibility").val();
+				var reason = $("#reason").val();
 				var applyDateStr = $("#applyDateStr").val();
 				
 				var json = {
+						applicant : {"id" : applicantId},
 						"id" : id,
 						"position" : position,
-						"employerName" : employerName,
+						"companyName" : companyName,
 						"address" : address,
 						"typeOfBusiness" : typeOfBusiness,
-						"positionOfEmployer" : positionOfEmployer,
-						"reason" : reason,
-						"supervisor" : supervisor,
+						"reference" : reference,
 						"salary" : salary,
-						"description" : description,
+						"responsibility" : responsibility,
+						"reason" : reason,
 						"applyDateStr" : applyDateStr
 						};
 				
@@ -203,15 +192,14 @@ $(document).ready(function() {
 						d.position = data.position;
 // 						d.fromDate = data.fromDate;
 // 						d.toDate = data.toDate;
-						d.employerName = data.employerName;
+						d.companyName = data.companyName;
 						d.address = data.address;
-						d.fromDate = data.fromDate;
+//						d.fromDate = data.fromDate;
 						d.typeOfBusiness = data.typeOfBusiness;
-						d.positionOfEmployer = data.positionOfEmployer;
-						d.reason = data.reason;
-						d.supervisor = data.supervisor;
+						d.reference = data.reference;
 						d.salary = data.salary;
-						d.description = data.description;
+						d.responsibility = data.responsibility;
+						d.reason = data.reason;
 						d.applyDateStr = data.applyDateStr;
 					 	
 				 		table.row(rowData).data(d).draw();

@@ -53,9 +53,9 @@ var id = ${id};
 							</div>
 
 							<div class="form-group">
-								<label for="workBackground"><spring:message
+								<label for="position"><spring:message
 										code="exp.position" /> </label> <input type="text"
-									class="form-control" id="workBackground" name="workBackground"
+									class="form-control" id="position" name="position"
 									placeholder="<spring:message code="exp.text.Pposition"/> ">
 							</div>
 							
@@ -65,63 +65,55 @@ var id = ${id};
             				</div>
 
 							<div class="form-group">
-								<label for="emp"><spring:message code="exp.emp" /> </label> <input
-									type="text" class="form-control" id="emp" name="emp"
+								<label for="companyName"><spring:message code="exp.emp" /> </label> <input
+									type="text" class="form-control" id="companyName" name="companyName"
 									placeholder="<spring:message code="exp.text.emp"/> ">
 							</div>
 
 							<div class="form-group">
-								<label for="addressBackground"><spring:message
+								<label for="address"><spring:message
 										code="address.name" /> </label>
-								<textarea class="form-control" rows="5" id="addressBackground"
-									name="addressBackground"
+								<textarea class="form-control" rows="5" id="address"
+									name="address"
 									placeholder="<spring:message code="exp.text.address"/>"></textarea>
 
 							</div>
 
 							<div class="form-group">
-								<label for="business"><spring:message
+								<label for="typeOfBusiness"><spring:message
 										code="exp.business" /> </label> <input type="text"
-									class="form-control" id="business" name="business"
+									class="form-control" id="typeOfBusiness" name="typeOfBusiness"
 									placeholder="<spring:message code="exp.text.business"/> ">
 							</div>
-
+							
 							<div class="form-group">
-								<label for="positionBackground"><spring:message
-										code="info.position" /> </label> <input type="text"
-									class="form-control" id="positionBackground"
-									name="positionBackground"
-									placeholder="<spring:message code="exp.text.position"/> ">
-							</div>
-
-							<div class="form-group">
-								<label for="supervisorBackground"><spring:message
+								<label for="reference"><spring:message
 										code="exp.supervisor" /> </label> <input type="text"
-									class="form-control" id="supervisorBackground"
-									name="supervisorBackground"
-									placeholder="<spring:message code="exp.text.supervisor"/>">
+									class="form-control" id="reference"
+									name="reference"
+									placeholder="reference">
 							</div>
 
 							<div class="form-group">
-								<label for="salaryBackground"><spring:message
+								<label for="salary"><spring:message
 										code="exp.salary" /> </label> <input type="text" class="form-control"
-									id="salaryBackground" name="salaryBackground"
+									id="salary" name="salary"
 									placeholder="<spring:message code="exp.text.salary"/> ">
 							</div>
 
 							<div class="form-group">
-								<label for="descriptionBackground"><spring:message
+								<label for="responsibility"><spring:message
 										code="exp.desc" /> </label>
 								<textarea class="form-control" rows="5"
-									id="descriptionBackground" name="descriptionBackground"
-									placeholder="<spring:message code="exp.text.desc"/>"></textarea>
+									id="responsibility" name="responsibility"
+									placeholder="responsibility"></textarea>
 							</div>
 
 							<div class="form-group">
-								<label for="reasonLeaving"><spring:message
+								<label for="reason"><spring:message
 										code="exp.reason" /> </label>
-								<textarea class="form-control" rows="5" id="reasonLeaving"
-									name="reasonLeaving"
+								<textarea class="form-control" rows="5" id="reason"
+									name="reason"
 									placeholder="<spring:message code="exp.text.reason"/>"></textarea>
 
 							</div>
@@ -181,17 +173,12 @@ var id = ${id};
 			width="100%">
 			<thead>
 				<tr>
-					<th><spring:message code="exp.data.position"/></th>
-<%-- 					<th><spring:message code="exp.data.from" /></th> --%>
-<%-- 					<th><spring:message code="exp.data.to" /></th> --%>
-					<th><spring:message code="exp.data.emp" /></th>
-					<th><spring:message code="family.data.address" /></th>
-					<th><spring:message code="exp.data.business" /></th>
-<%-- 					<th><spring:message code="exp.data.position.emp" /></th> --%>
-					<th><spring:message code="exp.data.super" /></th>
-					<th><spring:message code="exp.data.salary" /></th>
-<%-- 					<th><spring:message code="exp.data.desc" /></th> --%>
-<%-- 					<th><spring:message code="exp.data.reason" /></th> --%>
+					<th>position</th>
+					<th>companyName</th>
+					<th>address</th>
+					<th>typeOfBusiness</th>
+					<th>reference</th>
+					<th>salary</th>
 					<th>DATE</th>
 					<th><spring:message code="main.edit.info" /></th>
 					<th><spring:message code="main.delete" /></th>
