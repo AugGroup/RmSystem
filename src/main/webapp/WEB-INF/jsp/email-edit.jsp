@@ -6,6 +6,27 @@
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/resources/pageCss/email-create.css" />
 
+<script type="text/javascript">
+$( document ).ready(function() {
+	var $validateEdit;
+	$("#btnClose").off().on("click", function() {
+		$validateEdit.resetForm();
+	});
+	
+	$validateEdit = $("#templateFormEdit").validate({   
+		rules : {
+			selectTemplate : {
+				required : true
+			}
+		},
+		messages:{
+			selectTemplate : {
+				required : selectRequired
+			}
+		}
+	});
+});
+</script>
 <div class="container">
 	<div class="col-sm-12" id="email-section">
 		

@@ -100,8 +100,7 @@ public class EmailController {
 //	}
 	
 	@RequestMapping(value="/email/create", method={RequestMethod.POST})
-	public @ResponseBody void setTemplate(@RequestBody MailTemplate mailTemplate) throws UnsupportedEncodingException{
-        
+	public @ResponseBody String setTemplate(@RequestBody MailTemplate mailTemplate) throws UnsupportedEncodingException{
 		try {
 			
 	        //encoding template
@@ -111,6 +110,15 @@ public class EmailController {
 			System.out.println("templateName : " + mailTemplate.getName());
 			System.out.println("finalTemplate : " + mailTemplate.getTemplate());
 			
+			//
+			List<MailTemplate> mailTemplates = mailTemplateService.findAll();
+			
+			for(MailTemplate m : mailTemplates){
+				if(null == m.getName()|| m.getName().equalsIgnoreCase(mailTemplate.getName())){
+					return "error";
+				}
+			}
+			
 			mailTemplateService.create(mailTemplate);
 			
 		} catch (Exception exception) {
@@ -119,6 +127,8 @@ public class EmailController {
 			System.out.println(exception.toString());
 			
 		}
+		
+		return "success";
 	}
 	
 	@Transactional

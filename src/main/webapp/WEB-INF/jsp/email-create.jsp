@@ -10,6 +10,39 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/js/jquery.validate.min.js"></script>
 
 <title>Create Template</title>
+<script type="text/javascript">
+	$( document ).ready(function() {
+		var $validateEdit;
+		$("#btnClose").off().on("click", function() {
+			$validateCreate.resetForm();
+		});
+		
+		$validateCreate = $("#templateFormCreate").validate({   
+			rules : {
+				templateName : {
+					required : true
+				},
+				template: {
+	                required: function() 
+	                {
+	                	CKEDITOR.instances.template.updateElement();
+	                }
+	            }
+			},
+			messages:{
+				templateName : {
+					required : templateNameRequired
+				},
+				template:{
+					required:templateRequired
+				}
+			},
+			ignore: []
+		});
+	});
+	
+	
+</script>
 
 <div class="container">
 	

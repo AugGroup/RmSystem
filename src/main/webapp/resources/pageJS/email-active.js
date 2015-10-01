@@ -20,12 +20,12 @@ function cleanModal() {
 	$("#btnActive").removeClass("btn-primary");
 }
 $( document ).ready(function() {
-	var $id = -1;
+	var $id;
 	var $name;
 	$("#mailTemplate").change(function(){		
 		$id = $("#mailTemplate").val();
 		$name = $('#mailTemplate option:selected').text();
-		if($id == -1){
+		if($id == ""){
 			CKEDITOR.instances.template.setData("");	
 		}else{
 			$.ajax({
@@ -59,10 +59,21 @@ $( document ).ready(function() {
 				    contentType : 'application/json',
 				    success : function(data){	
 				    	cleanModal();
-				    	showNotity("Create Template Success","success","glyphicon glyphicon-envelope")
+				    	console.log(data);
+				    	if(data == "success"){
+				    		showNotity("Create Template Success","success","glyphicon glyphicon-envelope");
+				    	}else{
+				    		new PNotify({
+				    			title: "Create Template Fail",
+				    			text: "This Name Already Exists.",
+				    		    type: "error",
+				    		    icon: "glyphicon glyphicon-envelope",
+				    		    delay: 3000
+				    		});
+				    	}
 					},
 					error:function (jqXHR, textStatus, error){
-					    alert('CallBack error');
+						showNotity("Create Template Fail","error","glyphicon glyphicon-alert");
 					}
 				});
 			});
@@ -129,45 +140,44 @@ $( document ).ready(function() {
 		}
 	});
 	
-	var $validateCreate,$validateEdit;
-	$validateEdit = $("#templateFormEdit").validate({   
-		rules : {
-			selectTemplate : {
-				required : true
-			}
-		},
-		messages:{
-			selectTemplate : {
-				required : selectRequired
-			}
-		}
-	});
-	$validateCreate = $("#templateFormCreate").validate({   
-		rules : {
-			templateName : {
-				required : true
-			},
-			template: {
-                required: function() 
-                {
-                	CKEDITOR.instances.template.updateElement();
-                }
-            }
-		},
-		messages:{
-			templateName : {
-				required : templateNameRequired
-			},
-			template:{
-				required:templateRequired
-			}
-		},
-		ignore: []
-	});
-	
 	$("#btnClose").off().on("click",function(){
 		cleanModal();
 	});
 	
-	
+//	var $validateCreate,$validateEdit;
+//	$validateEdit = $("#templateFormEdit").validate({   
+//		rules : {
+//			selectTemplate : {
+//				required : true
+//			}
+//		},
+//		messages:{
+//			selectTemplate : {
+//				required : selectRequired
+//			}
+//		}
+//	});
+//	$validateCreate = $("#templateFormCreate").validate({   
+//		rules : {
+//			templateName : {
+//				required : true
+//			},
+//			template: {
+//                required: function() 
+//                {
+//                	CKEDITOR.instances.template.updateElement();
+//                }
+//            }
+//		},
+//		messages:{
+//			templateName : {
+//				required : templateNameRequired
+//			},
+//			template:{
+//				required:templateRequired
+//			}
+//		},
+//		ignore: []
+//	});
+		
 });
