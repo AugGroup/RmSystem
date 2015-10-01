@@ -1,5 +1,6 @@
 package com.aug.controllers;
 
+import java.io.Reader;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -15,7 +16,10 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,20 +30,34 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.aug.hrdb.entities.Applicant;
+import com.aug.hrdb.entities.Appointment;
+import com.aug.hrdb.entities.Employee;
+import com.aug.hrdb.entities.Login;
 import com.aug.hrdb.entities.MailTemplate;
+import com.aug.hrdb.services.ApplicantService;
+import com.aug.hrdb.services.AppointmentService;
+import com.aug.hrdb.services.LoginService;
 import com.aug.hrdb.services.MailTemplateService;
+import com.aug.services.EmailService;
 
 @Controller
 public class EmailController {
 	
 	@Autowired
-	private JavaMailSender mailSender;
-	
-	@Autowired
-	private VelocityEngine velocityEngine;
-	
-	@Autowired
 	private MailTemplateService mailTemplateService;
+	
+	@Autowired
+	private LoginService loginService;
+	
+	@Autowired
+	private AppointmentService appointmentService;
+	
+	@Autowired
+	private ApplicantService applicantService;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	@RequestMapping(value="/email/create", method={RequestMethod.GET})
 	public String createEmail(){ 
@@ -103,70 +121,33 @@ public class EmailController {
 		}
 	}
 	
+	@Transactional
 	@RequestMapping(value="/email/send", method={RequestMethod.GET})
-	public String sendEmail(Model model, HttpServletRequest request, 
-			@RequestParam(value="name") String name) throws UnsupportedEncodingException {
+	public String sendAppointmentMail(@RequestParam(value="appointmentId") Integer appointmentId,
+			@RequestParam(value="templateName") String templateName, HttpServletRequest request) throws UnsupportedEncodingException{
 		
-		String firstName = "Anat";
-	    String date = "15 June 2015";
-	    String time = "9.30 AM.";
-	    String recruitFirstName = "Achiraya";
-	    String recruitLastName = "Janjiratavorn";
-	    String recruitPosition = "Recruitment Professional";
-	    String recruitPhone = "+66 8 4751 6665";
-	    
-	    final String recipientAddress = "anat.pantera@gmail.com";
-        final String subject = "Test & Interview with Augmentis (Thailand) Limited (Java Consultant - New Grad)";
-        final String path = request.getSession().getServletContext().getRealPath("/") + "/resources/mail-attachment/";
-        
-        //create mail
-        velocityEngine.init();
-        StringWriter writer = new StringWriter();
-        
-        //define variable in mail template
-        Context context = new VelocityContext();
-        context.put("FIRST_NAME", firstName);
-        context.put("DATE", date);
-        context.put("TIME", time);
-        context.put("RECRUIT_FIRST_NAME", recruitFirstName);
-        context.put("RECRUIT_LAST_NAME", recruitLastName);
-        context.put("RECRUIT_POSITION", recruitPosition);
-        context.put("RECRUIT_PHONE", recruitPhone);
-        
-        //get template
-        MailTemplate mailTemplate = mailTemplateService.findByName(name);
-      
-        //merge context and writer to String 
-        velocityEngine.evaluate(context, writer, "SimpleVelocity", mailTemplate.getTemplate()); 
-        
-        //encode Template
-        final String encode = new String(writer.toString().getBytes("UTF-8"),"UTF-8");
-        
-        //create mime message
-	    MimeMessagePreparator preparator = new MimeMessagePreparator() {
-	      public void prepare(MimeMessage mimeMessage) throws Exception {
-	              
-	            MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-	              message.setTo(recipientAddress);
-	              message.setSubject(subject);
-	              
-//	              FileSystemResource logo = new FileSystemResource(path + "logo.png");
-//	              message.addAttachment(logo.getFilename(), logo);
-	              
-	              FileSystemResource map = new FileSystemResource(path + "map.jpg");
-	              message.addAttachment(map.getFilename(), map);
-	              
-	              message.setText(encode, true);
-	      }
-	    };
-	    
-	    //send email
-        mailSender.send(preparator);
-    
-        System.out.println("templateName : " + mailTemplate.getName());
-        System.out.println("finalTemplate : " + mailTemplate.getTemplate());
-    
-        return "redirect:/email/create";
+		//find employee
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		System.out.println("userName : " + userDetails.getUsername());
+		Login login = loginService.findByUserName(userDetails.getUsername());
+		Employee employee = login.getEmployee();
+		System.out.println("employee: " + employee.getNameEng());
+		
+		//find appointment
+		Appointment appointment = appointmentService.find(appointmentId);
+		System.out.println("appointment: " + appointment.getDetail());
+		
+		//find applicant
+		Applicant applicant = appointment.getApplicant();
+		System.out.println("applicant: " + applicant.getFirstNameEN());
+		
+		//find template
+		MailTemplate mailTemplate = mailTemplateService.findByName(templateName);
+		System.out.println("mailTemplate: " + mailTemplate.getName());
+		
+		emailService.sendAppointmentMail(employee, appointment, applicant, mailTemplate, request);
+		
+		return "redirect:/email/create"; 
 	}
 
 	@RequestMapping(value="/email/edit", method={RequestMethod.GET})
