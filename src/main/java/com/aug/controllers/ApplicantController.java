@@ -459,8 +459,8 @@ public class ApplicantController implements Serializable {
 		model.addAttribute("id",id);
 		addressService.create(address);
 		Address addr = addressService.findById(id);
-		Hibernate.initialize(addr.getApplicant().getTechnology());
-		Hibernate.initialize(addr.getApplicant().getJoblevel());
+//		Hibernate.initialize(addr.getApplicant().getTechnology());
+//		Hibernate.initialize(addr.getApplicant().getJoblevel());
 		
         return addr;
 	}
@@ -479,16 +479,11 @@ public class ApplicantController implements Serializable {
 	@RequestMapping(value = "educations/educations/{id}", method = { RequestMethod.POST })
 	public @ResponseBody Education educations(@RequestBody Education education,@PathVariable Integer id,Model model) {
 		model.addAttribute("id",id);
-		EducationDto edDto = new EducationDto();
-		Education ed = educationService.findById(id);
-//		MasDegreetype masDegree = masDegreeTypeService.find(edDto.getMasdegreetypeId());
-//		System.out.println("MASSSSSSSSSSSSSSSSSSS : "+masDegree.getId());
-//		ed.setMasdegreetype(masDegree);
-		
-		Hibernate.initialize(ed.getApplicant().getTechnology());
-		Hibernate.initialize(ed.getApplicant().getJoblevel());
 		
 		educationService.create(education);
+		Education ed = educationService.findById(id);
+//		Hibernate.initialize(ed.getApplicant().getTechnology());
+//		Hibernate.initialize(ed.getApplicant().getJoblevel());
 		
         return ed;
 
@@ -870,12 +865,16 @@ public class ApplicantController implements Serializable {
 	@RequestMapping(value = "address/updateAddress/{id}", method = { RequestMethod.POST })
 	public @ResponseBody AddressDto updateAddress(@RequestBody AddressDto addressDto, @PathVariable Integer id) {
 		Address address = addressService.findById(addressDto.getId());
-		address.setAddressType(address.getAddressType());
+		MasAddressType masAddressType = masAddressTypeService.findById(addressDto.getAddressTypeId());
+		MasProvince masProvince = masProvinceService.find(addressDto.getMasprovinceId());
+		
+		address.setId(addressDto.getId());
+		address.setAddressType(masAddressType);
 		address.setHouseNo(addressDto.getHouseNo());
 		address.setRoad(addressDto.getRoad());
 		address.setDistrict(addressDto.getDistrict());
 		address.setSubDistrict(addressDto.getSubDistrict());
-		address.setProvince(address.getProvince());
+		address.setProvince(masProvince);
 		address.setZipcode(addressDto.getZipcode());
 		
 		addressService.update(address);
@@ -901,12 +900,15 @@ public class ApplicantController implements Serializable {
 	@RequestMapping(value = "educations/updateEducations/{id}", method = { RequestMethod.POST })
 	public @ResponseBody EducationDto updateEducations(@RequestBody EducationDto educationDto, @PathVariable Integer id) {
 		Education education = educationService.findById(educationDto.getId());
+		MasDegreetype masDegreeType = masDegreeTypeService.find(educationDto.getMasdegreetypeId());
+		
 		education.setId(educationDto.getId());
-		education.setMasdegreetype(education.getMasdegreetype());
+		education.setMasdegreetype(masDegreeType);
 		education.setFaculty(educationDto.getFaculty());
 		education.setGpa(educationDto.getGpa());
 		education.setMajor(educationDto.getMajor());
 		education.setUniversity(education.getUniversity());
+		education.setStart_date(educationDto.getStart_date());
 		education.setGraduated_date(educationDto.getGraduated_date());
 		educationService.update(education);
 		

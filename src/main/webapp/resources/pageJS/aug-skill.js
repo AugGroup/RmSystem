@@ -52,7 +52,7 @@ $(document).ready(function() {
 				};
 		
 		$.ajax({
-			url : contextPath + "/skills/skills/"+id,
+			url : "skills/"+id,
 			type : "POST",
 			contentType :"application/json; charset=utf-8",
 			data : JSON.stringify(json),

@@ -44,6 +44,7 @@ var id = ${id};
 							<div class="form-group">
 								<input type="hidden" id="applicant" name="applicant"
 									value="${id}">
+								<input type="hidden" id="degreeType" name="degreeType">
 							</div>
 
 							<div class="form-group">
@@ -62,7 +63,7 @@ var id = ${id};
 
 	 						<div class="form-group">
 	 							<label for="degree"><spring:message code="education.degree"/></label><br>
-	 							<f:select path="degreeTypes" class="form-control" id="degree" name="degree" style="width: 165px">
+	 							<f:select path="degreeTypes" class="form-control" id="masdegreetype" name="masdegreetype" style="width: 165px">
 									<option value="-1" label="---Select DegreeType---" />
 									<c:forEach var="obj" items="${degreeTypes}">
 										<option value="${obj.id}">${obj.name}</option>
@@ -173,6 +174,7 @@ var id = ${id};
 					<th><spring:message code="education.data.faculty" /></th>
 					<th><spring:message code="education.data.major" /></th>
 					<th><spring:message code="education.data.gpa" /></th>
+					<th>Start_date</th>
 					<th><spring:message code="education.data.graduate" /></th>
 					<th><spring:message code="main.edit.info" /></th>
 					<th><spring:message code="main.delete" /></th>

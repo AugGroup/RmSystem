@@ -86,7 +86,7 @@ $(document).ready(function () {
 							"district" : district,
 							"subDistrict" : subDistrict,
 							"road" : road,
-							"provinceId" : {"id" : provinceId,"name" : $('#province option:selected').text()},
+							"province" : {"id" : provinceId,"name" : $('#province option:selected').text()},
 							"zipcode":zipcode};
 			
 				$.ajax({
@@ -142,24 +142,28 @@ $(document).ready(function () {
 		function updateAddress(button){
 			if ($('#addressForm').valid()) {
 			var id = $(button).data("id");
+			var addressTypeId = $addressTypeId.val();
 			var addressType = $('#addressType option:selected').text();
 			var houseNo = $houseNo.val();
 			var road = $road.val();
 			var district = $district.val();
 			var subDistrict = $subDistrict.val();
 			var zipcode = $zipcode.val();
+			var provinceId = $provinceId.val();
 			var province = $('#province option:selected').text();
 			console.log(id);
 			
 			var json = {
 					"id" : id,
-					"addressType" : addressType,
+					"addressTypeId" : addressTypeId,
+					"masaddresstypeName" : $('#addressType option:selected').text(),
 					"houseNo" : houseNo,
 					"road" : road,
 					"district" : district,
 					"subDistrict" : subDistrict,
 					"zipcode" : zipcode,
-					"province" : province,
+					"masprovinceId" : provinceId,
+					"masprovinceName" : $('#province option:selected').text()
 					};
 			
 			$.ajax({
@@ -173,15 +177,15 @@ $(document).ready(function () {
 					var table = $('#addressTable').DataTable();	
 				 	var rowData = table.row(button.closest('tr')).index(); 
 				 	var d = table.row(rowData).data();
-				 		console.log(data.houseNo);
+				 		console.log(data.masaddresstypeName);
 
-				 		d.addressType = data.addressTypeId;
+				 		d.masaddresstypeName = data.masaddresstypeName;
 				 		d.houseNo = data.houseNo;
 						d.road = data.road;
 				 		d.district = data.district;
 				 		d.subDistrict = data.subDistrict;
 				 		d.zipcode = data.zipcode;
-				 		d.province = data.provinceId;
+				 		d.masprovinceName = data.masprovinceName;
 				 		
 				 		table.row(rowData).data(d).draw();
 				 		

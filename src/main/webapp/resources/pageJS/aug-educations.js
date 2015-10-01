@@ -52,6 +52,7 @@ $(document).ready(function() {
 				            {data : "faculty"}, 
 				            {data : "major"},
 				            {data : "gpa"},
+				            {data : "start_date"},
 				            {data : "graduated_date"},
 				            {data : function(data) {
 								return '<button id="buttonEdit" data-id="'+data.id+'" data-toggle="modal" data-target="#educationModal" class="btn btn-warning btn-mini"><span class="glyphicon glyphicon-pencil"></span> '+ valEdit +'</button>';
@@ -69,20 +70,21 @@ $(document).ready(function() {
 		function saveEducation(){
 				if ($('#educationsForm').valid()) {
 				var university = $("#university").val();
-				var masdegreetype = $("#degree").val();
-				var degree = $("#degree option:selected").text();
+				var degreeTypeId = $("#masdegreetype").val();
+				var masdegreetype = $("#masdegreetype option:selected").text();
 				var faculty = $("#faculty").val();
 				var major = $("#major").val();
 				var start_date = $('#startDate').val();
 				var graduated_date = $("#graduate").val();
 				var gpa = $("#gpa").val();
 				console.log(id);
+				console.log(start_date);
+				console.log(graduated_date);
 				
 				var json = {
 						"applicant" : {"id" : id},
 						"university" : university,
-						"masdegreetype" : masdegreetype,
-						"degree" : degree,
+						"masdegreetype" : {"id" : degreeTypeId, "name" : $("#masdegreetype option:selected").text()},
 						"faculty" : faculty,
 						"major" : major,
 						"start_date" : start_date,
@@ -131,9 +133,10 @@ $(document).ready(function() {
  		//Show data on inputField
 		function showFillData(data){
 			$("#university").val(data.university);
-			$("#degree").val(data.masdegreetypeId);
+			$("#masdegreetype").val(data.masdegreetypeId);
 			$("#faculty").val(data.faculty);
 			$("#major").val(data.major);
+			$("#startDate").val(data.start_date);
 			$("#graduate").val(data.graduated_date);
 			$("#gpa").val(data.gpa);
 		}
@@ -143,19 +146,25 @@ $(document).ready(function() {
 			if ($('#educationsForm').valid()) {
 			var id = $(button).data("id");
 			var university = $("#university").val();
-			var degree = $("#degree").val();
+			var degreeTypeId = $("#masdegreetype").val();
+			var masdegreetype = $("#masdegreetype option:selected").text();
 			var faculty = $("#faculty").val();
 			var major = $("#major").val();
+			var start_date = $("#startDate").val();
 			var graduated_date = $("#graduate").val();
 			var gpa = $("#gpa").val();
 			console.log(id);
+			console.log(start_date);
+			console.log(graduated_date);
 			
 			var json = {
 					"id" : id,
 					"university" : university,
-					"degree" : degree,
+					"masdegreetypeId" : degreeTypeId,
+					"masdegreetype" : $("#masdegreetype option:selected").text(),
 					"faculty" : faculty,
 					"major" : major,
+					"start_date" : start_date,
 					"graduated_date" : graduated_date,
 					"gpa" : gpa,
 					};
@@ -174,9 +183,10 @@ $(document).ready(function() {
 				 		console.log(data.houseNo);
 
 				 		d.university = data.university;
-				 		d.degree = data.degree;
+				 		d.masdegreetype = data.masdegreetype;
 						d.faculty = data.faculty;
 				 		d.major = data.major;
+				 		d.start_date = data.start_date;
 				 		d.graduated_date = data.graduated_date;
 				 		d.gpa = data.gpa;
 				 		
