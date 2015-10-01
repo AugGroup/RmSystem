@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/resources/pageCss/email-create.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/resources/css/pnotify.custom.min.css" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/js/pnotify.custom.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/js/jquery.validate.min.js"></script>
 
 <title>Create Template</title>
 
@@ -26,36 +27,36 @@
 		
 		<div class="row">
 			<div class="col-sm-7">
-				<c:choose>
-					<c:when test="${sendStatus == true}">
-			       		<div class="alert alert-success alert-dismissible" role="alert">
-				       		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-	  							<span aria-hidden="true">&times;</span>
-							</button><spring:message code="request.email.status.success" />
-						</div>
-			    	</c:when>
-			    	<c:when test="${sendStatus == false}">
-			       		<div class="alert alert-danger alert-dismissible" role="alert">
-				       		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-	  							<span aria-hidden="true">&times;</span>
-							</button><spring:message code="request.email.status.fail" />
-						</div>
-			    	</c:when>
-			    	<c:when test="${empty sendStatus}">
+<%-- 				<c:choose> --%>
+<%-- 					<c:when test="${sendStatus == true}"> --%>
+<!-- 			       		<div class="alert alert-success alert-dismissible" role="alert"> -->
+<!-- 				       		<button type="button" class="close" data-dismiss="alert" aria-label="Close"> -->
+<!-- 	  							<span aria-hidden="true">&times;</span> -->
+<%-- 							</button><spring:message code="request.email.status.success" /> --%>
+<!-- 						</div> -->
+<%-- 			    	</c:when> --%>
+<%-- 			    	<c:when test="${sendStatus == false}"> --%>
+<!-- 			       		<div class="alert alert-danger alert-dismissible" role="alert"> -->
+<!-- 				       		<button type="button" class="close" data-dismiss="alert" aria-label="Close"> -->
+<!-- 	  							<span aria-hidden="true">&times;</span> -->
+<%-- 							</button><spring:message code="request.email.status.fail" /> --%>
+<!-- 						</div> -->
+<%-- 			    	</c:when> --%>
+<%-- 			    	<c:when test="${empty sendStatus}"> --%>
 			    		
-			    	</c:when>
-				</c:choose>
+<%-- 			    	</c:when> --%>
+<%-- 				</c:choose> --%>
 				<div id="email-template">
-					<form action="${ pageContext.request.contextPath }/email/setTemplate" method="POST">
+					<form id="templateFormCreate">
 						<div class="form-group">
 							<label for="name"><spring:message code="request.email.form.name" /> :</label>
-							<input type="text" name="name" class="form-control" placeholder="<spring:message code="request.email.form.name" />">
+							<input type="text" name="templateName" class="form-control" id="templateName" placeholder="<spring:message code="request.email.form.name" />">
 						</div>
 						<div class="form-group">
 							<label for="template"><spring:message code="request.email.form.template" /> :</label>
 							<textarea id="template" name="template"></textarea>
 						</div>
-						<button type="submit" class="btn btn-primary"><spring:message code="request.email.form.submit" /></button>
+						<button type="button" class="btn btn-primary" id="create"><spring:message code="request.email.form.submit" /></button>
 					</form>
 				</div>
 			</div>
@@ -77,10 +78,35 @@
 			
 	</div>
 </div>
+
+<div class="modal fade" id="showModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    
+      <div class="modal-header">
+        <h4 class="modal-title" id="title-detail">
+        	<span class="glyphicon glyphicon-remove-sign"></span>
+        </h4>
+      </div>
+      
+      <div class="modal-body" id="body-detail">
+        <p></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Close</button>
+        <button type="button" class="btn" id="btnActive" data-dismiss="modal">Ok</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <script type="text/javascript">
 	var contextPath = "${pageContext.request.contextPath}";
 	var languageNow = "${pageContext.response.locale}";
+	var templateNameRequired = "<spring:message code="request.email.required.nameTemplate" />";
+	var templateRequired = "<spring:message code="request.email.required.template" />";
 </script>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/pageJS/email-create.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/pageJS/email-active.js"></script>

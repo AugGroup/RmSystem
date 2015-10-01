@@ -22,11 +22,11 @@
 		<div class="row">
 			<div class="col-sm-7">
 				<div id="email-template">
-					<form>
+					<form id="templateFormEdit">
 						<div class="form-group">
 							<label for="name"><spring:message code="request.email.form.name" /> :</label>
-							<select class="form-control" id="mailTemplate">
-								<option value="-1" label="<spring:message code="request.email.form.select" />" />
+							<select class="form-control" id="mailTemplate" name="selectTemplate">
+								<option value=""/><spring:message code="request.email.form.select" /></option>
 								<c:forEach items="${mailTemplate}" var="mailTemplate">
 									<option value="${mailTemplate.id}">${mailTemplate.name}</option>
 								</c:forEach>
@@ -66,12 +66,12 @@
     
       <div class="modal-header">
         <h4 class="modal-title" id="title-detail">
-        	<span class="glyphicon glyphicon-remove-sign"></span> Delete Template
+        	<span class="glyphicon glyphicon-remove-sign"></span> 
         </h4>
       </div>
       
       <div class="modal-body" id="body-detail">
-        <p>Do You Want To Delete The Template?</p>
+        <p></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Close</button>
@@ -84,7 +84,8 @@
 <script type="text/javascript">
 	var contextPath = "${pageContext.request.contextPath}";
 	var languageNow = "${pageContext.response.locale}";
+	var selectRequired = "<spring:message code="request.email.select.template" />"
 </script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/pageJS/email-create.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/pageJS/email-edit.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/pageJS/email-active.js"></script>

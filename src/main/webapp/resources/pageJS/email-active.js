@@ -15,8 +15,9 @@ function showModal(title, detail,btn) {
 
 function cleanModal() {
 	$("#btnActive").removeClass("btn-warning");
-	$("#btnActive").removeClass("btn-danger")
-	$("#btnActive").removeClass("btn-success")
+	$("#btnActive").removeClass("btn-danger");
+	$("#btnActive").removeClass("btn-success");
+	$("#btnActive").removeClass("btn-primary");
 }
 $( document ).ready(function() {
 	var $id = -1;
@@ -40,17 +41,36 @@ $( document ).ready(function() {
 		}
 	});
 	
-	$("#update").on('click',function(){
-		
-		if($id == -1){
-			var title = "Select Template";
-			var detail = "Please Select The Template";
-			var btn = "btn-warning";
-			showModal(title,detail,btn);
+	$("#create").on('click',function(){
+		if($("#templateFormCreate").valid()){
+			var title = "Create Template";
+			var detail = "Do You Want To Create The Template?";
+			var btn = "btn-primary";
+			showModal(title,detail,btn);			
 			$("#btnActive").off().on("click",function(){
-				cleanModal();
+				var data = {
+						'name':$("#templateName").val(),
+						'template':CKEDITOR.instances.template.getData()
+				}
+				$.ajax({
+				 	data:JSON.stringify(data),
+				    url: contextPath+'/email/create',
+				    type :'POST',
+				    contentType : 'application/json',
+				    success : function(data){	
+				    	cleanModal();
+				    	showNotity("Create Template Success","success","glyphicon glyphicon-envelope")
+					},
+					error:function (jqXHR, textStatus, error){
+					    alert('CallBack error');
+					}
+				});
 			});
-		}else{
+		}
+	});
+	
+	$("#update").on('click',function(){
+		if($("#templateFormEdit").valid()){
 			var title = "Update Template";
 			var detail = "Do You Want To Update The Template?";
 			var btn = "btn-success";
@@ -71,7 +91,8 @@ $( document ).ready(function() {
 				    	showNotity("Update Template Success","success","glyphicon glyphicon-edit")
 				    },
 				    error:function (jqXHR, textStatus, error){
-				    	alert('CallBack error');
+				    	cleanModal();
+				    	showNotity("Update Template Fail","error","glyphicon glyphicon-alert");
 				    }
 				});
 			});
@@ -80,15 +101,7 @@ $( document ).ready(function() {
 	
 	$("#delete").on('click',function(){
 		
-		if($id == -1){
-			var title = "Select Template";
-			var detail = "Please Select The Template";
-			var btn = "btn-warning";
-			showModal(title,detail,btn);
-			$("#btnActive").off().on("click",function(){
-				cleanModal(btn);
-			});
-		}else{
+		if($("#templateFormEdit").valid()){
 			var title  = "Delete Template";
 			var detail = "Do You Want To Delete The Template?";
 			var btn	   = "btn-danger";
@@ -100,21 +113,61 @@ $( document ).ready(function() {
 				    success : function(data){	
 				    	CKEDITOR.instances.template.setData("");
 				    	$("#mailTemplate option[value="+$id+"]").remove();
-				    	cleanModal();
 				    	$('select option[value="-1"]').attr("selected",true);
 				    	$id = -1;
+				    	
+				    	cleanModal();
 				    	showNotity("Delete Template Success","success","glyphicon glyphicon-remove");
 				    	
 				    },
 				    error:function (jqXHR, textStatus, error){
-				    	alert('CallBack error');
+				    	cleanModal();
+				    	showNotity("Delete Template Fail","error","glyphicon glyphicon-alert");
 				    }
 				});
 			});
 		}
 	});
 	
+	var $validateCreate,$validateEdit;
+	$validateEdit = $("#templateFormEdit").validate({   
+		rules : {
+			selectTemplate : {
+				required : true
+			}
+		},
+		messages:{
+			selectTemplate : {
+				required : selectRequired
+			}
+		}
+	});
+	$validateCreate = $("#templateFormCreate").validate({   
+		rules : {
+			templateName : {
+				required : true
+			},
+			template: {
+                required: function() 
+                {
+                	CKEDITOR.instances.template.updateElement();
+                }
+            }
+		},
+		messages:{
+			templateName : {
+				required : templateNameRequired
+			},
+			template:{
+				required:templateRequired
+			}
+		},
+		ignore: []
+	});
+	
 	$("#btnClose").off().on("click",function(){
 		cleanModal();
 	});
+	
+	
 });

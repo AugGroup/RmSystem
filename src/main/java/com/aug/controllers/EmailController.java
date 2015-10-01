@@ -46,39 +46,61 @@ public class EmailController {
 		return "email-create";
 	}
 	
-	@RequestMapping(value="/email/setTemplate", method={RequestMethod.POST})
-	public ModelAndView setTemplate(@RequestParam(value="template") String template, 
-			@RequestParam(value="name") String name) throws UnsupportedEncodingException{
-        	
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("email-create");
-		
+//	@RequestMapping(value="/email/setTemplate", method={RequestMethod.POST})
+//	public ModelAndView setTemplate(@RequestParam(value="template") String template, 
+//			@RequestParam(value="name") String name) throws UnsupportedEncodingException{
+//        	
+//		ModelAndView modelAndView = new ModelAndView();
+//		modelAndView.setViewName("email-create");
+//		
+//		try {
+//			
+//	        //encoding template
+//	        final String encode = new String(template.getBytes("UTF-8"),"UTF-8");
+//	
+//	        //add template to db
+//	        MailTemplate mailTemplate = new MailTemplate();
+//			mailTemplate.setName(name);
+//			mailTemplate.setTemplate(encode);
+//			
+//	        //console input
+//			System.out.println("templateName : " + name);
+//			System.out.println("finalTemplate : " + template);
+//			
+//			mailTemplateService.create(mailTemplate);
+//			
+//			//set callback data
+//			modelAndView.addObject("sendStatus", true);
+//		} catch (Exception exception) {
+//			
+//			exception.printStackTrace();
+//			System.out.println(exception.toString());
+//			
+//		}
+//		
+//		return modelAndView;
+//	}
+	
+	@RequestMapping(value="/email/create", method={RequestMethod.POST})
+	public @ResponseBody void setTemplate(@RequestBody MailTemplate mailTemplate) throws UnsupportedEncodingException{
+        
 		try {
 			
 	        //encoding template
-	        final String encode = new String(template.getBytes("UTF-8"),"UTF-8");
-	
-	        //add template to db
-	        MailTemplate mailTemplate = new MailTemplate();
-			mailTemplate.setName(name);
-			mailTemplate.setTemplate(encode);
+			mailTemplate.setTemplate(new String(mailTemplate.getTemplate().getBytes("UTF-8"),"UTF-8"));
 			
 	        //console input
-			System.out.println("templateName : " + name);
-			System.out.println("finalTemplate : " + template);
+			System.out.println("templateName : " + mailTemplate.getName());
+			System.out.println("finalTemplate : " + mailTemplate.getTemplate());
 			
 			mailTemplateService.create(mailTemplate);
 			
-			//set callback data
-			modelAndView.addObject("sendStatus", true);
 		} catch (Exception exception) {
 			
 			exception.printStackTrace();
 			System.out.println(exception.toString());
 			
 		}
-		
-		return modelAndView;
 	}
 	
 	@RequestMapping(value="/email/send", method={RequestMethod.GET})
