@@ -280,7 +280,6 @@ $(function(){
 		 
 		 $("#confirmBtn").on("click",function(){
 		 		//	 if( $('#formfield').valid() ) {
-		 			  	var id = $("#appointmentId").val();
 		 				
 		 				var data = { 
 		 						id : id,
