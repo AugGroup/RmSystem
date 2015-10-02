@@ -27,7 +27,9 @@
     overflow-y: scroll;
     resize: none; 
     } 
-//
+	.fc-unthemed .fc-today {
+	    background: #63F74F;
+	}
 
 </style>
 
@@ -530,13 +532,11 @@
 </div>
 
 <!-- Validate -->
-<<<<<<< HEAD
 <script type="text/javascript" src="static/resources/js/jquery.validate.min.js"></script>
+<!-- pageJS -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/pageJS/calendar.js"></script>
-=======
+<!-- jQueryValidate -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/js/jquery.validate.min.js"></script>
-
 <!-- Datetime picker -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/datetime_picker/bootstrap-datetimepicker.min.js"></script>
->>>>>>> add datetime picker
 
