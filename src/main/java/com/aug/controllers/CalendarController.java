@@ -115,6 +115,19 @@ public class CalendarController {
 		
 	}
 	
+	@RequestMapping(value = "calendar/update",method = RequestMethod.GET)
+	public @ResponseBody AppointmentDto updateAppointment(){
+		AppointmentDto updateAppointment = appointmentService.findById(9999);
+		if ( updateAppointment == null){
+			System.out.println(updateAppointment);
+			return null;
+			
+		} else {
+	//		appointmentService.update(appointment);
+			return updateAppointment;
+		}
+	}
+	
 	@RequestMapping(value = "calendar/findAppointment",method = RequestMethod.GET)
 		public @ResponseBody List<AppointmentDto> findAppointment(@RequestParam(value="start") String start,
 		@RequestParam(value="end") String end, @RequestParam(value="_",required = false) String underscore) throws ParseException {
