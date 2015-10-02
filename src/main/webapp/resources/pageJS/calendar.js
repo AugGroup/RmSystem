@@ -277,6 +277,42 @@ $(function(){
 				}
 			});//end ajax */
 		 }) 
+		 
+		 $("#confirmBtn").on("click",function(){
+		 		//	 if( $('#formfield').valid() ) {
+		 			  	var id = $("#appointmentId").val();
+		 				
+		 				var data = { 
+		 						id : id,
+		 						topic : $("#appointmentTopicEdt").val(),
+		 						detail : $("#appoint_detailEdt").val(),
+		 					//	start: $("#datetimepicker_start").val(moment(data.start).format("yyyy-MM-dd HH:mm:ss")),
+		 					//	end : $("#datetimepicker_start").val(moment(data.start).format("yyyy-MM-dd HH:mm:ss")),
+		 						
+		 						/* login : $("#applicantName").val() */
+		 				};
+		 				
+		 				$.ajax({
+		 					url:"calendar/update",
+		 					type: "POST",
+		 					contentType : "application/json",
+		 					data : JSON.stringify(data),
+		 					dataType : "json",
+		 					success: function(result){
+		 						
+		 						$("#formfield").trigger("reset");
+		 						$("#editModal").modal("hide");
+		 						$("#detailModal").modal("hide");
+		 						
+		 					},
+		 					
+		 					error:function (jqXHR, textStatus, error){
+		 				        alert('CallBack error'); 
+		 				    }  
+		 				
+		 				});
+		 		//	 }
+		 			});
 		
 	});//end doc ready
 });

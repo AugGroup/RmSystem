@@ -123,7 +123,7 @@ public class CalendarController {
 		
 	}
 	
-	@RequestMapping(value = "calendar/update",method = RequestMethod.GET)
+	@RequestMapping(value = "calendar/update",method = RequestMethod.POST)
 	public @ResponseBody AppointmentDto updateAppointment(@RequestBody Appointment appointment){
 		AppointmentDto updateAppointment = appointmentService.findById(appointment.getId());
 		if ( updateAppointment == null){
@@ -131,6 +131,8 @@ public class CalendarController {
 			return null;
 			
 		} else {
+		AppointmentDto findAppointment	= appointmentService.findById(appointment.getId());
+			appointment.setApplicant(applicantService.findById(findAppointment.getApplicantId()));
 			appointmentService.update(appointment);
 			return updateAppointment;
 		}
