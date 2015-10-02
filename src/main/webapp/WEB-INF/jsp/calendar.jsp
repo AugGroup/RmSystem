@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/static/resources/datetime_picker/bootstrap-datetimepicker.min.css" />
-
 <style type="text/css">
 
 	div.fc-row>table>thead > tr:first-child {
@@ -76,7 +74,7 @@
 			type : "GET",
 			dataType : "json",
 			success : function(data){
-				$('#applicantName').empty().append('<option value="">-- Select Applicant --</option>');
+				$('#applicantName').empty().append('<option value="-1">-- Select Applicant --</option>');
 				
 					$.each(data, function(i, item) {
 					    //alert(data[i].firstNameEN);
@@ -182,7 +180,8 @@
 
     ],
 			eventClick: function(event, element) {
-		        $("#detailModal").modal("show");
+				console.log(event.id);
+		        $("#myModal").modal("show");
 				id = event.id;
 				console.log(id);
 				$.ajax({
@@ -196,9 +195,6 @@
 					    $("#end_date").text(new Date(data.end));
 						$("#detail_desciption").text(data.detail); 
 						$("#appoint_by").text(data.loginName);
-						
-						$('#appointmentId').val(id);
-				        $("#detailModal").modal("show");
 						//alert(data.detail);
 					},
 					error : function (error) {
@@ -207,7 +203,7 @@
 				});//end ajax
 
 				//$("#detail_topic").text(event.title);
-				
+		        $("#myModal").modal("show");
 				eventdata = event;
 		    }
 		}); // end full calendar
@@ -216,6 +212,10 @@
 		
 		$("#deleteBtn" ).on('click',function(){
 			$('#delModal').modal("show");
+		})
+		
+		$("#editBtn").on('click',function(){
+			$("#editModal").modal("show");
 		})
 		
 		
@@ -227,7 +227,7 @@
 					$('#calendar').fullCalendar('removeEvents',eventdata.id );
 				}
 	 		})
-			$('#detailModal').modal("hide");
+			$('#myModal').modal("hide");
 			$('#delModal').modal("hide");
 		})
 		
@@ -268,39 +268,6 @@
 			
 			}//end if
 		})//endonclick 'insBtn'
-		
-		$(function () {
-		    $('.dt_picker').datetimepicker({
-		    	format : "dd/mm/yyyy HH:mm:ss",
-		    	minuteStep: 30
-		    });
-		    
-		});
-		
-		
- 		  $("#detailModal").on("click","#editBtn", function () {	
- 			 
- 			 var id = $("#appointmentId").val();
- 			 console.log(id);
- 			 
-			$.ajax({
-				url : "calendar/getAppointment/"+id,
-				type : "GET",
-				success : function(data){
-					$('#datetimepicker_start').val(moment(data.start).format("DD/MM/YYYY HH:mm:ss"));
-					$('#datetimepicker_end').val(moment(data.end).format("DD/MM/YYYY HH:mm:ss"));
-					$('#applicantNameEdt').val(data.applicantName);
-					$('#applicantStatus').val(data.trackingStatus);
-					$('#appointmentTopicEdt').val(data.topic);
-					$('#appoint_detailEdt').val(data.detail);
-					$("#editModal").modal("show");
-				},
-				error : function (error) {
-					console.log(error)
-				}
-			});//end ajax */
- 		 }) 
-		 
 		
 	});
 
@@ -386,7 +353,7 @@
 	</div><!-- /.modal -->
 	
 	<!-- Detail Modal -->
-	<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -422,7 +389,7 @@
 	        	</table>
 	        
 	        <div class="text-right">
-		        <button id=editBtn type="button" class="btn btn-warning" data-dissmiss="modal">Edit</button>
+		        <button id="editBtn" type="button" class="btn btn-warning" data-dissmiss="modal">Edit</button>
 		        <button id="deleteBtn" type="button" class="btn btn-danger" data-dissmiss="modal">Delete</button><br><br>
 	        </div>
 	      </div>
@@ -433,7 +400,7 @@
 	  </div>
 	</div>
 	
-	<!-- Edit Modal -->
+	<!-- Update Modal -->
 	<div class="modal fade" id="editModal">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
@@ -442,71 +409,44 @@
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	        <h4 class="modal-title">Edit Appointment</h4>
 	      </div>
-	     
+	      
 	      <div class="modal-body">
-	        	<div class="container-fluid"><form id="formEdit">
-	        	 <input type="hidden" id="appointmentId" value="">
+	        	<div class="container-fluid"><form id="formInsert">
 	        		<div class="row">
-						 <div class='col-md-6'>
-				            <div class="form-group">
-				            <label for="start">Start</label>
-				                <div class='input-group date dt_picker' >
-				                    <input type='text' class="form-control" id='datetimepicker_start' readonly/>
-				                    <span class="input-group-addon">
-				                     	<span class="glyphicon glyphicon-calendar"></span>
-				                    </span>
-				                </div>
-				            </div>
-       					 </div>
-       					  <div class='col-md-6'>
-				            <div class="form-group">
-				             <label for="end">End</label>
-				                <div class='input-group date dt_picker' >
-				                    <input type='text' class="form-control" id='datetimepicker_end' readonly/>
-				                    <span class="input-group-addon">
-				                     	<span class="glyphicon glyphicon-calendar"></span>
-				                    </span>
-				                </div>
-				            </div>
-       					 </div>
+						<div class="col-md-6">
+							
+						</div>
 					</div>
-					<div class="row">
-						<div class="col-md-6">
-								<label for="applicantNameEdt">Applicant Name</label> 
-								<input id="applicantNameEdt" class="form-control" placeholder="Applicant Name" disabled></input>
-
-						</div>
-						<div class="col-md-6">
-							<label for="applicantStatus">Applicant Status</label> 
-							<input id="applicantStatus" class="form-control" placeholder="Applicant Status" disabled></input>
-						</div>
 						
-					</div>
-					<br>
+        			<hr>
         			<div class="row">
 	        			<div class="col-md-6">
-	        				<label for="appointmentTopicEdt">Appointment Topic</label>
-	        				<input id="appointmentTopicEdt" class="form-control" placeholder="Topic"></input>
+	        				<label for="appointmentTopic">Appointment Topic</label>
+	        				<input id="appointmentTopic" class="form-control" placeholder="Topic"></input>
 	        			</div>
+	        		
 					</div>
-					<br>
 					<div class="row">	
 	        			<div class="col-md-12">
-	        				<label for="appoint_detailEdt">Detail</label>
-	        				<textarea id="appoint_detailEdt" class="form-control" rows="4" placeholder="Insert detail here..." name ="appoint_detail"></textarea>
+	        				<label for="appoint_detail">Detail</label>
+	        				<textarea id="appoint_detail" class="form-control" rows="4" placeholder="Insert detail here..." name ="appoint_detail"></textarea>
 	        			</div>
         			</div></form>
 	        		</div>
 	      </div><!-- /.modal-body -->
 	      
 	      <div class="modal-footer">
-	        <button id="confirmBtn" type="button" class="btn btn-primary">Confirm</button>
+	        <button id="insBtn" type="button" class="btn btn-primary">Insert</button>
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	      </div>
 	      
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
+	
+	
+	
+	
 	
 	<!-- Delete Modal -->
 		<div class="modal fade" id="delModal">
@@ -530,13 +470,6 @@
 </div>
 
 <!-- Validate -->
-<<<<<<< HEAD
 <script type="text/javascript" src="static/resources/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/pageJS/calendar.js"></script>
-=======
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/js/jquery.validate.min.js"></script>
-
-<!-- Datetime picker -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/datetime_picker/bootstrap-datetimepicker.min.js"></script>
->>>>>>> add datetime picker
 

@@ -116,17 +116,18 @@ public class CalendarController {
 	}
 	
 	@RequestMapping(value = "calendar/update",method = RequestMethod.GET)
-	public @ResponseBody AppointmentDto updateAppointment(){
-		AppointmentDto updateAppointment = appointmentService.findById(9999);
+	public @ResponseBody AppointmentDto updateAppointment(@RequestBody Appointment appointment){
+		AppointmentDto updateAppointment = appointmentService.findById(appointment.getId());
 		if ( updateAppointment == null){
-			System.out.println(updateAppointment);
+			// System.out.println(updateAppointment);
 			return null;
 			
 		} else {
-	//		appointmentService.update(appointment);
+			appointmentService.update(appointment);
 			return updateAppointment;
 		}
 	}
+	
 	
 	@RequestMapping(value = "calendar/findAppointment",method = RequestMethod.GET)
 		public @ResponseBody List<AppointmentDto> findAppointment(@RequestParam(value="start") String start,
