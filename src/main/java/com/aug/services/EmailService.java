@@ -33,7 +33,7 @@ public class EmailService {
 	private VelocityEngine velocityEngine;
 	
 	public @ResponseBody String sendAppointmentMail(Employee employee, Appointment appointment, 
-			Applicant applicant, MailTemplate mailTemplate, HttpServletRequest request) throws UnsupportedEncodingException {
+			Applicant applicant, MailTemplate mailTemplate, HttpServletRequest request,String emailStr) throws UnsupportedEncodingException {
 
 		//date format
 		SimpleDateFormat formatDate = new SimpleDateFormat("dd MMM yyyy");
@@ -56,7 +56,8 @@ public class EmailService {
 		context.put("RECRUIT_PHONE", employee.getTelMobile());
 		
 		//set email attr
-		final String recipientAddress = "anat.pantera@gmail.com";
+//		final String recipientAddress = "anat.pantera@gmail.com";
+		final String recipientAddress = emailStr;
 		final String subject = appointment.getTopic();
 		final String path = request.getSession().getServletContext().getRealPath("/") + "/resources/mail-attachment/";
 		

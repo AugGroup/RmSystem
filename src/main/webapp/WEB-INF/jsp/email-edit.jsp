@@ -6,27 +6,7 @@
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/resources/pageCss/email-create.css" />
 
-<script type="text/javascript">
-$( document ).ready(function() {
-	var $validateEdit;
-	$("#btnClose").off().on("click", function() {
-		$validateEdit.resetForm();
-	});
-	
-	$validateEdit = $("#templateFormEdit").validate({   
-		rules : {
-			selectTemplate : {
-				required : true
-			}
-		},
-		messages:{
-			selectTemplate : {
-				required : selectRequired
-			}
-		}
-	});
-});
-</script>
+
 <div class="container">
 	<div class="col-sm-12" id="email-section">
 		
@@ -105,7 +85,11 @@ $( document ).ready(function() {
 <script type="text/javascript">
 	var contextPath = "${pageContext.request.contextPath}";
 	var languageNow = "${pageContext.response.locale}";
-	var selectRequired = "<spring:message code="request.email.select.template" />"
+	var selectRequired = "<spring:message code="request.email.validate.select.template" />"
+	var updateSuccess= "<spring:message code="request.email.pnotify.update.success" />";
+	var deleteSuccess= "<spring:message code="request.email.pnotify.delete.success" />";
+	var updateFail= "<spring:message code="request.email.pnotify.update.fail" />";
+	var deleteFail= "<spring:message code="request.email.pnotify.delete.fail" />";
 </script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/pageJS/email-create.js"></script>

@@ -10,39 +10,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/js/jquery.validate.min.js"></script>
 
 <title>Create Template</title>
-<script type="text/javascript">
-	$( document ).ready(function() {
-		var $validateEdit;
-		$("#btnClose").off().on("click", function() {
-			$validateCreate.resetForm();
-		});
-		
-		$validateCreate = $("#templateFormCreate").validate({   
-			rules : {
-				templateName : {
-					required : true
-				},
-				template: {
-	                required: function() 
-	                {
-	                	CKEDITOR.instances.template.updateElement();
-	                }
-	            }
-			},
-			messages:{
-				templateName : {
-					required : templateNameRequired
-				},
-				template:{
-					required:templateRequired
-				}
-			},
-			ignore: []
-		});
-	});
-	
-	
-</script>
 
 <div class="container">
 	
@@ -136,8 +103,12 @@
 <script type="text/javascript">
 	var contextPath = "${pageContext.request.contextPath}";
 	var languageNow = "${pageContext.response.locale}";
-	var templateNameRequired = "<spring:message code="request.email.required.nameTemplate" />";
-	var templateRequired = "<spring:message code="request.email.required.template" />";
+	var templateNameRequired = "<spring:message code="request.email.validate.required.nameTemplate" />";
+	var templateRequired = "<spring:message code="request.email.validate.required.template" />";
+	var createSuccess= "<spring:message code="request.email.pnotify.create.success" />";
+	var createFail= "<spring:message code="request.email.pnotify.create.fail" />";
+	var matchingName= "<spring:message code="request.email.pnotify.name.matching" />";
+	
 </script>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/ckeditor/ckeditor.js"></script>

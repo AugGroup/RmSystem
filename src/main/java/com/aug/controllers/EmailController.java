@@ -63,42 +63,7 @@ public class EmailController {
 	public String createEmail(){ 
 		return "email-create";
 	}
-	
-//	@RequestMapping(value="/email/setTemplate", method={RequestMethod.POST})
-//	public ModelAndView setTemplate(@RequestParam(value="template") String template, 
-//			@RequestParam(value="name") String name) throws UnsupportedEncodingException{
-//        	
-//		ModelAndView modelAndView = new ModelAndView();
-//		modelAndView.setViewName("email-create");
-//		
-//		try {
-//			
-//	        //encoding template
-//	        final String encode = new String(template.getBytes("UTF-8"),"UTF-8");
-//	
-//	        //add template to db
-//	        MailTemplate mailTemplate = new MailTemplate();
-//			mailTemplate.setName(name);
-//			mailTemplate.setTemplate(encode);
-//			
-//	        //console input
-//			System.out.println("templateName : " + name);
-//			System.out.println("finalTemplate : " + template);
-//			
-//			mailTemplateService.create(mailTemplate);
-//			
-//			//set callback data
-//			modelAndView.addObject("sendStatus", true);
-//		} catch (Exception exception) {
-//			
-//			exception.printStackTrace();
-//			System.out.println(exception.toString());
-//			
-//		}
-//		
-//		return modelAndView;
-//	}
-	
+		
 	@RequestMapping(value="/email/create", method={RequestMethod.POST})
 	public @ResponseBody String setTemplate(@RequestBody MailTemplate mailTemplate) throws UnsupportedEncodingException{
 		try {
@@ -132,9 +97,9 @@ public class EmailController {
 	}
 	
 	@Transactional
-	@RequestMapping(value="/email/send", method={RequestMethod.GET})
-	public String sendAppointmentMail(@RequestParam(value="appointmentId") Integer appointmentId,
-			@RequestParam(value="templateName") String templateName, HttpServletRequest request) throws UnsupportedEncodingException{
+	@RequestMapping(value="/email/send/{email}", method={RequestMethod.GET})
+	public String sendAppointmentMail(@RequestParam(value="appointmentId",defaultValue="1") Integer appointmentId,
+			@RequestParam(value="templateName",defaultValue="java") String templateName ,HttpServletRequest request,@PathVariable String email) throws UnsupportedEncodingException{
 		
 		//find employee
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -155,7 +120,7 @@ public class EmailController {
 		MailTemplate mailTemplate = mailTemplateService.findByName(templateName);
 		System.out.println("mailTemplate: " + mailTemplate.getName());
 		
-		emailService.sendAppointmentMail(employee, appointment, applicant, mailTemplate, request);
+		emailService.sendAppointmentMail(employee, appointment, applicant, mailTemplate, request,email+".com");
 		
 		return "redirect:/email/create"; 
 	}

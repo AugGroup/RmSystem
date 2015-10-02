@@ -1,8 +1,7 @@
-function showNotity(title,type,icon) {
+function showNotity(title,type) {
 	new PNotify({
 		title: title,
 	    type: type,
-	    icon: icon,
 	    delay: 3000
 	});
 }
@@ -59,21 +58,21 @@ $( document ).ready(function() {
 				    contentType : 'application/json',
 				    success : function(data){	
 				    	cleanModal();
-				    	console.log(data);
 				    	if(data == "success"){
-				    		showNotity("Create Template Success","success","glyphicon glyphicon-envelope");
+				    		CKEDITOR.instances.template.setData("");
+				    		$("#templateName").val(null);
+				    		showNotity(createSuccess,"success");
 				    	}else{
 				    		new PNotify({
-				    			title: "Create Template Fail",
-				    			text: "This Name Already Exists.",
+				    			title: createFail,
+				    			text: matchingName,
 				    		    type: "error",
-				    		    icon: "glyphicon glyphicon-envelope",
 				    		    delay: 3000
 				    		});
 				    	}
 					},
 					error:function (jqXHR, textStatus, error){
-						showNotity("Create Template Fail","error","glyphicon glyphicon-alert");
+						showNotity(createFail,"error");
 					}
 				});
 			});
@@ -99,11 +98,11 @@ $( document ).ready(function() {
 				    contentType : 'application/json',
 				    success : function(data){	
 				    	cleanModal();
-				    	showNotity("Update Template Success","success","glyphicon glyphicon-edit")
+				    	showNotity(updateSuccess,"success")
 				    },
 				    error:function (jqXHR, textStatus, error){
 				    	cleanModal();
-				    	showNotity("Update Template Fail","error","glyphicon glyphicon-alert");
+				    	showNotity(updateFail,"error");
 				    }
 				});
 			});
@@ -124,16 +123,15 @@ $( document ).ready(function() {
 				    success : function(data){	
 				    	CKEDITOR.instances.template.setData("");
 				    	$("#mailTemplate option[value="+$id+"]").remove();
-				    	$('select option[value="-1"]').attr("selected",true);
-				    	$id = -1;
-				    	
+				    	$('select option[value=""]').attr("selected",true);
+				 		$id="";		    	
 				    	cleanModal();
-				    	showNotity("Delete Template Success","success","glyphicon glyphicon-remove");
+				    	showNotity(deleteSuccess,"success");
 				    	
 				    },
 				    error:function (jqXHR, textStatus, error){
 				    	cleanModal();
-				    	showNotity("Delete Template Fail","error","glyphicon glyphicon-alert");
+				    	showNotity(deleteFail,"error");
 				    }
 				});
 			});
@@ -144,40 +142,44 @@ $( document ).ready(function() {
 		cleanModal();
 	});
 	
-//	var $validateCreate,$validateEdit;
-//	$validateEdit = $("#templateFormEdit").validate({   
-//		rules : {
-//			selectTemplate : {
-//				required : true
-//			}
-//		},
-//		messages:{
-//			selectTemplate : {
-//				required : selectRequired
-//			}
-//		}
-//	});
-//	$validateCreate = $("#templateFormCreate").validate({   
-//		rules : {
-//			templateName : {
-//				required : true
-//			},
-//			template: {
-//                required: function() 
-//                {
-//                	CKEDITOR.instances.template.updateElement();
-//                }
-//            }
-//		},
-//		messages:{
-//			templateName : {
-//				required : templateNameRequired
-//			},
-//			template:{
-//				required:templateRequired
-//			}
-//		},
-//		ignore: []
-//	});
-		
+	
+	 $('#templateFormEdit').each(function() { 
+		 $validateEdit = $(this).validate({      
+				rules : {
+					selectTemplate : {
+						required : true
+					}
+				},
+				messages:{
+					selectTemplate : {
+						required : selectRequired
+					}
+				}  
+		 });
+	 });
+	 
+	 $('#templateFormCreate').each(function() { 
+		$validateCreate = $(this).validate({   
+			rules : {
+				templateName : {
+					required : true
+				},
+				template: {
+	                required: function() 
+	                {
+	                	CKEDITOR.instances.template.updateElement();
+	                }
+	            }
+			},
+			messages:{
+				templateName : {
+					required : templateNameRequired
+				},
+				template:{
+					required:templateRequired
+				}
+			},
+			ignore: []
+		});
+	 });	
 });
