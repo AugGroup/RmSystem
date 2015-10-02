@@ -400,8 +400,8 @@
 	  </div>
 	</div>
 	
-	<!-- Update Modal -->
-	<div class="modal fade" id="editModal">
+	<!-- Edit Modal -->
+	 <div class="modal fade" id="editModal">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	    
