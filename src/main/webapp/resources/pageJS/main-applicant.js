@@ -40,9 +40,9 @@ $(document).ready(function(){
 					url : 'applicant/search',
 					type : 'POST',
 					data : function(d){
-						d.masJobLevelName = $('#inputSearch').val();
-						d.masTechnologyName = $('#inputSearch').val();
-						/* console.log(d.position) */
+						d.joblevelStr = $('#inputSearch').val();
+//						d.masTechnologyName = $('#inputSearch').val();
+						 console.log(d.joblevelStr) 
 					},
 				 },
 				 columns:[{data : "code"},

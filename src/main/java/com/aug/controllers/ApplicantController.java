@@ -38,6 +38,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 // import services.MasDegreeTypeServiceTest;
 
+
 import com.aug.hrdb.dto.AbilityDto;
 import com.aug.hrdb.dto.AddressDto;
 import com.aug.hrdb.dto.ApplicantDto;
@@ -161,40 +162,27 @@ public class ApplicantController implements Serializable {
 	}
 
 	/*-------------------- search all applicant --------------------*/
-	 @RequestMapping(value = "/applicant/search", method = { RequestMethod.POST}) 
-	 public @ResponseBody Object searchAllApplicant() { 
-		final List<ApplicantDto> data = applicantService.findAllApplicant(); 
-		return new Object() { public List<ApplicantDto> getData() { return data; } }; 
-	 }
+//	 @RequestMapping(value = "/applicant/search", method = { RequestMethod.POST}) 
+//	 public @ResponseBody Object searchAllApplicant() { 
+//		final List<ApplicantDto> data = applicantService.findAllApplicant(); 
+//		return new Object() { public List<ApplicantDto> getData() { return data; } }; 
+//	 }
 
 	/*-- search all applicant and applicant by position for dataTable--*/
-	@RequestMapping(value = "/applicant/searchTechnology", method = { RequestMethod.POST })
-	public @ResponseBody Object searchByTechnology(
-			@RequestParam final String technology) throws Exception {
-		List<ApplicantDto> data = applicantService.findByTechnology(technology);
-		if (StringUtils.isEmpty(technology)) {
-			data = applicantService.findAllApplicant();
-		}
-		final List<ApplicantDto> datas = data;
-		return new Object() {
-			public List<ApplicantDto> getData() {
-				return datas;
-			}
-		};
-	}
-	@RequestMapping(value = "/applicant/searchJoblevel", method = { RequestMethod.POST })
+	@RequestMapping(value = "/applicant/search", method = { RequestMethod.POST })
 	public @ResponseBody Object searchByJoblevel(
 			@RequestParam final String joblevel) throws Exception {
-		List<ApplicantDto> data = applicantService.findByTechnology(joblevel);
-		if (StringUtils.isEmpty(joblevel)) {
-			data = applicantService.findAllApplicant();
-		}
-		final List<ApplicantDto> datas = data;
-		return new Object() {
-			public List<ApplicantDto> getData() {
-				return datas;
-			}
-		};
+//		List<ApplicantDto> data = applicantService.findByJoblevel(joblevel);
+//		if (StringUtils.isEmpty(joblevel)) {
+//			data = applicantService.findAllApplicant();
+//		}
+//		final List<ApplicantDto> datas = data;
+//		return new Object() {
+//			public List<ApplicantDto> getData() {
+//				return datas;
+//			}
+//		};
+		return  new Object(){ public List<ApplicantDto> data= applicantService.findByJoblevel(joblevel);};
 	}
 
 	/*-------------------- Update Method --------------------*/
