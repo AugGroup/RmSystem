@@ -76,12 +76,17 @@ $(function(){
 		};
 	
 	$(document).ready(function() {
+			$(".dt_picker").datetimepicker({
+		          format: "dd/mm/yyyy hh:ii",
+		          autoclose: true,
+		          minuteStep: 30
+		      });
+		
 			var $validform = $("#formInsert").validate({			
 			rules:{
 				appointmentTopic:{
 					required:true,
 					minlength:4,
-					maxlength:15	
 				},
 				appoint_detail:{
 					required:true
@@ -264,8 +269,8 @@ $(function(){
 				url : "calendar/getAppointment/"+id,
 				type : "GET",
 				success : function(data){
-					$('#datetimepicker_start').val(moment(data.start).format("DD/MM/YYYY HH:mm:ss"));
-					$('#datetimepicker_end').val(moment(data.end).format("DD/MM/YYYY HH:mm:ss"));
+					$('#datetimepicker_start').val(moment(data.start).format("DD/MM/YYYY HH:mm"));
+					$('#datetimepicker_end').val(moment(data.end).format("DD/MM/YYYY HH:mm"));
 					$('#applicantNameEdt').val(data.applicantName);
 					$('#applicantStatus').val(data.trackingStatus);
 					$('#appointmentTopicEdt').val(data.topic);
@@ -279,39 +284,56 @@ $(function(){
 		 }) 
 		 
 		 $("#confirmBtn").on("click",function(){
-		 		//	 if( $('#formfield').valid() ) {
-		 				
-		 				var data = { 
-		 						id : id,
-		 						topic : $("#appointmentTopicEdt").val(),
-		 						detail : $("#appoint_detailEdt").val(),
-		 					//	start: $("#datetimepicker_start").val(moment(data.start).format("yyyy-MM-dd HH:mm:ss")),
-		 					//	end : $("#datetimepicker_start").val(moment(data.start).format("yyyy-MM-dd HH:mm:ss")),
-		 						
-		 						/* login : $("#applicantName").val() */
-		 				};
-		 				
-		 				$.ajax({
-		 					url:"calendar/update",
-		 					type: "POST",
-		 					contentType : "application/json",
-		 					data : JSON.stringify(data),
-		 					dataType : "json",
-		 					success: function(result){
-		 						
-		 						$("#formfield").trigger("reset");
-		 						$("#editModal").modal("hide");
-		 						$("#detailModal").modal("hide");
-		 						
-		 					},
-		 					
-		 					error:function (jqXHR, textStatus, error){
-		 				        alert('CallBack error'); 
-		 				    }  
-		 				
-		 				});
-		 		//	 }
-		 			});
+			 var updatedata; 
+			 
+			 
+			 $.ajax({
+					url : "calendar/getAppointment/"+id,
+					type : "GET",
+					success : function(findResult){
+						alert("get Data success!")
+						updatedata = { 
+								id : findResult.id,
+								topic : $("#appointmentTopicEdt").val(),
+								detail : $("#appoint_detailEdt").val(),
+								start: $("#datetimepicker_start").val() ,
+								end : $("#datetimepicker_end").val() ,
+								applicantId : findResult.applicantId,
+								loginId : findResult.loginId
+						};
+						
+						console.log(updatedata);
+						
+						$.ajax({
+							url:"calendar/update",
+							type: "POST",
+							contentType : "application/json",
+							data : JSON.stringify(updatedata),
+							dataType : "json",
+							success: function(result){
+								
+								$("#formfield").trigger("reset");
+								$("#editModal").modal("hide");
+								$("#detailModal").modal("hide");
+								
+							},
+							
+							error:function (jqXHR, textStatus, error){
+						        alert('Update error'); 
+						    }  
+						
+						});
+					},
+					error:function(){
+						alert("get data Error")
+					}
+			});
+			 
+			 
+			
+			
+			
+		});
 		
 	});//end doc ready
 });

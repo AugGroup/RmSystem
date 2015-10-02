@@ -32,7 +32,7 @@
 	    background: #63F74F;
 	}
 
-
+}
 </style>
 
 <div class="container-fluid">
