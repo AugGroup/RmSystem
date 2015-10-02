@@ -164,7 +164,9 @@ $(function(){
 			ignoreTimezone:false,
 			eventClick: function(event, element) {
 				//console.log(event.id);
-		        $("#myModal").modal("show");
+				alert("click : "+event.id);
+				console.log(event);
+		        $("#detailModal").modal("show");
 				id = event.id;
 				$.ajax({
 					url : "calendar/getAppointment/"+id,
