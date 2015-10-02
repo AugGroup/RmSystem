@@ -33,12 +33,8 @@
 
 </style>
 
-
 <div class="container-fluid">
 	<div id='calendar'></div>
-	
-	
-	
 	<!-- Insert Modal -->
 	<div class="modal fade" id="insModal">
 	  <div class="modal-dialog">

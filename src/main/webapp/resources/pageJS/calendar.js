@@ -163,8 +163,6 @@ $(function(){
 			timezone: "Asia/Bangkok",
 			ignoreTimezone:false,
 			eventClick: function(event, element) {
-				//console.log(event.id);
-				alert("click : "+event.id);
 				console.log(event);
 		        $("#detailModal").modal("show");
 				id = event.id;
@@ -258,5 +256,27 @@ $(function(){
 			}//end if
 		})//endonclick 'insBtn'
 		
-	});
+		$("#detailModal").on("click","#editBtn", function () {	
+			 
+			 console.log(id);
+			 
+			$.ajax({
+				url : "calendar/getAppointment/"+id,
+				type : "GET",
+				success : function(data){
+					$('#datetimepicker_start').val(moment(data.start).format("DD/MM/YYYY HH:mm:ss"));
+					$('#datetimepicker_end').val(moment(data.end).format("DD/MM/YYYY HH:mm:ss"));
+					$('#applicantNameEdt').val(data.applicantName);
+					$('#applicantStatus').val(data.trackingStatus);
+					$('#appointmentTopicEdt').val(data.topic);
+					$('#appoint_detailEdt').val(data.detail);
+					$("#editModal").modal("show");
+				},
+				error : function (error) {
+					console.log(error)
+				}
+			});//end ajax */
+		 }) 
+		
+	});//end doc ready
 });
