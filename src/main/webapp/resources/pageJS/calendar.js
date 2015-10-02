@@ -1,4 +1,6 @@
 $(function(){
+	//alert( ${pageContext.response.locale});
+	
 	var $applicantName = $('#applicantName');
 	
 	function currentDate(){// use For getCurrentDate
@@ -74,7 +76,6 @@ $(function(){
 		};
 	
 	$(document).ready(function() {
-			//console.log(tzdetect.matches()[0]);
 			var $validform = $("#formInsert").validate({			
 			rules:{
 				appointmentTopic:{
@@ -123,7 +124,9 @@ $(function(){
 				right: 'month,agendaWeek,agendaDay'
 			},
 			defaultDate: moment(),
+			lang: local,
 			selectable: true,
+			buttonIcons: true,
 			select: function(start, end) {
 				//console.log(start);
 				var view = $('#calendar').fullCalendar('getView');//get view object
@@ -153,7 +156,7 @@ $(function(){
 				},
 				error: function() {
 					//$('#script-warning').show();
-					alert("render error.");
+					//alert("render error.");
 				},
 				color : "#8723D9",textColor :'white'
 			},
@@ -189,7 +192,9 @@ $(function(){
 				//console.log(event.start.hasZone());
 			}
 		}); // end full calendar
-		
+	    
+	    
+	    
 		$('#calendar').fullCalendar('gotoDate', currentDate());//go to date after fullcalendar redered 
 		
 		$("#deleteBtn" ).on('click',function(){

@@ -1,5 +1,7 @@
 package com.aug.controllers;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
+
 
 
 
@@ -136,11 +139,17 @@ public class CalendarController {
 	
 	@RequestMapping(value = "calendar/findAppointment",method = RequestMethod.GET)
 		public @ResponseBody List<AppointmentDto> findAppointment(@RequestParam(value="start") String start,
-		@RequestParam(value="end") String end, @RequestParam(value="_",required = false) String underscore) throws ParseException {
-		List<AppointmentDto> list = appointmentService.findAppointment(start, end);
-		System.out.println("test: " + list.get(0).getStart());
+		@RequestParam(value="end") String end, @RequestParam(value="_",required = false) String underscore, 
+		@RequestParam(value="timezone",required = false) String timezone) throws ParseException {
 		
-		return list;
+		List<AppointmentDto> list = appointmentService.findAppointment(start, end);
+		//System.out.println("test: " + list.get(0).getStart());
+		if (list.size()==0) {
+			return null;
+		}else {
+			return list;
+		}
+		
 	}
 	
 	@RequestMapping(value = "calendar/findByTrackingStatus/{trackingStatus}", method = RequestMethod.GET)
