@@ -24,7 +24,8 @@
 					<th><spring:message code="request.id" /></th>
 					<th><spring:message code="request.date" /></th>
 					<th><spring:message code="request.human" /></th>
-					<th><spring:message code="info.position" /></th>
+					<th><spring:message code="main.position1" /></th>
+					<th><spring:message code="main.position2"/></th>
 					<th><spring:message code="request.number" /></th>
 					<th><spring:message code="main.status" /></th>
 					<th><spring:message code="request.approve" /></th>
@@ -50,6 +51,10 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
+						<input type="hidden" id="jobLevelId" name="jobLevelId">
+						<input type="hidden" id="technologyId" name="technologyId">
+					</div>
+					<div class="form-group">
 						<label for="inputStatus"><spring:message code="request.as" /></label>
 						<select name="inputStatus" id='inputStatus' class="form-control">
 							<option value='New Request' selected='selected'><spring:message
@@ -66,7 +71,6 @@
 					</button>
 					<button id="btn_close" type="button" class="btn btn-default"
 						data-dismiss="modal">
-						>
 						<spring:message code="button.cancel" />
 					</button>
 
@@ -104,7 +108,6 @@
 							<div class="col-sm-2">
 								<button id="btn_close" type="button" class="btn btn-default"
 									data-dismiss="modal">
-									>
 									<spring:message code="button.cancel" />
 								</button>
 							</div>

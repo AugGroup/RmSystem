@@ -26,13 +26,14 @@ $(document).ready(function () {
 //    	});
 		/* ------------------- DataTable------------------- */
 		var dtRequest;
-		var dtRequest =$('#requestTable').DataTable({
-			"columnDefs": [
-       	                { "width": "7%", "targets": 0 },
-       	                { "width": "10%", "targets": 1 },
-       	                { "width": "17%", "targets": 2 },
-       	                { "width": "7%", "targets": 4 },
-       	                
+    	if(dtRequest){ // if have dataTable
+    		dtRequest.ajax.reload(); // clear and call ajax, draw table?
+    	}else{
+    		dtRequest = $('#requestTable').DataTable({
+    				"columnDefs": [{ "width": "7%", "targets": 0 },
+    				               { "width": "10%", "targets": 1 },
+    				               { "width": "17%", "targets": 2 },
+    				               { "width": "7%", "targets": 4 },
 				             ],
 			sort : false,
 			ajax: {
@@ -41,7 +42,8 @@ $(document).ready(function () {
 				data: function (d) {
 					$("#id").val(d.id);
 					$("#requestDate").val(d.requestDate);
-					$("#positionName").val(d.positionName);
+					$("#joblevel").val(d.masJobLevelName);
+					$("#technology").val(d.masTechnologyName);
 					$("#numberApplicant").val(d.numberApplicant);
 					$("#status").val(d.status);
 					}
@@ -50,7 +52,8 @@ $(document).ready(function () {
 				           {"data": "id"},
 				           {"data": "requestDate"},
 				           {"data": "requesterName"},
-				           {"data": "positionStr"},
+				           {"data": "masJobLevelName"},
+				           {"data": "masTechnologyName"},
 				           {"data": "numberApplicant"},
 				           {"data": "status"},
 				           {data: function (data) {
@@ -59,6 +62,7 @@ $(document).ready(function () {
 				        	}}
 				           ]
 				});
+    	}
 		
 		/*------------------- Approve Modal Function------------------- */
 		$('#approveModal').on('shown.bs.modal', function (e) {
@@ -87,7 +91,7 @@ $(document).ready(function () {
 			var id = $(button).data("id");
 			var status = $('#inputStatus').val();
 			var index = dtRequest.row(button.closest("tr")).index();
-			var request = {
+			var json = {
 					'id': id,
 					'status': status
 					};
@@ -96,14 +100,15 @@ $(document).ready(function () {
 				contentType: "application/json",
 				type: "POST",
 				url: 'approve/update/' + id,
-				data: JSON.stringify(request),
+				data: JSON.stringify(json),
 				success: function (data) {
 					//console.log(data.status);
 					var dt = dtRequest.data();
 					dt.id = data.id;
 					dt.requesterName = data.requesterName;
 					dt.requestDate = data.requestDate;
-					dt.positionStr = data.positionStr;
+					dt.masJobLevelName = data.masJobLevelName;
+					dt.masTechnologyName = data.masTechnologyName;
 					dt.numberApplicant = data.numberApplicant;
 					dt.status = data.status;
 					dtRequest.row(index).data(dt).draw();
