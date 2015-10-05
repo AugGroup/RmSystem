@@ -72,7 +72,7 @@ $(document).ready(function(){
 			var applicantId = $(button).data("id");
 			if(applicantId != null){
 				findById(applicantId);
-				/* console.log(applicantId); */
+				 console.log(applicantId); 
 				$("#btn_submit").off("click").on("click", function(){
 					updateUser(button);
 				});
@@ -82,7 +82,7 @@ $(document).ready(function(){
 		
 		//Find by Id
 		function findById(id){
-			/* console.log(id); */
+			 console.log(id); 
 			$.ajax({
 				url : "applicant/search/" + id,
 				type : "POST",
