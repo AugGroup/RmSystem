@@ -122,20 +122,8 @@ public class CalendarController {
 	}
 	
 	@RequestMapping(value = "calendar/update",method = RequestMethod.POST)
-	public @ResponseBody AppointmentDto updateAppointment(@RequestBody Appointment appointment){
-//		AppointmentDto updateAppointment = appointmentService.findById(appointment.getId());
-//		if ( updateAppointment == null){
-//			// System.out.println(updateAppointment);
-//			return null;
-//			
-//		} else {
-//		AppointmentDto findAppointment	= appointmentService.findById(appointment.getId());
-//			appointment.setApplicant(applicantService.findById(findAppointment.getApplicantId()));
-//			appointmentService.update(appointment);
-//			return updateAppointment;
-//		}
+	public @ResponseBody AppointmentDto updateAppointment(@RequestBody Appointment appointment) throws ParseException{
 		appointmentService.update(appointment);
-		
 		return appointmentService.findById(appointment.getId());
 	}
 	

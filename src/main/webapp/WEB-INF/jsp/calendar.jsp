@@ -141,7 +141,7 @@
 	        			<td colspan="2"><h4 id="detail_desciption"></h4></td>
 	        		</tr>
 	        		<tr>
-	        			<td colspan="1"><h4 ><spring:message code="appointment.appointBy" /></h5></td>
+	        			<td colspan="1"><h4 ><spring:message code="appointment.appointBy" /></h4></td>
 	        			<td colspan="2"><h4 id="appoint_by"></h4></td>
 	        		</tr>
 	        	</table>
