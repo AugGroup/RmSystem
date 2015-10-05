@@ -1,7 +1,5 @@
 package com.aug.controllers;
 
-import java.io.Reader;
-import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.aug.hrdb.entities.Applicant;
@@ -25,7 +22,6 @@ import com.aug.hrdb.entities.Appointment;
 import com.aug.hrdb.entities.Employee;
 import com.aug.hrdb.entities.Login;
 import com.aug.hrdb.entities.MailTemplate;
-import com.aug.hrdb.services.ApplicantService;
 import com.aug.hrdb.services.AppointmentService;
 import com.aug.hrdb.services.LoginService;
 import com.aug.hrdb.services.MailTemplateService;
@@ -42,10 +38,7 @@ public class EmailController {
 	
 	@Autowired
 	private AppointmentService appointmentService;
-	
-	@Autowired
-	private ApplicantService applicantService;
-	
+		
 	@Autowired
 	private EmailService emailService;
 	
@@ -87,32 +80,37 @@ public class EmailController {
 	}
 	
 	@Transactional
-	@RequestMapping(value="/email/send/{email}", method={RequestMethod.GET})
-	public String sendAppointmentMail(@RequestParam(value="appointmentId",defaultValue="1") Integer appointmentId,
-			@RequestParam(value="templateName",defaultValue="java") String templateName ,HttpServletRequest request,@PathVariable String email) throws UnsupportedEncodingException{
+	@RequestMapping(value="/email/send/{appointmentId}/{templateName}", method={RequestMethod.GET})
+	public String sendAppointmentMail(@PathVariable(value="appointmentId") Integer appointmentId, 
+			@PathVariable(value="templateName") String templateName, HttpServletRequest request) throws UnsupportedEncodingException{
 		
-		//find employee
-		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		System.out.println("userName : " + userDetails.getUsername());
-		Login login = loginService.findByUserName(userDetails.getUsername());
-		Employee employee = login.getEmployee();
-		System.out.println("employee: " + employee.getNameEng());
+		try {
+			//find employee
+			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			System.out.println("userName : " + userDetails.getUsername());
+			Login login = loginService.findByUserName(userDetails.getUsername());
+			Employee employee = login.getEmployee();
+			System.out.println("employee: " + employee.getNameEng());
+			
+			//find appointment
+			Appointment appointment = appointmentService.find(appointmentId);
+			System.out.println("appointment: " + appointment.getDetail());
+			
+			//find applicant
+			Applicant applicant = appointment.getApplicant();
+			System.out.println("applicant: " + applicant.getFirstNameEN());
+			
+			//find template
+			MailTemplate mailTemplate = mailTemplateService.findByName(templateName);
+			System.out.println("mailTemplate: " + mailTemplate.getName());
+			
+			emailService.sendAppointmentMail(employee, appointment, applicant, mailTemplate, request);
+		} catch(Exception exception) {
+			exception.printStackTrace();
+			System.out.println(exception);
+		}
 		
-		//find appointment
-		Appointment appointment = appointmentService.find(appointmentId);
-		System.out.println("appointment: " + appointment.getDetail());
-		
-		//find applicant
-		Applicant applicant = appointment.getApplicant();
-		System.out.println("applicant: " + applicant.getFirstNameEN());
-		
-		//find template
-		MailTemplate mailTemplate = mailTemplateService.findByName(templateName);
-		System.out.println("mailTemplate: " + mailTemplate.getName());
-		
-		emailService.sendAppointmentMail(employee, appointment, applicant, mailTemplate, request,email+".com");
-		
-		return "redirect:/email/create"; 
+		return "redirect:/calendar"; 
 	}
 
 	@RequestMapping(value="/email/edit", method={RequestMethod.GET})
