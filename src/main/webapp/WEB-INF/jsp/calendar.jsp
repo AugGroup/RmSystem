@@ -146,43 +146,39 @@
 	      <div class="modal-body">
 	        	<div class="container-fluid"><form id="formEdit">
 	        	 <input type="hidden" id="appointmentId" value="">
-	        		<div class="row">
+					<div class="row">
+						<div class="col-md-6">
+								<label for="applicantNameEdt"><spring:message code="appointment.applicant.name" /></label> 
+								<input id="applicantNameEdt" class="form-control" placeholder="Applicant Name" readonly></input>
+
+						</div>
+						<div class="col-md-6">
+							<label for="applicantStatus"><spring:message code="appointment.applicant.status" /></label> 
+							<input id="applicantStatus" class="form-control" placeholder="Applicant Status" readonly></input>
+						</div>
+						
+					</div>
+					<div class="row">
 						 <div class='col-md-6'>
 				            <div class="form-group">
-				            <label for="start"><spring:message code="appointment.start" /></label>
-				                <div id="startPicker" class='input-group date dt_picker' >
-				                    <input type='text' class="form-control" id='datetimepicker_start' readonly/>
-				                    <span class="input-group-addon">
-				                     	<span class="glyphicon glyphicon-calendar"></span>
-				                    </span>
+				            <label for="appointment_show_start"><spring:message code="appointment.start" /></label>
+				                <div id="startPicker" class='input-group' >
+			                    	<input type='text' class="form-control" id='appointment_show_start' readonly/>
+			                     	<span class="input-group-addon glyphicon glyphicon-calendar"></span>
 				                </div>
 				            </div>
        					 </div>
        					  <div class='col-md-6'>
 				            <div class="form-group">
-				             <label for="end"><spring:message code="appointment.end" /></label>
-				                <div id="endPicker" class='input-group date dt_picker' >
-				                    <input type='text' class="form-control" id='datetimepicker_end' readonly/>
-				                    <span class="input-group-addon">
-				                     	<span class="glyphicon glyphicon-calendar"></span>
-				                    </span>
+				             <label for="appointment_show_end"><spring:message code="appointment.end" /></label>
+				                <div id="endPicker" class='input-group' >
+				                    <input type='text' class="form-control" id='appointment_show_end' readonly/>
+				                    <span class="input-group-addon glyphicon glyphicon-calendar"></span>
 				                </div>
 				            </div>
        					 </div>
 					</div>
-					<div class="row">
-						<div class="col-md-6">
-								<label for="applicantNameEdt"><spring:message code="appointment.applicant.name" /></label> 
-								<input id="applicantNameEdt" class="form-control" placeholder="Applicant Name" disabled></input>
-
-						</div>
-						<div class="col-md-6">
-							<label for="applicantStatus"><spring:message code="appointment.applicant.status" /></label> 
-							<input id="applicantStatus" class="form-control" placeholder="Applicant Status" disabled></input>
-						</div>
-						
-					</div>
-					<br>
+					<hr/>
         			<div class="row">
 	        			<div class="col-md-6">
 	        				<label for="appointmentTopicEdt"><spring:message code="appointment.topic" /></label>
@@ -209,23 +205,43 @@
 	</div><!-- /.modal -->
 	
 	<!-- Delete Modal -->
-		<div class="modal fade" id="delModal">
-		  <div class="modal-dialog modal-sm">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4><spring:message code="appointment.confirm.delete.title" /></h4>
-		      </div>
-		      <div class="modal-body">
-		        <p><spring:message code="appointment.confirm.delete" /></p>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> <spring:message code="button.close" /></button>
-		        <button type="button" id="confirmDel" class="btn btn-danger" ><span class=""></span> <spring:message code="button.delete" /></button>
-		      </div>
-		    </div><!-- /.modal-content -->
-		  </div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
+	<div class="modal fade" id="delModal">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4><spring:message code="appointment.confirm.delete.title" /></h4>
+	      </div>
+	      <div class="modal-body">
+	        <p><spring:message code="appointment.confirm.delete" /></p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> <spring:message code="button.close" /></button>
+	        <button type="button" id="confirmDel" class="btn btn-danger" ><span class=""></span> <spring:message code="button.delete" /></button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	
+	<!-- Edit confirm Modal -->
+	<div class="modal fade" id="confirmEditModal">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4><spring:message code="appointment.confirm.date.edit.title" /></h4>
+	      </div>
+	      <div class="modal-body">
+	        <p><spring:message code="appointment.confirm.date.edit" /></p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" id="confirmEditModal" class="btn btn-warning" ><span class="glyphicon glyphicon-wrench"></span> <spring:message code="button.edit" /></button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal"><span class=""></span> <spring:message code="button.close" /></button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	
 	
 </div>
 

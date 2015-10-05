@@ -327,8 +327,8 @@ $( function(){
 				url : "calendar/getAppointment/"+id,
 				type : "GET",
 				success : function(data){
-					$('#datetimepicker_start').val(moment(data.start).format("DD/MM/YYYY HH:mm"));
-					$('#datetimepicker_end').val(moment(data.end).format("DD/MM/YYYY HH:mm"));
+					$('#appointment_show_start').val(moment(data.start).format("DD/MM/YYYY HH:mm"));
+					$('#appointment_show_end').val(moment(data.end).format("DD/MM/YYYY HH:mm"));
 					$('#applicantNameEdt').val(data.applicantName);
 					$('#applicantStatus').val(data.trackingStatus);
 					$('#appointmentTopicEdt').val(data.topic);
@@ -341,57 +341,37 @@ $( function(){
 			});//end ajax */
 		 }) //end onclick
 		
-		$("#editModal").on("click", "#confirmEditBtn", function(){
-			 var updatedata; 
+		 $("#confirmEditModal").on("click", "#confirmEditModal", function(){
+			 var updatedata = {id : id, topic : $("#appointmentTopicEdt").val() , detail : $("#appoint_detailEdt").val()}; 
 			 $.ajax({
-					url : "calendar/getAppointment/"+id,
-					type : "GET",
-					success : function(findResult){
-						//alert("Get Data success!");
-						dateStart = moment(new Date($("#datetimepicker_start").val())).format("YYYY-DD-MM HH:mm")+":00";
-						dateEnd = moment(new Date($("#datetimepicker_end").val())).format("YYYY-DD-MM HH:mm")+":00";
-						updatedata = { 
-								id : findResult.id,
-								topic : $("#appointmentTopicEdt").val(),
-								detail : $("#appoint_detailEdt").val(),
-								start: new Date(dateStart),
-								end : new Date(dateEnd),
-								title : findResult.title,
-								applicant : {id:findResult.applicantId},
-								login : {id:findResult.loginId}
-						};
-						
-						$.ajax({
-							url:"calendar/update",
-							type: "POST",
-							contentType : "application/json",
-							data : JSON.stringify(updatedata),
-							dataType : "json",
-							success: function(result){
-								//alert("Update Success!")
-								$("#formfield").trigger("reset");
-								$("#editModal").modal("hide");
-								$("#detailModal").modal("hide");
-								
-								$('#calendar').fullCalendar( 'destroy' );
-								renderCalendar();
-								new PNotify({
-								    title: 'Appointment has been modified.',
-								    type: 'success'
-								});
-								
-							},
-							
-							error:function (jqXHR, textStatus, error){
-						        alert('Update error'); 
-						    }  
-						
-						});
-					},
-					error:function(){
-						alert("get data Error")
-					}
-			});//end ajax
+				url:"calendar/updateTopicAndDetail",
+				type: "POST",
+				contentType : "application/json",
+				data : JSON.stringify(updatedata),
+				dataType : "json",
+				success: function(result){
+					$("#detail_topic").text(result.topic);
+					$("#detail_desciption").text(result.detail);
+					//$("#formfield").trigger("reset");
+					
+					$('#confirmEditModal').modal("hide");
+					$('#editModal').modal("hide");
+					new PNotify({
+					    title: 'Appointment has been modified.',
+					    type: 'success'
+					});
+				},
+				
+				error:function (jqXHR, textStatus, error){
+			        alert('Update error'); 
+			    }  
+			
+			 });
+		 })
+		 
+		 
+		$("#editModal").on("click", "#confirmEditBtn", function(){
+			$('#confirmEditModal').modal("show");
 		});//end edit modal
 });//end doc ready
 

@@ -3,32 +3,17 @@ package com.aug.controllers;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
-
-
-
-
-
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.h2.mvstore.db.TransactionStore.Change;
-import org.hibernate.validator.util.privilegedactions.GetAnnotationParameter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 
 
-import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,7 +25,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.aug.hrdb.dto.ApplicantDto;
 import com.aug.hrdb.dto.AppointmentDto;
 import com.aug.hrdb.entities.Appointment;
-import com.aug.hrdb.entities.Employee;
 import com.aug.hrdb.entities.Login;
 import com.aug.hrdb.services.ApplicantService;
 import com.aug.hrdb.services.AppointmentService;
@@ -69,17 +53,17 @@ public class CalendarController {
 	}
 	
 	@RequestMapping(value = "calendar/insertAppointment",method = RequestMethod.POST)
-	public @ResponseBody AppointmentDto insertAppointment(@RequestBody Appointment apmDto) {
+	public @ResponseBody AppointmentDto insertAppointment(@RequestBody Appointment appointment) {
 		
 		/*                                  Get Who's Appoint                                  */		
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		//System.out.println("userName : " + userDetails.getUsername());
 		Login login = loginService.findByUserName(userDetails.getUsername());
-		apmDto.setLogin(login);//set login Id
+		appointment.setLogin(login);//set login Id
 		
 		/*                Change time for insert                      */
-		Date dateStart = apmDto.getStart();//get date from appointment
-		Date dateEnd = apmDto.getEnd();
+		Date dateStart = appointment.getStart();//get date from appointment
+		Date dateEnd = appointment.getEnd();
 		
 		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.ENGLISH);
 		formatter.setTimeZone(TimeZone.getTimeZone("GMT"));//set Timezone to be GMT
@@ -90,7 +74,7 @@ public class CalendarController {
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);//new format to convert String to Date
 		try {
 			//System.out.println(format.parse(startString));
-			apmDto.setStart(format.parse(startString));//set date with new timezone 
+			appointment.setStart(format.parse(startString));//set date with new timezone 
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -98,13 +82,14 @@ public class CalendarController {
 		
 		try {
 			//System.out.println(format.parse(endString));
-			apmDto.setEnd(format.parse(endString));
+			appointment.setEnd(format.parse(endString));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		appointmentService.create(apmDto);
-		return appointmentService.findById(apmDto.getId());
+		
+		appointmentService.create(appointment);
+		return appointmentService.findById(appointment.getId());
 	}
 	
 	
@@ -119,9 +104,6 @@ public class CalendarController {
 	@RequestMapping(value = "calendar/update",method = RequestMethod.POST)
 	public @ResponseBody AppointmentDto updateAppointment(@RequestBody Appointment appointment) throws ParseException{
 		Appointment appointmentToUpdate = appointmentService.find(appointment.getId());
-		
-//		appointmentToUpdate.setStart(appointment.getStart());
-//		appointmentToUpdate.setEnd(appointment.getEnd());
 		
 		/*                Change time for insert                      */
 		Date dateStart = appointment.getStart();//get date from appointment
@@ -150,16 +132,19 @@ public class CalendarController {
 			e.printStackTrace();
 		}
 		
-		
-		
-		
-		
-		
-		
-		
 		appointmentService.update(appointmentToUpdate);
 		return appointmentService.findById(appointmentToUpdate.getId());
 	}
+	
+	@RequestMapping(value = "calendar/updateTopicAndDetail",method = RequestMethod.POST)
+	public @ResponseBody AppointmentDto updateTopicAndDetail(@RequestBody Appointment appointment) {
+		Appointment appointmentUpdate = appointmentService.find(appointment.getId());
+		appointmentUpdate.setTopic(appointment.getTopic());
+		appointmentUpdate.setDetail(appointment.getDetail());
+		appointmentService.update(appointmentUpdate);
+		return appointmentService.findById(appointmentUpdate.getId());
+	}
+	
 	
 	
 	@RequestMapping(value = "calendar/findAppointment",method = RequestMethod.GET)
@@ -168,7 +153,6 @@ public class CalendarController {
 		@RequestParam(value="timezone",required = false) String timezone) throws ParseException {
 		
 		List<AppointmentDto> list = appointmentService.findAppointment(start, end);
-		//System.out.println("test: " + list.get(0).getStart());
 		if (list.size()==0) {
 			return null;
 		}else {
