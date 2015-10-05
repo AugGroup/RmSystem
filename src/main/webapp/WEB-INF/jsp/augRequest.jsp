@@ -66,6 +66,10 @@ var delete_tx = "<spring:message code="main.delete"/>";
 					<form role='form' id="requestForm" name="requestForm">
 						<div style="width: 400px; padding-left: 50px;">
 						<div class="form-group">
+							<input type="hidden" id="jobLevelId" name="jobLevelId">
+							<input type="hidden" id="technologyId" name="technologyId">
+						</div>
+						<div class="form-group">
 							<label for="inputRequesterName"><spring:message code="request.human" /></label> 
 							<input type="text" class="form-control" name="inputRequesterName" id="inputRequesterName" />
 						</div>
@@ -78,20 +82,23 @@ var delete_tx = "<spring:message code="main.delete"/>";
 							<label for="inputRequestDate" class="error"></label>
 						</div>
 						<div class="form-group">
-							<label for="inputJoblevel"><spring:message code="main.position1" /></label> 
-							<select name="inputJoblevel" id="inputJoblevel" class="form-control">
-								<c:forEach items="${requestJoblevel}" var="items">
-									<option value="${items.id}">${items.name }</option>
+							<label for="joblevel"><spring:message code="main.position1" /></label> 
+							<select name="joblevel" id="joblevel" class="form-control">
+							<option value="-1" label="---Select Joblevel---" />
+								<c:forEach items="${jobLevels}" var="jobLevelList">
+									<option value="${jobLevelList.id}">${jobLevelList.name}</option>
 								</c:forEach>
 							</select>
 						</div>
+						
 						<div class="form-group">
-							<label for="inputTechnology"><spring:message code="main.position2" /></label> 
-							<select name="inputTechnology" id="inputTechnology" class="form-control">
-								<c:forEach items="${requestTechnology}" var="items">
-									<option value="${items.id}">${items.name }</option>
+							<label for="technology"><spring:message code="main.position2" /></label> 
+							<select name="technology" id="technology" class="form-control">
+							<option value="-1" label="---Select Technology---" />
+								<c:forEach items="${technologies}" var="technologyList">
+									<option value="${technologyList.id}">${technologyList.name}</option>
 								</c:forEach>
-							</select>
+							</select> 
 						</div>
 						<div class="form-group">
 							<label for="inputApprovalName"><spring:message code="request.approve.name" /></label> 

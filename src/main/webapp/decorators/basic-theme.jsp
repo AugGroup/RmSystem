@@ -55,11 +55,12 @@
 <link href='<c:url value="/static/resources/css/bootstrap.min.css"/>' rel="stylesheet" type="text/css"></link>
 <link href='<c:url value="/static/resources/css/fullcalendar.css"/>' rel='stylesheet' type="text/css"/>
 <link href='<c:url value="/static/resources/css/fullcalendar.print.css"/>' rel='stylesheet' media='print' />
-
+<link href='<c:url value="/static/resources/css/jquery-ui.min.css"/>' rel='stylesheet' />
 
 <script src='<c:url value="/static/resources/js/moment-timezone.js"/>'></script>
-<%-- <script src='<c:url value="/static/resources/js/jquery-1.11.3.min.js"/>'></script> --%>
 <script src='<c:url value="/static/resources/js/fullcalendar.min.js"/>'></script>
+<script src='<c:url value="/static/resources/js/calendar_lang-all.js"/>'></script>
+
 <script type="text/javascript">
 	var contextPath = "${pageContext.request.contextPath}";
 </script>
