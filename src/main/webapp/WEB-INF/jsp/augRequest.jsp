@@ -68,6 +68,7 @@ var delete_tx = "<spring:message code="main.delete"/>";
 						<div class="form-group">
 							<input type="hidden" id="jobLevelId" name="jobLevelId">
 							<input type="hidden" id="technologyId" name="technologyId">
+							<input type="hidden" id="degreeType" name="degreeType">
 						</div>
 						<div class="form-group">
 							<label for="inputRequesterName"><spring:message code="request.human" /></label> 

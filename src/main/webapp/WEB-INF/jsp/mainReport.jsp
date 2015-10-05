@@ -21,24 +21,38 @@
 			
 			<div class="search_inputgroup">
 				<%-- <h3><spring:message code="report.text.search" /></h3> --%>
-				<div class="form-group" style="width: 216px">
-					<label for="position"><spring:message code="info.position" /></label>
-					<select name="position" id="position" class="form-control">
-						<option value="-1"><spring:message code="report.text.select" /></option>
-						<c:forEach items="${positionRequest}" var="items">
-							<option value="${items.id}">${items.positionName }</option>
+				<div class="form-group">
+					<input type="hidden" id="jobLevelId" name="jobLevelId">
+					<input type="hidden" id="technologyId" name="technologyId">
+				</div>
+				<div class="form-group">
+					<label for="joblevel"><spring:message code="main.position1" /></label> 
+					<select name="joblevel" id="joblevel" class="form-control">
+					<option value="-1" label="---Select Joblevel---" />
+						<c:forEach items="${jobLevels}" var="jobLevelList">
+							<option value="${jobLevelList.id}">${jobLevelList.name}</option>
 						</c:forEach>
 					</select>
 				</div>
-				<div class="form-group" style="width: 165px">
-					<label for="degree"><spring:message code="education.degree" /></label>
-					<select name="degree" id='degree' class="form-control" style="width: 165px">
-						<option value='' selected='selected'><spring:message code="report.text.select" /></option>
-						<option value='Bachelor'><spring:message code="report.bachelor"/></option>
-						<option value='Master'><spring:message code="report.master"/></option>
-						<option value='Doctor'><spring:message code="report.doctor"/></option>
-					</select>
+						
+				<div class="form-group">
+					<label for="technology"><spring:message code="main.position2" /></label> 
+					<select name="technology" id="technology" class="form-control">
+					<option value="-1" label="---Select Technology---" />
+						<c:forEach items="${technologies}" var="technologyList">
+							<option value="${technologyList.id}">${technologyList.name}</option>
+						</c:forEach>
+					</select> 
 				</div>
+	 			<div class="form-group">
+	 				<label for="masdegreetype"><spring:message code="education.degree"/></label><br>
+	 				<select class="form-control" id="masdegreetype" name="masdegreetype" style="width: 165px">
+						<option value="-1" label="---Select DegreeType---" />
+						<c:forEach var="obj" items="${degreeTypes}">
+							<option value="${obj.id}">${obj.name}</option>
+						</c:forEach>
+					</select>
+				</div> 
 				<div class="form-group" style="width: 165px">
 					<label for="major"><spring:message code="education.major" /></label>
 					<input type="text" class="form-control" id="major" name="major" placeholder="
@@ -50,8 +64,8 @@
 					<input type="text" class="form-control" maxlength="5" id="gpa" name="gpa" placeholder="0.00" style="width: 93px">
 				</div>
 				<div class="form-group" style="width: 165px">
-					<label for="schoolName"><spring:message code="report.text.school" /></label> 
-					<input type="text" class="form-control" id="schoolName" name="schoolName" 
+					<label for="university"><spring:message code="report.text.school" /></label> 
+					<input type="text" class="form-control" id="university" name="university" 
 					placeholder="<spring:message code="report.enter.school"/>" style="width: 165px">
 				</div>
 

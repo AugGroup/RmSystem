@@ -22,11 +22,13 @@ $(document).ready(function () {
 					type:'POST',
 					url: 'report/search',
 					data: function (d) {
-						d.position = $('#position').val();
-						d.degree = $('#degree').val();
+						d.joblevel = $('#joblevel').val();
+						d.technology = $('#technology').val();
+						d.masdegreetype = $('#masdegreetype').val();
 						d.major = $('#major').val();
-						d.schoolName = $('#schoolName').val();
-						d.gpa = $('#gpa').val(); 
+						d.university = $('#university').val();
+						d.gpa = $('#gpa').val();
+						console.log(d.university);
 					},
 					complete: function(data){
 						if($('.dataTables_empty').length > 0){
@@ -38,9 +40,8 @@ $(document).ready(function () {
 			           {data: "code"},
 				       {data: "applyDate"},
 				       {data: "fullNameEN"},
-				       {data: "positionName1"},
-				       {data: "positionName2"},
-//				       {data: "positionName3"},
+				       {data: "masJoblevelName"},
+				       {data: "masTechnologyName"},
 				       {data: "schoolName"},
 				       {data: "degree"},
 				       {data: "gpa"},

@@ -253,12 +253,19 @@ public class ApplicantController implements Serializable {
 	/*-------------------- search all applicant and search applicant for Report dataTable--------------------*/
 	@RequestMapping(value = "/report/search", method = { RequestMethod.POST })
 	public @ResponseBody Object searchReportBy(@RequestParam Integer technology,Integer joblevel,
-			String degree, String major, String schoolName, Double gpa)
+			Integer masdegreetype, String major, String university, Double gpa)
 			throws Exception {
 
+		System.out.println("technology : " + technology);
+		System.out.println("joblevel : " + joblevel);
+		System.out.println("dagree : " + masdegreetype);
+		System.out.println("major : " + major);
+		System.out.println("university : " + university);
+		System.out.println("gpa : " + gpa);
+		
 		final List<ReportApplicantDto> data;
-		data = applicantService.findReportByCriteria(technology,joblevel, degree, major,
-				schoolName, gpa);
+		data = applicantService.findReportByCriteria(technology,joblevel, masdegreetype, major,
+				university, gpa);
 
 		/*
 		 * if (position == -1 && degree.equals("") && major.isEmpty() &&
@@ -327,7 +334,7 @@ public class ApplicantController implements Serializable {
 			System.out.println("endDate : " + endDate);
 			data = applicantService.findReportByMonth(startDate, endDate);
 		} else {
-			data = applicantService.findReportByCriteria(-1,-1, "", "", "", null);
+			data = applicantService.findReportByCriteria(-1,-1, -1, "", "", null);
 
 		}
 		final List<ReportApplicantDto> datas = data;
