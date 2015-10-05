@@ -4,6 +4,42 @@ var insTitle;
 var insStart;
 var insEnd;
 var type;
+var dateStart;
+var dateEnd;
+var $applicantName = $('#applicantName');
+
+var $validform = $("#formInsert").validate({			
+	rules:{
+		appointmentTopic:{
+			required:true,
+			minlength:10,
+		},
+		appoint_detail:{
+			required:true
+		},
+		 applicantName: {
+			required:true
+		}
+	},
+	
+	messages: {
+		appointmentTopic:{
+			required: validateTopic,
+			minlength: validateTopicLenght,
+		},
+		appoint_detail:{
+			required: validateDatail
+		},
+		applicantName:{
+			required: validateApplicant
+		}
+	},
+	
+ 	invalidHandler: function(event, validator) {
+		$('#appointmentTopic').focus();
+	} 
+	
+});
 
 function currentDate(){// use For getCurrentDate
 	var date = new Date();
@@ -90,7 +126,65 @@ function renderCalendar(){
 				$('#calendar').fullCalendar('unselect');
 			}
 		},
-		editable: false,//can't drage to move event to editing
+		editable: true,//can't drage to move event to editing
+		eventDrop: function(event, delta, revertFunc) {
+			
+	        alert(event.title + " was dropped on " + event.start.format());
+	        
+	        if (!confirm("Are you sure about this change?")) {
+	            revertFunc();
+	        }else{
+	        	var updatedata = {id : event.id, start : event.start, end : event.end};
+				$.ajax({
+					url:"calendar/update",
+					type: "POST",
+					contentType : "application/json",
+					data : JSON.stringify(updatedata),
+					dataType : "json",
+					success: function(result){
+						new PNotify({
+						    title: 'Appointment has been modified.',
+						    type: 'success'
+						});
+						$('#calendar').fullCalendar( 'destroy' );
+						renderCalendar();
+					},
+					
+					error:function (jqXHR, textStatus, error){
+				        alert('Update error'); 
+				    }  
+				});
+	        }
+	    },
+	    eventResize: function(event, delta, revertFunc) {
+
+	        alert(event.title + " end is now " + event.end.format());
+
+	        if (!confirm("is this okay?")) {
+	            revertFunc();
+	        }else{
+	        	var updatedata = {id : event.id, start : event.start, end : event.end};
+				$.ajax({
+					url:"calendar/update",
+					type: "POST",
+					contentType : "application/json",
+					data : JSON.stringify(updatedata),
+					dataType : "json",
+					success: function(result){
+						new PNotify({
+						    title: 'Appointment has been modified.',
+						    type: 'success'
+						});
+						$('#calendar').fullCalendar( 'destroy' );
+						renderCalendar();
+					},
+					
+					error:function (jqXHR, textStatus, error){
+				        alert('Update error'); 
+				    }  
+				});
+	        }
+	    },
 		eventLimit: true,
 		events: {
 			url: 'calendar/findAppointment',
@@ -138,58 +232,24 @@ function renderCalendar(){
 	}); // end full calendar
 }
 
-$(function(){
-	var $applicantName = $('#applicantName');
-	
-	
-			renderCalendar();
-			
-			$(".dt_picker").datetimepicker({
-		          format: "dd/mm/yyyy hh:ii",
-		          autoclose: true,
-		          minuteStep: 30,
-		      });
-			
-			var $validform = $("#formInsert").validate({			
-			rules:{
-				appointmentTopic:{
-					required:true,
-					minlength:10,
-				},
-				appoint_detail:{
-					required:true
-				},
-				 applicantName: {
-					required:true
-				}
-			},
-			
-			messages: {
-				appointmentTopic:{
-					required: validateTopic,
-					minlength: validateTopicLenght,
-				},
-				appoint_detail:{
-					required: validateDatail
-				},
-				applicantName:{
-					required: validateApplicant
-				}
-			},
-			
-		 	invalidHandler: function(event, validator) {
-				$('#appointmentTopic').focus();
-			} 
-			
-		 });
+$( function(){
+		$(".dt_picker").datetimepicker({
+		    format: "dd/mm/yyyy hh:ii",
+		    autoclose: true,
+		    minuteStep: 30,
+		});
 		
+		
+		renderCalendar();
+		
+		$('#calendar').fullCalendar('gotoDate', currentDate());//go to date after fullcalendar redered 
 		
 		$('#applicantFilter').on('change',function () {
 	 		var trackingString = $("#applicantFilter option:selected").val();
 	 		setApplicant(trackingString);
 	    });
 		
-		$('#calendar').fullCalendar('gotoDate', currentDate());//go to date after fullcalendar redered 
+		
 		
 		$("#deleteBtn" ).on('click',function(){
 			$('#delModal').modal("show");
@@ -202,10 +262,21 @@ $(function(){
 				type : "GET",
 				success : function(data){
 					$('#calendar').fullCalendar('removeEvents',eventdata.id );
+					$('#detailModal').modal("hide");
+					$('#delModal').modal("hide");
+					new PNotify({
+					    title: 'Appointment has been deleted.',
+					    icon: false
+					});
+				},
+				error : function (error) {
+					new PNotify({
+					    title: "Can't Delete!",
+					    text: error,
+					    type: 'error'
+					});
 				}
 	 		})
-			$('#myModal').modal("hide");
-			$('#delModal').modal("hide");
 		})
 		
 		$("#insBtn").on('click',function(){
@@ -236,10 +307,14 @@ $(function(){
 							start: new Date(data.start),
 							end: new Date(data.end),color: '#FF528E'
 						};
-						console.log(data);
+						//console.log(data);
 						$('#calendar').fullCalendar('renderEvent', insData, true); // stick? = true
 						$('#insModal').modal('hide');	
 						$('#formInsert').trigger('reset');
+						new PNotify({
+						    title: 'Appointment insertion is successful !',
+						    type: 'success'
+						});
 					}
 				});//end ajax
 			}
@@ -248,8 +323,6 @@ $(function(){
 		
 		$("#detailModal").on("click","#editBtn", function () {	
 
-			//$("#editModal").modal("show");
-			
 			$.ajax({
 				url : "calendar/getAppointment/"+id,
 				type : "GET",
@@ -266,19 +339,17 @@ $(function(){
 					console.log(error)
 				}
 			});//end ajax */
-		 }) 
-		 
+		 }) //end onclick
+		
 		$("#editModal").on("click", "#confirmEditBtn", function(){
 			 var updatedata; 
-			 
 			 $.ajax({
 					url : "calendar/getAppointment/"+id,
 					type : "GET",
 					success : function(findResult){
-						//alert("get Data success!");
-						
-						var dateStart = moment(new Date($("#datetimepicker_start").val())).format("YYYY-DD-MM HH:mm")+":00";
-						var dateEnd = moment(new Date($("#datetimepicker_end").val())).format("YYYY-DD-MM HH:mm")+":00";
+						//alert("Get Data success!");
+						dateStart = moment(new Date($("#datetimepicker_start").val())).format("YYYY-DD-MM HH:mm")+":00";
+						dateEnd = moment(new Date($("#datetimepicker_end").val())).format("YYYY-DD-MM HH:mm")+":00";
 						updatedata = { 
 								id : findResult.id,
 								topic : $("#appointmentTopicEdt").val(),
@@ -290,9 +361,6 @@ $(function(){
 								login : {id:findResult.loginId}
 						};
 						
-						//console.log(updatedata)
-						
-						
 						$.ajax({
 							url:"calendar/update",
 							type: "POST",
@@ -300,13 +368,17 @@ $(function(){
 							data : JSON.stringify(updatedata),
 							dataType : "json",
 							success: function(result){
+								//alert("Update Success!")
 								$("#formfield").trigger("reset");
 								$("#editModal").modal("hide");
 								$("#detailModal").modal("hide");
 								
-								//CalendarRender
 								$('#calendar').fullCalendar( 'destroy' );
 								renderCalendar();
+								new PNotify({
+								    title: 'Appointment has been modified.',
+								    type: 'success'
+								});
 								
 							},
 							
@@ -319,14 +391,7 @@ $(function(){
 					error:function(){
 						alert("get data Error")
 					}
-			});
-			 
-			 
-			
-			
-			
-		});
-	
-	
-});
+			});//end ajax
+		});//end edit modal
+});//end doc ready
 

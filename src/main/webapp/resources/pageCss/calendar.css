@@ -1,0 +1,27 @@
+@CHARSET "UTF-8";
+
+div.fc-row>table>thead > tr:first-child {
+	background-color: orange;
+}
+td.fc-day{
+	background-color: #FFF7BA;
+}
+
+body {
+	font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+	font-size: 14px;
+}
+
+#calendar {
+	max-width: 90%;
+	margin: 0 auto;
+}
+
+textarea {
+   overflow-y: scroll;
+   resize: none; 
+   } 
+
+.fc-unthemed .fc-today {
+    background: #FFCC40;
+}

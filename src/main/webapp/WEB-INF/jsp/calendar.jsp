@@ -2,37 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/resources/pageCss/calendar.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/resources/datetime_picker/bootstrap-datetimepicker.min.css" />
 
 <style type="text/css">
 
-	div.fc-row>table>thead > tr:first-child {
-	background-color: orange;
-	}
-	td.fc-day{
-	background-color: #F5EE90;
-	}
 
-	body {
-		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-		font-size: 14px;
-	}
-
-	#calendar {
-		max-width: 900px;
-		margin: 0 auto;
-	}
-	
-	textarea {
-    overflow-y: scroll;
-    resize: none; 
-    } 
-
-	.fc-unthemed .fc-today {
-	    background: #63F74F;
-	}
-
-}
 </style>
 
 <div class="container-fluid">
@@ -175,7 +150,7 @@
 						 <div class='col-md-6'>
 				            <div class="form-group">
 				            <label for="start"><spring:message code="appointment.start" /></label>
-				                <div class='input-group date dt_picker' >
+				                <div id="startPicker" class='input-group date dt_picker' >
 				                    <input type='text' class="form-control" id='datetimepicker_start' readonly/>
 				                    <span class="input-group-addon">
 				                     	<span class="glyphicon glyphicon-calendar"></span>
@@ -186,7 +161,7 @@
        					  <div class='col-md-6'>
 				            <div class="form-group">
 				             <label for="end"><spring:message code="appointment.end" /></label>
-				                <div class='input-group date dt_picker' >
+				                <div id="endPicker" class='input-group date dt_picker' >
 				                    <input type='text' class="form-control" id='datetimepicker_end' readonly/>
 				                    <span class="input-group-addon">
 				                     	<span class="glyphicon glyphicon-calendar"></span>
@@ -225,7 +200,7 @@
 	      </div><!-- /.modal-body -->
 	      
 	      <div class="modal-footer">
-	        <button id="confirmBtn" type="button" class="btn btn-primary"><spring:message code="button.save" /></button>
+	        <button id="confirmEditBtn" type="button" class="btn btn-primary"><spring:message code="button.save" /></button>
 	        <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="button.close" /></button>
 	      </div>
 	      

@@ -73,12 +73,11 @@ public class CalendarController {
 		
 		/*                                  Get Who's Appoint                                  */		
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		System.out.println("userName : " + userDetails.getUsername());
+		//System.out.println("userName : " + userDetails.getUsername());
 		Login login = loginService.findByUserName(userDetails.getUsername());
 		apmDto.setLogin(login);//set login Id
 		
 		/*                Change time for insert                      */
-		System.out.println(apmDto);
 		Date dateStart = apmDto.getStart();//get date from appointment
 		Date dateEnd = apmDto.getEnd();
 		
@@ -88,13 +87,9 @@ public class CalendarController {
 		String startString = formatter.format(dateStart);//convert date's timezone but it return String
 		String endString = formatter.format(dateEnd);
 		
-		System.out.println(startString);
-		System.out.println(endString);
-		
-		//String string = "January 2, 2010";
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);//new format to convert String to Date
 		try {
-			System.out.println(format.parse(startString));
+			//System.out.println(format.parse(startString));
 			apmDto.setStart(format.parse(startString));//set date with new timezone 
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -102,7 +97,7 @@ public class CalendarController {
 		}
 		
 		try {
-			System.out.println(format.parse(endString));
+			//System.out.println(format.parse(endString));
 			apmDto.setEnd(format.parse(endString));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -123,8 +118,47 @@ public class CalendarController {
 	
 	@RequestMapping(value = "calendar/update",method = RequestMethod.POST)
 	public @ResponseBody AppointmentDto updateAppointment(@RequestBody Appointment appointment) throws ParseException{
-		appointmentService.update(appointment);
-		return appointmentService.findById(appointment.getId());
+		Appointment appointmentToUpdate = appointmentService.find(appointment.getId());
+		
+//		appointmentToUpdate.setStart(appointment.getStart());
+//		appointmentToUpdate.setEnd(appointment.getEnd());
+		
+		/*                Change time for insert                      */
+		Date dateStart = appointment.getStart();//get date from appointment
+		Date dateEnd = appointment.getEnd();
+		
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.ENGLISH);
+		formatter.setTimeZone(TimeZone.getTimeZone("GMT"));//set Timezone to be GMT
+		
+		String startString = formatter.format(dateStart);//convert date's timezone but it return String
+		String endString = formatter.format(dateEnd);
+		
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);//new format to convert String to Date
+		try {
+			//System.out.println(format.parse(startString));
+			appointmentToUpdate.setStart(format.parse(startString));//set date with new timezone 
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			//System.out.println(format.parse(endString));
+			appointmentToUpdate.setEnd(format.parse(endString));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		appointmentService.update(appointmentToUpdate);
+		return appointmentService.findById(appointmentToUpdate.getId());
 	}
 	
 	
