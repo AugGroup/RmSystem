@@ -171,20 +171,20 @@ public class ApplicantController implements Serializable {
 	/*-- search all applicant and applicant by position for dataTable--*/
 	@RequestMapping(value = "/applicant/search", method = { RequestMethod.POST })
 	public @ResponseBody Object searchByJoblevel(
-			@RequestParam final String joblevel) throws Exception {
-//		List<ApplicantDto> data = applicantService.findByJoblevel(joblevel);
-//		if (StringUtils.isEmpty(joblevel)) {
-//			data = applicantService.findAllApplicant();
-//		}
-//		final List<ApplicantDto> datas = data;
-//		return new Object() {
-//			public List<ApplicantDto> getData() {
-//				return datas;
-//			}
-//		};
-		return  new Object(){ public List<ApplicantDto> data= applicantService.findByJoblevel(joblevel);};
+			@RequestParam final String joblevelStr) throws Exception {
+		List<ApplicantDto> data = applicantService.findByJoblevel(joblevelStr);
+		if (StringUtils.isEmpty(joblevelStr)) {
+			data = applicantService.findAllApplicant();
+		}
+		final List<ApplicantDto> datas = data;
+		return new Object() {
+			public List<ApplicantDto> getData() {
+				return datas;
+			}
+		};
 	}
 
+	
 	/*-------------------- Update Method --------------------*/
 
 //	@RequestMapping(value = "/informations/{id}", method = { RequestMethod.GET })
