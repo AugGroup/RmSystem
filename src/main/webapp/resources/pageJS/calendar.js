@@ -21,7 +21,7 @@ $(function(){
 			type : "GET",
 			dataType : "json",
 			success : function(data){
-				$applicantName.empty().append('<option value="">-- Select Applicant --</option>');
+				$applicantName.empty().append('<option value="">'+selectApplicant+'</option>');
 					$.each(data, function(i, item) {
 					    var name = "<option value='" + data[i].id +  "'> " + data[i].firstNameEN +" " + data[i].lastNameEN +" ( " + data[i].technologyStr + " " + data[i].joblevelStr + "  )</option>"
 					    $applicantName.append(name);
@@ -43,7 +43,7 @@ $(function(){
 			type : "GET",
 			dataType : "json",
 			success : function(data){
-				$('#applicantName').empty().append('<option value="-1">-- Select Applicant --</option>');
+				$('#applicantName').empty().append('<option value="">'+selectApplicant+'</option>');
 				
 					$.each(data, function(i, item) {
 					    var name = "<option value='" + data[i].id +  "'> " + data[i].firstNameEN +" " + data[i].lastNameEN +" ( " + data[i].technologyStr + " " + data[i].joblevelStr + "  )</option>"
@@ -86,7 +86,7 @@ $(function(){
 			rules:{
 				appointmentTopic:{
 					required:true,
-					minlength:4,
+					minlength:10,
 				},
 				appoint_detail:{
 					required:true
@@ -97,8 +97,15 @@ $(function(){
 			},
 			
 			messages: {
+				appointmentTopic:{
+					required: validateTopic,
+					minlength: validateTopicLenght,
+				},
+				appoint_detail:{
+					required: validateDatail
+				},
 				applicantName:{
-					required: 'Please Select Applicant.'
+					required: validateApplicant
 				}
 			},
 			
