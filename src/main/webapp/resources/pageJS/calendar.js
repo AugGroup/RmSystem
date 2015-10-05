@@ -1,87 +1,155 @@
-$(function(){
-	//alert( ${pageContext.response.locale});
+var id;
+var eventdata;
+var insTitle;
+var insStart;
+var insEnd;
+var type;
+
+function currentDate(){// use For getCurrentDate
+	var date = new Date();
+	var month = date.getMonth()+1;
+	var day = date.getDate();
+
+	var output = date.getFullYear() + '-' +
+	    (month<10 ? '0' : '') + month + '-' +
+	    (day<10 ? '0' : '') + day;
+	return output;
+}
 	
+	
+function setApplicant(trackingStatus){//set Applicant
+	$.ajax({
+		url : "calendar/findByTrackingStatus/" + trackingStatus,
+		type : "GET",
+		dataType : "json",
+		success : function(data){
+			$applicantName.empty().append('<option value="">-- Select Applicant --</option>');
+				$.each(data, function(i, item) {
+				    var name = "<option value='" + data[i].id +  "'> " + data[i].firstNameEN +" " + data[i].lastNameEN +" ( " + data[i].technologyStr + " " + data[i].joblevelStr + "  )</option>"
+				    $applicantName.append(name);
+				})
+			
+			console.log(data);
+		},
+		error : function(error){
+			alert("error");
+			console.log(error);
+		}
+			
+	});//end ajax
+}
+	
+function setApplicant(trackingStatus){
+	$.ajax({
+		url : "/RmSystem/calendar/findByTrackingStatus/" + trackingStatus,
+		type : "GET",
+		dataType : "json",
+		success : function(data){
+			$('#applicantName').empty().append('<option value="-1">-- Select Applicant --</option>');
+			
+				$.each(data, function(i, item) {
+				    var name = "<option value='" + data[i].id +  "'> " + data[i].firstNameEN +" " + data[i].lastNameEN +" ( " + data[i].technologyStr + " " + data[i].joblevelStr + "  )</option>"
+				    $('#applicantName').append(name);
+				})
+			//console.log(data);
+		},
+		error : function(){
+			alert("error");
+		}
+			
+	});//end ajax
+}
+
+function renderCalendar(){
+	$('#calendar').fullCalendar({
+		header: {
+			left: 'prev,next today',
+			center: 'title',
+			right: 'month,agendaWeek,agendaDay'
+		},
+		defaultDate: moment(),
+		lang: local,
+		selectable: true,
+		buttonIcons: true,
+		select: function(start, end) {
+			//console.log(start);
+			var view = $('#calendar').fullCalendar('getView');//get view object
+			if(view.name == "month"){ //if event that selected is month then show agendaDay view 
+				$('#calendar').fullCalendar('changeView', 'agendaDay');
+				$('#calendar').fullCalendar( 'gotoDate', start );
+			}else{
+				//if current view is date(and choose time range) when click on it insert modal should show
+				$validform.resetForm();
+				$('#formInsert').trigger('reset');
+				setApplicant("all"); 
+				$("#insStartDate").text(moment(start).format("HH:mm on MMMM D, YYYY"));
+				$("#insEndDate").text(moment(end).format("HH:mm on MMMM D, YYYY"));
+				$('#insModal').modal('show');
+				insStart = start;
+				insEnd = end;
+				$('#calendar').fullCalendar('unselect');
+			}
+		},
+		editable: false,//can't drage to move event to editing
+		eventLimit: true,
+		events: {
+			url: 'calendar/findAppointment',
+			success: function(data) {
+				/*console.log("load: ");
+				console.log(data);*/
+			},
+			error: function() {
+				//$('#script-warning').show();
+				//alert("render error.");
+			},
+			color : "#8723D9",textColor :'white'
+		},
+		timezone: "Asia/Bangkok",
+		ignoreTimezone:false,
+		eventClick: function(event, element) {
+			/*console.log(event);*/
+	        $("#detailModal").modal("show");
+			id = event.id;
+			$.ajax({
+				url : "calendar/getAppointment/"+id,
+				type : "GET",
+				success : function(data){
+					//console.log(data);
+					$("#detail_app_name").text(data.applicantName+" ( "+data.applicantPosition+" )");
+				    $("#detail_topic").text(data.topic);
+				    $("#start_date").text(moment(data.start).format("HH:mm on MMMM D, YYYY"));
+				    $("#end_date").text(moment(data.end).format("HH:mm on MMMM D, YYYY"));
+					$("#detail_desciption").text(data.detail); 
+					$("#appoint_by").text(data.loginName);
+				},
+				error : function (error) {
+					console.log(error)
+				}
+			});//end ajax
+
+			//$("#detail_topic").text(event.title);
+	        $("#myModal").modal("show");
+			eventdata = event;
+	    } ,
+	    eventRender: function(event, el) {
+			//console.log("eventRender:");
+			//console.log(event.start.hasZone());
+		}
+	}); // end full calendar
+}
+
+$(function(){
 	var $applicantName = $('#applicantName');
 	
-	function currentDate(){// use For getCurrentDate
-		var date = new Date();
-		var month = date.getMonth()+1;
-		var day = date.getDate();
 	
-		var output = date.getFullYear() + '-' +
-		    (month<10 ? '0' : '') + month + '-' +
-		    (day<10 ? '0' : '') + day;
-		return output;
-	}
-	
-	
-	function setApplicant(trackingStatus){//set Applicant
-		$.ajax({
-			url : "calendar/findByTrackingStatus/" + trackingStatus,
-			type : "GET",
-			dataType : "json",
-			success : function(data){
-				$applicantName.empty().append('<option value="">'+selectApplicant+'</option>');
-					$.each(data, function(i, item) {
-					    var name = "<option value='" + data[i].id +  "'> " + data[i].firstNameEN +" " + data[i].lastNameEN +" ( " + data[i].technologyStr + " " + data[i].joblevelStr + "  )</option>"
-					    $applicantName.append(name);
-					})
-				
-				console.log(data);
-			},
-			error : function(error){
-				alert("error");
-				console.log(error);
-			}
-				
-		});//end ajax
-	}
-	
-	function setApplicant(trackingStatus){
-		$.ajax({
-			url : "/RmSystem/calendar/findByTrackingStatus/" + trackingStatus,
-			type : "GET",
-			dataType : "json",
-			success : function(data){
-				$('#applicantName').empty().append('<option value="">'+selectApplicant+'</option>');
-				
-					$.each(data, function(i, item) {
-					    var name = "<option value='" + data[i].id +  "'> " + data[i].firstNameEN +" " + data[i].lastNameEN +" ( " + data[i].technologyStr + " " + data[i].joblevelStr + "  )</option>"
-					    $('#applicantName').append(name);
-					})
-				//console.log(data);
-			},
-			error : function(){
-				alert("error");
-			}
-				
-		});//end ajax
-	}
-	
-	var tzdetect = {
-		    names: moment.tz.names(),
-		    matches: function(base){
-		        var results = [], now = Date.now(), makekey = function(id){
-		            return [0, 4, 8, -5*12, 4-5*12, 8-5*12, 4-2*12, 8-2*12].map(function(months){
-		                var m = moment(now + months*30*24*60*60*1000);
-		                if (id) m.tz(id);
-		                return m.format("DDHHmm");
-		            }).join(' ');
-		        }, lockey = makekey(base);
-		        tzdetect.names.forEach(function(id){
-		            if (makekey(id)===lockey) results.push(id);
-		        });
-		        return results;
-		    }
-		};
-	
-	$(document).ready(function() {
+			renderCalendar();
+			
 			$(".dt_picker").datetimepicker({
 		          format: "dd/mm/yyyy hh:ii",
 		          autoclose: true,
-		          minuteStep: 30
+		          minuteStep: 30,
 		      });
-		
+			
 			var $validform = $("#formInsert").validate({			
 			rules:{
 				appointmentTopic:{
@@ -121,100 +189,10 @@ $(function(){
 	 		setApplicant(trackingString);
 	    });
 		
-		var id;
-		var eventdata;
-		var insTitle;
-		var insStart;
-		var insEnd;
-		var type;
-		
-		
-	    var calendar = $('#calendar').fullCalendar({
-			header: {
-				left: 'prev,next today',
-				center: 'title',
-				right: 'month,agendaWeek,agendaDay'
-			},
-			defaultDate: moment(),
-			lang: local,
-			selectable: true,
-			buttonIcons: true,
-			select: function(start, end) {
-				//console.log(start);
-				var view = $('#calendar').fullCalendar('getView');//get view object
-				if(view.name == "month"){ //if event that selected is month then show agendaDay view 
-					$('#calendar').fullCalendar('changeView', 'agendaDay');
-					$('#calendar').fullCalendar( 'gotoDate', start );
-				}else{
-					//if current view is date(and choose time range) when click on it insert modal should show
-					$validform.resetForm();
-					$('#formInsert').trigger('reset');
-					setApplicant("all"); 
-					$("#insStartDate").text(moment(start).format("HH:mm on MMMM D, YYYY"));
-					$("#insEndDate").text(moment(end).format("HH:mm on MMMM D, YYYY"));
-					$('#insModal').modal('show');
-					insStart = start;
-					insEnd = end;
-					$('#calendar').fullCalendar('unselect');
-				}
-			},
-			editable: false,//can't drage to move event to editing
-			eventLimit: true,
-			events: {
-				url: 'calendar/findAppointment',
-				success: function(data) {
-					console.log("load: ");
-					console.log(data);
-				},
-				error: function() {
-					//$('#script-warning').show();
-					//alert("render error.");
-				},
-				color : "#8723D9",textColor :'white'
-			},
-			timezone: "Asia/Bangkok",
-			ignoreTimezone:false,
-			eventClick: function(event, element) {
-				console.log(event);
-		        $("#detailModal").modal("show");
-				id = event.id;
-				$.ajax({
-					url : "calendar/getAppointment/"+id,
-					type : "GET",
-					success : function(data){
-						//console.log(data);
-						$("#detail_app_name").text(data.applicantName+" ( "+data.applicantPosition+" )");
-					    $("#detail_topic").text(data.topic);
-					    $("#start_date").text(moment(data.start).format("HH:mm on MMMM D, YYYY"));
-					    $("#end_date").text(moment(data.end).format("HH:mm on MMMM D, YYYY"));
-						$("#detail_desciption").text(data.detail); 
-						$("#appoint_by").text(data.loginName);
-					},
-					error : function (error) {
-						console.log(error)
-					}
-				});//end ajax
-
-				//$("#detail_topic").text(event.title);
-		        $("#myModal").modal("show");
-				eventdata = event;
-		    } ,
-		    eventRender: function(event, el) {
-				//console.log("eventRender:");
-				//console.log(event.start.hasZone());
-			}
-		}); // end full calendar
-	    
-	    
-	    
 		$('#calendar').fullCalendar('gotoDate', currentDate());//go to date after fullcalendar redered 
 		
 		$("#deleteBtn" ).on('click',function(){
 			$('#delModal').modal("show");
-		})
-		
-		$("#editBtn").on('click',function(){
-			$("#editModal").modal("show");
 		})
 		
 		
@@ -269,9 +247,9 @@ $(function(){
 		})//endonclick 'insBtn'
 		
 		$("#detailModal").on("click","#editBtn", function () {	
-			 
-			 console.log(id);
-			 
+
+			//$("#editModal").modal("show");
+			
 			$.ajax({
 				url : "calendar/getAppointment/"+id,
 				type : "GET",
@@ -290,26 +268,30 @@ $(function(){
 			});//end ajax */
 		 }) 
 		 
-		 $("#confirmBtn").on("click",function(){
+		$("#editModal").on("click", "#confirmEditBtn", function(){
 			 var updatedata; 
-			 
 			 
 			 $.ajax({
 					url : "calendar/getAppointment/"+id,
 					type : "GET",
 					success : function(findResult){
-						alert("get Data success!")
+						//alert("get Data success!");
+						
+						var dateStart = moment(new Date($("#datetimepicker_start").val())).format("YYYY-DD-MM HH:mm")+":00";
+						var dateEnd = moment(new Date($("#datetimepicker_end").val())).format("YYYY-DD-MM HH:mm")+":00";
 						updatedata = { 
 								id : findResult.id,
 								topic : $("#appointmentTopicEdt").val(),
 								detail : $("#appoint_detailEdt").val(),
-								start: $("#datetimepicker_start").val() ,
-								end : $("#datetimepicker_end").val() ,
-								applicantId : findResult.applicantId,
-								loginId : findResult.loginId
+								start: new Date(dateStart),
+								end : new Date(dateEnd),
+								title : findResult.title,
+								applicant : {id:findResult.applicantId},
+								login : {id:findResult.loginId}
 						};
 						
-						console.log(updatedata);
+						//console.log(updatedata)
+						
 						
 						$.ajax({
 							url:"calendar/update",
@@ -318,10 +300,13 @@ $(function(){
 							data : JSON.stringify(updatedata),
 							dataType : "json",
 							success: function(result){
-								
 								$("#formfield").trigger("reset");
 								$("#editModal").modal("hide");
 								$("#detailModal").modal("hide");
+								
+								//CalendarRender
+								$('#calendar').fullCalendar( 'destroy' );
+								renderCalendar();
 								
 							},
 							
@@ -341,6 +326,7 @@ $(function(){
 			
 			
 		});
-		
-	});//end doc ready
+	
+	
 });
+
