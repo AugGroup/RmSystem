@@ -229,10 +229,10 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4><spring:message code="appointment.confirm.date.edit.title" /></h4>
+	        <h4><spring:message code="appointment.confirm.edit.title" /></h4>
 	      </div>
 	      <div class="modal-body">
-	        <p><spring:message code="appointment.confirm.date.edit" /></p>
+	        <p><spring:message code="appointment.confirm.edit" /></p>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" id="confirmEditModal" class="btn btn-warning" ><span class="glyphicon glyphicon-wrench"></span> <spring:message code="button.edit" /></button>
@@ -242,17 +242,19 @@
 	  </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 	
-	
 </div>
 
 <script type="text/javascript">
 	var contextPath = "${pageContext.request.contextPath}";
 	var languageNow = "${pageContext.response.locale}";
-	var selectApplicant = "<spring:message code="appointment.select.applicant" />"
-	var validateApplicant = "<spring:message code="appointment.validate.select.applicant" />"
-	var validateTopic = "<spring:message code="appointment.validat.required.topic" />"
-	var validateTopicLenght = "<spring:message code="appointment.validat.required.topic.lenght" />"
-	var validateDatail = "<spring:message code="appointment.validat.required.detail" />"
+	var yes = "<spring:message code="appointment.yes" />";
+	var no = "<spring:message code="appointment.no" />";
+	var confirmEditAppointmentDate = "<spring:message code="appointment.confirm.event.move" />";
+	var selectApplicant = "<spring:message code="appointment.select.applicant" />";
+	var validateApplicant = "<spring:message code="appointment.validate.select.applicant" />";
+	var validateTopic = "<spring:message code="appointment.validat.required.topic" />";
+	var validateTopicLenght = "<spring:message code="appointment.validat.required.topic.lenght" />";
+	var validateDatail = "<spring:message code="appointment.validat.required.detail" />";
 </script>
 
 <!-- Validate -->

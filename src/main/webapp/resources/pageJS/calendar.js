@@ -41,6 +41,49 @@ var $validform = $("#formInsert").validate({
 	
 });
 
+function updateAppointmentDate(eventToUpdate, revertParam){
+	var updatedata = {id : eventToUpdate.id, start : eventToUpdate.start, end : eventToUpdate.end};
+	alertify.set({ 	buttonReverse: true,
+					labels: {
+					    ok     : yes,
+					    cancel : no
+					}
+	});
+	alertify.confirm(confirmEditAppointmentDate+" "+eventToUpdate.title, function (e) {
+	    if (e) {
+	    	$.ajax({
+	    		url:"calendar/update",
+	    		type: "POST",
+	    		contentType : "application/json",
+	    		data : JSON.stringify(updatedata),
+	    		dataType : "json",
+	    		success: function(result){
+	    			new PNotify({
+	    			    title: 'Appointment has been modified.',
+	    			    type: 'success'
+	    			});
+	    			var view = $('#calendar').fullCalendar('getView');//get view object
+    				$('#calendar').fullCalendar( 'destroy' );
+	    			renderCalendar();
+    				$('#calendar').fullCalendar('changeView', view.name);
+    				$('#calendar').fullCalendar( 'gotoDate', eventToUpdate.start );
+	    			
+	    		},
+	    		
+	    		error:function (jqXHR, textStatus, error){
+	    	        alert('Update error'); 
+	    	    }  
+	    	});
+	        // user clicked "ok"
+	    } else {
+	        // user clicked "cancel"
+	    	revertParam();
+	    }
+	});
+	
+}
+
+
 function currentDate(){// use For getCurrentDate
 	var date = new Date();
 	var month = date.getMonth()+1;
@@ -128,62 +171,10 @@ function renderCalendar(){
 		},
 		editable: true,//can't drage to move event to editing
 		eventDrop: function(event, delta, revertFunc) {
-			
-	        alert(event.title + " was dropped on " + event.start.format());
-	        
-	        if (!confirm("Are you sure about this change?")) {
-	            revertFunc();
-	        }else{
-	        	var updatedata = {id : event.id, start : event.start, end : event.end};
-				$.ajax({
-					url:"calendar/update",
-					type: "POST",
-					contentType : "application/json",
-					data : JSON.stringify(updatedata),
-					dataType : "json",
-					success: function(result){
-						new PNotify({
-						    title: 'Appointment has been modified.',
-						    type: 'success'
-						});
-						$('#calendar').fullCalendar( 'destroy' );
-						renderCalendar();
-					},
-					
-					error:function (jqXHR, textStatus, error){
-				        alert('Update error'); 
-				    }  
-				});
-	        }
+			updateAppointmentDate(event, revertFunc);
 	    },
 	    eventResize: function(event, delta, revertFunc) {
-
-	        alert(event.title + " end is now " + event.end.format());
-
-	        if (!confirm("is this okay?")) {
-	            revertFunc();
-	        }else{
-	        	var updatedata = {id : event.id, start : event.start, end : event.end};
-				$.ajax({
-					url:"calendar/update",
-					type: "POST",
-					contentType : "application/json",
-					data : JSON.stringify(updatedata),
-					dataType : "json",
-					success: function(result){
-						new PNotify({
-						    title: 'Appointment has been modified.',
-						    type: 'success'
-						});
-						$('#calendar').fullCalendar( 'destroy' );
-						renderCalendar();
-					},
-					
-					error:function (jqXHR, textStatus, error){
-				        alert('Update error'); 
-				    }  
-				});
-	        }
+	    	updateAppointmentDate(event, revertFunc);
 	    },
 		eventLimit: true,
 		events: {
@@ -361,7 +352,6 @@ $( function(){
 					    type: 'success'
 					});
 				},
-				
 				error:function (jqXHR, textStatus, error){
 			        alert('Update error'); 
 			    }  
