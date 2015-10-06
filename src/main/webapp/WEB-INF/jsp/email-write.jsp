@@ -27,7 +27,7 @@
 		  				<div class="form-group">
 		    				<label for="receiver">To:</label>
 		    				<select class="form-control" id="receiver" name="receiver">
-								<option value=""><spring:message code="request.email.form.select.init.template" /></option>
+								<option value=""><spring:message code="request.email.form.select.init.applicant" /></option>
 								<c:forEach items="${applicants}" var="applicant">
 									<option value="${applicant.id}">${applicant.firstNameEN}&nbsp${applicant.lastNameEN}&nbsp(${applicant.technology.name}&nbsp${applicant.joblevel.name})</option>
 								</c:forEach>
