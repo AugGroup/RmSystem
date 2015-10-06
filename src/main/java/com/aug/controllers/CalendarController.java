@@ -179,8 +179,9 @@ public class CalendarController {
 	
 	@RequestMapping(value = "calendar/deleteAppointment/{id}", method = RequestMethod.GET)
 	public @ResponseBody String findAllApplicant(@PathVariable Integer id) {
+		String returnTitle = appointmentService.findById(id).getTitle();
 		appointmentService.deleteById(id);
-	return "success";
+	return returnTitle;
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////

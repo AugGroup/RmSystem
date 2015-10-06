@@ -89,8 +89,9 @@ function updateAppointmentDate(eventToUpdate, revertParam){
 	    		dataType : "json",
 	    		success: function(result){
 	    			new PNotify({
-	    			    title: 'Appointment has been modified.',
-	    			    type: 'success'
+	    			    title: result.title +"<br>" + pnotifyEdit,
+	    			    type: 'success',
+	    			    delay: 750
 	    			});
 	    			var view = $('#calendar').fullCalendar('getView');//get view object
     				$('#calendar').fullCalendar( 'destroy' );
@@ -284,15 +285,17 @@ $( function(){
 					$('#detailModal').modal("hide");
 					$('#delModal').modal("hide");
 					new PNotify({
-					    title: 'Appointment has been deleted.',
-					    icon: false
+					    title: data + "<br>" + pnotifyDelete,
+					    icon: false,
+					    delay: 750
 					});
 				},
 				error : function (error) {
 					new PNotify({
 					    title: "Can't Delete!",
 					    text: error,
-					    type: 'error'
+					    type: 'error',
+					    delay: 750
 					});
 				}
 	 		})
@@ -330,8 +333,9 @@ $( function(){
 						$('#insModal').modal('hide');	
 						$('#formInsert').trigger('reset');
 						new PNotify({
-						    title: 'Appointment insertion is successful !',
-						    type: 'success'
+						    title: data.title +"<br>"+ pnotifyInsert,
+						    type: 'success',
+						    delay: 750
 						});
 					}
 				});//end ajax
@@ -375,8 +379,9 @@ $( function(){
 					$('#confirmEditModal').modal("hide");
 					$('#editModal').modal("hide");
 					new PNotify({
-					    title: 'Appointment has been modified.',
-					    type: 'success'
+					    title: result.title +"<br>" + pnotifyEdit,
+					    type: 'success',
+					    delay: 750
 					});
 				},
 				error:function (jqXHR, textStatus, error){

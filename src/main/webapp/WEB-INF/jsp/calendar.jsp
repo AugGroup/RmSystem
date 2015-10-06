@@ -216,8 +216,8 @@
 	        <p><spring:message code="appointment.confirm.delete" /></p>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> <spring:message code="button.close" /></button>
-	        <button type="button" id="confirmDel" class="btn btn-danger" ><span class=""></span> <spring:message code="button.delete" /></button>
+	        <button type="button" id="confirmDel" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"></span> <spring:message code="button.delete" /></button>
+            <button type="button" class="btn btn-default" data-dismiss="modal"><span class=""></span> <spring:message code="button.close" /></button>
 	      </div>
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
@@ -253,9 +253,12 @@
 	var confirmEditAppointmentDate = "<spring:message code="appointment.confirm.event.move" />";
 	var selectApplicant = "<spring:message code="appointment.select.applicant" />";
 	var validateApplicant = "<spring:message code="appointment.validate.select.applicant" />";
-	var validateTopic = "<spring:message code="appointment.validat.required.topic" />";
-	var validateTopicLenght = "<spring:message code="appointment.validat.required.topic.lenght" />";
-	var validateDatail = "<spring:message code="appointment.validat.required.detail" />";
+	var validateTopic = "<spring:message code="appointment.validate.required.topic" />";
+	var validateTopicLenght = "<spring:message code="appointment.validate.required.topic.lenght" />";
+	var validateDatail = "<spring:message code="appointment.validate.required.detail" />";
+	var pnotifyInsert = "<spring:message code="appointment.pnotify.insert" />";
+	var pnotifyEdit = "<spring:message code="appointment.pnotify.edit" />";
+	var pnotifyDelete = "<spring:message code="appointment.pnotify.delete" />";
 
 </script>
 
