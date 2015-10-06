@@ -182,14 +182,14 @@
         			<div class="row">
 	        			<div class="col-md-6">
 	        				<label for="appointmentTopicEdt"><spring:message code="appointment.topic" /></label>
-	        				<input id="appointmentTopicEdt" class="form-control" placeholder="<spring:message code="appointment.topic" />"></input>
+	        				<input id="appointmentTopicEdt" class="form-control" placeholder="<spring:message code="appointment.topic" />" name="appointmentTopicEdt"></input>
 	        			</div>
 					</div>
 					<br>
 					<div class="row">	
 	        			<div class="col-md-12">
 	        				<label for="appoint_detailEdt"><spring:message code="appointment.detail" /></label>
-	        				<textarea id="appoint_detailEdt" class="form-control" rows="4" placeholder="<spring:message code="appointment.detail" />" name ="appoint_detail"></textarea>
+	        				<textarea id="appoint_detailEdt" class="form-control" rows="4" placeholder="<spring:message code="appointment.detail" />" name ="appoint_detailEdt"></textarea>
 	        			</div>
         			</div></form>
 	        		</div>
@@ -247,6 +247,7 @@
 <script type="text/javascript">
 	var contextPath = "${pageContext.request.contextPath}";
 	var languageNow = "${pageContext.response.locale}";
+
 	var yes = "<spring:message code="appointment.yes" />";
 	var no = "<spring:message code="appointment.no" />";
 	var confirmEditAppointmentDate = "<spring:message code="appointment.confirm.event.move" />";
@@ -255,6 +256,7 @@
 	var validateTopic = "<spring:message code="appointment.validat.required.topic" />";
 	var validateTopicLenght = "<spring:message code="appointment.validat.required.topic.lenght" />";
 	var validateDatail = "<spring:message code="appointment.validat.required.detail" />";
+
 </script>
 
 <!-- Validate -->

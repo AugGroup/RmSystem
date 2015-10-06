@@ -41,6 +41,36 @@ var $validform = $("#formInsert").validate({
 	
 });
 
+
+var $validform2 = $("#formEdit").validate({			
+	rules:{
+		appointmentTopicEdt:{
+			required:true,
+			minlength:10,
+		},
+		appoint_detailEdt:{
+			required:true
+		}
+		
+	},
+	
+	messages: {
+		appointmentTopicEdt:{
+			required: validateTopic,
+			minlength: validateTopicLenght,
+		},
+		appoint_detailEdt:{
+			required: validateDatail
+		}
+		
+	},
+	
+ 	invalidHandler: function(event, validator) {
+		$('#appointmentTopicEdt').focus();
+	} 
+	
+});
+
 function updateAppointmentDate(eventToUpdate, revertParam){
 	var updatedata = {id : eventToUpdate.id, start : eventToUpdate.start, end : eventToUpdate.end};
 	alertify.set({ 	buttonReverse: true,
@@ -82,8 +112,6 @@ function updateAppointmentDate(eventToUpdate, revertParam){
 	});
 	
 }
-
-
 function currentDate(){// use For getCurrentDate
 	var date = new Date();
 	var month = date.getMonth()+1;
@@ -102,7 +130,7 @@ function setApplicant(trackingStatus){//set Applicant
 		type : "GET",
 		dataType : "json",
 		success : function(data){
-			$applicantName.empty().append('<option value="">-- Select Applicant --</option>');
+			$applicantName.empty().append('<option value="">'+selectApplicant+'</option>');
 				$.each(data, function(i, item) {
 				    var name = "<option value='" + data[i].id +  "'> " + data[i].firstNameEN +" " + data[i].lastNameEN +" ( " + data[i].technologyStr + " " + data[i].joblevelStr + "  )</option>"
 				    $applicantName.append(name);
@@ -124,7 +152,7 @@ function setApplicant(trackingStatus){
 		type : "GET",
 		dataType : "json",
 		success : function(data){
-			$('#applicantName').empty().append('<option value="-1">-- Select Applicant --</option>');
+			$('#applicantName').empty().append('<option value="">'+selectApplicant+'</option>');
 			
 				$.each(data, function(i, item) {
 				    var name = "<option value='" + data[i].id +  "'> " + data[i].firstNameEN +" " + data[i].lastNameEN +" ( " + data[i].technologyStr + " " + data[i].joblevelStr + "  )</option>"
@@ -283,7 +311,6 @@ $( function(){
 					/* login : login_id who insert this appointment will insert in controller :) */
 			};
 			var insData;
-			if (insTitle) {
 				console.log(JSON.stringify(appointment));
 				
 				$.ajax({
@@ -309,7 +336,6 @@ $( function(){
 					}
 				});//end ajax
 			}
-			}//end if
 		})//endonclick 'insBtn'
 		
 		$("#detailModal").on("click","#editBtn", function () {	
@@ -318,6 +344,7 @@ $( function(){
 				url : "calendar/getAppointment/"+id,
 				type : "GET",
 				success : function(data){
+					$validform2.resetForm();
 					$('#appointment_show_start').val(moment(data.start).format("DD/MM/YYYY HH:mm"));
 					$('#appointment_show_end').val(moment(data.end).format("DD/MM/YYYY HH:mm"));
 					$('#applicantNameEdt').val(data.applicantName);
@@ -333,7 +360,7 @@ $( function(){
 		 }) //end onclick
 		
 		 $("#confirmEditModal").on("click", "#confirmEditModal", function(){
-			 var updatedata = {id : id, topic : $("#appointmentTopicEdt").val() , detail : $("#appoint_detailEdt").val()}; 
+			 			 var updatedata = {id : id, topic : $("#appointmentTopicEdt").val() , detail : $("#appoint_detailEdt").val()}; 
 			 $.ajax({
 				url:"calendar/updateTopicAndDetail",
 				type: "POST",
@@ -357,11 +384,16 @@ $( function(){
 			    }  
 			
 			 });
+		   
 		 })
 		 
 		 
 		$("#editModal").on("click", "#confirmEditBtn", function(){
+			
+			if( $('#formEdit').valid() ) {
 			$('#confirmEditModal').modal("show");
+			}
 		});//end edit modal
+		
 });//end doc ready
 
