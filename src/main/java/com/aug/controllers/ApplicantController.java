@@ -21,6 +21,7 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.acls.model.NotFoundException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -60,6 +61,7 @@ import com.aug.hrdb.entities.Employee;
 import com.aug.hrdb.entities.Experience;
 import com.aug.hrdb.entities.Family;
 import com.aug.hrdb.entities.Language;
+import com.aug.hrdb.entities.Login;
 import com.aug.hrdb.entities.MasAddressType;
 import com.aug.hrdb.entities.MasDegreetype;
 import com.aug.hrdb.entities.MasJoblevel;
@@ -78,6 +80,7 @@ import com.aug.hrdb.services.EmployeeService;
 import com.aug.hrdb.services.ExperienceService;
 import com.aug.hrdb.services.FamilyService;
 import com.aug.hrdb.services.LanguageService;
+import com.aug.hrdb.services.LoginService;
 import com.aug.hrdb.services.MasAddressTypeService;
 import com.aug.hrdb.services.MasCoreSkillService;
 import com.aug.hrdb.services.MasDegreetypeService;
@@ -146,6 +149,9 @@ public class ApplicantController implements Serializable {
 	//nut
 	@Autowired
 	private EmployeeService employeeService;
+	
+	@Autowired
+	private LoginService loginService;
 	
 	@RequestMapping(value = "/applicant", method = { RequestMethod.GET })
 	public String helloPage(Model model) {
@@ -234,12 +240,25 @@ public class ApplicantController implements Serializable {
 		applicant.setAttitudeOffice(applicantDto.getAttitudeOffice());
 		applicant.setTrackingStatus(applicantDto.getTrackingStatus());
 		
-		if (applicant.getTrackingStatus().equals("Approve")) {
-			
-			Employee employee = new Employee();
-			employee.setApplicant(applicant);
-			employeeService.create(employee);
-		}
+//		if (applicant.getTrackingStatus().equals("Approve")) {
+//			
+//			//find user
+//			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//			System.out.println("userName : " + userDetails.getUsername());
+//			Login login = loginService.findByUserName(userDetails.getUsername());
+////			Employee employee = login.getEmployee();
+////			System.out.println("employee: " + employee.getNameEng());
+//			
+//			Employee employee = new Employee();
+//			employee.setApplicant(applicant);
+//			
+//			employee.setAuditFlag(applicant.getAuditFlag());
+//			employee.setCreatedBy(login.getId());
+//			employee.setCreatedTimeStamp(new Date());
+//			employee.setDateOfBirth(applicant.getBirthDate());
+//			employee.setStatusemp("Employee");
+//			employeeService.create(employee);
+//		}
 
 		applicantService.update(applicant);
 
