@@ -49,8 +49,8 @@
 				<div id="email-template">
 					<form id="templateFormCreate">
 						<div class="form-group">
-							<label for="name"><spring:message code="request.email.form.name" /> :</label>
-							<input type="text" name="templateName" class="form-control" id="templateName" placeholder="<spring:message code="request.email.form.name" />">
+							<label for="name"><spring:message code="request.email.form.template.name" /> :</label>
+							<input type="text" name="templateName" class="form-control" id="templateName" placeholder="<spring:message code="request.email.form.template.name" />">
 						</div>
 						<div class="form-group">
 							<label for="template"><spring:message code="request.email.form.template" /> :</label>
