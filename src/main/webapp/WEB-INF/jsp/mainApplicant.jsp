@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/resources/pageCss/main.css" />
 <script src="<c:url value ="/static/resources/pageJS/main-applicant.js"/>"></script> 
 <script type="text/javascript">
 var editScore_text = "<spring:message code="edit.button.edit.score"/>"; 
@@ -12,6 +12,7 @@ var editInfo_text = "<spring:message code="main.edit.info"/>";
 var delete_text = "<spring:message code="main.delete"/>";
 
 </script>
+
 <div class="container">
 	<!--Input text for Search Applicant -->
 	<div class="row" id="search_row">

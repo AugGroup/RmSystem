@@ -60,7 +60,13 @@ $(document).ready(function () {
 				        	   		return '<button id="btn_approve" class="btn btn-primary" data-id="' + data.id + '" data-toggle="modal" data-target="#approveModal">'+approve_tx+' <span class="glyphicon glyphicon-edit"></span></button>';				        
 				        	   
 				        	}}
-				           ]
+				           ],
+				           dom: '<lf><"toolbar">rtip',
+		   				   initComplete :function(){
+		   				    $("div.toolbar").html('<b>Approve</b>');
+		   				    $("#requestTable_previous").children().text("<"); 
+		   				    $("#requestTable_next").children().text(">");
+		   				   }
 				});
     	}
 		

@@ -130,7 +130,13 @@
         	        		  return '<button id="btn_delete" class="btn btn-danger" data-id="' + data.id + '" data-toggle="modal" data-target="#deleteModal" disabled >'+delete_tx + ' <span class="glyphicon glyphicon-remove-sign"></span></button>'}
         	         	  }
         	          }
-        	          ]
+        	          ],
+        	          dom: '<lf><"toolbar">rtip',
+   				   initComplete :function(){
+   				    $("div.toolbar").html('<b>Request</b>');
+   				    $("#requestTable_previous").children().text("<"); 
+   				    $("#requestTable_next").children().text(">");
+   				   }
         		 });
          }
         

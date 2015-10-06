@@ -5,6 +5,7 @@
 
 <title>Request for Application</title>
 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/resources/pageCss/main.css" />
 <script src="<c:url value ="/static/resources/pageJS/aug-approve.js"/>"></script>
 
 <script type="text/javascript">
