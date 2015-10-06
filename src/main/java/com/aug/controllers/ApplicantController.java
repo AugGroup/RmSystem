@@ -64,6 +64,7 @@ import com.aug.hrdb.entities.Language;
 import com.aug.hrdb.entities.Login;
 import com.aug.hrdb.entities.MasAddressType;
 import com.aug.hrdb.entities.MasDegreetype;
+import com.aug.hrdb.entities.MasDivision;
 import com.aug.hrdb.entities.MasJoblevel;
 import com.aug.hrdb.entities.MasProvince;
 import com.aug.hrdb.entities.MasRelationType;
@@ -84,6 +85,7 @@ import com.aug.hrdb.services.LoginService;
 import com.aug.hrdb.services.MasAddressTypeService;
 import com.aug.hrdb.services.MasCoreSkillService;
 import com.aug.hrdb.services.MasDegreetypeService;
+import com.aug.hrdb.services.MasDivisionService;
 import com.aug.hrdb.services.MasJoblevelService;
 import com.aug.hrdb.services.MasProvinceService;
 import com.aug.hrdb.services.MasRelationTypeService;
@@ -149,6 +151,9 @@ public class ApplicantController implements Serializable {
 	//nut
 	@Autowired
 	private EmployeeService employeeService;
+	
+	@Autowired
+	private MasDivisionService masDivisionService;
 	
 	@Autowired
 	private LoginService loginService;
@@ -240,25 +245,38 @@ public class ApplicantController implements Serializable {
 		applicant.setAttitudeOffice(applicantDto.getAttitudeOffice());
 		applicant.setTrackingStatus(applicantDto.getTrackingStatus());
 		
-//		if (applicant.getTrackingStatus().equals("Approve")) {
-//			
-//			//find user
-//			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//			System.out.println("userName : " + userDetails.getUsername());
-//			Login login = loginService.findByUserName(userDetails.getUsername());
-////			Employee employee = login.getEmployee();
-////			System.out.println("employee: " + employee.getNameEng());
-//			
-//			Employee employee = new Employee();
-//			employee.setApplicant(applicant);
-//			
-//			employee.setAuditFlag(applicant.getAuditFlag());
-//			employee.setCreatedBy(login.getId());
-//			employee.setCreatedTimeStamp(new Date());
-//			employee.setDateOfBirth(applicant.getBirthDate());
-//			employee.setStatusemp("Employee");
-//			employeeService.create(employee);
-//		}
+		if (applicant.getTrackingStatus().equals("Approve")) {
+			
+			//find user
+			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			System.out.println("userName : " + userDetails.getUsername());
+			Login login = loginService.findByUserName(userDetails.getUsername());
+//			Employee employee = login.getEmployee();
+//			System.out.println("employee: " + employee.getNameEng());
+			
+//			MasDivision division = . 
+					
+			Employee employee = new Employee();
+			employee.setApplicant(applicant);
+			
+			employee.setAuditFlag(applicant.getAuditFlag());
+			employee.setCreatedBy(login.getId());
+			employee.setCreatedTimeStamp(new Date());
+			employee.setDateOfBirth(applicant.getBirthDate());
+			employee.setEmail(applicant.getEmail());
+			employee.setEmergencyContact(applicant.getEmergencyName());
+			employee.setEmergencyContactPhoneNumber(applicant.getEmergencyTel());
+			employee.setEmployeeCode("TH2015004");
+			employee.setIdCard(applicant.getCardId());
+			employee.setNameEng(applicant.getFirstNameEN());
+			employee.setNameThai(applicant.getFirstNameTH());
+			employee.setStatusemp("Employee");
+			employee.setTelHome("02-9876543");
+			employee.setTelMobile(applicant.getTel());
+			employee.setMasDivision(new MasDivision());
+			employee.setMasJoblevel(applicant.getJoblevel());
+			employeeService.create(employee);
+		}
 
 		applicantService.update(applicant);
 
