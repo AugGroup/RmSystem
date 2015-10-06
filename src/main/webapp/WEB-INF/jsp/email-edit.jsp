@@ -25,9 +25,9 @@
 				<div id="email-template">
 					<form id="templateFormEdit">
 						<div class="form-group">
-							<label for="name"><spring:message code="request.email.form.name" /> :</label>
+							<label for="name"><spring:message code="request.email.form.template.name" /> :</label>
 							<select class="form-control" id="mailTemplate" name="selectTemplate">
-								<option value=""/><spring:message code="request.email.form.select" /></option>
+								<option value=""><spring:message code="request.email.form.select.select.template.init" /></option>
 								<c:forEach items="${mailTemplate}" var="mailTemplate">
 									<option value="${mailTemplate.id}">${mailTemplate.name}</option>
 								</c:forEach>

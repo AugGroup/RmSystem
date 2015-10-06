@@ -88,6 +88,7 @@
 				<ul class="dropdown-menu" id="dropdown_report">
 					<li><a href="${pageContext.request.contextPath}/email/create"><spring:message code="request.email.header.create" /></a></li>
 					<li><a href="${pageContext.request.contextPath}/email/edit"><spring:message code="request.email.header.edit" /></a></li>
+					<li><a href="${pageContext.request.contextPath}/email/write"><spring:message code="request.email.header.write" /></a></li>
 				</ul>
 			</div>
 			

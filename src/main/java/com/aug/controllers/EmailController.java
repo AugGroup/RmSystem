@@ -22,10 +22,12 @@ import com.aug.hrdb.entities.Appointment;
 import com.aug.hrdb.entities.Employee;
 import com.aug.hrdb.entities.Login;
 import com.aug.hrdb.entities.MailTemplate;
+import com.aug.hrdb.services.ApplicantService;
 import com.aug.hrdb.services.AppointmentService;
 import com.aug.hrdb.services.LoginService;
 import com.aug.hrdb.services.MailTemplateService;
 import com.aug.services.EmailService;
+import com.google.common.base.Function;
 
 @Controller
 public class EmailController {
@@ -38,9 +40,22 @@ public class EmailController {
 	
 	@Autowired
 	private AppointmentService appointmentService;
+	
+	@Autowired
+	private ApplicantService applicantService;
 		
 	@Autowired
 	private EmailService emailService;
+	
+	@ModelAttribute(value="applicants")
+	public List<Applicant> getApplicants() {
+		return applicantService.findAll();
+	}
+	
+	@ModelAttribute(value="mailTemplate")
+	public List<MailTemplate> getListDepartment(){		
+		return mailTemplateService.findAll();
+	}
 	
 	@RequestMapping(value="/email/create", method={RequestMethod.GET})
 	public String createEmail(){ 
@@ -77,6 +92,11 @@ public class EmailController {
 		}
 		
 		return "success";
+	}
+	
+	@RequestMapping(value="/email/write")
+	public String writeEmail() {
+		return "email-write";
 	}
 	
 	@Transactional
@@ -131,10 +151,5 @@ public class EmailController {
 	@RequestMapping(value="/email/edit/delete/{id}", method={RequestMethod.GET})
 	public @ResponseBody void deleteEmail(@PathVariable Integer id){ 
 		mailTemplateService.deleteById(id);
-	}
-	
-	@ModelAttribute("mailTemplate")
-	public List<MailTemplate> getListDepartment(){		
-		return mailTemplateService.findAll();
 	}
 }

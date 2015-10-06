@@ -9,7 +9,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/js/pnotify.custom.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/js/jquery.validate.min.js"></script>
 
-<title>Create Template</title>
+<title><spring:message code="request.email.header.create" /></title>
 
 <div class="container">
 	

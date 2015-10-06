@@ -56,6 +56,7 @@ import com.aug.hrdb.entities.Applicant;
 import com.aug.hrdb.entities.Appointment;
 import com.aug.hrdb.entities.Certification;
 import com.aug.hrdb.entities.Education;
+import com.aug.hrdb.entities.Employee;
 import com.aug.hrdb.entities.Experience;
 import com.aug.hrdb.entities.Family;
 import com.aug.hrdb.entities.Language;
@@ -73,6 +74,7 @@ import com.aug.hrdb.services.ApplicantService;
 import com.aug.hrdb.services.AppointmentService;
 import com.aug.hrdb.services.CertificationService;
 import com.aug.hrdb.services.EducationService;
+import com.aug.hrdb.services.EmployeeService;
 import com.aug.hrdb.services.ExperienceService;
 import com.aug.hrdb.services.FamilyService;
 import com.aug.hrdb.services.LanguageService;
@@ -140,6 +142,10 @@ public class ApplicantController implements Serializable {
 	private MasSpecialtyService masSpecialtyService;
 	@Autowired
 	private AbilityService abilityService;
+	
+	//nut
+	@Autowired
+	private EmployeeService employeeService;
 	
 	@RequestMapping(value = "/applicant", method = { RequestMethod.GET })
 	public String helloPage(Model model) {
@@ -227,6 +233,13 @@ public class ApplicantController implements Serializable {
 		applicant.setAttitudeHome(applicantDto.getAttitudeHome());
 		applicant.setAttitudeOffice(applicantDto.getAttitudeOffice());
 		applicant.setTrackingStatus(applicantDto.getTrackingStatus());
+		
+		if (applicant.getTrackingStatus().equals("Approve")) {
+			
+			Employee employee = new Employee();
+			employee.setApplicant(applicant);
+			employeeService.create(employee);
+		}
 
 		applicantService.update(applicant);
 
