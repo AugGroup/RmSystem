@@ -175,6 +175,7 @@ function renderCalendar(){
 			center: 'title',
 			right: 'month,agendaWeek,agendaDay'
 		},
+		allDaySlot : false,
 		defaultDate: moment(),
 		lang: local,
 		selectable: true,
@@ -246,11 +247,22 @@ function renderCalendar(){
 			eventdata = event;
 	    } ,
 	    eventRender: function(event, el) {
-			//console.log("eventRender:");
-			//console.log(event.start.hasZone());
-		}
+	    	console.log(el);
+	    	el.popover({
+	            title: event.title,
+	            placement: 'auto',
+	            content: event.detail
+	        });
+		},
+		eventMouseover: function ( event, jsEvent, view ){
+			$(this).popover('show');
+		},
+		eventMouseout : function ( event, jsEvent, view ){
+			$(this).popover('hide');
+		},
 	}); // end full calendar
-}
+	
+}//end rendercalendar
 
 $( function(){
 		$(".dt_picker").datetimepicker({

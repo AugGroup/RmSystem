@@ -23,5 +23,12 @@ textarea {
    } 
 
 .fc-unthemed .fc-today {
-    background: #FFCC40;
+   background: #FFCC40;
+}
+
+.popover{
+   z-index: 99;
+}
+.popover-content {
+	z-index: 9999;
 }
