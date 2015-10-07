@@ -367,8 +367,8 @@ $( function(){
 					detail : $("#appoint_detail").val(),
 					start: insStart,
 					end : insEnd,
-					applicant : { id :$("#applicantName option:selected").val() },
-					mailStatus : 0
+					mailStatus : 0,
+					applicant : { id :$("#applicantName option:selected").val() }
 					/* login : login_id who insert this appointment will insert in controller :) */
 			};
 			var insData;

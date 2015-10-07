@@ -1,10 +1,10 @@
 @CHARSET "UTF-8";
 
 div.fc-row>table>thead > tr:first-child {
-	background-color: orange;
+	background-color: #ffc000;
 }
 td.fc-day{
-	background-color: #FFF7BA;
+	background-color: #e7e7e7;
 }
 
 body {
@@ -13,21 +13,62 @@ body {
 }
 
 #calendar {
-/* 	max-width: 900px; */
 	max-width : 100%;
-	margin-left : 2.5%;
+	margin-bottom: 15px;
 }
 
-#appointmentColor{
-	max-width : 100%;
-	padding-right : 2.5%;
+.fc-unthemed .fc-today {
+   background: #FF9900;
+}
+
+div.fc-toolbar{
+	margin-top:15px;
+	margin-left: 5px;
+	margib-right:5px;
 }
 
 textarea {
    overflow-y: scroll;
    resize: none; 
-   } 
+} 
 
-.fc-unthemed .fc-today {
-   background: #FFCC40;
+#calendarDiv{
+	background-color: #E0DFDD;
+	margin-left : 40px;
+}
+
+#calendar-container{
+	margin-top: 20px;
+}
+
+#mailStatusPropSm{
+	background-color: #E0DFDD;
+    margin-right: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+.media{
+	margin-left: 15px;	
+}
+
+#mailStatusPropMd{
+	background-color: #E0DFDD;
+	width : 250px;
+	padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+span.label-danger{
+	background-color: #FF4512;
+}
+
+span.label-warning{
+	background-color: #EBCD26;
+}
+
+span.label-success{
+	background-color: #91E650;
 }

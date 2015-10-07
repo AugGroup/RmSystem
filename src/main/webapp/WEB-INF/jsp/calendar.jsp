@@ -10,14 +10,67 @@
 
 </style>
 
-<div class="container-fluid">
+<div id="calendar-container" class="container-fluid">
 	<div class="row">
-		<div class="col-md-10">
+		<div class="col-xs-offset-6 col-xs-6 col-sm-offset-6 col-sm-6 visible-xs visible-sm">
+			<div id="mailStatusPropSm">
+				<div><h4>Email status</h4></div>
+				<div id="noEmailSending" class="media">
+					<div class="media-left">
+						<span class="label label-danger media-object">Appointment</span>
+					</div>
+					<div class="media-body">
+						<h6 class="media-heading">No E-mail sending</h6>
+					</div>
+				</div>
+				<div id="NoEmailUpdating" class="media">
+					<div class="media-left">
+						<span class="label label-warning media-object">Appointment</span>
+					</div>
+					<div class="media-body">
+						<h6 class="media-heading">No E-mail Updating</h6>
+					</div>
+				</div>
+				<div id="EmailSent" class="media">
+					<div class="media-left">
+						<span class="label label-success media-object">Appointment</span>
+					</div>
+					<div class="media-body">
+						<h6 class="media-heading">Email sent</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="calendarDiv" class="col-xs-11 col-sm-11 col-md-9 col-lg-9">
 			<div id='calendar'></div>
 		</div>
-		<div  class="col-md-2">
-			<div >
-				<h1>dfghjklsss</h1>
+		<div class="col-md-2 col-lg-2 visible-md visible-lg">
+			<div id="mailStatusPropMd">
+				<div class="text-center"><h3>Email status</h3></div>
+				<div id="noEmailSending" class="media">
+					<div class="media-left">
+						<span class="label label-danger media-object">Appointment</span>
+					</div>
+					<div class="media-body">
+						<h6 class="media-heading">No E-mail sending</h6>
+					</div>
+				</div>
+				<div id="NoEmailUpdating" class="media">
+					<div class="media-left">
+						<span class="label label-warning media-object">Appointment</span>
+					</div>
+					<div class="media-body">
+						<h6 class="media-heading">No E-mail Updating</h6>
+					</div>
+				</div>
+				<div id="EmailSent" class="media">
+					<div class="media-left">
+						<span class="label label-success media-object">Appointment</span>
+					</div>
+					<div class="media-body">
+						<h6 class="media-heading">Email sent</h6>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
