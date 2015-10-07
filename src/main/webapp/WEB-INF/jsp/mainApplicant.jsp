@@ -12,7 +12,22 @@ var editInfo_text = "<spring:message code="main.edit.info"/>";
 var delete_text = "<spring:message code="main.delete"/>";
 
 </script>
+<<<<<<< HEAD
 
+=======
+<style>
+	#btnScore{
+		width: 400px;
+	}
+/* max-width  960px */
+@media ( max-width : 960px) {
+	#btnScore{
+		width: 200px;
+	}
+}
+	
+</style>
+>>>>>>> responsive information.jsp
 <div class="container">
 	<!--Input text for Search Applicant -->
 	<div class="row" id="search_row">
@@ -80,7 +95,7 @@ var delete_text = "<spring:message code="main.delete"/>";
 							</div>
 							<div class="form-group">
 								<label for="inputScore"><spring:message code="edit.attitude.score" /> </label>
-								<div class="form-group" class="form-inline" style="width: 400px">
+								<div id="btnScore" class="form-group" class="form-inline">
 									<div class="row">
 										<div class="col-md-6">
 											<label for="inputAttitudeHome"><spring:message code="edit.attitude.home" /></label> 

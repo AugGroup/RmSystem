@@ -4,9 +4,23 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <style>
-.dropdown {
+.dropdownMenu {
 	background: #E0DFDD;
 	padding-left: 5px;
+}
+
+#btnDropdownMenu {
+	color: #808080;
+	background: #fff;
+	width: 115px; 
+	height: 30px;
+	border: 1px solid #ebebeb;
+	border-radius: 0px;
+	margin-top: 3px;
+}
+
+.dropdown-menu>li>a {
+    color: #808080;
 }
 
 table.dataTable tr.odd {
@@ -19,12 +33,15 @@ table.dataTable tr.even {
 </style>
 <script type="text/javascript">
 </script>
-<div class="container">
-		<div class="dropdown">
-  			<button class="btn btn-defult dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" 
-  					aria-expanded="true" style="width: 117px; height: 25px; background: #E0DFDD; border: 1px solid #ebebeb;"><spring:message code="menu.text"/> <span class="caret"></span>
+<div class="container-fluid">
+	<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-sm-12 col-md-10" id="info">
+		<div class="dropdownMenu">
+  			<button class="btn btn-defult dropdown-toggle" type="button" id="btnDropdownMenu" data-toggle="dropdown" aria-haspopup="true" 
+  					aria-expanded="true"><spring:message code="menu.text"/> <span class="caret"></span>
   			</button>
-  		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  		<ul class="dropdown-menu" aria-labelledby="btnDropdownMenu">
   				<li class='${ (tag eq "information") ? "active" : ""}'><a href="${pageContext.request.contextPath}/info/${id}"><span
  						class="glyphicon glyphicon-user"></span> <spring:message code="tab.info"/></a></li>
   				<li class='${ (tag eq "address") ? "active" : ""}'><a href="${pageContext.request.contextPath}/address/${id}"><span
@@ -45,4 +62,6 @@ table.dataTable tr.even {
 						class="glyphicon glyphicon-folder-open"></span> <spring:message code="tab.experience"/></a></li>      
   		</ul>
 		</div>
+	</div>
+	</div>
 </div>

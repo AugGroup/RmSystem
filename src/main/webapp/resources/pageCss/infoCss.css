@@ -157,6 +157,13 @@
         display: block;
     }
 
+.btn-warning {
+	height: 30px;
+	width: 125px;
+	color: #ECE5E5;
+	background-color: #f0ad4e;
+	border-color: #eea236;
+}
 	#militaryNo{
 	 display:none;
 	}
@@ -677,3 +684,24 @@
    margin-left:25px;
    }
 
+/* max-width  960px */
+@media ( max-width : 960px) {
+	#marriageAddress,#emergencyAddress{
+	    width:210px;
+	    height:30px;
+	
+    }
+    
+    #militaryReason,#previousEmployersReason{
+	    width:230px;
+	    height:30px;
+    }
+    
+    #info{
+		margin: -12px 0 0 0;
+	}
+}
+
+
+
+	
