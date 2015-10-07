@@ -71,6 +71,7 @@
 </script>
 
 <script type="text/javascript" src="${ pageContext.request.contextPath }/static/resources/pageJS/email-main.js"></script>
+<link href="${ pageContext.request.contextPath }/static/resources/pageCss/email-main.css" rel="stylesheet" type="text/css"></link>
 
 <body>
 	<div class="headed">
@@ -83,19 +84,14 @@
 			<%-- <a href="${pageContext.request.contextPath}/email/create"><spring:message code="request.email" /></a> --%>
 			<div class="btn-group">
 				<button type="button" class="btn btn-defult dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-					id="btn_email"> <spring:message code="request.email" /> <span class="caret"></span>
+					id="btn_email" data-toggle="popover" data-placement="right" title="Warning Appointment" data-content="Have appointment that still not send email." data-trigger="manual"> <spring:message code="request.email" /> <span class="caret"></span>
 				</button>
-				<%-- <ul class="dropdown-menu" id="dropdown_report">
-					<li><a href="${pageContext.request.contextPath}/email/create"><spring:message code="request.email.header.create" /></a></li>
-					<li><a href="${pageContext.request.contextPath}/email/edit"><spring:message code="request.email.header.edit" /></a></li>
-					<li><a href="${pageContext.request.contextPath}/email/write"><spring:message code="request.email.header.write" /></a></li>
-				</ul> --%>
 				<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
               		<li><a href="${pageContext.request.contextPath}/email/create"><spring:message code="request.email.header.create" /></a></li>
               		<li><a href="${pageContext.request.contextPath}/email/edit"><spring:message code="request.email.header.edit" /></a></li>
               		<li><a href="${pageContext.request.contextPath}/email/write"><spring:message code="request.email.header.write" /></a></li>
               		<li class="divider"></li>
-            		<li class="dropdown-submenu">
+            		<li class="dropdown-submenu" id="email-appointment-new-parent">
               			<a tabindex="-1" href="#">New Appointment Email</a>
               			<ul class="dropdown-menu" id="email-appointment-new">
               				<!-- <li><a href="#">send all appoinment success</a></li> -->
@@ -103,7 +99,7 @@
                				<li><a href="#">Second level</a></li> -->
               			</ul>
             		</li>
-            		<li class="dropdown-submenu">
+            		<li class="dropdown-submenu" id="email-appointment-update-parent">
               			<a tabindex="-1" href="#">Update Appointment Email</a>
               			<ul class="dropdown-menu" id="email-appointment-update">
               				<!-- <li><a href="#">send all appoinment success</a></li> -->

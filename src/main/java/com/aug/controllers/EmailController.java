@@ -53,9 +53,6 @@ public class EmailController {
 	@Autowired
 	private EmailService emailService;
 	
-	@Autowired
-	private EmployeeService employeeService;
-	
 	@ModelAttribute(value="applicants")
 	public List<Applicant> getApplicants() {
 		return applicantService.findAll();
@@ -112,20 +109,25 @@ public class EmailController {
 	public ModelAndView writeAppointmentMail(@PathVariable(value="appointmentId") Integer appointmentId) {
 		
 		Appointment appointment = appointmentService.find(appointmentId);
-		Applicant applicant = appointment.getApplicant();
-		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("email-appointment");
-		modelAndView.addObject("email", applicant.getEmail());
-		modelAndView.addObject("appointmentId", appointmentId);
+		if (appointment.getMailStatus() == 1) {
+			modelAndView.setViewName("email-write");
+		} else {
+			Applicant applicant = appointment.getApplicant();
+			modelAndView.setViewName("email-appointment");
+			modelAndView.addObject("email", applicant.getEmail());
+			modelAndView.addObject("appointmentId", appointmentId);
+		}
 		
 		return modelAndView;
 	}
 	
 	@Transactional
 	@RequestMapping(value="/email/send/appointment", method={RequestMethod.POST})
-	public String sendAppointmentMail(@RequestParam(value="appointmentId") Integer appointmentId, @RequestParam(value="cc") String cc,
+	public @ResponseBody String sendAppointmentMail(@RequestParam(value="appointmentId") Integer appointmentId, @RequestParam(value="cc") String cc,
 			@RequestParam(value="subject") String subject, @RequestParam(value="content") String content, HttpServletRequest request) throws UnsupportedEncodingException{
+		
+		String status = "fail";
 		
 		try {
 			//find employee
@@ -154,12 +156,15 @@ public class EmailController {
 			appointment.setMailStatus(1);
 			appointmentService.update(appointment);
 			
+			//set status
+			status = "success";
+			
 		} catch(Exception exception) {
 			exception.printStackTrace();
 			System.out.println(exception);
 		}
 		
-		return "redirect:/email/write"; 
+		return status; 
 	}
 	
 	@Transactional

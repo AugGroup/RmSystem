@@ -40,7 +40,8 @@ function sendEmail(appointmentId, cc, subject, content){
 			"content": content
 		},
 		success: function(data) {
-			alert(data);
+			alert("send email success...");
+			window.location.replace(contextPath + "/email/write");
 		},
 		error: function(){
 			alert("send error");

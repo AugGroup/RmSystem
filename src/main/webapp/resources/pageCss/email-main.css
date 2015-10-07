@@ -1,0 +1,28 @@
+.email-notification {
+	border: 2px solid rgb(222, 145, 4);
+}
+
+.btn-email-alert {
+	background-color: rgb(222, 145, 4) !important;
+}
+
+.popover-title {
+	background-color: rgb(222, 145, 4) !important;
+	color: #FFFFFF;
+}
+
+.popover-content {
+	color: rgb(222, 145, 4) !important;
+}
+
+.popover {
+	width: 175px;
+}
+
+.tooltip.right .tooltip-arrow {
+	border-right-color: rgb(222, 145, 4) !important;
+}
+
+.tooltip-inner {
+	background-color: rgb(222, 145, 4) !important;
+}
