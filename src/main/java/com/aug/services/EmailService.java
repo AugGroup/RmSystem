@@ -142,7 +142,8 @@ public class EmailService {
 		//send email
 		mailSender.send(preparator);
 		
-		//return "emailService";
+		//set appointment
+		appointment.setMailStatus(1);
 	}
 }
 
