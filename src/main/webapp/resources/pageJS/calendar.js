@@ -207,18 +207,50 @@ function renderCalendar(){
 	    	updateAppointmentDate(event, revertFunc);
 	    },
 		eventLimit: true,
-		events: {
-			url: 'calendar/findAppointment',
-			success: function(data) {
-				/*console.log("load: ");
-				console.log(data);*/
-			},
-			error: function() {
-				//$('#script-warning').show();
-				//alert("render error.");
-			},
-			color : "#8723D9",textColor :'white'
-		},
+		eventSources: [
+		    {
+				url : 'calendar/findAppointment',
+				data : { mailStatus : 0},
+				success: function(data) {
+					/*console.log("load: ");
+					console.log(data);*/
+				},
+				error: function() {
+					//$('#script-warning').show();
+					//alert("render error.");
+				},
+				color : "#FF1C1C",
+				textColor :'white'
+		    },
+		    {
+				url : 'calendar/findAppointment',
+				data : { mailStatus : 1},
+				success: function(data) {
+					/*console.log("load: ");
+					console.log(data);*/
+				},
+				error: function() {
+					//$('#script-warning').show();
+					//alert("render error.");
+				},
+				color : "#91E650",
+				textColor :'white'
+		    },
+		    {
+				url : 'calendar/findAppointment',
+				data : { mailStatus : 2},
+				success: function(data) {
+					/*console.log("load: ");
+					console.log(data);*/
+				},
+				error: function() {
+					//$('#script-warning').show();
+					//alert("render error.");
+				},
+				color : "#FF8A14",
+				textColor :'white'
+		    }
+		],
 		timezone: "Asia/Bangkok",
 		ignoreTimezone:false,
 		eventClick: function(event, element) {
@@ -338,7 +370,8 @@ $( function(){
 							id : data.id,
 							title: data.title,
 							start: new Date(data.start),
-							end: new Date(data.end),color: '#FF528E'
+							end: new Date(data.end),
+							color: '#FF528E'
 						};
 						//console.log(data);
 						$('#calendar').fullCalendar('renderEvent', insData, true); // stick? = true

@@ -150,9 +150,8 @@ public class CalendarController {
 	@RequestMapping(value = "calendar/findAppointment",method = RequestMethod.GET)
 		public @ResponseBody List<AppointmentDto> findAppointment(@RequestParam(value="start") String start,
 		@RequestParam(value="end") String end, @RequestParam(value="_",required = false) String underscore, 
-		@RequestParam(value="timezone",required = false) String timezone) throws ParseException {
-		
-		List<AppointmentDto> list = appointmentService.findAppointment(start, end);
+		@RequestParam(value="timezone",required = false) String timezone, @RequestParam Integer mailStatus) throws ParseException {
+		List<AppointmentDto> list = appointmentService.findAppointment(start, end, mailStatus);
 		if (list.size()==0) {
 			return null;
 		}else {
