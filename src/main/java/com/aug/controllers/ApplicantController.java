@@ -45,6 +45,7 @@ import com.aug.hrdb.dto.AddressDto;
 import com.aug.hrdb.dto.ApplicantDto;
 import com.aug.hrdb.dto.CertificationDto;
 import com.aug.hrdb.dto.EducationDto;
+import com.aug.hrdb.dto.EmployeeDto;
 import com.aug.hrdb.dto.ExperienceDto;
 import com.aug.hrdb.dto.FamilyDto;
 import com.aug.hrdb.dto.LanguageDto;
@@ -244,6 +245,7 @@ public class ApplicantController implements Serializable {
 		applicant.setAttitudeHome(applicantDto.getAttitudeHome());
 		applicant.setAttitudeOffice(applicantDto.getAttitudeOffice());
 		applicant.setTrackingStatus(applicantDto.getTrackingStatus());
+		applicant.setMasLocation("TH");
 		
 		if (applicant.getTrackingStatus().equals("Approve")) {
 			
@@ -253,29 +255,17 @@ public class ApplicantController implements Serializable {
 			Login login = loginService.findByUserName(userDetails.getUsername());
 //			Employee employee = login.getEmployee();
 //			System.out.println("employee: " + employee.getNameEng());
+			System.out.println("LOCATIONAPPLICANT :: " + applicant.getMasLocation());
 			
-//			MasDivision division = . 
-					
+			EmployeeDto employeeDto = new EmployeeDto();
 			Employee employee = new Employee();
 			employee.setApplicant(applicant);
-			
-			employee.setAuditFlag(applicant.getAuditFlag());
-			employee.setCreatedBy(login.getId());
-			employee.setCreatedTimeStamp(new Date());
-			employee.setDateOfBirth(applicant.getBirthDate());
-			employee.setEmail(applicant.getEmail());
-			employee.setEmergencyContact(applicant.getEmergencyName());
-			employee.setEmergencyContactPhoneNumber(applicant.getEmergencyTel());
-			employee.setEmployeeCode("TH2015004");
-			employee.setIdCard(applicant.getCardId());
-			employee.setNameEng(applicant.getFirstNameEN());
-			employee.setNameThai(applicant.getFirstNameTH());
-			employee.setStatusemp("Employee");
-			employee.setTelHome("02-9876543");
-			employee.setTelMobile(applicant.getTel());
-			employee.setMasDivision(new MasDivision());
-			employee.setMasJoblevel(applicant.getJoblevel());
+			String str = employeeService.generateEmployeeCodeFixData(applicantDto.getMasLocation());
+			System.out.println("SSTRING :: " + str);
+			employee.setStatusemp(employeeService.generateEmployeeCodeFixData(applicantDto.getMasLocation()));
 			employeeService.create(employee);
+			
+			System.out.println("SECCESS" + employee.getId());
 		}
 
 		applicantService.update(applicant);

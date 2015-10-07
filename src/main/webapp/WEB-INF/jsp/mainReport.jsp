@@ -99,7 +99,6 @@
 					<th><spring:message code="main.name" /></th>
 					<th><spring:message code="main.position1" /></th>
 					<th><spring:message code="main.position2" /></th>
-<%-- 					<th><spring:message code="main.position3" /></th> --%>
 					<th><spring:message code="report.data.school" /></th>
 					<th><spring:message code="education.degree" /></th>
 					<th><spring:message code="education.data.gpa" /></th>

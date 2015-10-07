@@ -29,6 +29,7 @@
 		<f:hidden path="trackingStatus" />
 		<f:hidden path="createdTimeStamp" id="createdTimeStamp" />
 		<f:hidden path="createdBy" id="createdBy" />
+		<f:hidden path="masLocation"/>
 		
 		<h3 id="infomation"> INFORMATION</h3>
 		

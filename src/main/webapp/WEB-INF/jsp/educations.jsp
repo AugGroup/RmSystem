@@ -95,8 +95,8 @@ var id = ${id};
 									placeholder="<spring:message code="education.text.major"/>">
 							</div>
 							<div class="form-group">
-								<label for="gpa"><spring:message code="education.gpa" />
-								</label> <input type="text" class="form-control" id="gpa" name="gpa"
+								<label for="gpa"><spring:message code="education.gpa" /></label>
+								<input type="text" class="form-control" maxlength="5" id="gpa" name="gpa"
 									placeholder="<spring:message code="education.text.gpa"/>">
 							</div>
 							
