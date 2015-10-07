@@ -7,6 +7,11 @@ $(function(){
 	$(".bootstrap-tagsinput").css("display","block");
 	$(".bootstrap-tagsinput").find("input").css("width","auto");
 	
+	
+	$("#mailTemplate").on("change",function(){
+		  getTemplate($(this).val());
+	});
+	
 	$("#send").on("click", function(){
 //		sendEmail($("#applicant option:selected").val(), $("#mailTemplate option:selected").val(), $("#cc").val(), $("#subject").val());
 		var appointmentId = $("#receiver").data("id");

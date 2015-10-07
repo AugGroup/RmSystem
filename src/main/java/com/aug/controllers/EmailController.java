@@ -122,6 +122,7 @@ public class EmailController {
 		return modelAndView;
 	}
 	
+	@Transactional
 	@RequestMapping(value="/email/send/appointment", method={RequestMethod.POST})
 	public String sendAppointmentMail(@RequestParam(value="appointmentId") Integer appointmentId, @RequestParam(value="cc") String cc,
 			@RequestParam(value="subject") String subject, @RequestParam(value="content") String content, HttpServletRequest request) throws UnsupportedEncodingException{
@@ -156,7 +157,7 @@ public class EmailController {
 		return "redirect:/email/write"; 
 	}
 	
-	
+	@Transactional
 	@RequestMapping(value="/email/send", method={RequestMethod.POST})
 	public @ResponseBody String sendMail(@RequestParam(value="receiver") String receiver, @RequestParam(value="cc") String cc,
 			@RequestParam(value="subject") String subject, @RequestParam(value="content") String content, HttpServletRequest request) throws UnsupportedEncodingException{
