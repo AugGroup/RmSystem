@@ -11,7 +11,17 @@
 </style>
 
 <div class="container-fluid">
-	<div id='calendar'></div>
+	<div class="row">
+		<div class="col-md-10">
+			<div id='calendar'></div>
+		</div>
+		<div  class="col-md-2">
+			<div >
+				<h1>dfghjklsss</h1>
+			</div>
+		</div>
+	</div>
+	
 	<!-- Insert Modal -->
 	<div class="modal fade" id="insModal">
 	  <div class="modal-dialog">

@@ -297,16 +297,29 @@ function renderCalendar(){
 }//end rendercalendar
 
 $( function(){
+		
+		
 		$(".dt_picker").datetimepicker({
 		    format: "dd/mm/yyyy hh:ii",
 		    autoclose: true,
 		    minuteStep: 30,
 		});
 		
-		
 		renderCalendar();
 		
 		$('#calendar').fullCalendar('gotoDate', currentDate());//go to date after fullcalendar redered 
+		
+		var $today = $("td.fc-day.fc-widget-content.fc-wed.fc-today.fc-state-highlight");
+		$today.tooltip({title:" Today ",container:'body'})
+		
+		$today.on("mouseenter",function(){
+			$today.tooltip('show');
+		})
+		
+		$today.on("mouseout",function(){
+			$today.tooltip('hide');
+		})
+		
 		
 		$('#applicantFilter').on('change',function () {
 	 		var trackingString = $("#applicantFilter option:selected").val();

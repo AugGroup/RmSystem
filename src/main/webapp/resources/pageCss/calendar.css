@@ -13,8 +13,14 @@ body {
 }
 
 #calendar {
-	max-width: 900px;
-	margin: 0 auto;
+/* 	max-width: 900px; */
+	max-width : 100%;
+	margin-left : 2.5%;
+}
+
+#appointmentColor{
+	max-width : 100%;
+	padding-right : 2.5%;
 }
 
 textarea {
