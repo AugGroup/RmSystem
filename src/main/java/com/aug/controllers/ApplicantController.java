@@ -259,10 +259,15 @@ public class ApplicantController implements Serializable {
 			
 			EmployeeDto employeeDto = new EmployeeDto();
 			Employee employee = new Employee();
+
 			employee.setApplicant(applicant);
-			String str = employeeService.generateEmployeeCodeFixData(applicantDto.getMasLocation());
+			String str = employeeService.generateEmployeeCodeFixData(applicant.getMasLocation());
 			System.out.println("SSTRING :: " + str);
-			employee.setStatusemp(employeeService.generateEmployeeCodeFixData(applicantDto.getMasLocation()));
+			employee.setEmployeeCode(employeeService.generateEmployeeCodeFixData(applicantDto.getMasLocation()));
+			employee.setStatusemp("Employee");
+			MasDivision masDivision = masDivisionService.findById(5);
+			employee.setMasDivision(masDivision);
+			employee.setTelHome("00-0000000");
 			employeeService.create(employee);
 			
 			System.out.println("SECCESS" + employee.getId());
