@@ -246,10 +246,10 @@ function renderCalendar(){
 	        $("#myModal").modal("show");
 			eventdata = event;
 	    } ,
-	    eventRender: function(event, el) {
-	    	console.log(el);
-	    	el.popover({
-	            title: event.title,
+		eventAfterRender: function (event, element) {
+			element.popover({
+	            title: event.topic,
+	            container : 'body',
 	            placement: 'auto',
 	            content: event.detail
 	        });
@@ -395,6 +395,8 @@ $( function(){
 					    type: 'success',
 					    delay: 750
 					});
+					$('#calendar').fullCalendar( 'destroy' );
+	    			renderCalendar();
 				},
 				error:function (jqXHR, textStatus, error){
 			        alert('Update error'); 

@@ -13,7 +13,7 @@ body {
 }
 
 #calendar {
-	max-width: 90%;
+	max-width: 900px;
 	margin: 0 auto;
 }
 
@@ -24,11 +24,4 @@ textarea {
 
 .fc-unthemed .fc-today {
    background: #FFCC40;
-}
-
-.popover{
-   z-index: 99;
-}
-.popover-content {
-	z-index: 9999;
 }
