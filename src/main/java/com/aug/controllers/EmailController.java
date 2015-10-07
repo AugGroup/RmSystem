@@ -108,38 +108,53 @@ public class EmailController {
 		return "email-write";
 	}
 	
-//	@RequestMapping(value="/email/send/{appointmentId}/{templateName}", method={RequestMethod.GET})
-//	public String sendAppointmentMail(@PathVariable(value="appointmentId") Integer appointmentId, 
-//			@PathVariable(value="templateName") String templateName, HttpServletRequest request) throws UnsupportedEncodingException{
-//		
-//		try {
-//			//find employee
-//			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//			System.out.println("userName : " + userDetails.getUsername());
-//			Login login = loginService.findByUserName(userDetails.getUsername());
-//			Employee employee = login.getEmployee();
-//			System.out.println("employee: " + employee.getNameEng());
-//			
-//			//find appointment
-//			Appointment appointment = appointmentService.find(appointmentId);
-//			System.out.println("appointment: " + appointment.getDetail());
-//			
-//			//find applicant
-//			Applicant applicant = appointment.getApplicant();
-//			System.out.println("applicant: " + applicant.getFirstNameEN());
-//			
-//			//find template
+	@RequestMapping(value="/email/write/appointment/{appointmentId}", method={RequestMethod.GET})
+	public ModelAndView writeAppointmentMail(@PathVariable(value="appointmentId") Integer appointmentId) {
+		
+		Appointment appointment = appointmentService.find(appointmentId);
+		Applicant applicant = appointment.getApplicant();
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("email-appointment");
+		modelAndView.addObject("email", applicant.getEmail());
+		modelAndView.addObject("appointmentId", appointmentId);
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/email/send/appointment", method={RequestMethod.POST})
+	public @ResponseBody String sendAppointmentMail(@RequestParam(value="appointmentId") Integer appointmentId, @RequestParam(value="cc") String cc,
+			@RequestParam(value="subject") String subject, @RequestParam(value="content") String content, HttpServletRequest request) throws UnsupportedEncodingException{
+		
+		try {
+			//find employee
+			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			System.out.println("userName : " + userDetails.getUsername());
+			Login login = loginService.findByUserName(userDetails.getUsername());
+			Employee employee = login.getEmployee();
+			Applicant sender = employee.getApplicant();
+			System.out.println("sender: " + sender.getFirstNameEN());
+			
+			//find appointment
+			Appointment appointment = appointmentService.find(appointmentId);
+			System.out.println("appointment: " + appointment.getDetail());
+			
+			//find applicant
+			Applicant receiver = appointment.getApplicant();
+			System.out.println("applicant: " + receiver.getFirstNameEN());
+			
+			//find template
 //			MailTemplate mailTemplate = mailTemplateService.findByName(templateName);
 //			System.out.println("mailTemplate: " + mailTemplate.getName());
-//			
-//			emailService.sendAppointmentMail(employee, appointment, applicant, mailTemplate, request);
-//		} catch(Exception exception) {
-//			exception.printStackTrace();
-//			System.out.println(exception);
-//		}
-//		
-//		return "redirect:/calendar"; 
-//	}
+			
+			emailService.sendAppointmentMail(sender, receiver, appointment, cc, subject, content, request);
+		} catch(Exception exception) {
+			exception.printStackTrace();
+			System.out.println(exception);
+		}
+		
+		return "redirect:/calendar"; 
+	}
 	
 	
 	@RequestMapping(value="/email/send", method={RequestMethod.POST})
@@ -162,15 +177,15 @@ public class EmailController {
 		return status; 
 	}
 	
-	@RequestMapping(value="/email/find/waitAppoinment", method={RequestMethod.GET})
-	public @ResponseBody List<Applicant> findWaitAppointment(){
+	@RequestMapping(value="/email/find/waitAppointment", method={RequestMethod.GET})
+	public @ResponseBody List<Appointment> findWaitAppointment(){
 		
 		List<Appointment> appointments = appointmentService.findAll();
-		List<Applicant> result = new ArrayList<Applicant>();
+		List<Appointment> result = new ArrayList<Appointment>();
 		
 		for (Appointment appointment : appointments) {
 			if (appointment.getMailStatus() == 0) {
-				result.add(appointment.getApplicant());
+				result.add(appointment);
 			}
 		}
 		
@@ -182,14 +197,14 @@ public class EmailController {
 	}
 	
 	@RequestMapping(value="/email/find/updateAppointment", method={RequestMethod.GET})
-	public @ResponseBody List<Applicant> findUpdateAppointment(){
+	public @ResponseBody List<Appointment> findUpdateAppointment(){
 		
 		List<Appointment> appointments = appointmentService.findAll();
-		List<Applicant> result = new ArrayList<Applicant>();
+		List<Appointment> result = new ArrayList<Appointment>();
 		
 		for (Appointment appointment : appointments) {
 			if (appointment.getMailStatus() == 2) {
-				result.add(appointment.getApplicant());
+				result.add(appointment);
 			}
 		}
 		

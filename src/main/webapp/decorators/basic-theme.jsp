@@ -70,7 +70,7 @@
 	var local = '${pageContext.response.locale}';
 </script>
 
-<script type="text/javascript" src="${ pageContext.request.contextPath }/static/resources/pageJS/email-appointment.js"></script>
+<script type="text/javascript" src="${ pageContext.request.contextPath }/static/resources/pageJS/email-main.js"></script>
 
 <body>
 	<div class="headed">
@@ -96,8 +96,16 @@
               		<li><a href="${pageContext.request.contextPath}/email/write"><spring:message code="request.email.header.write" /></a></li>
               		<li class="divider"></li>
             		<li class="dropdown-submenu">
-              			<a tabindex="-1" href="#">Appointment Email</a>
-              			<ul class="dropdown-menu" id="email-appointment">
+              			<a tabindex="-1" href="#">New Appointment Email</a>
+              			<ul class="dropdown-menu" id="email-appointment-new">
+              				<!-- <li><a href="#">send all appoinment success</a></li> -->
+               				<!-- <li><a href="#">Second level</a></li>
+               				<li><a href="#">Second level</a></li> -->
+              			</ul>
+            		</li>
+            		<li class="dropdown-submenu">
+              			<a tabindex="-1" href="#">Update Appointment Email</a>
+              			<ul class="dropdown-menu" id="email-appointment-update">
               				<!-- <li><a href="#">send all appoinment success</a></li> -->
                				<!-- <li><a href="#">Second level</a></li>
                				<li><a href="#">Second level</a></li> -->

@@ -9,27 +9,27 @@ $(function(){
 	
 	$("#send").on("click", function(){
 //		sendEmail($("#applicant option:selected").val(), $("#mailTemplate option:selected").val(), $("#cc").val(), $("#subject").val());
-		var receiver = $("#receiver").val();
+		var appointmentId = $("#receiver").data("id");
 		var cc = $("#cc").val();
 		var subject = $("#subject").val();
 		var content = CKEDITOR.instances.preview.getData();
 		
-		alert(receiver + " " + cc + " " + subject);
-		alert(content);
+//		alert(receiver + " " + cc + " " + subject);
+//		alert(content);
 		
-		sendEmail(receiver, cc, subject, content);
+		sendEmail(appointmentId, cc, subject, content);
 	});
 });
 
-function sendEmail(receiver, cc, subject, content){
+function sendEmail(appointmentId, cc, subject, content){
+	
+	//alert(receiver + " " + cc + " " + subject + " " + content);
 	
 	$.ajax({
-		url: contextPath + "/email/send",
+		url: contextPath + "/email/send/appointment",
 		type: "POST",
-		//contentType: "application/json; charset=utf-8",
-		//dataType: "json",
 		data: {
-			"receiver": receiver,
+			"appointmentId": appointmentId,
 			"cc": cc,
 			"subject": subject,
 			"content": content
@@ -41,4 +41,22 @@ function sendEmail(receiver, cc, subject, content){
 			alert("send error");
 		}
 	});
+}
+
+function getTemplate(id) {
+	
+	if(id == "") {
+		CKEDITOR.instances.preview.setData("");
+	} else {
+		$.ajax({
+			url: contextPath + "/email/findTemplate/" + id,
+			type: "GET",
+			success: function(data) {
+				CKEDITOR.instances.preview.setData(data.template);
+			},
+			error: function(data) {
+				alert("get template error");
+			}
+		});
+	}
 }
