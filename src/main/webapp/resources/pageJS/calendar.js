@@ -72,7 +72,7 @@ var $validform2 = $("#formEdit").validate({
 });
 
 function updateAppointmentDate(eventToUpdate, revertParam){
-	var updatedata = {id : eventToUpdate.id, start : eventToUpdate.start, end : eventToUpdate.end};
+	var updatedata = {id : eventToUpdate.id, start : eventToUpdate.start, end : eventToUpdate.end, mailStatus : eventToUpdate.mailStatus};
 	alertify.set({ 	buttonReverse: true,
 					labels: {
 					    ok     : yes,
@@ -219,7 +219,7 @@ function renderCalendar(){
 					//$('#script-warning').show();
 					//alert("render error.");
 				},
-				color : "#FF1C1C",
+				color : "#FF4512",
 				textColor :'white'
 		    },
 		    {
@@ -247,7 +247,7 @@ function renderCalendar(){
 					//$('#script-warning').show();
 					//alert("render error.");
 				},
-				color : "#FF8A14",
+				color : "#EBCD26",
 				textColor :'white'
 		    }
 		],
@@ -354,7 +354,8 @@ $( function(){
 					detail : $("#appoint_detail").val(),
 					start: insStart,
 					end : insEnd,
-					applicant : { id :$("#applicantName option:selected").val() }
+					applicant : { id :$("#applicantName option:selected").val() },
+					mailStatus : 0
 					/* login : login_id who insert this appointment will insert in controller :) */
 			};
 			var insData;
@@ -368,10 +369,11 @@ $( function(){
 					success : function(data){
 						insData = {
 							id : data.id,
-							title: data.title,
-							start: new Date(data.start),
-							end: new Date(data.end),
-							color: '#FF528E'
+							title : data.title,
+							start : new Date(data.start),
+							end : new Date(data.end),
+							mailStatus : data.mailStatus,
+							color: '#FF4512'
 						};
 						//console.log(data);
 						$('#calendar').fullCalendar('renderEvent', insData, true); // stick? = true

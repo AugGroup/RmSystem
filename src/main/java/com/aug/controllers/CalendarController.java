@@ -104,7 +104,11 @@ public class CalendarController {
 	@RequestMapping(value = "calendar/update",method = RequestMethod.POST)
 	public @ResponseBody AppointmentDto updateAppointment(@RequestBody Appointment appointment) throws ParseException{
 		Appointment appointmentToUpdate = appointmentService.find(appointment.getId());
-		
+		if(appointment.getMailStatus()==0){
+			appointmentToUpdate.setMailStatus(0);
+		}else {
+			appointmentToUpdate.setMailStatus(2);
+		}
 		/*                Change time for insert                      */
 		Date dateStart = appointment.getStart();//get date from appointment
 		Date dateEnd = appointment.getEnd();
