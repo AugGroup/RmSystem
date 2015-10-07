@@ -108,38 +108,38 @@ public class EmailController {
 		return "email-write";
 	}
 	
-	@RequestMapping(value="/email/send/{appointmentId}/{templateName}", method={RequestMethod.GET})
-	public String sendAppointmentMail(@PathVariable(value="appointmentId") Integer appointmentId, 
-			@PathVariable(value="templateName") String templateName, HttpServletRequest request) throws UnsupportedEncodingException{
-		
-		try {
-			//find employee
-			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			System.out.println("userName : " + userDetails.getUsername());
-			Login login = loginService.findByUserName(userDetails.getUsername());
-			Employee employee = login.getEmployee();
-			System.out.println("employee: " + employee.getNameEng());
-			
-			//find appointment
-			Appointment appointment = appointmentService.find(appointmentId);
-			System.out.println("appointment: " + appointment.getDetail());
-			
-			//find applicant
-			Applicant applicant = appointment.getApplicant();
-			System.out.println("applicant: " + applicant.getFirstNameEN());
-			
-			//find template
-			MailTemplate mailTemplate = mailTemplateService.findByName(templateName);
-			System.out.println("mailTemplate: " + mailTemplate.getName());
-			
-			emailService.sendAppointmentMail(employee, appointment, applicant, mailTemplate, request);
-		} catch(Exception exception) {
-			exception.printStackTrace();
-			System.out.println(exception);
-		}
-		
-		return "redirect:/calendar"; 
-	}
+//	@RequestMapping(value="/email/send/{appointmentId}/{templateName}", method={RequestMethod.GET})
+//	public String sendAppointmentMail(@PathVariable(value="appointmentId") Integer appointmentId, 
+//			@PathVariable(value="templateName") String templateName, HttpServletRequest request) throws UnsupportedEncodingException{
+//		
+//		try {
+//			//find employee
+//			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//			System.out.println("userName : " + userDetails.getUsername());
+//			Login login = loginService.findByUserName(userDetails.getUsername());
+//			Employee employee = login.getEmployee();
+//			System.out.println("employee: " + employee.getNameEng());
+//			
+//			//find appointment
+//			Appointment appointment = appointmentService.find(appointmentId);
+//			System.out.println("appointment: " + appointment.getDetail());
+//			
+//			//find applicant
+//			Applicant applicant = appointment.getApplicant();
+//			System.out.println("applicant: " + applicant.getFirstNameEN());
+//			
+//			//find template
+//			MailTemplate mailTemplate = mailTemplateService.findByName(templateName);
+//			System.out.println("mailTemplate: " + mailTemplate.getName());
+//			
+//			emailService.sendAppointmentMail(employee, appointment, applicant, mailTemplate, request);
+//		} catch(Exception exception) {
+//			exception.printStackTrace();
+//			System.out.println(exception);
+//		}
+//		
+//		return "redirect:/calendar"; 
+//	}
 	
 	
 	@RequestMapping(value="/email/send", method={RequestMethod.POST})
@@ -178,6 +178,24 @@ public class EmailController {
 			return null;
 		}
 		
+		return result;
+	}
+	
+	@RequestMapping(value="/email/find/updateAppointment", method={RequestMethod.GET})
+	public @ResponseBody List<Applicant> findUpdateAppointment(){
+		
+		List<Appointment> appointments = appointmentService.findAll();
+		List<Applicant> result = new ArrayList<Applicant>();
+		
+		for (Appointment appointment : appointments) {
+			if (appointment.getMailStatus() == 2) {
+				result.add(appointment.getApplicant());
+			}
+		}
+		
+		if (result.isEmpty()) {
+			return null;
+		}
 		return result;
 	}
 	
