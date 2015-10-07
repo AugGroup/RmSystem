@@ -29,8 +29,9 @@ var delete_tx = "<spring:message code="main.delete"/>";
 
 <div class="container">
 	<h1 align="center"><spring:message code="request.title"/></h1>
-	<div id="table">
+	<div class="container table-responsive" id="table" >
 		<table class="dataTable" id="requestTable" class="cell-border" style="width: 100%">
+			<caption title="" class="tableHeader"><spring:message code="request.title" /></caption>
 			<thead>
 				<tr>
 					<th><spring:message code="request.id" /></th>
@@ -47,7 +48,7 @@ var delete_tx = "<spring:message code="main.delete"/>";
 			</thead>
 		</table>
 		<button id="btn_new_req" class="btn btn-warning" data-toggle="modal" data-target="#addRequestModal">
-			<spring:message code="request.button" /><span class="glyphicon glyphicon-plus-sign"></span>
+			<span class="glyphicon glyphicon-plus"></span><spring:message code="request.add.new" />
 		</button>
 	</div>
 
@@ -140,8 +141,8 @@ var delete_tx = "<spring:message code="main.delete"/>";
 						</div>
 						</div>
 						<div align="right" style="padding: 15px 35px 15px 15px;">
-							<button type="button" id="btn_save_req" style="width: 100px;" class="btn btn-success">
-								<spring:message code="edit.button.save"/>  <span class="glyphicon glyphicon-floppy-save"></span>
+							<button type="button" id="btn_save_req" style="width: 100px;" class="btn btn-warning">
+								<span class="glyphicon glyphicon-save"></span><spring:message code="edit.button.save"/>  
 							</button>
 							<button type="button" id="btn_close"  style="width: 100px;" class="btn btn-default" data-dismiss="modal">
 								<spring:message code="button.cancel" />
@@ -174,8 +175,8 @@ var delete_tx = "<spring:message code="main.delete"/>";
 							<br><br>
 						</div>
 						<div class="row" style="float: right; padding-right: 20px;">
-								<button id="btn_delete_submit" type="button" class="btn btn-primary" data-dismiss="modal">
-									<spring:message code="main.delete" />
+								<button id="btn_delete_submit" type="button" class="btn btn-danger" data-dismiss="modal">
+									<span class="glyphicon glyphicon-remove-sign "></span><spring:message code="main.delete" />
 								</button>
 								<button id="btn_close" type="button" class="btn btn-default" data-dismiss="modal">
 									<spring:message code="button.cancel" />

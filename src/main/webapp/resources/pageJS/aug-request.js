@@ -112,28 +112,27 @@
         	          {data: "numberApplicant"},
         	          {data: "status"},
         	          {data: function (data) {
-        	        	  return '<button id="btn_preview" class="btn btn-primary" data-id="' + data.id + '" data-toggle="modal" data-target="#previewModal">'+preview_tx + ' <span class="glyphicon glyphicon-search"></span></button>';
+        	        	  return '<button id="btn_preview" class="btn btn-primary" data-id="' + data.id + '" data-toggle="modal" data-target="#previewModal"><span class="glyphicon glyphicon-search"></span> '+preview_tx +'</button>';
         	        	  }
         	          },
         	          {data: function (data) {
         	        	  if(data.status!="Approve"){
-                        	return '<button id="btn_edit" class="btn btn-warning" data-id="' + data.id + '" data-toggle="modal" data-target="#addRequestModal">'+edit_tx + ' <span class="glyphicon glyphicon-edit"></span></button>';
+                        	return '<button id="btn_edit" class="btn btn-warning" data-id="' + data.id + '" data-toggle="modal" data-target="#addRequestModal"><span class="glyphicon glyphicon-edit"></span> '+edit_tx + '</button>';
         	        	  }else{
-        	        		return '<button id="btn_edit" class="btn btn-warning" data-id="' + data.id + '" data-toggle="modal" data-target="#addRequestModal" disabled>'+edit_tx + ' <span class="glyphicon glyphicon-edit"></span></button>';
+        	        		return '<button id="btn_edit" class="btn btn-warning" data-id="' + data.id + '" data-toggle="modal" data-target="#addRequestModal" disabled><span class="glyphicon glyphicon-edit"></span> '+edit_tx + '</button>';
             	          }
         	        	}
         	          },
         	          {data: function (data) {
         	        	  if(data.status!="Approve"){
-        	        	 	  return '<button id="btn_delete" class="btn btn-danger" data-id="' + data.id + '" data-toggle="modal" data-target="#deleteModal">'+delete_tx + ' <span class="glyphicon glyphicon-remove-sign"></span></button>';
+        	        	 	  return '<button id="btn_delete" class="btn btn-danger" data-id="' + data.id + '" data-toggle="modal" data-target="#deleteModal"><span class="glyphicon glyphicon-remove-sign"></span> '+delete_tx + '</button>';
         	        	  }else{
-        	        		  return '<button id="btn_delete" class="btn btn-danger" data-id="' + data.id + '" data-toggle="modal" data-target="#deleteModal" disabled >'+delete_tx + ' <span class="glyphicon glyphicon-remove-sign"></span></button>'}
+        	        		  return '<button id="btn_delete" class="btn btn-danger" data-id="' + data.id + '" data-toggle="modal" data-target="#deleteModal" disabled ><span class="glyphicon glyphicon-remove-sign"></span> '+delete_tx + '</button>'}
         	         	  }
         	          }
         	          ],
-        	          dom: '<lf><"toolbar">rtip',
+        	      
    				   initComplete :function(){
-   				    $("div.toolbar").html('<b>Request</b>');
    				    $("#requestTable_previous").children().text("<"); 
    				    $("#requestTable_next").children().text(">");
    				   }

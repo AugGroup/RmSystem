@@ -21,6 +21,7 @@ $(document).ready(function(){
 		
 	//Search By Position and Show function
 	$('#btn_search').on('click', function(){
+		
 		if(dtApplicant){
 			dtApplicant.ajax.reload();
 		}else{
@@ -32,6 +33,7 @@ $(document).ready(function(){
 			       "infoEmpty": "No records available",
 			       "infoFiltered": "(filtered from _MAX_ total records)"
 			        },*/
+			//	responsive: true,
 				searching : true,
 				paging: true,
 				hover:false,
@@ -61,9 +63,7 @@ $(document).ready(function(){
 						      return '<a href="#deleteModal" id="btn_delete" data-id="' + data.id + '" data-toggle="modal" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove-sign"></span> '+delete_text+'</b>'
 				           }}
 				   ],
-				   dom: '<lf><"toolbar">rtip',
 				   initComplete :function(){
-				    $("div.toolbar").html('<b> Employee</b>');
 				    $("#dataTable_previous").children().text("<"); 
 				    $("#dataTable_next").children().text(">");
 				   }

@@ -32,8 +32,9 @@ var delete_text = "<spring:message code="main.delete"/>";
 	<!--Data Table for Applicant List -->
 	<c:set var="ss" value="display:none;"></c:set>
 	<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_STAFF')">
-		<div id="table">
+		<div class="container table-responsive" id="table">
 			<table  class="dataTable" id="dataTable" class="cell-border" style="width: 100%" >
+			<caption title="" class="tableHeader"><spring:message code="applicant.table.head" /></caption>
 				<thead>
 					<tr>
 						<th><spring:message code="main.code" /></th>
@@ -49,7 +50,7 @@ var delete_text = "<spring:message code="main.delete"/>";
 				</thead>
 			</table>
 			<a type="submit" id="btn_new_app" class="btn btn-warning" href="${pageContext.request.contextPath}/informations">
-			<span class="glyphicon glyphicon-plus"></span> <spring:message code="main.button.add" /></a>
+			<span class="glyphicon glyphicon-plus "></span><spring:message code="main.button.add" /></a>
 		</div>
 	</sec:authorize>
 
@@ -104,7 +105,7 @@ var delete_text = "<spring:message code="main.delete"/>";
 						</form>
 					</div>
 					<div class="modal-footer">
-						<button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="alert"><spring:message code="edit.button.save" /></button>
+						<button type="button" id="btn_submit" class="btn btn-warning" data-dismiss="alert"><span class="glyphicon glyphicon-save"></span><spring:message code="edit.button.save" /></button>
 						<button type="button" id="btn_close" class="btn btn-default" data-dismiss="modal"><spring:message code="button.cancel" /></button>
 					</div>
 				</div>

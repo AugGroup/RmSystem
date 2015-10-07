@@ -77,8 +77,8 @@
 	      </div><!-- /.modal-body -->
 	      
 	      <div class="modal-footer">
-	        <button id="insBtn" type="button" class="btn btn-primary"><spring:message code="button.insert" /></button>
-	        <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="button.close" /></button>
+	        <button id="insBtn" type="button" class="btn btn-warning"><span class="glyphicon glyphicon-plus"></span><spring:message code="button.insert" /></button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="button.cancel" /></button>
 	      </div>
 	      
 	    </div><!-- /.modal-content -->
@@ -122,12 +122,12 @@
 	        	</table>
 	        
 	        <div class="text-right">
-		        <button id=editBtn type="button" class="btn btn-warning" data-dissmiss="modal"><spring:message code="button.edit" /></button>
-		        <button id="deleteBtn" type="button" class="btn btn-danger" data-dissmiss="modal"><spring:message code="button.delete" /></button><br><br>
+		        <button id=editBtn type="button" class="btn btn-warning" data-dissmiss="modal"><span class="glyphicon glyphicon-pencil"></span><spring:message code="button.edit" /></button>
+		        <button id="deleteBtn" type="button" class="btn btn-danger" data-dissmiss="modal"><span class="glyphicon glyphicon-remove-sign"></span><spring:message code="button.delete" /></button><br><br>
 	        </div>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="button.close" /></button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="button.cancel" /></button>
 	      </div>
 	    </div>
 	  </div>
@@ -196,8 +196,8 @@
 	      </div><!-- /.modal-body -->
 	      
 	      <div class="modal-footer">
-	        <button id="confirmEditBtn" type="button" class="btn btn-primary"><spring:message code="button.save" /></button>
-	        <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="button.close" /></button>
+	        <button id="confirmEditBtn" type="button" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span><spring:message code="button.save" /></button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="button.cancel" /></button>
 	      </div>
 	      
 	    </div><!-- /.modal-content -->
@@ -216,8 +216,8 @@
 	        <p><spring:message code="appointment.confirm.delete" /></p>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" id="confirmDel" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"></span> <spring:message code="button.delete" /></button>
-            <button type="button" class="btn btn-default" data-dismiss="modal"><span class=""></span> <spring:message code="button.close" /></button>
+	        <button type="button" id="confirmDel" class="btn btn-danger" ><span class="glyphicon glyphicon-remove-sign"></span> <spring:message code="button.delete" /></button>
+            <button type="button" class="btn btn-default" data-dismiss="modal"><span class=""></span> <spring:message code="button.cancel" /></button>
 	      </div>
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
@@ -235,8 +235,8 @@
 	        <p><spring:message code="appointment.confirm.edit" /></p>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" id="confirmEditModal" class="btn btn-warning" ><span class="glyphicon glyphicon-wrench"></span> <spring:message code="button.edit" /></button>
-	        <button type="button" class="btn btn-default" data-dismiss="modal"><span class=""></span> <spring:message code="button.close" /></button>
+	        <button type="button" id="confirmEditModal" class="btn btn-warning" ><span class="glyphicon glyphicon-pencil"></span><spring:message code="button.edit" /></button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal"><span class=""></span> <spring:message code="button.cancel" /></button>
 	      </div>
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->

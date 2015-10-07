@@ -18,8 +18,9 @@
 		<spring:message code="request.title.approve" />
 	</h1>
 	<!------------------- Request DataTable------------------->
-	<div id="table">
+	<div class="container table-responsive" id="table">
 		<table class="dataTable" id="requestTable" class="cell-border" style="width: 100%">
+		<caption title="" class="tableHeader"><spring:message code="request.title.approve" /></caption>
 			<thead>
 				<tr>
 					<th><spring:message code="request.id" /></th>
@@ -66,15 +67,17 @@
 									code="edit.notApprove" /></option>
 						</select>
 					</div>
-					<button id="btn_approve_submit" type="button"
-						class="btn btn-primary" data-dismiss="modal">
-						<spring:message code="edit.button.save" />
+					<br>
+					<div align="right">
+				 	<button id="btn_approve_submit" type="button"
+						class="btn btn-warning" data-dismiss="modal">
+						<span class="glyphicon glyphicon-save"></span><spring:message code="edit.button.save" />
 					</button>
 					<button id="btn_close" type="button" class="btn btn-default"
 						data-dismiss="modal">
 						<spring:message code="button.cancel" />
 					</button>
-
+					</div>
 				</div>
 			</div>
 		</div>

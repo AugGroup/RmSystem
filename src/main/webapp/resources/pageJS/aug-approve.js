@@ -57,13 +57,11 @@ $(document).ready(function () {
 				           {"data": "numberApplicant"},
 				           {"data": "status"},
 				           {data: function (data) {
-				        	   		return '<button id="btn_approve" class="btn btn-primary" data-id="' + data.id + '" data-toggle="modal" data-target="#approveModal">'+approve_tx+' <span class="glyphicon glyphicon-edit"></span></button>';				        
+				        	   		return '<button id="btn_approve" class="btn btn-primary" data-id="' + data.id + '" data-toggle="modal" data-target="#approveModal"><span class="glyphicon glyphicon-edit"></span> '+approve_tx+' </button>';				        
 				        	   
 				        	}}
 				           ],
-				           dom: '<lf><"toolbar">rtip',
 		   				   initComplete :function(){
-		   				    $("div.toolbar").html('<b>Approve</b>');
 		   				    $("#requestTable_previous").children().text("<"); 
 		   				    $("#requestTable_next").children().text(">");
 		   				   }

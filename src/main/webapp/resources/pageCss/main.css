@@ -172,6 +172,7 @@
 	margin-top: 25px; margin-bottom : 100px;
 	background: #E0DFDD;
 	margin-bottom: 100px;
+	width: initial;
 }
 
 .dataTable {
@@ -202,12 +203,13 @@ table.dataTable tr.even {
 	margin: 20px 5px 20px 5px;
 }
 
-.toolbar {
+.tableHeader {
 	clear : both;
 	background-color: #ffc000;
 	color : #ffffff;
 	padding: 7px;
 	font-size: 18px;
+	
 }
 
 #dataTable{
@@ -220,7 +222,7 @@ table.dataTable tr.even {
 	color: #ffffff;
 }
 
-/* ul.pagination li>a{
+ ul.pagination li>a{
  font-size : 14px;
  text-align : center;
  width : 30px;
@@ -242,7 +244,7 @@ ul.pagination li.previous>a{
 ul.pagination li.next>a{
  background-color: #ebebeb;
  color: #747474;
-}  */
+}  
 
 
 /* -------- for report -------- */
