@@ -1,5 +1,4 @@
 $(function(){
-	
 	var $parentNew = $("#email-appointment-new-parent");
 	var $parentUpdate = $("#email-appointment-update-parent");
 	
@@ -8,24 +7,28 @@ $(function(){
 	
 	var $btnEmail = $("#btn_email");
 	
-	
-
+	var flagNew = 0;
+	var flagUpdate = 0;
 	//set new appointment
+	//alert("callNew");
 	$.ajax({
 		url: contextPath + "/email/find/waitAppointment",
 		type: "GET",
 		success: function(data) {
 			if (!data) {
-				removeNotification($btnEmail, $parentNew, $emailAppointmentNew);
+				removeNotification($parentNew, $emailAppointmentNew);
 				$emailAppointmentNew.empty().append('<li><a href="#">Send all new appoinment success.</a></li>');
 			} else {
-				setNotification($btnEmail, $parentNew, $emailAppointmentNew);
 				var result = "";
 				$.each(data, function(index, value) {					
 					result += '<li><a href="#" class="new-email" data-id="' + value.id + '">' + value.topic + '</a></li>';
-				})
+				});
+				setNotification($parentNew, $emailAppointmentNew);
 				$emailAppointmentNew.empty().append(result);
+				flagNew = 1;
 			}
+//			/alert("flagNew: " + flagNew);
+			setBtnEmail($btnEmail, flagNew + flagUpdate);
 		},
 		error: function() {
 			alert("error find new appoinment");
@@ -33,22 +36,27 @@ $(function(){
 	});
 	
 	//set update appointment
+	//alert("callUpdate");
 	$.ajax({
 		url: contextPath + "/email/find/updateAppointment",
 		type: "GET",
 		success: function(data) {
 			if (!data) {
 				//alert("null");
-				removeNotification($btnEmail, $parentUpdate, $emailAppointmentUpdate);
+				removeNotification($parentUpdate, $emailAppointmentUpdate);
 				$emailAppointmentUpdate.empty().append('<li><a href="#">Send all update appoinment success</a></li>');
 			} else {
-				setNotification($btnEmail, $parentUpdate, $emailAppointmentUpdate);
 				var result = "";
 				$.each(data, function(index, value) {
 					result += '<li><a href="#" class="update-email" data-id="' + value.id + '">' + value.topic + '</a></li>';
-				})
+				});
+				setNotification($parentUpdate, $emailAppointmentUpdate);
 				$emailAppointmentUpdate.empty().append(result);
+				flagUpdate = 1;
 			}
+			//alert("flagUpdate: " + flagUpdate);
+			setBtnEmail($btnEmail, flagNew + flagUpdate);
+			//alert(setBtnFlag);
 		},
 		error: function() {
 			alert("error find update appoinment");
@@ -64,25 +72,33 @@ $(function(){
 	});
 });
 
-function setNotification(btn, parent, appointment) {
-	btn.tooltip({
-	    container: 'body',
-	    trigger: 'manual'
-	});
-	btn.tooltip("show");
+function setBtnEmail(btn, flag) {
+	//alert(flag);
+	if (flag != 0) {
+		btn.tooltip({
+		    container: 'body',
+		    trigger: 'manual'
+		});
+		btn.tooltip("show");
+		btn.addClass("btn-email-alert");
+	} else {
+		btn.tooltip("destroy");
+		btn.removeClass("btn-email-alert");
+	}
+}
+
+function setNotification(parent, appointment) {
 	//$("#btn_email").addClass("btn-email-alert");
-	btn.addClass("btn-email-alert");
 	parent.addClass("email-notification");
 	appointment.addClass("email-notification");
 }
 
-function removeNotification(btn, parent, appointment) {
-	
-	btn.tooltip("destroy");
-	btn.removeClass("btn-email-alert");
+function removeNotification(parent, appointment) {
+
 	parent.removeClass("email-notification");
 	appointment.removeClass("email-notification");
 }
+
 
 
 

@@ -70,9 +70,8 @@
 	var local = '${pageContext.response.locale}';
 </script>
 
-<script type="text/javascript" src="${ pageContext.request.contextPath }/static/resources/pageJS/email-main.js"></script>
 <link href="${ pageContext.request.contextPath }/static/resources/pageCss/email-main.css" rel="stylesheet" type="text/css"></link>
-
+<script type="text/javascript" src="${ pageContext.request.contextPath }/static/resources/pageJS/email-main.js"></script>
 <body>
 	<div class="headed">
 		<div class="headLogo" id="headId">
@@ -84,7 +83,7 @@
 			<%-- <a href="${pageContext.request.contextPath}/email/create"><spring:message code="request.email" /></a> --%>
 			<div class="btn-group">
 				<button type="button" class="btn btn-defult dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-					id="btn_email" data-toggle="popover" data-placement="right" title="Warning Appointment" data-content="Have appointment that still not send email." data-trigger="manual"> <spring:message code="request.email" /> <span class="caret"></span>
+					id="btn_email" data-toggle="tooltip" data-placement="right" title="Warning Appointment" data-content="Have appointment that still not send email." data-trigger="manual"> <spring:message code="request.email" /> <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
               		<li><a href="${pageContext.request.contextPath}/email/create"><spring:message code="request.email.header.create" /></a></li>
@@ -140,5 +139,7 @@
 			<p class="text-muted credit">&copy; 2011-2015 Augmentis (Thailand) Limited. All rights reserved.</p>
 		</div>
 	</div>
+	
+	
 </body>
 </html>
