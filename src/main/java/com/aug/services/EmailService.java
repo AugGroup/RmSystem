@@ -141,9 +141,6 @@ public class EmailService {
 		
 		//send email
 		mailSender.send(preparator);
-		
-		//set appointment
-		appointment.setMailStatus(1);
 	}
 }
 

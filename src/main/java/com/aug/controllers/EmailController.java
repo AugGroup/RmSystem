@@ -149,6 +149,11 @@ public class EmailController {
 //			System.out.println("mailTemplate: " + mailTemplate.getName());
 			
 			emailService.sendAppointmentMail(sender, receiver, appointment, cc, subject, content, request);
+			
+			//update mail_status of appointment
+			appointment.setMailStatus(1);
+			appointmentService.update(appointment);
+			
 		} catch(Exception exception) {
 			exception.printStackTrace();
 			System.out.println(exception);
