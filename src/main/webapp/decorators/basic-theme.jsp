@@ -77,14 +77,12 @@
 <script src='<c:url value="/static/resources/js/fullcalendar.min.js"/>'></script>
 <script src='<c:url value="/static/resources/js/calendar_lang-all.js"/>'></script>
 
-<<<<<<< HEAD
-=======
 <link rel="stylesheet" type="text/css"
 	href="<c:url value ="/static/resources/pageCss/main.css"/>">
 <script type="text/javascript">
 	var contextPath = "${pageContext.request.contextPath}";
 </script>
->>>>>>> responsive information.jsp
+
 </head>
 <%
 	User user = (User) SecurityContextHolder.getContext()
