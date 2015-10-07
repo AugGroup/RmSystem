@@ -9,7 +9,6 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/resources/pageCss/email-write.css" />
 
 <div class="container">
-	
 	<div class="col-sm-12" id="email-section">
 	
 		<div class="row">
@@ -24,23 +23,24 @@
 			<div class="col-sm-12">
 				<div class="col-sm-6">
 		  				<div class="form-group">
-		    				<label for="applicant">To:</label>
-		    				<select class="form-control" id="applicant" name="applicant">
+		    				<label for="receiver">To:</label>
+		    				<input type="text" id="receiver" name="receiver" class="form-control" value="${myVar}" />
+		    				<%-- <select class="form-control" id="applicant" name="applicant">
 								<option value=""><spring:message code="request.email.form.select.init.applicant" /></option>
 								<c:forEach items="${applicants}" var="applicant">
 									<option value="${applicant.id}">${applicant.firstNameEN}&nbsp${applicant.lastNameEN}&nbsp(${applicant.technology.name}&nbsp${applicant.joblevel.name})</option>
 								</c:forEach>
-							</select>
+							</select> --%>
 		  				</div>
-		  				<div class="form-group">
+		  				<%-- <div class="form-group">
 							<label for="mailTemplate"><spring:message code="request.email.form.template.name" /> :</label>
 							<select class="form-control" id="mailTemplate" name=mailTemplate>
-								<option value=""><spring:message code="request.email.form.select.init.template" /></option>
+								<option value="">---Empty Template---</option>
 								<c:forEach items="${mailTemplate}" var="mailTemplate">
 									<option value="${mailTemplate.id}">${mailTemplate.name}</option>
 								</c:forEach>
 							</select>
-						</div>
+						</div> --%>
 						<div class="form-group">
 							<label for="cc">Cc:</label>
 							<input type="text" value="" data-role="tagsinput" id="cc" name="cc"> 

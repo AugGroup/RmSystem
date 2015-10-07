@@ -1,6 +1,7 @@
 package com.aug.controllers;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.aug.hrdb.entities.Applicant;
 import com.aug.hrdb.entities.Appointment;
@@ -29,6 +32,8 @@ import com.aug.hrdb.services.EmployeeService;
 import com.aug.hrdb.services.LoginService;
 import com.aug.hrdb.services.MailTemplateService;
 import com.aug.services.EmailService;
+
+import groovy.lang.MetaClassImpl.Index;
 
 @Controller
 public class EmailController {
@@ -98,11 +103,10 @@ public class EmailController {
 		return "success";
 	}
 	
-	@RequestMapping(value="/email/write")
+	@RequestMapping(value="/email/write", method={RequestMethod.GET})
 	public String writeEmail() {
 		return "email-write";
 	}
-	
 	
 	@RequestMapping(value="/email/send/{appointmentId}/{templateName}", method={RequestMethod.GET})
 	public String sendAppointmentMail(@PathVariable(value="appointmentId") Integer appointmentId, 
@@ -138,37 +142,44 @@ public class EmailController {
 	}
 	
 	
-	@RequestMapping(value="/email/send/applicant", method={RequestMethod.POST})
-	public @ResponseBody String sendMail(@RequestParam(value="applicantId") Integer applicantId, @RequestParam(value="templateId") Integer templateId,
-			@RequestParam(value="cc") String cc, @RequestParam(value="subject") String subject, HttpServletRequest request) throws UnsupportedEncodingException{
+	@RequestMapping(value="/email/send", method={RequestMethod.POST})
+	public @ResponseBody String sendMail(@RequestParam(value="receiver") String receiver, @RequestParam(value="cc") String cc,
+			@RequestParam(value="subject") String subject, @RequestParam(value="content") String content, HttpServletRequest request) throws UnsupportedEncodingException{
 		
+		String status = "fail";
 		try {
-			//find employee
-			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			System.out.println("userName : " + userDetails.getUsername());
-			Login login = loginService.findByUserName(userDetails.getUsername());
-			Employee employee = login.getEmployee();
-			System.out.println("employee: " + employee.getNameEng());
+			//send mail
+			emailService.sendEmail(receiver, cc, subject, content, request);
 			
-			//find applicant
-			Applicant applicant = applicantService.findById(applicantId);
-			System.out.println("applicant: " + applicant.getFirstNameEN());
-						
-			//find template
-			MailTemplate mailTemplate = mailTemplateService.findById(templateId);
-			System.out.println("mailTemplate: " + mailTemplate.getName());
+			//set status
+			status = "success";
 			
-			emailService.sendApplicantMail(employee, applicant, mailTemplate, cc, subject, request);
 		} catch(Exception exception) {
 			exception.printStackTrace();
 			System.out.println(exception);
 		}
-		
-		//System.out.println(applicantId + " " + templateId + " " + cc + " " + subject);
-		
-		return applicantId + " " + templateId + " " + cc + " " + subject; 
+				
+		return status; 
 	}
 	
+	@RequestMapping(value="/email/find/waitAppoinment", method={RequestMethod.GET})
+	public @ResponseBody List<Applicant> findWaitAppointment(){
+		
+		List<Appointment> appointments = appointmentService.findAll();
+		List<Applicant> result = new ArrayList<Applicant>();
+		
+		for (Appointment appointment : appointments) {
+			if (appointment.getMailStatus() == 0) {
+				result.add(appointment.getApplicant());
+			}
+		}
+		
+		if (result.isEmpty()) {
+			return null;
+		}
+		
+		return result;
+	}
 	
 	@RequestMapping(value="/email/findTemplate/{id}", method={RequestMethod.GET})
 	public @ResponseBody MailTemplate findTemplate(@PathVariable(value="id") Integer id) {

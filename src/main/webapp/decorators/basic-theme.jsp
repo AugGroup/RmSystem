@@ -60,17 +60,17 @@
 <script src='<c:url value="/static/resources/js/fullcalendar.min.js"/>'></script>
 <script src='<c:url value="/static/resources/js/calendar_lang-all.js"/>'></script>
 
-<script type="text/javascript">
-	var contextPath = "${pageContext.request.contextPath}";
-</script>
 </head>
 <%
 	User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	String name = user.getUsername();
 %>
 <script type="text/javascript">
+	var contextPath = "${pageContext.request.contextPath}";
 	var local = '${pageContext.response.locale}';
 </script>
+
+<script type="text/javascript" src="${ pageContext.request.contextPath }/static/resources/pageJS/email-appointment.js"></script>
 
 <body>
 	<div class="headed">
@@ -85,11 +85,25 @@
 				<button type="button" class="btn btn-defult dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
 					id="btn_email"> <spring:message code="request.email" /> <span class="caret"></span>
 				</button>
-				<ul class="dropdown-menu" id="dropdown_report">
+				<%-- <ul class="dropdown-menu" id="dropdown_report">
 					<li><a href="${pageContext.request.contextPath}/email/create"><spring:message code="request.email.header.create" /></a></li>
 					<li><a href="${pageContext.request.contextPath}/email/edit"><spring:message code="request.email.header.edit" /></a></li>
 					<li><a href="${pageContext.request.contextPath}/email/write"><spring:message code="request.email.header.write" /></a></li>
-				</ul>
+				</ul> --%>
+				<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+              		<li><a href="${pageContext.request.contextPath}/email/create"><spring:message code="request.email.header.create" /></a></li>
+              		<li><a href="${pageContext.request.contextPath}/email/edit"><spring:message code="request.email.header.edit" /></a></li>
+              		<li><a href="${pageContext.request.contextPath}/email/write"><spring:message code="request.email.header.write" /></a></li>
+              		<li class="divider"></li>
+            		<li class="dropdown-submenu">
+              			<a tabindex="-1" href="#">Appointment Email</a>
+              			<ul class="dropdown-menu" id="email-appointment">
+              				<!-- <li><a href="#">send all appoinment success</a></li> -->
+               				<!-- <li><a href="#">Second level</a></li>
+               				<li><a href="#">Second level</a></li> -->
+              			</ul>
+            		</li>
+            	</ul>
 			</div>
 			
 			<div class="user">
