@@ -123,7 +123,7 @@ public class EmailController {
 	}
 	
 	@RequestMapping(value="/email/send/appointment", method={RequestMethod.POST})
-	public @ResponseBody String sendAppointmentMail(@RequestParam(value="appointmentId") Integer appointmentId, @RequestParam(value="cc") String cc,
+	public String sendAppointmentMail(@RequestParam(value="appointmentId") Integer appointmentId, @RequestParam(value="cc") String cc,
 			@RequestParam(value="subject") String subject, @RequestParam(value="content") String content, HttpServletRequest request) throws UnsupportedEncodingException{
 		
 		try {
@@ -153,7 +153,7 @@ public class EmailController {
 			System.out.println(exception);
 		}
 		
-		return "redirect:/calendar"; 
+		return "redirect:/email/write"; 
 	}
 	
 	
