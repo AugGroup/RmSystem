@@ -349,25 +349,40 @@ public class ApplicantController implements Serializable {
 		
 		String reportType = searchReportDTO.getReportType();
 		
+		
 		if (technology == -1 && joblevel == -1 && masdegreetype.equals("") && major.isEmpty() && schoolName.isEmpty() && gpa == null) {
 			reportApplicantList = applicantService.reportApplicant();
 		} else {
 			reportApplicantList = applicantService.findReportByCriteria(technology , joblevel , masdegreetype , major , schoolName , gpa);// search by
 		}
-		String technology1 = "AND technology.ID = :TECHNOLOGY ";
-		String joblevel1 = "AND joblevel.ID = :JOBLEVEL ";
-		String masdegreetype1 = "AND degreeType.ID = :DEGREE ";
-		String gpa1 = "AND education.GPA = :GPA ";
-
 		
 		Map<String, Object> parameterMap = new HashMap<String, Object>();
 		parameterMap.put("date", new java.util.Date());
-		parameterMap.put("UNIVERSITY",schoolName);
-		parameterMap.put("MAJOR",major);
-		parameterMap.put("TECHNOLOGY", technology1);
-		parameterMap.put("JOBLEVEL", joblevel1);
-		parameterMap.put("DEGREE",masdegreetype1);
-		parameterMap.put("GPA",gpa1);
+		
+		if( !StringUtils.isEmpty(schoolName)&& schoolName.length()>0){
+			String schoolName1 = " AND education.UNIVERSITY = '"+schoolName+"'";
+			parameterMap.put("UNIVERSITY",schoolName1);
+		}
+		if( !StringUtils.isEmpty(major) && major.length() >0 ){
+			String major1 = " AND education.MAJOR = '"+major+"'";
+			parameterMap.put("MAJOR",major1);
+		}
+		if(technology != null){
+			String technology1 = " AND technology.ID = "+technology;
+			parameterMap.put("TECHNOLOGY", technology1);
+		}
+		if(joblevel != null ){
+			String joblevel1 = " AND joblevel.ID = "+joblevel;
+			parameterMap.put("JOBLEVEL", joblevel1);
+		}
+		if(masdegreetype != null ){
+			String masdegreetype1 = " AND degreeType.ID = "+masdegreetype;
+			parameterMap.put("DEGREE",masdegreetype1);
+		}
+		if(gpa != null){
+			String gpa1 = " AND education.GPA = "+gpa;
+			parameterMap.put("GPA",gpa1);
+		}
 		parameterMap.put(JRParameter.REPORT_LOCALE, Locale.ENGLISH);
 		ModelAndView mv = reportService.getReport(reportApplicantList,
 				"reportCriteria", reportType, parameterMap);

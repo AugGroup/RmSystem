@@ -59,9 +59,8 @@ LEFT JOIN EDUCATION education ON applicant.ID = education.APPLICANT_ID
 LEFT JOIN MAS_DEGREETYPE degreeType ON degreeType.ID = education.DEGREETYPE_ID
 LEFT JOIN MAS_JOBLEVEL joblevel ON applicant.MASJOBLEVEL_ID = joblevel.ID
 LEFT JOIN MAS_TECHNOLOGY technology ON applicant.MASTECHNOLOGY_ID = technology.ID
-WHERE
-education.MAJOR like $P{MAJOR}
-AND education.UNIVERSITY like $P{UNIVERSITY} $P!{TECHNOLOGY} $P!{JOBLEVEL} $P!{DEGREE} $P!{GPA}]]>
+WHERE 1=1
+$P!{UNIVERSITY} $P!{MAJOR} $P!{TECHNOLOGY} $P!{JOBLEVEL} $P!{DEGREE} $P!{GPA}]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
