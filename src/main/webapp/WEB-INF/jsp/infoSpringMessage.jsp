@@ -46,9 +46,8 @@
 	var emergencyAddress = "<spring:message code="valid.info.emer.addr"/>";
 	var applyDate = "<spring:message code="valid.info.apply.date"/>";
 	var department = "<spring:message code="valid.info.dep"/>";
-	var position1 = "<spring:message code="valid.info.pos1"/>";
-	var position2 = "<spring:message code="valid.info.ask"/>";
-	var position3 = "<spring:message code="valid.info.pos2"/>";
+// 	var jobLevel = "<spring:message code="valid.info.pos1"/>";
+// 	var technology = "<spring:message code="valid.info.ask"/>";
 	var	expectedSalary = "<spring:message code="valid.info.salary"/>";
 	var	nowEmployed = "<spring:message code="valid.info.ask"/>";
 	var	employedName = "<spring:message code="valid.ref.name"/>";
