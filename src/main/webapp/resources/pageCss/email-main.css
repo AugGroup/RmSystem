@@ -10,6 +10,10 @@
 	background-color: rgb(222, 145, 4) !important;
 }
 
+#email-appointment-update-parent > #email-appointment-update {
+	background-color: rgb(222, 145, 4) !important;
+}
+
 .email-notififation-li:hover {
 	background-color: #FFFFFF;
 }
