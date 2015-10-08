@@ -95,6 +95,8 @@
 	var editAsk= "<spring:message code="request.email.edit.templete.ask" />";
 	var deleteTitle= "<spring:message code="request.email.delete.templete.title" />";
 	var deleteAsk= "<spring:message code="request.email.delete.templete.ask" />";
+	var delBtn= "<spring:message code="button.delete" />";
+	var editBtn= "<spring:message code="button.edit" />";
 	
 </script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/ckeditor/ckeditor.js"></script>
