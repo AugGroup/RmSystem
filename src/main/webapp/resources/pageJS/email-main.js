@@ -17,11 +17,10 @@ $(function(){
 		success: function(data) {
 			if (!data) {
 				removeNotification($parentNew, $emailAppointmentNew);
-				//$emailAppointmentNew.empty().append('<li><a href="#">Send all new appoinment success.</a></li>');
 			} else {
 				var result = "";
 				$.each(data, function(index, value) {					
-					result += '<li><a href="#" class="new-email" data-id="' + value.id + '">' + value.topic + '</a></li>';
+					result += '<li class="email-notififation-li"><a href="#" class="new-email" data-id="' + value.id + '">' + value.topic + '</a></li>';
 				});
 				setNotification($parentNew, $emailAppointmentNew);
 				$emailAppointmentNew.empty().append(result);
@@ -44,11 +43,10 @@ $(function(){
 			if (!data) {
 				//alert("null");
 				removeNotification($parentUpdate, $emailAppointmentUpdate);
-				//$emailAppointmentUpdate.empty().append('<li><a href="#">Send all update appoinment success</a></li>');
 			} else {
 				var result = "";
 				$.each(data, function(index, value) {
-					result += '<li><a href="#" class="update-email" data-id="' + value.id + '">' + value.topic + '</a></li>';
+					result += '<li class="email-notififation-li"><a href="#" class="update-email" data-id="' + value.id + '">' + value.topic + '</a></li>';
 				});
 				setNotification($parentUpdate, $emailAppointmentUpdate);
 				$emailAppointmentUpdate.empty().append(result);
@@ -76,8 +74,8 @@ function setBtnEmail(btn, flag) {
 	//alert(flag);
 	if (flag != 0) {
 		btn.tooltip({
-		    container: 'body',
-		    trigger: 'manual'
+			position:{ within: "#headId"},
+			trigger: 'manual'
 		});
 		btn.tooltip("show");
 		btn.addClass("btn-email-alert");
