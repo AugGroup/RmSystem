@@ -1,4 +1,3 @@
-
 package com.aug.controllers;
 
 import java.io.IOException;
@@ -15,8 +14,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import net.sf.jasperreports.engine.JRParameter;
 
 import org.hibernate.Hibernate;
 import org.slf4j.Logger;
@@ -41,13 +38,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 // import services.MasDegreeTypeServiceTest;
 
-
-
-
-import org.springframework.web.servlet.ModelAndView;
 
 import com.aug.hrdb.dto.AbilityDto;
 import com.aug.hrdb.dto.AddressDto;
@@ -64,7 +58,6 @@ import com.aug.hrdb.dto.SearchReportDto;
 import com.aug.hrdb.entities.Ability;
 import com.aug.hrdb.entities.Address;
 import com.aug.hrdb.entities.Applicant;
-import com.aug.hrdb.entities.Appointment;
 import com.aug.hrdb.entities.Certification;
 import com.aug.hrdb.entities.Education;
 import com.aug.hrdb.entities.Employee;
@@ -84,7 +77,6 @@ import com.aug.hrdb.entities.Reference;
 import com.aug.hrdb.services.AbilityService;
 import com.aug.hrdb.services.AddressService;
 import com.aug.hrdb.services.ApplicantService;
-import com.aug.hrdb.services.AppointmentService;
 import com.aug.hrdb.services.CertificationService;
 import com.aug.hrdb.services.EducationService;
 import com.aug.hrdb.services.EmployeeService;
@@ -93,7 +85,6 @@ import com.aug.hrdb.services.FamilyService;
 import com.aug.hrdb.services.LanguageService;
 import com.aug.hrdb.services.LoginService;
 import com.aug.hrdb.services.MasAddressTypeService;
-import com.aug.hrdb.services.MasCoreSkillService;
 import com.aug.hrdb.services.MasDegreetypeService;
 import com.aug.hrdb.services.MasDivisionService;
 import com.aug.hrdb.services.MasJoblevelService;
@@ -105,6 +96,8 @@ import com.aug.hrdb.services.ReferenceService;
 import com.aug.services.DownloadService;
 import com.aug.services.ReportService;
 import com.aug.services.UploadService;
+
+import net.sf.jasperreports.engine.JRParameter;
 
 @Controller
 // @SessionAttributes("applicant")
@@ -274,7 +267,8 @@ public class ApplicantController implements Serializable {
 			employee.setApplicant(applicant);
 			String str = employeeService.generateEmployeeCodeFixData(applicant.getMasLocation());
 			System.out.println("SSTRING :: " + str);
-			employee.setEmployeeCode(employeeService.generateEmployeeCodeFixData(applicantDto.getMasLocation()));
+			employee.setEmployeeCode(str);
+//			employee.setEmployeeCode(employeeService.generateEmployeeCodeFixData(applicantDto.getMasLocation()));
 			employee.setStatusemp("Employee");
 			MasDivision masDivision = masDivisionService.findById(5);
 			employee.setMasDivision(masDivision);
