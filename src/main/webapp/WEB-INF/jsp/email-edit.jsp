@@ -38,8 +38,8 @@
 							<label for="template"><spring:message code="request.email.form.template" /> :</label>
 							<textarea id="template" name="template"></textarea>
 						</div>
-						<button type="button" class="btn btn-success" id="update" ><spring:message code="request.email.form.update" /></button>
-						<button type="button" class="btn btn-danger" id="delete"><spring:message code="request.email.form.delete" /></button>
+						<button type="button" class="btn btn-warning" id="update" ><span class="glyphicon glyphicon-pencil"></span><spring:message code="button.edit" /></button>
+						<button type="button" class="btn btn-danger" id="delete"><span class="glyphicon glyphicon-remove-sign"></span><spring:message code="request.email.form.delete" /></button>
 					</form>
 				</div>
 			</div>
@@ -76,8 +76,8 @@
         <p></p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Close</button>
-        <button type="button" class="btn" id="btnActive" data-dismiss="modal">Ok</button>
+        <button type="button" class="btn" id="btnActive" data-dismiss="modal"><span class="glyphicon glyphicon-pencil"></span><spring:message code="button.edit" /></button>
+        <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal"><spring:message code="button.cancel" /></button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -91,6 +91,11 @@
 	var deleteSuccess= "<spring:message code="request.email.pnotify.delete.success" />";
 	var updateFail= "<spring:message code="request.email.pnotify.update.fail" />";
 	var deleteFail= "<spring:message code="request.email.pnotify.delete.fail" />";
+	var editTitle= "<spring:message code="request.email.edit.templete.title" />";
+	var editAsk= "<spring:message code="request.email.edit.templete.ask" />";
+	var deleteTitle= "<spring:message code="request.email.delete.templete.title" />";
+	var deleteAsk= "<spring:message code="request.email.delete.templete.ask" />";
+	
 </script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/pageJS/email-create.js"></script>

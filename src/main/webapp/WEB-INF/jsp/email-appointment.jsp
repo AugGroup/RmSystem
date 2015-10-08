@@ -22,27 +22,27 @@
 			<div class="col-sm-12">
 				<div class="col-sm-6">
 		  				<div class="form-group">
-		    				<label for="receiver">To:</label>
+		    				<label for="receiver"><spring:message code="request.email.to" /></label>
 		    				<input type="text" id="receiver" name="receiver" class="form-control" value="${email}" data-id="${appointmentId}" disabled/>
 		  				</div>
 		  				<div class="form-group">
 							<label for="mailTemplate"><spring:message code="request.email.form.template.name" /> :</label>
 							<select class="form-control" id="mailTemplate" name=mailTemplate>
-								<option value="">---Empty Template---</option>
+								<option value=""><spring:message code="request.email.empty.templete" /></option>
 								<c:forEach items="${mailTemplate}" var="mailTemplate">
 									<option value="${mailTemplate.id}">${mailTemplate.name}</option>
 								</c:forEach>
 							</select>
 						</div>
 						<div class="form-group">
-							<label for="cc">Cc:</label>
-							<input type="text" value="" data-role="tagsinput" id="cc" name="cc"> 
+							<label for="cc"><spring:message code="request.email.cc" /></label>
+							<input type="text" value="" data-role="tagsinput" id="cc" name="cc" placeholder="<spring:message code="request.email.cc" />"> 
 						</div>
 						<div class="form-group">
-							<label for="subject">Subject:</label>
-							<input type="text" id="subject" name="subject" class="form-control"/> 
+							<label for="subject"><spring:message code="request.email.subject" /></label>
+							<input type="text" id="subject" name="subject" class="form-control" placeholder="<spring:message code="request.email.subject" />"/> 
 						</div>
-		  				<button class="btn btn-info" id="send">Send</button>
+		  				<button class="btn btn-warning" id="send"><spring:message code="request.email.send" /></button>
 				</div>
 				<div class="col-sm-6">
 					<textarea id="preview" name="preview"></textarea>
