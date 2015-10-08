@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="org.springframework.security.core.userdetails.User"%>
-<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@page
+	import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
 	prefix="decorator"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="f"%>
@@ -11,7 +12,8 @@
 <html>
 <head>
 
-<script src='<c:url value ="/static/resources/js/jquery-1.11.3.min.js" />'></script>
+<script
+	src='<c:url value ="/static/resources/js/jquery-1.11.3.min.js" />'></script>
 <script src='<c:url value ="/static/resources/js/bootstrap.min.js"/>'></script>
 
 <link rel="stylesheet" type="text/css" media="all" href="<c:url value ='/static/resources/css/bootstrap.min.css'/>"></link>
@@ -20,20 +22,30 @@
 <link rel="stylesheet" type="text/css" media="all" href="<c:url value ='/static/resources/css/alertify.bootstrap.css'/>"></link>
 <script src='<c:url value ="/static/resources/js/alertify.js"/>'></script>
 
-<script src='<c:url value ="/static/resources/js/bootstrap-datepicker.min.js"/>'></script>
-<link rel="stylesheet" type="text/css" media="all" href="<c:url value ="/static/resources/css/bootstrap-datepicker3.min.css"/>" />
+<script
+	src='<c:url value ="/static/resources/js/bootstrap-datepicker.min.js"/>'></script>
+<link rel="stylesheet" type="text/css" media="all"
+	href="<c:url value ="/static/resources/css/bootstrap-datepicker3.min.css"/>" />
 
-<script src='<c:url value ="/static/resources/js/jquery.dataTables.min.js"/>'></script>
-<link rel="stylesheet" type="text/css" media="all" href="<c:url value ="/static/resources/css/jquery.dataTables.min.css"/>" />
+<script
+	src='<c:url value ="/static/resources/js/jquery.dataTables.min.js"/>'></script>
+<link rel="stylesheet" type="text/css" media="all"
+	href="<c:url value ="/static/resources/css/jquery.dataTables.min.css"/>" />
 
-<script src='<c:url value ="/static/resources/js/jquery.bootstrap.wizard.js"/>'></script>
-<script src='<c:url value ="/static/resources/js/jquery.bootstrap.wizard.min.js"/>'></script>
+<script
+	src='<c:url value ="/static/resources/js/jquery.bootstrap.wizard.js"/>'></script>
+<script
+	src='<c:url value ="/static/resources/js/jquery.bootstrap.wizard.min.js"/>'></script>
 
-<script src='<c:url value ="/static/resources/js/pnotify.custom.min.js"/>'></script>
-<link rel="stylesheet" type="text/css" media="all" href="<c:url value ="/static/resources/css/pnotify.custom.min.css"/>" />
+<script
+	src='<c:url value ="/static/resources/js/pnotify.custom.min.js"/>'></script>
+<link rel="stylesheet" type="text/css" media="all"
+	href="<c:url value ="/static/resources/css/pnotify.custom.min.css"/>" />
 
-<script src='<c:url value ="/static/resources/js/jquery.validate.min.js"/>'></script>
-<script src='<c:url value ="/static/resources/js/additional-methods.min.js"/>'></script>
+<script
+	src='<c:url value ="/static/resources/js/jquery.validate.min.js"/>'></script>
+<script
+	src='<c:url value ="/static/resources/js/additional-methods.min.js"/>'></script>
 
 <%-- <script src='<c:url value ="/static/resources/js/jquery.inputmask.bundle.js" />'></script> --%>
 <script src='<c:url value ="/static/resources/js/jquery.inputmask.bundle.min.js" />'></script>
@@ -45,16 +57,24 @@
 
 <script src='<c:url value ="/static/resources/js/moment.js"/>'></script>
 <script src='<c:url value ="/static/resources/js/daterangepicker.js"/>'></script>
-<link rel="stylesheet" type="text/css" media="all" href="<c:url value ="/static/resources/css/daterangepicker-bs3.css"/>" />
+<link rel="stylesheet" type="text/css" media="all"
+	href="<c:url value ="/static/resources/css/daterangepicker-bs3.css"/>" />
 
-<link rel="stylesheet" type="text/css" href="<c:url value ="/static/resources/pageCss/main.css"/>">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value ="/static/resources/pageCss/main.css"/>">
 
-<link rel="stylesheet" type="text/css" href="<c:url value ="/static/resources/pageCss/infoCss.css"/>">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value ="/static/resources/pageCss/infoCss.css"/>">
 
-<link href='<c:url value="/static/resources/css/bootstrap.min.css"/>' rel="stylesheet" type="text/css"></link>
-<link href='<c:url value="/static/resources/css/fullcalendar.css"/>' rel='stylesheet' type="text/css"/>
-<link href='<c:url value="/static/resources/css/fullcalendar.print.css"/>' rel='stylesheet' media='print' />
-<link href='<c:url value="/static/resources/css/jquery-ui.min.css"/>' rel='stylesheet' />
+<link href='<c:url value="/static/resources/css/bootstrap.min.css"/>'
+	rel="stylesheet" type="text/css"></link>
+<link href='<c:url value="/static/resources/css/fullcalendar.css"/>'
+	rel='stylesheet' type="text/css" />
+<link
+	href='<c:url value="/static/resources/css/fullcalendar.print.css"/>'
+	rel='stylesheet' media='print' />
+<link href='<c:url value="/static/resources/css/jquery-ui.min.css"/>'
+	rel='stylesheet' />
 
 <script src='<c:url value="/static/resources/js/moment-timezone.js"/>'></script>
 <script src='<c:url value="/static/resources/js/fullcalendar.min.js"/>'></script>
@@ -62,84 +82,353 @@
 
 </head>
 <%
-	User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	User user = (User) SecurityContextHolder.getContext()
+			.getAuthentication().getPrincipal();
 	String name = user.getUsername();
 %>
 <script type="text/javascript">
 	var contextPath = "${pageContext.request.contextPath}";
 	var local = '${pageContext.response.locale}';
 </script>
+<style>
+
+#conDiv {
+	margin-left: 40px;
+	margin-right: 95px;
+}
+
+.navbar {
+	margin-bottom: 0px;
+	border-radius: 0px;
+}
+
+.navbar-back {
+	background: #707070;
+	height: 65px;
+}
+
+.navbar-back .navbar-nav>li>a {
+	color: #fff;
+}
+
+.navbar-back .navbar-nav>li>a:hover {
+	background-color:rgba(255, 0, 0, 0);
+	text-decoration: underline;
+}
+
+.navbar-back .navbar-toggle {
+	border-color: #fff;
+}
+
+.navbar-back .navbar-toggle .icon-bar {
+	background-color: #fff;
+}
+
+.navbar-back .navbar-toggle:hover, .navbar-back .navbar-toggle:focus {
+	background-color: #555;
+}
+
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+    background: #707070;
+}
+
+.navbar-nav>li>.dropdown-menu {
+	margin-top: -5px;
+	border-top-left-radius: 5px; 
+    border-top-right-radius: 5px;
+}
+
+.dropdown-menu>li>a{
+	color: #707070;
+}
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+	color: #262626;
+	text-decoration: none;
+}
+
+#headerTop {
+	margin-top: 10px;
+}
+
+.clearFloat {
+    clear: both;
+}
+
+#top-flag {
+	display: block;
+    margin-top: -50px;
+	z-index: 10;
+}
+
+#flag-link{
+	background-color: rgba(0,0,0,0);
+	display: inline; 
+	padding: 0px;
+}
+
+.flags-link{
+	margin-top: auto;
+}
+
+#bgLogout {
+	background-color: #ffffff;
+	width: 183px;
+	height: 25px;
+	font-size: 16px;
+	text-align: center;
+	color: #808080;
+}
+
+#linkLogout {
+	margin-top:-8px;
+	color: #808080;
+	text-decoration: none;
+	font-family: Dosis-Regular;
+}
+
+@media ( max-width : 960px) {
+	
+	#conDiv {
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+	
+	.size-logo {
+		margin-left: 10px;
+		padding: 3px;
+	}
+	
+	.navbar-back {
+		background: #707070;
+		height: auto;
+	}
+	
+	.navbar-back .navbar-nav>li>a:hover, .navbar-back .navbar-nav>li>a:focus{
+		background-color: #555;
+		text-decoration: none;
+		
+	}
+	
+	.top-toggle {
+		margin-top: 17px;
+	}
+	
+	.nav .open>a, .nav .open>a:focus, .nav .open>a:hover ,.nav .open>a:active{
+		background-color: #555;
+		border-color: #337ab7;
+	}
+	
+	.dropdown-menu>li>a{
+		color: #fff;
+	}
+	
+	#bgLogout {
+		background-color: #707070;
+		width: auto;
+		text-align: left;
+		color: #fff;
+		text-decoration: none;
+	}
+	
+	#linkLogout {
+		color: #fff;
+		text-decoration: none;
+	}
+	
+	#top-flag {	    
+    	margin-top: 0px;
+	}
+	
+	.flags-link{
+		margin:10px 0px 10px 10px;
+		
+	}	
+}
+
+#Logout {
+	position: absolute;
+	right: 2%;
+	margin-top: 10px;
+}
+
+#profileUser {
+	background-color: #ffd800;
+	width: 160px;
+	height: 200px;
+	right: 5px;
+}
+
+#userEmpID {
+	color: #636666;
+	font-family: Dosis-Regular;
+}
+
+#top-bar {
+	height: 65px;
+	background-color: #707070;
+	box-shadow: 0px 2px 10px #1A1A1A;
+}
+
+#footer-bar {
+	background-color: #FBCA00;
+	text-align: right;
+	width: 100%;
+	height: 35px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+#footer-menu {
+	padding: 10px 0;
+	overflow: hidden;
+}
+
+.navbar-link img {
+	width: 40px;
+	height: 25px;
+	border: 1px solid white;
+	padding-left: 7px;
+	padding-right: 7px;
+	margin-top: 5px;
+	margin-right: 7px;
+}
+
+.img-active{
+	background-color: #fff;
+	color: white;
+}
+
+
+.navbar-link>img:hover {
+	background-color: #fff;
+	color: white;
+}
+
+.navbar-link>img:focus {
+	background-color: #fff;
+	color: white;
+}
+
+.nav>li>a {
+	position: relative;
+	display: block;
+	padding: 10px 15px
+
+}
+
+.navbar-link>img:visited {
+	background-color: #fff;
+	color: #292929;
+}
+
+.navbar-link>img:active {
+	background-color: #fff;
+	color: #292929;
+}
+
+
+</style>
 
 <link href="${ pageContext.request.contextPath }/static/resources/pageCss/email-main.css" rel="stylesheet" type="text/css"></link>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/static/resources/pageJS/email-main.js"></script>
 <body>
-	<div class="headed">
-		<div class="headLogo" id="headId">
-			<img id="logo" src="${pageContext.request.contextPath}/static/decorators/augmentis.jpg" alt="logo"/>
-			<a href="${pageContext.request.contextPath}/applicant"><span class="glyphicon glyphicon-home"></span></a>
-			<a href="${pageContext.request.contextPath}/request"><spring:message code="request.button" /></a>
-			<a href="${pageContext.request.contextPath}/approve"><spring:message code="request.approve" /></a>
-			<a href="${pageContext.request.contextPath}/calendar"><spring:message code="request.calendar" /></a>
-			<%-- <a href="${pageContext.request.contextPath}/email/create"><spring:message code="request.email" /></a> --%>
-			<div class="btn-group">
-				<button type="button" class="btn btn-defult dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-					id="btn_email" data-toggle="tooltip" data-placement="right" title="Warning Appointment" data-content="Have appointment that still not send email." data-trigger="manual"> <spring:message code="request.email" /> <span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-              		<li><a href="${pageContext.request.contextPath}/email/create"><spring:message code="request.email.header.create" /></a></li>
-              		<li><a href="${pageContext.request.contextPath}/email/edit"><spring:message code="request.email.header.edit" /></a></li>
-              		<li><a href="${pageContext.request.contextPath}/email/write"><spring:message code="request.email.header.write" /></a></li>
-              		<li class="divider"></li>
-            		<li class="dropdown-submenu" id="email-appointment-new-parent">
-              			<a tabindex="-1" href="#">New Appointment Email</a>
-              			<ul class="dropdown-menu" id="email-appointment-new">
-              				<!-- <li><a href="#">send all appoinment success</a></li> -->
-               				<!-- <li><a href="#">Second level</a></li>
-               				<li><a href="#">Second level</a></li> -->
-              			</ul>
-            		</li>
-            		<li class="dropdown-submenu" id="email-appointment-update-parent">
-              			<a tabindex="-1" href="#">Update Appointment Email</a>
-              			<ul class="dropdown-menu" id="email-appointment-update">
-              				<!-- <li><a href="#">send all appoinment success</a></li> -->
-               				<!-- <li><a href="#">Second level</a></li>
-               				<li><a href="#">Second level</a></li> -->
-              			</ul>
-            		</li>
-            	</ul>
-			</div>
-			
-			<div class="user">
-				<a href="<c:url value="/logout"/>"><span class="glyphicon glyphicon-log-out"></span> <spring:message code="sitemesh.logout" /></a>
-				<a href=""><span class="glyphicon glyphicon-user"></span> <%=name %></a>
-				<div class="user2">
-				<c:set var="locale">${pageContext.response.locale}</c:set>
-					<a class='${ (locale eq "en") ? "" : "flag"}' href="${request.getRequestURL}?locale=en" id="en"> <img src="${pageContext.request.contextPath}/static/decorators/eng_flag.png" alt="logo" class="img-flag" /></a>
-					<a class='${ (locale eq "th") ? "" : "flag"}' href="${request.getRequestURL}?locale=th" id="th"> <img src="${pageContext.request.contextPath}/static/decorators/thai_flag.jpg"	alt="logo" class="img-flag" /></a>
-					<div class="btn-group">
-						<button type="button" class="btn btn-defult dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-							id="btn_report"> <spring:message code="report.text" /><span class="caret"></span>
-						</button>
+<nav class="navbar navbar-back">
+	<div class="container-fluid " id="conDiv">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed top-toggle" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span> 
+				<span class="icon-bar"></span> 
+				<span class="icon-bar"></span> 
+				<span class="icon-bar"></span>
+			</button>
+			<img class="left-logo size-logo" id="logo" src="${pageContext.request.contextPath}/static/decorators/augmentis.jpg" alt="logo" />
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="navbar-collapse">
+			<ul class="nav navbar-nav" id="headerTop">
+				<li><a href="${pageContext.request.contextPath}/applicant"><span class="glyphicon glyphicon-home"></span></a></li>
+				<li><a href="${pageContext.request.contextPath}/request" style=""><spring:message code="request.button" /></a></li>
+				<li><a href="${pageContext.request.contextPath}/approve"><spring:message code="request.approve" /></a></li>
+				<li><a href="${pageContext.request.contextPath}/calendar"><spring:message code="request.calendar" /></a></li>
+				<li class="dropdown" >
+					<a style="text-decoration: none;" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						<spring:message code="request.email" /> <span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu" >
+						<li><a href="${pageContext.request.contextPath}/email/create"><spring:message code="request.email.header.create" /></a></li>
+						<li><a href="${pageContext.request.contextPath}/email/edit"><spring:message code="request.email.header.edit" /></a></li>
+						<li><a href="${pageContext.request.contextPath}/email/write"><spring:message code="request.email.header.write" /></a></li>
+	              		<li class="divider"></li>
+	            		<li class="dropdown-submenu" id="email-appointment-new-parent">
+	              			<a tabindex="-1" href="#">New Appointment Email</a>
+	              			<ul class="dropdown-menu" id="email-appointment-new">
+	              				<!-- <li><a href="#">send all appoinment success</a></li> -->
+	               				<!-- <li><a href="#">Second level</a></li>
+	               				<li><a href="#">Second level</a></li> -->
+	              			</ul>
+	            		</li>
+	            		<li class="dropdown-submenu" id="email-appointment-update-parent">
+	              			<a tabindex="-1" href="#">Update Appointment Email</a>
+	              			<ul class="dropdown-menu" id="email-appointment-update">
+	              			</ul>
+	            		</li>
+					</ul>
+				</li>
+			</ul>
+		
+			<ul class="nav navbar-nav navbar-right">
+				<li id="bgLogout">						
+					<a id="linkLogout" class="navbar-link" href="<c:url value="/logout"/>">
+						<spring:message code="sitemesh.logout" /> | <%=name%>
+					</a>
+				</li>
+			</ul>
+			<div class="clearFloat"></div>
+			<ul class="nav navbar-nav navbar-right" id="top-flag">
+					<c:set var="locale">${pageContext.response.locale}</c:set>
+					<li class="flags-link" >
+					
+					<a id="flag-link" class="navbar-link" href="${request.getRequestURL}?locale=en" > 
+						<b><img src="${pageContext.request.contextPath}/static/resources/images/flag_usa.png" alt="logo" class='img-flag ${ (locale eq "en") ? "img-active" : ""}' /></b>
+					</a>
+					
+					<a id="flag-link" class="navbar-link" href="${request.getRequestURL}?locale=th" > 
+						<img src="${pageContext.request.contextPath}/static/resources/images/flag_thailand.png" alt="logo" class='img-flag ${ (locale eq "th") ? "img-active" : ""}' />
+					</a>
+					
+					</li>
+					
+					<li>
+						<a style="text-decoration: none;" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							<spring:message code="report.text" /> <span class="caret"></span>
+						</a>
 						<ul class="dropdown-menu" id="dropdown_report">
 							<li><a href="${pageContext.request.contextPath}/report"><spring:message code="report.text" /></a></li>
 							<li><a href="${pageContext.request.contextPath}/monthlyReport"><spring:message code="report.text.monthly" /></a></li>
 						</ul>
-					</div>
-				</div>
-			</div>
+					</li>				
+			</ul>
+			
 		</div>
+		<!-- /.navbar-collapse -->
 	</div>
+	<!-- /.container-fluid -->
+</nav>
 
-	<div class="body">
-		<decorator:body />
-	</div>
+<div class="body">
+	<decorator:body />
+</div>
 
-	<div class="footer">
-		<div class="container">
-			<p class="text-muted credit">&copy; 2011-2015 Augmentis (Thailand) Limited. All rights reserved.</p>
-		</div>
+<div class="footer">
+	<div class="container">
+		<p class="text-muted credit">&copy; 2011-2015 Augmentis (Thailand)
+			Limited. All rights reserved.</p>
 	</div>
-	
-	
+</div>
+
 </body>
 </html>
