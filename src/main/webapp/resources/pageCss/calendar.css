@@ -4,7 +4,7 @@ div.fc-row>table>thead > tr:first-child {
 	background-color: #ffc000;
 }
 td.fc-day{
-	background-color: #e7e7e7;
+	
 }
 
 body {
@@ -21,8 +21,17 @@ body {
    background: #FF9900;
 }
 
+
 div.fc-toolbar{
 	margin-top:15px;
+}
+
+div.fc-day-grid div.fc-row:nth-child(odd) {
+	background-color: #e7e7e7;
+}
+
+div.fc-day-grid div.fc-row:nth-child(even) {
+	background-color: #d6d6d6;
 }
 
 textarea {

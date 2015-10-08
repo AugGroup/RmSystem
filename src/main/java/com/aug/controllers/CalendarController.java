@@ -52,8 +52,8 @@ public class CalendarController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "calendar/insertAppointment",method = RequestMethod.POST)
-	public @ResponseBody AppointmentDto insertAppointment(@RequestBody Appointment appointment) {
+	@RequestMapping(value = "calendar/insertAppointment/{id}",method = RequestMethod.POST)
+	public @ResponseBody AppointmentDto insertAppointment(@RequestBody Appointment appointment,@PathVariable(value="id") Integer id) {
 		
 		/*                                  Get Who's Appoint                                  */		
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -87,7 +87,7 @@ public class CalendarController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		appointment.setApplicant(applicantService.findById(id));
 		appointmentService.create(appointment);
 		return appointmentService.findById(appointment.getId());
 	}
