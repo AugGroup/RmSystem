@@ -20,8 +20,8 @@ public class ReportService {
    
     
     public ModelAndView getReport(Collection<?> beanCollection , String reportName,String reportType,Map<String,Object> parameterMap) {	
-        JRDataSource JRdataSource = new JRBeanCollectionDataSource(beanCollection,false);
-        parameterMap.put("datasource", JRdataSource);
+//        JRDataSource JRdataSource = new JRBeanCollectionDataSource(beanCollection,false);
+//        parameterMap.put("datasource", JRdataSource);
         //parameterMap.put("JasperCustomSubReportDatasource", subDatasource);
         parameterMap.put("format", reportType);
         JasperReportsMultiFormatView view = new JasperReportsMultiFormatView();

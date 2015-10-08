@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportCriteria" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9405c330-d3f2-4405-89b3-f942deada506">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="UNIVERSITY" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="MAJOR" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TECHNOLOGY" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="JOBLEVEL" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DEGREE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="GPA" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+applicant.ID AS id,
+applicant.AGE AS age,
+applicant.APPLICANT_STATUS AS applicantStatus,
+applicant.APPLY_DATE AS applyDate,
+applicant.ATTITUDE_HOME AS attitudeHome,
+applicant.ATTITUDE_OFFICE AS attitudeOffice,
+applicant.APPLICANT_CODE AS code,
+applicant.EMAIL AS email,
+applicant.FIRSTNAME_EN AS firstNameEN,
+applicant.LASTNAME_EN AS lastNameEn,
+applicant.SCORE AS score,
+applicant.SEX AS sex,
+applicant.TECH_SCORE AS techScore,
+applicant.TEL AS tel,
+applicant.TRACKING_STATUS AS trackingStatus,
+applicant.MASTECHNOLOGY_ID AS technologyId,
+applicant.MASJOBLEVEL_ID AS joblevelId,
+education.DEGREETYPE_ID AS degreeId,
+degreeType.ID,
+degreeType.NAME AS degreeName,
+education.FACULTY AS faculty,
+education.GPA AS gpa,
+education.MAJOR AS major,
+education.UNIVERSITY AS university,
+education.APPLICANT_ID AS ApplicantId,
+joblevel.ID AS joblevelId,
+joblevel.CODE AS joblevelCode,
+joblevel.NAME AS joblevelName,
+technology.ID AS technologyId,
+technology.CODE AS technologyCode,
+technology.NAME AS technologyName
+FROM APPLICANT applicant
+LEFT JOIN EDUCATION education ON applicant.ID = education.APPLICANT_ID
+LEFT JOIN MAS_DEGREETYPE degreeType ON degreeType.ID = education.DEGREETYPE_ID
+LEFT JOIN MAS_JOBLEVEL joblevel ON applicant.MASJOBLEVEL_ID = joblevel.ID
+LEFT JOIN MAS_TECHNOLOGY technology ON applicant.MASTECHNOLOGY_ID = technology.ID
+WHERE
+education.MAJOR like $P{MAJOR}
+AND education.UNIVERSITY like $P{UNIVERSITY} $P!{TECHNOLOGY} $P!{JOBLEVEL} $P!{DEGREE} $P!{GPA}]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="age" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="applicantStatus" class="java.lang.String"/>
+	<field name="applyDate" class="java.sql.Timestamp"/>
+	<field name="attitudeHome" class="java.lang.String"/>
+	<field name="attitudeOffice" class="java.lang.String"/>
+	<field name="code" class="java.lang.String"/>
+	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="firstNameEN" class="java.lang.String"/>
+	<field name="lastNameEn" class="java.lang.String"/>
+	<field name="score" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sex" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="techScore" class="java.lang.String"/>
+	<field name="tel" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="trackingStatus" class="java.lang.String"/>
+	<field name="technologyId" class="java.lang.Integer"/>
+	<field name="joblevelId" class="java.lang.Integer"/>
+	<field name="degreeId" class="java.lang.Integer"/>
+	<field name="degreeName" class="java.lang.String"/>
+	<field name="faculty" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gpa" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="major" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="university" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ApplicantId" class="java.lang.Integer"/>
+	<field name="joblevelCode" class="java.lang.String"/>
+	<field name="joblevelName" class="java.lang.String"/>
+	<field name="technologyCode" class="java.lang.String"/>
+	<field name="technologyName" class="java.lang.String"/>
+	<variable name="name" class="java.lang.String">
+		<variableExpression><![CDATA[$F{firstNameEN}+" "+$F{lastNameEn}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="173" y="12" width="197" height="40" uuid="fe64e803-aa6e-434b-8020-c93869e4b458"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="48" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="36" height="20" uuid="5b7c8786-d813-430c-a296-08e7cd5e0369"/>
+				<text><![CDATA[code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="0" width="54" height="20" uuid="ee49f9d2-423e-43f7-a80a-92a751793fab"/>
+				<text><![CDATA[applyDate]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="0" width="57" height="20" uuid="663ec4dd-6774-4e98-9ea6-c97e9060150e"/>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="147" y="0" width="71" height="20" uuid="121c9c83-0b09-408e-82d5-f01b4330f1d5"/>
+				<text><![CDATA[joblevelName]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="218" y="2" width="82" height="20" uuid="75013987-b436-4f75-aaac-fdc3e37e894a"/>
+				<text><![CDATA[technologyName]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="0" width="57" height="20" uuid="2c35806a-8148-4b5a-9fb1-8c64dd23779f"/>
+				<text><![CDATA[university]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="357" y="0" width="63" height="20" uuid="b73122a3-d203-4b5e-a0de-575e8638014f"/>
+				<text><![CDATA[degreeName]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="2" width="34" height="20" uuid="945cfee1-0a62-4786-9e70-7d875dd9e671"/>
+				<text><![CDATA[major]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="454" y="2" width="100" height="20" uuid="d2cdbcfc-9f63-4f95-b14c-987b2c45656d"/>
+				<text><![CDATA[gpa]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="36" height="20" uuid="5436f988-f3c4-47ea-bce4-12b3217a2467"/>
+				<textFieldExpression><![CDATA[$F{code}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="36" y="0" width="54" height="20" uuid="ab01a892-1c7e-403a-8d28-b99d0d5ebb1b"/>
+				<textFieldExpression><![CDATA[$F{applyDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="0" width="57" height="20" uuid="f51da805-2838-4cac-8d5a-07aa53dd8f6d"/>
+				<textFieldExpression><![CDATA[$V{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="218" y="0" width="82" height="20" uuid="5e5b8071-49e2-4633-bfe3-040384642951"/>
+				<textFieldExpression><![CDATA[$F{technologyName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="57" height="20" uuid="3e936806-11ef-46ee-a151-8ef8ee7f553f"/>
+				<textFieldExpression><![CDATA[$F{university}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="147" y="0" width="71" height="20" uuid="a299f976-cea8-4ed5-a61e-a83842a8ae16"/>
+				<textFieldExpression><![CDATA[$F{joblevelName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="0" width="34" height="20" uuid="a557df0b-8e0a-4a17-a1f7-399ac9a3dc85"/>
+				<textFieldExpression><![CDATA[$F{major}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="357" y="0" width="63" height="20" uuid="7e570207-dd58-40b6-aea2-13dbd813e369"/>
+				<textFieldExpression><![CDATA[$F{degreeName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" uuid="47df7374-223d-474e-a0ca-d17605da4888"/>
+				<textFieldExpression><![CDATA[$F{gpa}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

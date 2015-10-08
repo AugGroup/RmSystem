@@ -1,3 +1,4 @@
+
 package com.aug.controllers;
 
 import java.io.IOException;
@@ -9,9 +10,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import net.sf.jasperreports.engine.JRParameter;
 
 import org.hibernate.Hibernate;
 import org.slf4j.Logger;
@@ -39,6 +44,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 // import services.MasDegreeTypeServiceTest;
 
+
+
+
+import org.springframework.web.servlet.ModelAndView;
 
 import com.aug.hrdb.dto.AbilityDto;
 import com.aug.hrdb.dto.AddressDto;
@@ -158,6 +167,8 @@ public class ApplicantController implements Serializable {
 	
 	@Autowired
 	private LoginService loginService;
+	@Autowired
+	private ReportService reportService;
 	
 	@RequestMapping(value = "/applicant", method = { RequestMethod.GET })
 	public String helloPage(Model model) {
@@ -295,6 +306,7 @@ public class ApplicantController implements Serializable {
 		return "mainReport";
 	}
 
+
 	/*-------------------- search all applicant and search applicant for Report dataTable--------------------*/
 	@RequestMapping(value = "/report/search", method = { RequestMethod.POST })
 	public @ResponseBody Object searchReportBy(@RequestParam Integer technology,Integer joblevel,
@@ -328,7 +340,7 @@ public class ApplicantController implements Serializable {
 	}
 
 	/*-------------------- preview reports function--------------------*/
-/*	@RequestMapping(value = "/report/preview", method = { RequestMethod.POST,
+	@RequestMapping(value = "/report/preview", method = { RequestMethod.POST,
 			RequestMethod.GET })
 	public ModelAndView previewReport(
 			@ModelAttribute SearchReportDto searchReportDTO,
@@ -336,26 +348,37 @@ public class ApplicantController implements Serializable {
 		List<ReportApplicantDto> reportApplicantList = null;
 		Integer technology = searchReportDTO.getTechnology();
 		Integer joblevel = searchReportDTO.getJoblevel();
-		String degree = searchReportDTO.getDegree();
+		Integer masdegreetype = searchReportDTO.getMasdegreetype();
 		String major = searchReportDTO.getMajor();
 		String schoolName = searchReportDTO.getSchoolName();
 		Double gpa = searchReportDTO.getGpa();
 		
 		String reportType = searchReportDTO.getReportType();
 		
-		if (technology == -1 && joblevel == -1 && degree.equals("") && major.isEmpty() && schoolName.isEmpty() && gpa == null) {
+		if (technology == -1 && joblevel == -1 && masdegreetype.equals("") && major.isEmpty() && schoolName.isEmpty() && gpa == null) {
 			reportApplicantList = applicantService.reportApplicant();
 		} else {
-			reportApplicantList = applicantService.findReportByCriteria(technology , joblevel , degree , major , schoolName , gpa);// search by
+			reportApplicantList = applicantService.findReportByCriteria(technology , joblevel , masdegreetype , major , schoolName , gpa);// search by
 		}
+		String technology1 = "AND technology.ID = :TECHNOLOGY ";
+		String joblevel1 = "AND joblevel.ID = :JOBLEVEL ";
+		String masdegreetype1 = "AND degreeType.ID = :DEGREE ";
+		String gpa1 = "AND education.GPA = :GPA ";
 
+		
 		Map<String, Object> parameterMap = new HashMap<String, Object>();
 		parameterMap.put("date", new java.util.Date());
+		parameterMap.put("UNIVERSITY",schoolName);
+		parameterMap.put("MAJOR",major);
+		parameterMap.put("TECHNOLOGY", technology1);
+		parameterMap.put("JOBLEVEL", joblevel1);
+		parameterMap.put("DEGREE",masdegreetype1);
+		parameterMap.put("GPA",gpa1);
 		parameterMap.put(JRParameter.REPORT_LOCALE, Locale.ENGLISH);
 		ModelAndView mv = reportService.getReport(reportApplicantList,
-				"Report_AugRmSystem", reportType, parameterMap);
+				"reportCriteria", reportType, parameterMap);
 		return mv;
-	}*/
+	}
 
 	// Monthly report
 	@RequestMapping(value = "/monthlyReport", method = RequestMethod.GET)
@@ -390,36 +413,40 @@ public class ApplicantController implements Serializable {
 		};
 	}
 
-//	@RequestMapping(value = "/reportMonthly/preview", method = { RequestMethod.POST })
-//	public ModelAndView searchMonthlyReport(
-//			@ModelAttribute SearchReportDto searchReportDTO,
-//			HttpSession session, Locale locale) {
-//		List<ReportApplicantDto> reportApplicantList = null;
-//		String applyDate = searchReportDTO.getApplyDateStr();
-//
-//		String reportType = searchReportDTO.getReportType();
-//		if (!applyDate.isEmpty()) {
-//			String dateStr = applyDate;
-//			System.out.println("dateStr :" + dateStr);
-//			String[] parts = dateStr.split(" \\- ");
-//			String startDate = parts[0];
-//			System.out.println("startDate : " + startDate);
-//			String endDate = parts[1];
-//			System.out.println("endDate : " + endDate);
-//			System.out.println("endDate123 : ");
-//			reportApplicantList = applicantService.findReportByMonth(startDate,
-//					endDate);
-//		} else {
-//			reportApplicantList = applicantService.reportApplicant();
-//		}
-//		Map<String, Object> parameterMap = new HashMap<String, Object>();
-//		parameterMap.put("date", new java.util.Date());
-//		parameterMap.put(JRParameter.REPORT_LOCALE, Locale.ENGLISH);
-//		ModelAndView mv = reportService.getReport(reportApplicantList,
-//				"applicantSummaryMonthly", reportType, parameterMap);
-//		return mv;
-//	}
+	@RequestMapping(value = "/reportMonthly/preview", method = { RequestMethod.POST })
+	public ModelAndView searchMonthlyReport(
+			@ModelAttribute SearchReportDto searchReportDTO,
+			HttpSession session, Locale locale) {
+		List<ReportApplicantDto> reportApplicantList = null;
+		String applyDate = searchReportDTO.getApplyDateStr();
 
+		String reportType = searchReportDTO.getReportType();
+		String startDate = "";
+		String endDate = "";
+		if (!applyDate.isEmpty()) {
+			String dateStr = applyDate;
+			System.out.println("dateStr :" + dateStr);
+			String[] parts = dateStr.split(" \\- ");
+			startDate = parts[0];
+			System.out.println("startDate : " + startDate);
+			endDate = parts[1];
+			System.out.println("endDate : " + endDate);
+			System.out.println("endDate123 : ");
+			reportApplicantList = applicantService.findReportByMonth(startDate,
+					endDate);
+		} else {
+			reportApplicantList = applicantService.reportApplicant();
+		}
+		
+		Map<String, Object> parameterMap = new HashMap<String, Object>();
+		parameterMap.put("date", new java.util.Date());
+		parameterMap.put("startDate", startDate);
+		parameterMap.put("endDate", endDate);
+		parameterMap.put(JRParameter.REPORT_LOCALE, Locale.ENGLISH);
+		ModelAndView mv = reportService.getReport(reportApplicantList,
+				"summaryMonthly", reportType, parameterMap);
+		return mv;
+	}
 	/*-------------------- Position List--------------------*/
 //	@ModelAttribute("positionRequest")
 //	public List<Position> getPosition() {

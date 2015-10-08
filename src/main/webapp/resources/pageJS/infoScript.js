@@ -173,24 +173,26 @@
 				});
 		   		
 //		   	----------------------------------------
-//		   		$(function() {       
-//		   		    $("input:file[id=resume]").change(function() {
-//		   		        $("#resumeFile").html( $(this).val() );
-//		   		    });
-//		   		});
 
-//			if($("#resumeMultipartFile") != null){
-//		   		function alert(){
-//		   			new PNotify({
-//				        title: 'Success',
-//				        text: 'Successful Add User In Table!!!',
-//				        type: 'success',
-//				        nonblock: {
-//				            nonblock: true,
-//				            nonblock_opacity: .2
-//				        }
-//				    });		   		}
-//		   	}
+		   		
+		   		
+		   		
+		   		
+		   		
+		   		
+		   		
+		   		
+		   		
+		   		
+		   		
+		   		
+		   		
+		   		
+		   		
+		   		
+		   		
+		   		
+		   		
 //		   	----------------------------------		   		
 //			 $('#informationApplicant').validate({
 //				
