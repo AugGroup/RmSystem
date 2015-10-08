@@ -56,7 +56,7 @@
 						<div class="form-group">
 							<label for="template"><spring:message code="request.email.form.template" /> :</label>
 							<textarea id="template" name="template"></textarea>
-						</div>
+						</div><br>
 						<button type="button" class="btn btn-warning" id="create"><span class="glyphicon glyphicon-save"></span><spring:message code="request.email.form.submit" /></button>
 					</form>
 				</div>

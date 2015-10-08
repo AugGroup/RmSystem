@@ -44,7 +44,11 @@ $(document).ready(function () {
 				       {"data": "schoolName"},
 				       {"data": "degree"},
 				       {"data": "gpa"},
-				       ]
+				       ],
+				       initComplete :function(){
+		   				    $("#reportTable_previous").children().text("<"); 
+		   				    $("#reportTable_next").children().text(">");
+		   				   }
 			});
 		}
 		});

@@ -34,7 +34,7 @@
 						<div class="form-group">
 							<label for="subject"><spring:message code="request.email.subject" />:</label>
 							<input type="text" id="subject" name="subject" class="form-control" placeholder="<spring:message code="request.email.subject" />"/> 
-						</div>
+						</div><br>
 		  				<button class="btn btn-warning" id="send"><spring:message code="request.email.send" /></button>
 				</div>
 				<div class="col-sm-6">

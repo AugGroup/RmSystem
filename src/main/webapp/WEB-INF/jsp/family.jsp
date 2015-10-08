@@ -105,7 +105,7 @@ var id = ${id};
 						</div>
 
 						<br> <br>
-						<button type="button" class="btn btn-success" id="btn_save">
+						<button type="button" class="btn btn-warning" id="btn_save">
 							<span class="glyphicon glyphicon-save"></span>
 							<spring:message code="edit.button.save" />
 						</button>

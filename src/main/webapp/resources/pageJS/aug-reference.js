@@ -40,6 +40,10 @@ $(document).ready(function() {
 					{data : function(data) {
 						return '<button id="buttonDelete" data-id="'+data.id+'" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger btn-mini"><span class="glyphicon glyphicon-remove-sign"></span> '+ valDelete +'</button>';
 					}}],
+					initComplete :function(){
+	   				    $("#referenceTable_previous").children().text("<"); 
+	   				    $("#referenceTable_next").children().text(">");
+	   				   },
 				searching : false
 
 			});

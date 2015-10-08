@@ -37,7 +37,7 @@
 						<div class="form-group">
 							<label for="template"><spring:message code="request.email.form.template" /> :</label>
 							<textarea id="template" name="template"></textarea>
-						</div>
+						</div><br>
 						<button type="button" class="btn btn-warning" id="update" ><span class="glyphicon glyphicon-pencil"></span><spring:message code="button.edit" /></button>
 						<button type="button" class="btn btn-danger" id="delete"><span class="glyphicon glyphicon-remove-sign"></span><spring:message code="request.email.form.delete" /></button>
 					</form>
