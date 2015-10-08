@@ -6,7 +6,7 @@
 	background-color: rgb(222, 145, 4) !important;
 }
 
-.popover-title {
+/* .popover-title {
 	background-color: rgb(222, 145, 4) !important;
 	color: #FFFFFF;
 }
@@ -17,7 +17,7 @@
 
 .popover {
 	width: 175px;
-}
+} */
 
 .tooltip.right .tooltip-arrow {
 	border-right-color: rgb(222, 145, 4) !important;
