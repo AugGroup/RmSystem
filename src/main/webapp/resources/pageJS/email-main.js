@@ -17,7 +17,7 @@ $(function(){
 		success: function(data) {
 			if (!data) {
 				removeNotification($parentNew, $emailAppointmentNew);
-				$emailAppointmentNew.empty().append('<li><a href="#">Send all new appoinment success.</a></li>');
+				//$emailAppointmentNew.empty().append('<li><a href="#">Send all new appoinment success.</a></li>');
 			} else {
 				var result = "";
 				$.each(data, function(index, value) {					
@@ -44,7 +44,7 @@ $(function(){
 			if (!data) {
 				//alert("null");
 				removeNotification($parentUpdate, $emailAppointmentUpdate);
-				$emailAppointmentUpdate.empty().append('<li><a href="#">Send all update appoinment success</a></li>');
+				//$emailAppointmentUpdate.empty().append('<li><a href="#">Send all update appoinment success</a></li>');
 			} else {
 				var result = "";
 				$.each(data, function(index, value) {
@@ -88,14 +88,18 @@ function setBtnEmail(btn, flag) {
 }
 
 function setNotification(parent, appointment) {
-	//$("#btn_email").addClass("btn-email-alert");
+	
+	parent.removeClass("disabled");
 	parent.addClass("email-notification");
+	appointment.addClass("dropdown-menu");
 	appointment.addClass("email-notification");
 }
 
 function removeNotification(parent, appointment) {
-
+	
+	parent.addClass("disabled");
 	parent.removeClass("email-notification");
+	appointment.removeClass("dropdown-menu");
 	appointment.removeClass("email-notification");
 }
 
