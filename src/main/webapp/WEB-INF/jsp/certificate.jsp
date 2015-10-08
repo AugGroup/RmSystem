@@ -15,13 +15,6 @@ var id = ${id};
 
 <jsp:include page="applicationMenu.jsp" />
 <div class="container" id="titleHead">
-	<div class="row">
-		<div class="row">
-			<h3 id="textTitle"><spring:message code="cer.name"/></h3>
-			
-		</div>
-	</div>
-
 	<div class="modal fade" id="certificateModal" role="dialog">
 		<div class="modal-dialog">
 
@@ -236,8 +229,8 @@ var id = ${id};
 	</div>
 	<br> <br>
 	<div id="table">
-		<table id="certificateTable" class="display" cellspacing="0"
-			width="100%">
+		<table id="certificateTable" class="display" cellspacing="0" width="100%">
+			<caption title="" class="tableHeader"><spring:message code="cer.name"/></caption>
 			<thead>
 				<tr>
 					<th>NAME</th>

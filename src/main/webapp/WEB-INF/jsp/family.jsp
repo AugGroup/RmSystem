@@ -23,12 +23,7 @@ var id = ${id};
 <jsp:include page="applicationMenu.jsp" />
 <div class="container" id="titleHead">
  <div class="form-group"><label for="informationFamily" id="text"><spring:message code="info.parent.number"/> </label></div>
-				<div class="row">
-						<div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-							<h3 id="textTitle"><spring:message code="family.name"/></h3>
-							
-						</div>
-					</div>
+				
 				<div class="modal fade" id="familyModal" role="dialog">
 					<div class="modal-dialog">
 
@@ -156,6 +151,7 @@ var id = ${id};
 	<br> <br>
 	<div id="table">
 		<table id="familyTable" class="display" cellspacing="0" width="100%">
+		<caption title="" class="tableHeader"><spring:message code="family.name"/></caption>
 			<thead>
 				<tr>
 					<th><spring:message code="family.data" /></th>

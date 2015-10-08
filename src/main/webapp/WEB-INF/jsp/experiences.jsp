@@ -29,11 +29,6 @@ var id = ${id};
 		<label for="experiences" id="text"><spring:message code="exp.text" /> </label>
 	</div>
 	<br>
-		<div class="row">
-			<div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-				<h3 id="textTitle"><spring:message code="exp.name"/></h3>
-			</div>
-		</div>
 		<div class="modal fade" id="experiencesModal" role="dialog">
 			<div class="modal-dialog">
 
@@ -171,6 +166,7 @@ var id = ${id};
 	<div id="table">
 		<table id="experiencesTable" class="display" cellspacing="0"
 			width="100%">
+			<caption title="" class="tableHeader"><spring:message code="exp.name"/></caption>
 			<thead>
 				<tr>
 					<th>position</th>
