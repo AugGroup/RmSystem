@@ -7,14 +7,15 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/resources/pageCss/email-create.css" />
 
 
-<div class="container">
-	<div class="col-sm-12" id="email-section">
+<div class="container-fluid">
+	<div class="col-sm-1"></div>
+	<div class="col-sm-12 col-md-10" id="email-section">
 		
 		<div class="row">
 			
 			<div class="col-sm-12">
 				<div class="page-header">
-					<h1><spring:message code="request.email.header.edit" /></h1>
+					<spring:message code="request.email.header.edit" />
 				</div>
 			</div>
 			

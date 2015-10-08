@@ -26,6 +26,25 @@ var edit_tx = "<spring:message code="main.edit.info"/>";
 var delete_tx = "<spring:message code="main.delete"/>";
 </script>
 
+<style>
+	.modal-footer {
+		padding: 15px;
+		text-align: right;
+		border: none;
+	}
+	.inputRequest{
+		width: 400px;
+		padding-left: 50px;
+	}
+/* max-width  960px */
+@media ( max-width : 960px) {
+	.inputRequest{
+		width: 100%;
+		padding-left: 0px;
+	}
+}
+	
+</style>
 
 <div class="container">
 	<h1 align="center"><spring:message code="request.title"/></h1>
@@ -66,7 +85,7 @@ var delete_tx = "<spring:message code="main.delete"/>";
 				</div>
 				<div class="modal-body" >
 					<form role='form' id="requestForm" name="requestForm">
-						<div style="width: 400px; padding-left: 50px;">
+						<div class="inputRequest">
 						<div class="form-group">
 							<input type="hidden" id="jobLevelId" name="jobLevelId">
 							<input type="hidden" id="technologyId" name="technologyId">
@@ -140,7 +159,7 @@ var delete_tx = "<spring:message code="main.delete"/>";
 							</select>
 						</div>
 						</div>
-						<div align="right" style="padding: 15px 35px 15px 15px;">
+						<div class="modal-footer">
 							<button type="button" id="btn_save_req" style="width: 100px;" class="btn btn-warning">
 								<span class="glyphicon glyphicon-save"></span><spring:message code="edit.button.save"/>  
 							</button>

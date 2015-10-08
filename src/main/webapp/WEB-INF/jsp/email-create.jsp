@@ -11,15 +11,16 @@
 
 <title><spring:message code="request.email.header.create" /></title>
 
-<div class="container">
+<div class="container-fluid">
 	
-	<div class="col-sm-12" id="email-section">
+	<div class="col-sm-1"></div>
+	<div class="col-sm-12 col-md-10" id="email-section">
 		
 		<div class="row">
 			
 			<div class="col-sm-12">
 				<div class="page-header">
-					<h1><spring:message code="request.email.header.create" /></h1>
+					<spring:message code="request.email.header.create" />
 				</div>
 			</div>
 			

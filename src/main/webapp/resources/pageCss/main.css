@@ -1,3 +1,6 @@
+*{
+	font-family: Dosis-Regular;
+}
 #imagePreview {
 	margin-bottom: 5px;
 	margin-right: 75px;
@@ -286,7 +289,6 @@ ul.pagination li.next>a{
 	width: 95px;
 }
 
-<<<<<<< HEAD
 /* dropdown */
 .dropdown-submenu {
     position: relative;
@@ -335,8 +337,8 @@ ul.pagination li.next>a{
     -moz-border-radius: 6px 0 6px 6px;
     border-radius: 6px 0 6px 6px;
 }
-=======
-/* header */
+
+/*--------- header ----------*/
 
 #conDiv {
 	margin-left: 40px;
@@ -376,6 +378,11 @@ ul.pagination li.next>a{
 
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
     background: #707070;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+	text-decoration: none;
+	background-color: rgba(0,0,0,0);
 }
 
 .navbar-nav>li>.dropdown-menu {
@@ -464,6 +471,12 @@ ul.pagination li.next>a{
 		background-color: #555;
 		border-color: #337ab7;
 	}
+	
+	.nav>li>a:focus, .nav>li>a:hover {
+		text-decoration: none;
+		background-color: rgba(0,0,0,0);
+	}
+	
 	
 	.dropdown-menu>li>a{
 		color: #fff;
@@ -575,4 +588,3 @@ ul.pagination li.next>a{
 }
 
 /* end header */
->>>>>>> responsive information.jsp

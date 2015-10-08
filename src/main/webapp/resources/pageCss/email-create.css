@@ -1,10 +1,11 @@
+
 .page-header {
 	border-bottom:	1px solid #858C8F;
 }
 
-h1.page-header {
+.page-header {
 	font-family: regular;
-	font-size: 18px;
+	font-size: 36px;
 }
 
 #email-section {
@@ -25,3 +26,17 @@ h1.page-header {
 	text-decoration: underline;
 }
 
+
+
+/* max-width  960px */
+@media ( max-width : 960px) {
+	
+	.page-header{
+		font-family: regular;
+		font-size: 24px;
+	}
+	
+	#email-hints {
+		margin-top: 10px;
+	}
+}
