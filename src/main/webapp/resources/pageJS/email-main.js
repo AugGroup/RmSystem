@@ -9,6 +9,9 @@ $(function(){
 	
 	var flagNew = 0;
 	var flagUpdate = 0;
+	
+	$btnEmail.tooltip();
+	
 	//set new appointment
 	//alert("callNew");
 	$.ajax({
@@ -73,14 +76,10 @@ $(function(){
 function setBtnEmail(btn, flag) {
 	//alert(flag);
 	if (flag != 0) {
-		btn.tooltip({
-			position:{ within: "#headId"},
-			trigger: 'manual'
-		});
-		btn.tooltip("show");
+		//btn.tooltip("show");
 		btn.addClass("btn-email-alert");
 	} else {
-		btn.tooltip("destroy");
+		//btn.tooltip("destroy");
 		btn.removeClass("btn-email-alert");
 	}
 }
