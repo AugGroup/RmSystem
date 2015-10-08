@@ -14,7 +14,7 @@
 	<div class="row">
 		<div class="col-xs-offset-6 col-xs-6 col-sm-offset-6 col-sm-6 visible-xs visible-sm">
 			<div id="mailStatusPropSm">
-				<div><h4>Email status</h4></div>
+				<div class="text-center"><h4>Email status</h4></div>
 				<div id="noEmailSending" class="media">
 					<div class="media-left">
 						<span class="label label-danger media-object">Appointment</span>

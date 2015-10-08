@@ -251,6 +251,7 @@ function renderCalendar(){
 				textColor :'white'
 		    }
 		],
+		dragScroll : false,
 		timezone: "Asia/Bangkok",
 		ignoreTimezone:false,
 		eventClick: function(event, element) {
@@ -297,14 +298,6 @@ function renderCalendar(){
 }//end rendercalendar
 
 $( function(){
-		
-		
-		$(".dt_picker").datetimepicker({
-		    format: "dd/mm/yyyy hh:ii",
-		    autoclose: true,
-		    minuteStep: 30,
-		});
-		
 		renderCalendar();
 		
 		$('#calendar').fullCalendar('gotoDate', currentDate());//go to date after fullcalendar redered 
