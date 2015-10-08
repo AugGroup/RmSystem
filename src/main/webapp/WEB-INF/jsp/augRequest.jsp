@@ -42,6 +42,12 @@ var delete_tx = "<spring:message code="main.delete"/>";
 		width: 100%;
 		padding-left: 0px;
 	}
+	
+	.modal-footer {
+		padding: 0px;
+		text-align: right;
+		border: none;
+	}
 }
 	
 </style>

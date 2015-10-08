@@ -203,6 +203,7 @@ table.dataTable tr.even {
 }
 
 #btn_new_app, #btn_new_req {
+	width:170px;
 	float: right;
 	margin: 20px 5px 20px 5px;
 }
@@ -503,6 +504,7 @@ ul.pagination li.next>a{
 		margin:10px 0px 10px 10px;
 		
 	}	
+	
 }
 
 #Logout {

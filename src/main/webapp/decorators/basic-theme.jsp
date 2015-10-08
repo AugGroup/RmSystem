@@ -96,6 +96,7 @@
 
 <link href="${ pageContext.request.contextPath }/static/resources/pageCss/email-main.css" rel="stylesheet" type="text/css"></link>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/static/resources/pageJS/email-main.js"></script>
+
 <body>
 <nav class="navbar navbar-back">
 	<div class="container-fluid " id="conDiv">
@@ -118,7 +119,9 @@
 				<li><a href="${pageContext.request.contextPath}/approve"><spring:message code="request.approve" /></a></li>
 				<li><a href="${pageContext.request.contextPath}/calendar"><spring:message code="request.calendar" /></a></li>
 				<li class="dropdown" >
-					<a style="text-decoration: none;" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+				
+					<a style="text-decoration: none;" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" 
+						id="btn_email" data-toggle="tooltip" data-placement="right" title="Warning Appointment" data-content="Have appointment that still not send email." data-trigger="manual" >
 						<spring:message code="request.email" /> <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" >

@@ -8,8 +8,9 @@
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/resources/pageCss/email-write.css" />
 
-<div class="container">
-	<div class="col-sm-12" id="email-section">
+<div class="container-fluid">
+	<div class="col-sm-1"></div>
+	<div class="col-sm-12 col-md-10" id="email-section">
 	
 		<div class="row">
 			<div class="col-sm-12">
@@ -21,7 +22,7 @@
 	
 		<div class="row">
 			<div class="col-sm-12">
-				<div class="col-sm-6">
+				<div class="col-sm-6" style="margin-bottom: 10px;">
 		  				<div class="form-group">
 		    				<label for="receiver">To:</label>
 		    				<input type="text" id="receiver" name="receiver" class="form-control" value="${myVar}" />
