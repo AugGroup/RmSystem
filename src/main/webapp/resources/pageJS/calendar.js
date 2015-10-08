@@ -293,6 +293,18 @@ function renderCalendar(){
 		eventMouseout : function ( event, jsEvent, view ){
 			$(this).popover('hide');
 		},
+		viewRender : function( view, element ){
+			var $today = $("td.fc-day.fc-widget-content.fc-thu.fc-today.fc-state-highlight");
+			$today.tooltip({title:" Today ",container:'body'});
+			
+			$today.on("mouseenter",function(){
+				$today.tooltip('show');
+			})
+			
+			$today.on("mouseout",function(){
+				$today.tooltip('hide');
+			})
+		}
 	}); // end full calendar
 	$("#calendar div.fc-toolbar").after("<div id='calendarHeader'></div>");
 	var $calendarHeader = $("#calendarHeader");
@@ -303,24 +315,12 @@ function renderCalendar(){
 	
 	$('#calendar').fullCalendar('gotoDate', currentDate());//go to date after fullcalendar redered 
 	
-//	var $today = $("td.fc-day.fc-widget-content.fc-thu.fc-today.fc-state-highlight");
-//	$today.tooltip({title:" Today ",container:'body'});
-//	
-//	$today.on("mouseenter",function(){
-//		$today.tooltip('show');
-//	})
-//	
-//	$today.on("mouseout",function(){
-//		$today.tooltip('hide');
-//	})
+	
 	
 }//end rendercalendar
 
 $( function(){
 		renderCalendar();
-		
-		
-		
 		
 		$('#applicantFilter').on('change',function () {
 	 		var trackingString = $("#applicantFilter option:selected").val();
