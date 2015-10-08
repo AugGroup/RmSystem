@@ -37,3 +37,16 @@
 .tooltip-inner {
 	background-color: rgb(222, 145, 4) !important;
 }
+
+@media ( max-width : 768px) {
+	.email-notification {
+		border: none;
+		background-color: rgb(222, 145, 4) !important;
+	}
+	
+	.dropdown-menu .divider {
+	    height: 1px;
+	    margin: 0px;
+	    overflow: hidden;
+	    background-color: #e5e5e5;
+	}
