@@ -289,22 +289,31 @@ function renderCalendar(){
 		},
 		eventMouseover: function ( event, jsEvent, view ){
 			$(this).popover('show');
+			var title = $("h3.popover-title");
+			console.log(event.mailStatus);
+			if(event.mailStatus==0){
+				$("h3.popover-title").addClass("danger");
+			}else if(event.mailStatus==1){
+				$("h3.popover-title").addClass("success");
+			}else if(event.mailStatus==2){
+				$("h3.popover-title").addClass("warning");
+			}
 		},
 		eventMouseout : function ( event, jsEvent, view ){
 			$(this).popover('hide');
-		},
-		viewRender : function( view, element ){
-			var $today = $("td.fc-day.fc-widget-content.fc-thu.fc-today.fc-state-highlight");
-			$today.tooltip({title:" Today ",container:'body'});
-			
-			$today.on("mouseenter",function(){
-				$today.tooltip('show');
-			})
-			
-			$today.on("mouseout",function(){
-				$today.tooltip('hide');
-			})
 		}
+//		,viewRender : function( view, element ){
+//			var $today = $("td.fc-day.fc-widget-content.fc-thu.fc-today.fc-state-highlight");
+//			$today.tooltip({title:" Today ",container:'body'});
+//			
+//			$today.on("mouseenter",function(){
+//				$today.tooltip('show');
+//			})
+//			
+//			$today.on("mouseout",function(){
+//				$today.tooltip('hide');
+//			})
+//		}
 	}); // end full calendar
 	$("#calendar div.fc-toolbar").after("<div id='calendarHeader'></div>");
 	var $calendarHeader = $("#calendarHeader");
