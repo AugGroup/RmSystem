@@ -69,6 +69,7 @@ import com.aug.hrdb.entities.MasAddressType;
 import com.aug.hrdb.entities.MasDegreetype;
 import com.aug.hrdb.entities.MasDivision;
 import com.aug.hrdb.entities.MasJoblevel;
+import com.aug.hrdb.entities.MasLocation;
 import com.aug.hrdb.entities.MasProvince;
 import com.aug.hrdb.entities.MasRelationType;
 import com.aug.hrdb.entities.MasSpecialty;
@@ -88,6 +89,7 @@ import com.aug.hrdb.services.MasAddressTypeService;
 import com.aug.hrdb.services.MasDegreetypeService;
 import com.aug.hrdb.services.MasDivisionService;
 import com.aug.hrdb.services.MasJoblevelService;
+import com.aug.hrdb.services.MasLocationService;
 import com.aug.hrdb.services.MasProvinceService;
 import com.aug.hrdb.services.MasRelationTypeService;
 import com.aug.hrdb.services.MasSpecialtyService;
@@ -157,6 +159,8 @@ public class ApplicantController implements Serializable {
 	
 	@Autowired
 	private MasDivisionService masDivisionService;
+	@Autowired
+	private MasLocationService masLocationService;
 	
 	@Autowired
 	private LoginService loginService;
@@ -271,7 +275,9 @@ public class ApplicantController implements Serializable {
 //			employee.setEmployeeCode(employeeService.generateEmployeeCodeFixData(applicantDto.getMasLocation()));
 			employee.setStatusemp("Employee");
 			MasDivision masDivision = masDivisionService.findById(5);
+			MasLocation masLocation = masLocationService.find(1);
 			employee.setMasDivision(masDivision);
+			employee.setMasLocation(masLocation);
 			employee.setTelHome("00-0000000");
 			employeeService.create(employee);
 			
@@ -592,8 +598,15 @@ public class ApplicantController implements Serializable {
 	@RequestMapping(value = "/skills/skills/{id}", method = { RequestMethod.POST })
 	public @ResponseBody Ability skill(@RequestBody Ability ability,@PathVariable Integer id,Model model) {
 		model.addAttribute("id",id);
-		abilityService.create(ability);
+		
 		Ability ab = abilityService.find(id);
+		MasSpecialty masSpecialty = ability.getMasspecialty();
+		
+		if( abilityService.findBySpecialty(masSpecialty.getId()) == null ){
+			abilityService.create(ability);
+		} else {
+			ab = null;
+		}
 		//Hibernate.initialize(ab.getApplicant().getTechnology());
 		//Hibernate.initialize(ab.getApplicant().getJoblevel());
         return ab;

@@ -11,6 +11,55 @@ $(document).ready(function() {
 //		}
 //	});
 	
+//	$('#skillForm').bootstrapValidator({
+//		
+//		  message: 'This value is not valid',
+//	        feedbackIcons: {
+//	        	 valid: 'glyphicon glyphicon-ok',
+//	            invalid: 'glyphicon glyphicon-remove',
+//	            validating: 'glyphicon glyphicon-refresh'
+//	        },
+//	        fields: {
+//	        	masspecialty: {
+//	                validators: {
+//	                    notEmpty: {
+//	                        message: valSkill
+//	                    },
+//		        callback: {
+//	                message: valSkill,
+//	                callback: function(value, validator) {
+//	                	var data = dt.fnGetData();
+//	                	var count = 0;
+//	                	var masSpec11 = $("#masspecialty option:selected").text();
+//	                	var dataMas=null;
+//	                	for(var i=0;i<data.length;i++){
+//	                		
+//	                		if(masSpec11==data[i][0]){
+//	                				
+//	                			count = count+1;
+//	                		
+//	                		}
+//		                }
+//	                	
+//	                	if(count==0){
+//	                		dataMas =  $("#masspecialty").val();
+//	                	}else{
+//	                		dataMas = 0;
+//	                	}
+//	                     return value==dataMas;
+//	                   
+//	                  }
+//	                	
+//	              
+//		            },
+//	            }
+//		          
+//	        }
+//	       
+//	      }
+//	        	
+//	});
+	
 	if(dtApplicant) {
 		dtApplicant.ajax.reload();
 	}
@@ -96,8 +145,7 @@ $(document).ready(function() {
 	function showFillData(data){
         $('#applicant').val(data.applicantId);
 		$("#skillsId").val(data.id);
-		$("#masspecialty").val(data.masspecialty);
-//		$("#masspecialty").val(data.masspecialtyId);
+		$("#masspecialty").val(data.masspecialtyId);
 		$("input[name=rank]:radio[value=" + data.rank +"]").prop('checked', true);
 	}
 	

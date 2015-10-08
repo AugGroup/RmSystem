@@ -8,6 +8,7 @@
 
 <script>
 var name = "<spring:message code="valid.skill.skill"/>";
+var valSkill = "<spring:message code="valid.skill.skill"/>";
 var valEdit = "<spring:message code="main.edit.info"/>";
 var valDelete = "<spring:message code="main.delete"/>";
 var id = ${id};
