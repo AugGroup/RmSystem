@@ -191,8 +191,8 @@ function renderCalendar(){
 				$validform.resetForm();
 				$('#formInsert').trigger('reset');
 				setApplicant("all"); 
-				$("#insStartDate").text(moment(start).format("HH:mm on MMMM D, YYYY"));
-				$("#insEndDate").text(moment(end).format("HH:mm on MMMM D, YYYY"));
+				$("#insStartDate").text(moment(start).format("HH:mm MMMM D, YYYY"));
+				$("#insEndDate").text(moment(end).format("HH:mm MMMM D, YYYY"));
 				$('#insModal').modal('show');
 				insStart = start;
 				insEnd = end;
@@ -302,34 +302,17 @@ function renderCalendar(){
 		eventMouseout : function ( event, jsEvent, view ){
 			$(this).popover('hide');
 		}
-//		,viewRender : function( view, element ){
-//			var $today = $("td.fc-day.fc-widget-content.fc-thu.fc-today.fc-state-highlight");
-//			$today.tooltip({title:" Today ",container:'body'});
-//			
-//			$today.on("mouseenter",function(){
-//				$today.tooltip('show');
-//			})
-//			
-//			$today.on("mouseout",function(){
-//				$today.tooltip('hide');
-//			})
-//		}
+		,viewRender : function( view, element ){
+		}
 	}); // end full calendar
-	$("#calendar div.fc-toolbar").after("<div id='calendarHeader'></div>");
-	var $calendarHeader = $("#calendarHeader");
-	var $divfcCenter = $("div.fc-center");
-	$divfcCenter.hide();
-	$calendarHeader.html($("div.fc-center").html());
-	$calendarHeader.addClass("text-center");
-	
 	$('#calendar').fullCalendar('gotoDate', currentDate());//go to date after fullcalendar redered 
-	
-	
+	$('div.fc-center').addClass('text-center');
 	
 }//end rendercalendar
 
 $( function(){
 		renderCalendar();
+		
 		
 		$('#applicantFilter').on('change',function () {
 	 		var trackingString = $("#applicantFilter option:selected").val();
