@@ -1,10 +1,8 @@
 @CHARSET "UTF-8";
 
 div.fc-row>table>thead > tr:first-child {
-	background-color: #ffc000;
-}
-td.fc-day{
-	
+	background-color: #ababab;
+	color:#ffffff;
 }
 
 body {
@@ -38,6 +36,25 @@ textarea {
    overflow-y: scroll;
    resize: none; 
 } 
+
+#calendarHeader{
+	
+	border: 1px solid rgba(1,1,1,0);
+}
+
+div.fc-view-container>table{
+/* 	border: none; */
+
+}
+
+#calendarHeader > h2{
+	padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 0px;
+    
+	background-color: #ffc000;
+	color:#ffffff;
+}
 
 #calendarDiv{
 	background-color: #E0DFDD;

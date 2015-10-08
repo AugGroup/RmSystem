@@ -294,24 +294,32 @@ function renderCalendar(){
 			$(this).popover('hide');
 		},
 	}); // end full calendar
+	$("#calendar div.fc-toolbar").after("<div id='calendarHeader'></div>");
+	var $calendarHeader = $("#calendarHeader");
+	var $divfcCenter = $("div.fc-center");
+	$divfcCenter.hide();
+	$calendarHeader.html($("div.fc-center").html());
+	$calendarHeader.addClass("text-center");
+	
+	$('#calendar').fullCalendar('gotoDate', currentDate());//go to date after fullcalendar redered 
+	
+//	var $today = $("td.fc-day.fc-widget-content.fc-thu.fc-today.fc-state-highlight");
+//	$today.tooltip({title:" Today ",container:'body'});
+//	
+//	$today.on("mouseenter",function(){
+//		$today.tooltip('show');
+//	})
+//	
+//	$today.on("mouseout",function(){
+//		$today.tooltip('hide');
+//	})
 	
 }//end rendercalendar
 
 $( function(){
 		renderCalendar();
 		
-		$('#calendar').fullCalendar('gotoDate', currentDate());//go to date after fullcalendar redered 
 		
-		var $today = $("td.fc-day.fc-widget-content.fc-wed.fc-today.fc-state-highlight");
-		$today.tooltip({title:" Today ",container:'body'})
-		
-		$today.on("mouseenter",function(){
-			$today.tooltip('show');
-		})
-		
-		$today.on("mouseout",function(){
-			$today.tooltip('hide');
-		})
 		
 		
 		$('#applicantFilter').on('change',function () {
