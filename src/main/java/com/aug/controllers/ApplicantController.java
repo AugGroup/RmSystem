@@ -359,30 +359,43 @@ public class ApplicantController implements Serializable {
 		Map<String, Object> parameterMap = new HashMap<String, Object>();
 		parameterMap.put("date", new java.util.Date());
 		
+		String schoolName1 = "";
+		String major1 = "";
+		String technology1 = "";
+		String joblevel1 ="";
+		String masdegreetype1="";
+		String gpa1="";
+		
 		if( !StringUtils.isEmpty(schoolName)&& schoolName.length()>0){
-			String schoolName1 = " AND education.UNIVERSITY = '"+schoolName+"'";
-			parameterMap.put("UNIVERSITY",schoolName1);
+			schoolName1 = " AND education.UNIVERSITY = '"+schoolName+"'";
 		}
+		
 		if( !StringUtils.isEmpty(major) && major.length() >0 ){
-			String major1 = " AND education.MAJOR = '"+major+"'";
-			parameterMap.put("MAJOR",major1);
+			major1 = " AND education.MAJOR = '"+major+"'";
 		}
-		if(technology != null){
-			String technology1 = " AND technology.ID = "+technology;
-			parameterMap.put("TECHNOLOGY", technology1);
+		
+		if(technology > 0){
+			technology1 = " AND technology.ID = "+technology;
 		}
-		if(joblevel != null ){
-			String joblevel1 = " AND joblevel.ID = "+joblevel;
-			parameterMap.put("JOBLEVEL", joblevel1);
+		
+		if(joblevel > 0 ){
+			joblevel1 = " AND joblevel.ID = "+joblevel;
 		}
-		if(masdegreetype != null ){
-			String masdegreetype1 = " AND degreeType.ID = "+masdegreetype;
-			parameterMap.put("DEGREE",masdegreetype1);
+		
+		if(masdegreetype > 0 ){
+			 masdegreetype1 = " AND degreeType.ID = "+masdegreetype;
 		}
 		if(gpa != null){
-			String gpa1 = " AND education.GPA = "+gpa;
-			parameterMap.put("GPA",gpa1);
+			gpa1 = " AND education.GPA = "+gpa;
 		}
+		
+		parameterMap.put("UNIVERSITY",schoolName1);
+		parameterMap.put("MAJOR",major1);
+		parameterMap.put("TECHNOLOGY", technology1);
+		parameterMap.put("JOBLEVEL", joblevel1);
+		parameterMap.put("DEGREE",masdegreetype1);
+		parameterMap.put("GPA",gpa1);
+		
 		parameterMap.put(JRParameter.REPORT_LOCALE, Locale.ENGLISH);
 		ModelAndView mv = reportService.getReport(reportApplicantList,
 				"reportCriteria", reportType, parameterMap);
