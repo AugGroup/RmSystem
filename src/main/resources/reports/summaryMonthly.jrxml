@@ -103,7 +103,7 @@ WHERE applicant.APPLY_DATE BETWEEN STR_TO_DATE($P{startDate},'%d/%m/%Y') AND STR
 					<reportElement x="167" y="13" width="100" height="20" uuid="78dce6cd-38f9-419e-9adf-4cef3ee01a59"/>
 					<text><![CDATA[MONTH : ]]></text>
 				</staticText>
-				<textField pattern="MMMMM">
+				<textField>
 					<reportElement x="267" y="13" width="100" height="20" uuid="d4c7c4c8-96dc-434d-b746-e400d5cd799f"/>
 					<textFieldExpression><![CDATA[$F{applyDate}.getMonth()]]></textFieldExpression>
 				</textField>

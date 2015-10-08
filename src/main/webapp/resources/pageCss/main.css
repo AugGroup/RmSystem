@@ -441,7 +441,14 @@ ul.pagination li.next>a{
 	font-family: Dosis-Regular;
 }
 
-@media ( max-width : 960px) {
+@media ( max-width : 1155px) {
+	#conDiv {
+			margin-left: 0px;
+			margin-right: 0px;
+		}
+}
+/*max-width : 768px*/
+@media ( max-width : 768px) {
 	
 	#conDiv {
 		margin-left: 0px;

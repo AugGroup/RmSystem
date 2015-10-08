@@ -56,8 +56,8 @@
 						<div class="form-group">
 							<label for="template"><spring:message code="request.email.form.template" /> :</label>
 							<textarea id="template" name="template"></textarea>
-						</div>
-						<button type="button" class="btn btn-primary" id="create"><spring:message code="request.email.form.submit" /></button>
+						</div><br>
+						<button type="button" class="btn btn-warning" id="create"><span class="glyphicon glyphicon-save"></span><spring:message code="request.email.form.submit" /></button>
 					</form>
 				</div>
 			</div>
@@ -94,8 +94,8 @@
         <p></p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal">Close</button>
-        <button type="button" class="btn" id="btnActive" data-dismiss="modal">Ok</button>
+        <button type="button" class="btn btn-warning" id="btnActive" data-dismiss="modal"><span class="glyphicon glyphicon-save"></span><spring:message code="button.save" /></button>
+        <button type="button" class="btn btn-default" id="btnClose" data-dismiss="modal"><spring:message code="button.cancel" /></button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -109,6 +109,8 @@
 	var createSuccess= "<spring:message code="request.email.pnotify.create.success" />";
 	var createFail= "<spring:message code="request.email.pnotify.create.fail" />";
 	var matchingName= "<spring:message code="request.email.pnotify.name.matching" />";
+	var createTitle= "<spring:message code="request.email.create.templete.title" />";
+	var createAsk= "<spring:message code="request.email.create.templete.ask" />";
 	
 </script>
 

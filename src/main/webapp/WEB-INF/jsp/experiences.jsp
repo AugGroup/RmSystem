@@ -118,7 +118,7 @@ var id = ${id};
 
 							</div>
 							<br> <br>
-							<button type="button" class="btn btn-success" id="btn_save">
+							<button type="button" class="btn btn-warning" id="btn_save">
 								<span class="glyphicon glyphicon-save"></span>
 								<spring:message code="edit.button.save" />
 							</button>
@@ -174,12 +174,13 @@ var id = ${id};
 			<thead>
 				<tr>
 					<th>position</th>
-					<th>companyName</th>
+					<th><spring:message code="exp.data.emp" /></th>
 					<th>address</th>
 					<th>typeOfBusiness</th>
 					<th>reference</th>
 					<th>salary</th>
-					<th>DATE</th>
+					<th>DATE TO</th>
+					<th>DATE FROM</th>
 					<th><spring:message code="main.edit.info" /></th>
 					<th><spring:message code="main.delete" /></th>
 				</tr>

@@ -6,17 +6,32 @@
 	background-color: rgb(222, 145, 4) !important;
 }
 
-.popover-title {
+#email-appointment-new-parent > #email-appointment-new {
 	background-color: rgb(222, 145, 4) !important;
-	color: #FFFFFF;
 }
 
-.popover-content {
+#email-appointment-update-parent > #email-appointment-update {
+	background-color: rgb(222, 145, 4) !important;
+}
+
+.email-notififation-li:hover {
+	background-color: #FFFFFF;
+}
+
+.email-notififation-li:hover {
+	background-color: #FFFFFF;	
+}
+
+.update-email, .new-email {
+	color: #FFFFFF !important;
+}
+
+.update-email:hover, .new-email:hover{
 	color: rgb(222, 145, 4) !important;
 }
 
-.popover {
-	width: 175px;
+.tooltip{
+	z-index: 0 !important;
 }
 
 .tooltip.right .tooltip-arrow {
@@ -26,3 +41,16 @@
 .tooltip-inner {
 	background-color: rgb(222, 145, 4) !important;
 }
+
+@media ( max-width : 768px) {
+	.email-notification {
+		border: none;
+		background-color: rgb(222, 145, 4) !important;
+	}
+	
+	.dropdown-menu .divider {
+	    height: 1px;
+	    margin: 0px;
+	    overflow: hidden;
+	    background-color: #e5e5e5;
+	}

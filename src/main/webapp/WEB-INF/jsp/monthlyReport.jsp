@@ -11,7 +11,8 @@
  	<div class="row"><h1 align="center"><spring:message code="report.text.monthly"/></h1></div>
  
 <!------------------- Report search-------------------> 
-	<div class="report_search" align="right" style="float: right;">
+	<div class="container">
+	<div class="report_search " align="right" style="float: right;">
 		<f:form method="post" name="reportForm" target="_blank" commandName="searchReportDTO" action="${pageContext.request.contextPath}/reportMonthly/preview" cssClass="form-inline">
 			<div class="search_inputgroup">
 				<%-- <h3><spring:message code="report.text.search.month"/></h3> --%>
@@ -33,10 +34,11 @@
 	
 		</f:form>
 	</div>
-
+	</div>
 	<!------------------- Report DataTable-------------------> 
-	<div id="table">
+	<div class="container table-responsive" id="table">
     	<table  id="reportTable" class="cell-border" style="width: 100%">
+    	<caption title="" class="tableHeader"><spring:message code="report.text.monthly" /></caption>
             <thead>
                 <tr>
                     <th><spring:message code="main.code"/></th>

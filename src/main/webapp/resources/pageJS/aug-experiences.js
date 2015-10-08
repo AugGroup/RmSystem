@@ -2,7 +2,7 @@ $(document).ready(function() {
 		var dtApplicant;
 		
 	    $('input[name="applyDateStr"]').daterangepicker({
-	        format: 'DD/MM/YYYY',
+	        format: 'DD-MM-YYYY',
 	        opens : "left",
 	        showDropdowns : true,
 	    });
@@ -10,7 +10,7 @@ $(document).ready(function() {
 		$('.input-group.date').datepicker({
 			startView : 2,
 			todayBtn : "linked",
-			format : "dd/mm/yyyy",
+			format : "dd-mm-yyyy",
 			autoclose: true 
 	});
 	
@@ -61,13 +61,18 @@ $(document).ready(function() {
 			            {data : "typeOfBusiness"},
 			            {data : "reference"},
 			            {data : "salary"},
-			            {data : "applyDateStr"},
+			            {data : "dateFrom"},
+			            {data : "dateTo"},
 			            {data : function(data) {
 				 			return '<button id="buttonEdit" data-id="'+data.id+'" data-toggle="modal" data-target="#experiencesModal" class="btn btn-warning btn-mini"><span class="glyphicon glyphicon-pencil"></span> '+ valEdit +'</button>';
 						}},
 						{data : function(data) {
 				 			return '<button id="buttonDelete" data-id="'+data.id+'" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger btn-mini"><span class="glyphicon glyphicon-remove-sign"></span> '+ valDelete +'</button>';
 						}}],
+						initComplete :function(){
+		   				    $("#experiencesTable_previous").children().text("<"); 
+		   				    $("#experiencesTable_next").children().text(">");
+		   				   },
 			searching : false
 
 		});
@@ -75,6 +80,10 @@ $(document).ready(function() {
 	}
 		
 	function saveExperience(){
+		var temp = $("#applyDateStr").val().toString();
+		alert(temp);
+		var dateSplit =  temp.split("-");
+//		var dateSplit =  $('input[name="applyDateStr"]').split("-");
 		if ($('#experiencesForm').valid()) {
 		var position = $("#position").val();
 		var companyName = $("#companyName").val();
@@ -84,7 +93,10 @@ $(document).ready(function() {
 		var reason = $("#reason").val();
 		var salary = $("#salary").val();
 		var responsibility = $("#responsibility").val();
-		var applyDateStr = $("#applyDateStr").val();
+//		var dateFrom = dateSplit[0];
+//		var dateTo = dateSplit[1];
+		var dateFrom = dateSplit[0]+"-"+dateSplit[1]+"-"+dateSplit[2];
+		var dateTo = dateSplit[3]+"-"+dateSplit[4]+"-"+dateSplit[5];
 		
 		var json = {
 				"applicant" : {"id" : id},
@@ -96,7 +108,8 @@ $(document).ready(function() {
 				"reason" : reason,
 				"salary" : salary,
 				"responsibility" : responsibility,
-				"applyDateStr" : applyDateStr
+				"dateFrom" : dateFrom,
+				"dateTo" : dateTo
 				};
 		
 		$.ajax({
@@ -145,12 +158,16 @@ $(document).ready(function() {
 			$("#salary").val(data.salary);
 			$("#responsibility").val(data.responsibility);
 			$("#reason").val(data.reason);
-			$("#applyDateStr").val(data.applyDateStr);
+			$("#applyDateStr").val(data.dateFrom+" - "+data.dateTo);
 		}
 		
 		//Update function
 		function updated(button){
 			if ($('#experiencesForm').valid()) {
+//				alert($("#applyDateStr"));
+				var temp = $("#applyDateStr").val().toString();
+				alert(temp);
+				var dateSplit =  temp.split("-");
 				var id = $(button).data("id");
 				var applicantId = $("#applicant").val();
 				var position = $("#position").val();
@@ -161,7 +178,8 @@ $(document).ready(function() {
 				var salary = $("#salary").val();
 				var responsibility = $("#responsibility").val();
 				var reason = $("#reason").val();
-				var applyDateStr = $("#applyDateStr").val();
+				var dateFrom = dateSplit[0]+"-"+dateSplit[1]+"-"+dateSplit[2];
+				var dateTo = dateSplit[3]+"-"+dateSplit[4]+"-"+dateSplit[5];
 				
 				var json = {
 						applicant : {"id" : applicantId},
@@ -174,7 +192,8 @@ $(document).ready(function() {
 						"salary" : salary,
 						"responsibility" : responsibility,
 						"reason" : reason,
-						"applyDateStr" : applyDateStr
+						"dateFrom" : dateFrom,
+						"dateTo" : dateTo
 						};
 				
 				$.ajax({
@@ -183,6 +202,7 @@ $(document).ready(function() {
 					contentType :"application/json; charset=utf-8",
 					data : JSON.stringify(json),
 					success : function(data){
+						
 						$('#experiencesModal').modal('hide');
 						
 						var table = $('#experiencesTable').DataTable();	
@@ -200,7 +220,8 @@ $(document).ready(function() {
 						d.salary = data.salary;
 						d.responsibility = data.responsibility;
 						d.reason = data.reason;
-						d.applyDateStr = data.applyDateStr;
+						d.dateFrom = data.dateFrom;
+						d.dateTo = data.dateTo;
 					 	
 				 		table.row(rowData).data(d).draw();
 				 		

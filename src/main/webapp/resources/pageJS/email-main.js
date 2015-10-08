@@ -9,6 +9,9 @@ $(function(){
 	
 	var flagNew = 0;
 	var flagUpdate = 0;
+	
+	$btnEmail.tooltip();
+	
 	//set new appointment
 	//alert("callNew");
 	$.ajax({
@@ -17,11 +20,10 @@ $(function(){
 		success: function(data) {
 			if (!data) {
 				removeNotification($parentNew, $emailAppointmentNew);
-				$emailAppointmentNew.empty().append('<li><a href="#">Send all new appoinment success.</a></li>');
 			} else {
 				var result = "";
 				$.each(data, function(index, value) {					
-					result += '<li><a href="#" class="new-email" data-id="' + value.id + '">' + value.topic + '</a></li>';
+					result += '<li class="email-notififation-li"><a href="#" class="new-email" data-id="' + value.id + '">' + value.topic + '</a></li>';
 				});
 				setNotification($parentNew, $emailAppointmentNew);
 				$emailAppointmentNew.empty().append(result);
@@ -44,11 +46,10 @@ $(function(){
 			if (!data) {
 				//alert("null");
 				removeNotification($parentUpdate, $emailAppointmentUpdate);
-				$emailAppointmentUpdate.empty().append('<li><a href="#">Send all update appoinment success</a></li>');
 			} else {
 				var result = "";
 				$.each(data, function(index, value) {
-					result += '<li><a href="#" class="update-email" data-id="' + value.id + '">' + value.topic + '</a></li>';
+					result += '<li class="email-notififation-li"><a href="#" class="update-email" data-id="' + value.id + '">' + value.topic + '</a></li>';
 				});
 				setNotification($parentUpdate, $emailAppointmentUpdate);
 				$emailAppointmentUpdate.empty().append(result);
@@ -75,27 +76,27 @@ $(function(){
 function setBtnEmail(btn, flag) {
 	//alert(flag);
 	if (flag != 0) {
-		btn.tooltip({
-		    container: 'body',
-		    trigger: 'manual'
-		});
-		btn.tooltip("show");
+		//btn.tooltip("show");
 		btn.addClass("btn-email-alert");
 	} else {
-		btn.tooltip("destroy");
+		//btn.tooltip("destroy");
 		btn.removeClass("btn-email-alert");
 	}
 }
 
 function setNotification(parent, appointment) {
-	//$("#btn_email").addClass("btn-email-alert");
+	
+	parent.removeClass("disabled");
 	parent.addClass("email-notification");
+	appointment.addClass("dropdown-menu");
 	appointment.addClass("email-notification");
 }
 
 function removeNotification(parent, appointment) {
-
+	
+	parent.addClass("disabled");
 	parent.removeClass("email-notification");
+	appointment.removeClass("dropdown-menu");
 	appointment.removeClass("email-notification");
 }
 

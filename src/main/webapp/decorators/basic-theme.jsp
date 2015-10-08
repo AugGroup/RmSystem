@@ -121,8 +121,7 @@
 				<li class="dropdown" >
 				
 					<a style="text-decoration: none;" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" 
-						id="btn_email" data-toggle="tooltip" data-placement="right" title="Warning Appointment" data-content="Have appointment that still not send email." data-trigger="manual" >
-						<spring:message code="request.email" /> <span class="caret"></span>
+						id="btn_email" data-toggle="tooltip" data-placement="right" title="Warning Appointment"><spring:message code="request.email" /> <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" >
 						<li><a href="${pageContext.request.contextPath}/email/create"><spring:message code="request.email.header.create" /></a></li>
@@ -137,6 +136,7 @@
 	               				<li><a href="#">Second level</a></li> -->
 	              			</ul>
 	            		</li>
+	            		
 	            		<li class="dropdown-submenu" id="email-appointment-update-parent">
 	              			<a tabindex="-1" href="#">Update Appointment Email</a>
 	              			<ul class="dropdown-menu" id="email-appointment-update">

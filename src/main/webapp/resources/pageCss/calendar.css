@@ -19,7 +19,28 @@ body {
    background: #FF9900;
 }
 
+div.fc-toolbar{
+	padding-left : 1px;
+	padding-right: 2px;
+}
 
+div.fc-center{
+	background-color: #ffc000;
+	color:#ffffff;
+	width: 100%;
+	border: 2px solid rgba(1,1,1,0);
+	padding: 5px 5px 5px 5px;
+	margin-top: 40px;
+	margin-bottom: -30px;
+}
+
+div.fc-view-container{
+    margin-top: -5px;
+}
+
+div.fc-center.text-center > h2{
+	float: initial;
+}
 div.fc-toolbar{
 	margin-top:15px;
 }
@@ -37,21 +58,26 @@ textarea {
    resize: none; 
 } 
 
-#calendarHeader{
-	
-	border: 1px solid rgba(1,1,1,0);
+
+div.popover > h3.popover-title.danger{
+	background-color: #FF4512;
+	color: #ffffff;
 }
 
-div.fc-view-container>table{
-/* 	border: none; */
+div.popover > h3.popover-title.warning{
+	background-color: #EBCD26;
+	color: #ffffff;
+}
 
+div.popover > h3.popover-title.success{
+	background-color: #91E650;
+	color: #ffffff;
 }
 
 #calendarHeader > h2{
 	padding-top: 5px;
     padding-bottom: 5px;
     margin-bottom: 0px;
-    
 	background-color: #ffc000;
 	color:#ffffff;
 }

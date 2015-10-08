@@ -42,9 +42,9 @@ $( document ).ready(function() {
 	
 	$("#create").on('click',function(){
 		if($("#templateFormCreate").valid()){
-			var title = "Create Template";
-			var detail = "Do You Want To Create The Template?";
-			var btn = "btn-primary";
+			var title = createTitle;
+			var detail = createAsk;
+			var btn = "btn-warning";
 			showModal(title,detail,btn);			
 			$("#btnActive").off().on("click",function(){
 				var data = {
@@ -81,9 +81,10 @@ $( document ).ready(function() {
 	
 	$("#update").on('click',function(){
 		if($("#templateFormEdit").valid()){
-			var title = "Update Template";
-			var detail = "Do You Want To Update The Template?";
-			var btn = "btn-success";
+			var title = editTitle;
+			var detail = editAsk;
+			var btn = "btn-warning";
+			$("#btnActive").html('<span class="glyphicon glyphicon-pencil"></span>'+ editBtn);
 			showModal(title,detail,btn);			
 			$("#btnActive").off().on("click",function(){
 				var data = {
@@ -112,9 +113,10 @@ $( document ).ready(function() {
 	$("#delete").on('click',function(){
 		
 		if($("#templateFormEdit").valid()){
-			var title  = "Delete Template";
-			var detail = "Do You Want To Delete The Template?";
+			var title  = deleteTitle;
+			var detail = deleteAsk;
 			var btn	   = "btn-danger";
+			$("#btnActive").html('<span class="glyphicon glyphicon-remove-sign"></span>'+ delBtn);
 			showModal(title,detail,btn);	
 			$("#btnActive").off().on("click",function(){
 				$.ajax({
