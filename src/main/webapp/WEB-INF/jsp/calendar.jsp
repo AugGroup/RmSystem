@@ -75,11 +75,11 @@
 				</div> -->
 				
 				<ul class="list-group" >
-				  <li id="noSendEmail" class="li-danger list-group-item" role="button">
+				  <li id="noSendEmail" class="list-group-item" role="button">
 				  </li>
-				  <li id="noEmailUpdate" class="li-warning list-group-item" role="button">
+				  <li id="noEmailUpdate" class="list-group-item" role="button">
 				  </li>
-				  <li id="emailSent" class="li-success list-group-item" role="button">
+				  <li id="emailSent" class="list-group-item" role="button">
 				  </li>
 				</ul>
 				</div>
@@ -97,7 +97,7 @@
 				    </div>
 				    <div id="pendingTestList" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 				      <div  class="list-group">
-				      
+				      	<!-- jQueryRender -->
 				      </div>
 				    </div>
 				  </div>
@@ -111,6 +111,7 @@
 				    </div>
 				    <div id="pendingApproveList" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
 				      <div  class="list-group">
+				      	<!-- jQueryRender -->
 				      </div>
 				    </div>
 				  </div>

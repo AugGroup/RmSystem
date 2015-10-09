@@ -59,17 +59,17 @@ textarea {
 } 
 
 
-div.popover > h3.popover-title.danger{
+div.popover > h3.popover-title.nosend{
 	background-color: #FF4512;
 	color: #ffffff;
 }
 
-div.popover > h3.popover-title.warning{
+div.popover > h3.popover-title.noupdate{
 	background-color: #EBCD26;
 	color: #ffffff;
 }
 
-div.popover > h3.popover-title.success{
+div.popover > h3.popover-title.sent{
 	background-color: #91E650;
 	color: #ffffff;
 }
@@ -109,12 +109,13 @@ div.popover > h3.popover-title.success{
 	width : 270px;
 	padding-top: 10px;
     padding-bottom: 15px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 #mailStatusPropMd span.label{
 	padding-top: 5px;
+	
 }
 
 #mailStatusPropMd li.list-group-item{
@@ -126,8 +127,20 @@ div.popover > h3.popover-title.success{
 	width : 270px;
 	margin-top: 15px;
 	margin-left: 15px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+span.label-nosend{
+	background-color : #FF4512;
+}
+
+span.label-noupdate{
+	background-color : #EBCD26;
+}
+
+span.label-mailsent{
+	background-color: #91E650;
 }
 
 #trackingStatusPanel a{

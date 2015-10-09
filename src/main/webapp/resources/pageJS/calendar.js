@@ -220,7 +220,7 @@ function findNoEmailSending(){
 		contentType : "application/json",
 		dataType : "json",
 		success : function(data){
-			$("#noSendEmail").html("<span class='label label-danger'>   </span> <span class='badge'>"+data+"</span> &nbsp;&nbsp;No E-mail Sending");
+			$("#noSendEmail").html("<span class='label label-nosend'>   </span> <span class='badge'>"+data+"</span> &nbsp;&nbsp;No E-mail Sending");
 		},
 		error : function(){
 			alert("Load appointment error")
@@ -235,17 +235,12 @@ function findNoEmailUpdate(){
 		contentType : "application/json",
 		dataType : "json",
 		success : function(data){
-			$("#noEmailUpdate").html("<span class='label label-warning'>   </span> <span class='badge'>"+data+"</span> &nbsp;&nbsp;No Update E-mail");
+			$("#noEmailUpdate").html("<span class='label label-noupdate'>   </span> <span class='badge'>"+data+"</span> &nbsp;&nbsp;No Update E-mail");
 		},
 		error : function(){
 			alert("Load appointment error")
 		}
 	})
-}
-
-function goToAppointment(event){
-	
-	$('#calendar').fullCalendar('gotoDate', event.start);
 }
 
 function findEmailSent(){
@@ -255,13 +250,30 @@ function findEmailSent(){
 		contentType : "application/json",
 		dataType : "json",
 		success : function(data){
-			$("#emailSent").html("<span class='label label-success'>   </span> <span class='badge'>"+data+"</span> &nbsp;&nbsp;Email Sent");
+			$("#emailSent").html("<span class='label label-mailsent'>   </span> <span class='badge'>"+data+"</span> &nbsp;&nbsp;Email Sent");
 		},
 		error : function(){
 			alert("Load appointment error")
 		}
 	})
 }
+
+function getAllAppointmentInCalendar(applicantId){
+	$.ajax({
+		url : "calendar/findByApplicantId/"+applicantId,
+		type : "POST",
+		contentType : "application/json",
+		dataType : "json",
+		success : function(data){
+			//$("#emailSent").html("<span class='label label-mailsent'>   </span> <span class='badge'>"+data+"</span> &nbsp;&nbsp;Email Sent");
+			console.log(data)
+		},
+		error : function(){
+			alert("Load appointment error")
+		}
+	})
+}
+
 
 function renderCalendar(){
 	$('#calendar').fullCalendar({
@@ -375,27 +387,33 @@ function renderCalendar(){
 			eventdata = event;
 	    } ,
 		eventAfterRender: function (event, element) {
+			var colorClass;
+			if(event.mailStatus==0){
+				colorClass = "nosend";
+			}else if(event.mailStatus==1){
+				colorClass = "send";
+			}else if(event.mailStatus==2){
+				colorClass = "noupdate";
+			}
+			
+			var divTemplate = '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title '+colorClass+'"></h3><div class="popover-content"></div></div>'
+			
 			element.popover({
 	            title: event.topic,
 	            container : 'body',
 	            placement: 'auto',
-	            content: event.detail
+	            content: event.detail,
+	            template : divTemplate,
+	            trigger : 'hover'
+	            /*,
+	            delay: { "show": 2000, "hide": 0 }*/
 	        });
 		},
 		eventMouseover: function ( event, jsEvent, view ){
-			$(this).popover('show');
-			var title = $("h3.popover-title");
-			//console.log(event.mailStatus);
-			if(event.mailStatus==0){
-				$("h3.popover-title").addClass("danger");
-			}else if(event.mailStatus==1){
-				$("h3.popover-title").addClass("success");
-			}else if(event.mailStatus==2){
-				$("h3.popover-title").addClass("warning");
-			}
+			
 		},
 		eventMouseout : function ( event, jsEvent, view ){
-			$(this).popover('hide');
+			
 		}
 		,viewRender : function( view, element ){
 		}
@@ -411,11 +429,12 @@ $( function(){
 		findNoEmailUpdate();
 		findEmailSent();
 		setApplicantNameList();
-		
-		
 
 		$(".list-group").on("click", ".applicant-list-item", function(){
-			$("#appointmentListModal").modal('show');
+			var $appointmentListModal = $("#appointmentListModal");
+			$appointmentListModal.modal('show');
+			$appointmentListModal.closest('div.modal-body').html(1);
+			
 		});
 		
 		$('#applicantFilter').on('change',function () {
