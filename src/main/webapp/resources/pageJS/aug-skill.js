@@ -1,64 +1,15 @@
 $(document).ready(function() {
 	
-//	$('#skillForm').validate({
-//		rules : {
-//			skill : {required : true},
-//			rank : {required: true}
-//		},
-//		messages : {
-//			skill : {required : valSkill},
-//			rank : {required: valSkillRank}
-//		}
-//	});
-	
-//	$('#skillForm').bootstrapValidator({
-//		
-//		  message: 'This value is not valid',
-//	        feedbackIcons: {
-//	        	 valid: 'glyphicon glyphicon-ok',
-//	            invalid: 'glyphicon glyphicon-remove',
-//	            validating: 'glyphicon glyphicon-refresh'
-//	        },
-//	        fields: {
-//	        	masspecialty: {
-//	                validators: {
-//	                    notEmpty: {
-//	                        message: valSkill
-//	                    },
-//		        callback: {
-//	                message: valSkill,
-//	                callback: function(value, validator) {
-//	                	var data = dt.fnGetData();
-//	                	var count = 0;
-//	                	var masSpec11 = $("#masspecialty option:selected").text();
-//	                	var dataMas=null;
-//	                	for(var i=0;i<data.length;i++){
-//	                		
-//	                		if(masSpec11==data[i][0]){
-//	                				
-//	                			count = count+1;
-//	                		
-//	                		}
-//		                }
-//	                	
-//	                	if(count==0){
-//	                		dataMas =  $("#masspecialty").val();
-//	                	}else{
-//	                		dataMas = 0;
-//	                	}
-//	                     return value==dataMas;
-//	                   
-//	                  }
-//	                	
-//	              
-//		            },
-//	            }
-//		          
-//	        }
-//	       
-//	      }
-//	        	
-//	});
+	$('#skillForm').validate({
+		rules : {
+			skill : {required : true},
+			rank : {required: true}
+		},
+		messages : {
+			skill : {required : valSkill},
+			rank : {required: valRank}
+		}
+	});
 	
 	if(dtApplicant) {
 		dtApplicant.ajax.reload();
@@ -93,7 +44,7 @@ $(document).ready(function() {
 	var dtApplicant;
 	
 	function saveSkill(){
-		//if ($('#skillForm').valid()) {
+		if ($('#skillForm').valid()) {
 			var masspecialty = $("#masspecialty").val();
 			var masspecialtyId = $("#masspecialty").val();
 			
@@ -134,7 +85,7 @@ $(document).ready(function() {
 				}
 			});
 		console.log(json);
-		//};
+		};
 	}
 
 	//Update 

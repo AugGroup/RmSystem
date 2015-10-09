@@ -7,7 +7,6 @@
 <script src="<c:url value ="/static/resources/pageJS/aug-skill.js"/>"></script> 
 
 <script>
-var name = "<spring:message code="valid.skill.skill"/>";
 var valSkill = "<spring:message code="valid.skill.skill"/>";
 var valRank = "<spring:message code="valid.skill.rank"/>";
 var valEdit = "<spring:message code="main.edit.info"/>";
