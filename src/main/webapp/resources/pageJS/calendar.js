@@ -98,7 +98,8 @@ function updateAppointmentDate(eventToUpdate, revertParam){
 	    			renderCalendar();
     				$('#calendar').fullCalendar('changeView', view.name);
     				$('#calendar').fullCalendar( 'gotoDate', eventToUpdate.start );
-	    			
+    				findNoEmailUpdate();
+    				findEmailSent();
 	    		},
 	    		
 	    		error:function (jqXHR, textStatus, error){
@@ -147,6 +148,50 @@ function setApplicant(trackingStatus){//set Applicant
 	});//end ajax
 }
 	
+
+function setApplicantNameList(){//set Applicant
+	var $penndingTestNameList = $("#pendingTestList div.list-group");
+	var $penndingApproveNameList = $("#pendingApproveList div.list-group");
+	$.ajax({
+		url : "calendar/findByTrackingStatus/test",
+		type : "GET",
+		dataType : "json",
+		success : function(data){
+			$penndingTestNameList.empty();
+			$.each(data, function(i, item) {
+			    var getName = data[i].firstNameEN +" "+ data[i].lastNameEN +" ( " + data[i].technologyStr + " " + data[i].joblevelStr + "  )";
+			    var $div = "<div data-id='"+data[i].id+"' role='button' "+
+			    			"class='list-group-item applicant-list-item' >"+getName+"</div>";
+			    $penndingTestNameList.append($div);
+			})
+		},
+		error : function(error){
+			alert("error");
+			console.log(error);
+		}
+	});//end ajax
+	
+	$.ajax({
+		url : "calendar/findByTrackingStatus/pendingapprove",
+		type : "GET",
+		dataType : "json",
+		success : function(data){
+			$penndingApproveNameList.empty();
+			$.each(data, function(i, item) {
+			    var getName = data[i].firstNameEN +" "+ data[i].lastNameEN +" ( " + data[i].technologyStr + " " + data[i].joblevelStr + "  )";
+			    var $div = "<div data-id='"+data[i].id+"' role='button' "+
+			    			"class='list-group-item applicant-list-item' >"+getName+"</div>";
+			    $penndingApproveNameList.append($div);
+			})
+		},
+		error : function(error){
+			alert("error");
+			console.log(error);
+		}
+	});//end ajax
+}
+
+
 function setApplicant(trackingStatus){
 	$.ajax({
 		url : "/RmSystem/calendar/findByTrackingStatus/" + trackingStatus,
@@ -166,6 +211,56 @@ function setApplicant(trackingStatus){
 		}
 			
 	});//end ajax
+}
+
+function findNoEmailSending(){
+	$.ajax({
+		url : "calendar/countMailStatus/"+0,
+		type : "GET",
+		contentType : "application/json",
+		dataType : "json",
+		success : function(data){
+			$("#noSendEmail").html("<span class='label label-danger'>   </span> <span class='badge'>"+data+"</span> &nbsp;&nbsp;No E-mail Sending");
+		},
+		error : function(){
+			alert("Load appointment error")
+		}
+	})
+}
+
+function findNoEmailUpdate(){
+	$.ajax({
+		url : "calendar/countMailStatus/"+2,
+		type : "GET",
+		contentType : "application/json",
+		dataType : "json",
+		success : function(data){
+			$("#noEmailUpdate").html("<span class='label label-warning'>   </span> <span class='badge'>"+data+"</span> &nbsp;&nbsp;No Update E-mail");
+		},
+		error : function(){
+			alert("Load appointment error")
+		}
+	})
+}
+
+function goToAppointment(event){
+	
+	$('#calendar').fullCalendar('gotoDate', event.start);
+}
+
+function findEmailSent(){
+	$.ajax({
+		url : "calendar/countMailStatus/"+1,
+		type : "GET",
+		contentType : "application/json",
+		dataType : "json",
+		success : function(data){
+			$("#emailSent").html("<span class='label label-success'>   </span> <span class='badge'>"+data+"</span> &nbsp;&nbsp;Email Sent");
+		},
+		error : function(){
+			alert("Load appointment error")
+		}
+	})
 }
 
 function renderCalendar(){
@@ -290,7 +385,7 @@ function renderCalendar(){
 		eventMouseover: function ( event, jsEvent, view ){
 			$(this).popover('show');
 			var title = $("h3.popover-title");
-			console.log(event.mailStatus);
+			//console.log(event.mailStatus);
 			if(event.mailStatus==0){
 				$("h3.popover-title").addClass("danger");
 			}else if(event.mailStatus==1){
@@ -312,7 +407,16 @@ function renderCalendar(){
 
 $( function(){
 		renderCalendar();
+		findNoEmailSending();
+		findNoEmailUpdate();
+		findEmailSent();
+		setApplicantNameList();
 		
+		
+
+		$(".list-group").on("click", ".applicant-list-item", function(){
+			$("#appointmentListModal").modal('show');
+		});
 		
 		$('#applicantFilter').on('change',function () {
 	 		var trackingString = $("#applicantFilter option:selected").val();
@@ -339,6 +443,9 @@ $( function(){
 					    icon: false,
 					    delay: 750
 					});
+					findNoEmailSending();
+					findNoEmailUpdate();
+					findEmailSent();
 				},
 				error : function (error) {
 					new PNotify({
@@ -360,15 +467,15 @@ $( function(){
 					detail : $("#appoint_detail").val(),
 					start: insStart,
 					end : insEnd,
-					mailStatus : 0,
-					applicant : { id : 1/*$("#applicantName option:selected").val()*/}
+					mailStatus : 0
+					//applicant : { id : 1/*$("#applicantName option:selected").val()*/}
 					/* login : login_id who insert this appointment will insert in controller :) */
 			};
 			var insData;
 				console.log(JSON.stringify(appointment));
 				
 				$.ajax({
-					url : "calendar/insertAppointment",
+					url : "calendar/insertAppointment/"+$("#applicantName option:selected").val(),
 					type : "POST",
 					contentType : "application/json",
 					dataType : "json",
@@ -386,6 +493,7 @@ $( function(){
 						$('#calendar').fullCalendar('renderEvent', insData, true); // stick? = true
 						$('#insModal').modal('hide');	
 						$('#formInsert').trigger('reset');
+						findNoEmailSending();
 						new PNotify({
 						    title: data.title +"<br>"+ pnotifyInsert,
 						    type: 'success',

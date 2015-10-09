@@ -225,6 +225,24 @@ public class EmailController {
 		return result;
 	}
 	
+	@RequestMapping(value="/email/find/sentAppointment", method={RequestMethod.GET})
+	public @ResponseBody List<Appointment> findEmailSentAppointment(){
+		List<Appointment> appointments = appointmentService.findAll();
+		List<Appointment> result = new ArrayList<Appointment>();
+		
+		for (Appointment appointment : appointments) {
+			if (appointment.getMailStatus() == 1) {
+				result.add(appointment);
+			}
+		}
+		
+		if (result.isEmpty()) {
+			return null;
+		}
+		return result;
+	}
+	
+	
 	@RequestMapping(value="/email/findTemplate/{id}", method={RequestMethod.GET})
 	public @ResponseBody MailTemplate findTemplate(@PathVariable(value="id") Integer id) {
 		return mailTemplateService.findById(id);

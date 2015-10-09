@@ -1,5 +1,7 @@
 package com.aug.controllers;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.aug.hrdb.dto.ApplicantDto;
 import com.aug.hrdb.dto.AppointmentDto;
+import com.aug.hrdb.entities.Applicant;
 import com.aug.hrdb.entities.Appointment;
 import com.aug.hrdb.entities.Login;
 import com.aug.hrdb.services.ApplicantService;
@@ -52,8 +55,8 @@ public class CalendarController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "calendar/insertAppointment",method = RequestMethod.POST)
-	public @ResponseBody AppointmentDto insertAppointment(@RequestBody Appointment appointment) {
+	@RequestMapping(value = "calendar/insertAppointment/{id}",method = RequestMethod.POST)
+	public @ResponseBody AppointmentDto insertAppointment(@RequestBody Appointment appointment,@PathVariable Integer id) {
 		
 		/*                                  Get Who's Appoint                                  */		
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -87,7 +90,7 @@ public class CalendarController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		appointment.setApplicant(applicantService.findById(id));
 		appointmentService.create(appointment);
 		//System.out.println(appointment.getApplicant().getId());
 		return appointmentService.findById(appointment.getId());
@@ -186,6 +189,18 @@ public class CalendarController {
 		String returnTitle = appointmentService.findById(id).getTitle();
 		appointmentService.deleteById(id);
 	return returnTitle;
+	}
+	
+	@RequestMapping(value = "calendar/countMailStatus/{status}", method = RequestMethod.GET)
+	public @ResponseBody String countMailStatus(@PathVariable Integer status) {
+		return appointmentService.countMailStatus(status)+"";
+	}
+	
+	@RequestMapping(value = "calendar/findByApplicantId/{applId}", method = RequestMethod.POST)
+	public @ResponseBody List<Appointment> findByApplicantId(@PathVariable Integer applId) {
+		List<Appointment> appointments = appointmentService.findByApplicant(applicantService.findById(applId));
+		System.out.println(appointments.toString());
+		return appointments;
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////

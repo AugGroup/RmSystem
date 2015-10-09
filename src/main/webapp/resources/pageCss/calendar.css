@@ -109,16 +109,27 @@ div.popover > h3.popover-title.success{
 	width : 270px;
 	padding-top: 10px;
     padding-bottom: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
-span.label-danger{
-	background-color: #FF4512;
+#mailStatusPropMd span.label{
+	padding-top: 5px;
 }
 
-span.label-warning{
-	background-color: #EBCD26;
+#mailStatusPropMd li.list-group-item{
+	background-color: #efefef;
 }
 
-span.label-success{
-	background-color: #91E650;
+#trackingStatusPanel{
+	background-color: #E0DFDD;
+	width : 270px;
+	margin-top: 15px;
+	margin-left: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+#trackingStatusPanel a{
+    text-decoration: none;
 }

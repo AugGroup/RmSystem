@@ -45,14 +45,16 @@
 			<div id='calendar'></div>
 		</div>
 		<div class="col-md-2 col-lg-2 visible-md visible-lg">
+			<div class="row"><div class="col-md-12">
 			<div id="mailStatusPropMd">
 				<div class="text-center"><h3>Email status</h3></div>
-				<div id="noEmailSending" class="media">
+				
+				<!-- <div id="noEmailSending" class="media">
 					<div class="media-left">
-						<span class="label label-danger media-object">Appointment</span>
+						<h4><span class="label label-danger media-object">Appointment</span></h4>
 					</div>
 					<div class="media-body">
-						<h6 class="media-heading">No E-mail sending</h6>
+						<h4 class="media-heading"><span class="label label-danger media-object">No E-mail Sending</span></h4>
 					</div>
 				</div>
 				<div id="NoEmailUpdating" class="media">
@@ -60,7 +62,7 @@
 						<span class="label label-warning media-object">Appointment</span>
 					</div>
 					<div class="media-body">
-						<h6 class="media-heading">No E-mail Updating</h6>
+						<h4 class="media-heading">No E-mail Updating</h4>
 					</div>
 				</div>
 				<div id="EmailSent" class="media">
@@ -68,10 +70,52 @@
 						<span class="label label-success media-object">Appointment</span>
 					</div>
 					<div class="media-body">
-						<h6 class="media-heading">Email sent</h6>
+						<h4 class="media-heading">Email Sent</h4>
 					</div>
+				</div> -->
+				
+				<ul class="list-group" >
+				  <li id="noSendEmail" class="li-danger list-group-item" role="button">
+				  </li>
+				  <li id="noEmailUpdate" class="li-warning list-group-item" role="button">
+				  </li>
+				  <li id="emailSent" class="li-success list-group-item" role="button">
+				  </li>
+				</ul>
 				</div>
-			</div>
+			</div></div>
+			<div class="row"><div id="trackingStatusPanel" class="col-md-12">
+				<div class="text-center"><h3>Applicant Status</h3></div>
+				<div class="panel-group" id="applicantStatusList" role="tablist" aria-multiselectable="true">
+				  <div class="panel panel-default">
+				    <div class="panel-heading" role="tab" id="pendingTestHead">
+				      <h4 class="panel-title">
+				        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#trackingStatusPanel" href="#pendingTestList" aria-expanded="false" aria-controls="pendingTestList">
+				          Pending Test/Interview
+				        </a>
+				      </h4>
+				    </div>
+				    <div id="pendingTestList" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+				      <div  class="list-group">
+				      
+				      </div>
+				    </div>
+				  </div>
+				  <div class="panel panel-default">
+				    <div class="panel-heading" role="tab" id="pendingApproveHead">
+				      <h4 class="panel-title">
+				        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#trackingStatusPanel" href="#pendingApproveList" aria-expanded="false" aria-controls="pendingApproveList">
+				          Pending Approve
+				        </a>
+				      </h4>
+				    </div>
+				    <div id="pendingApproveList" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+				      <div  class="list-group">
+				      </div>
+				    </div>
+				  </div>
+				</div>
+			</div></div>
 		</div>
 	</div>
 	
@@ -304,6 +348,22 @@
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
+	
+	
+	<!-- Modal -->
+	<div class="modal fade" id="appointmentListModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Appointment list of xxxxxxxxx</h4>
+	      </div>
+	      <div class="modal-body">
+	      	
+	      </div>
+	    </div>
+	  </div>
+	</div>
 	
 </div>
 
