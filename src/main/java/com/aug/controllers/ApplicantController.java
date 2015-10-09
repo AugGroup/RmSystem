@@ -596,20 +596,31 @@ public class ApplicantController implements Serializable {
 	}
 	
 	@RequestMapping(value = "/skills/skills/{id}", method = { RequestMethod.POST })
-	public @ResponseBody Ability skill(@RequestBody Ability ability,@PathVariable Integer id,Model model) {
+	public @ResponseBody String skill(@RequestBody Ability ability,@PathVariable Integer id,Model model) {
 		model.addAttribute("id",id);
 		
-		Ability ab = abilityService.find(id);
+		String result = "fail";
+		Applicant applicant = applicantService.findById(id);
+		
+		
 		MasSpecialty masSpecialty = ability.getMasspecialty();
 		
-		if( abilityService.findBySpecialty(masSpecialty.getId()) == null ){
-			abilityService.create(ability);
+		if (abilityService.checkSpecialty(id,masSpecialty.getId())) {
+				/*System.out.println("ID = " + id);
+				System.out.println("ID SPECIAL = " + masSpecialty.getId());
+				System.out.println("Boolean = " + abilityService.checkSpecialty(id,masSpecialty.getId()));*/
+				abilityService.create(ability);
+				System.out.println("can save");
+				result = "success";
 		} else {
-			ab = null;
+			//ab = null;
+			System.out.println("Not Save!!");
 		}
+		
+		System.out.println("final " + result);
 		//Hibernate.initialize(ab.getApplicant().getTechnology());
 		//Hibernate.initialize(ab.getApplicant().getJoblevel());
-        return ab;
+        return result;
 
 	}
 	

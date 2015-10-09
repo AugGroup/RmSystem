@@ -9,6 +9,7 @@
 <script>
 var name = "<spring:message code="valid.skill.skill"/>";
 var valSkill = "<spring:message code="valid.skill.skill"/>";
+var valRank = "<spring:message code="valid.skill.rank"/>";
 var valEdit = "<spring:message code="main.edit.info"/>";
 var valDelete = "<spring:message code="main.delete"/>";
 var id = ${id};
@@ -29,18 +30,18 @@ var id = ${id};
 			<div class="modal-body" style="padding: 40px 50px;">
 				<form role="form" id="skillForm">
 						<div class="form-group">
-							<input type="hidden" id="applicant" name="applicant"
-								value="${id}">
-								<input type="hidden" id="skillsId">
+							<input type="hidden" id="applicant" name="applicant" value="${id}">
+							<input type="hidden" id="skillsId">
 						</div>
 						<div class="form-group">
 							<label for="skill">SPECIALTY :</label>
 							 <select class="form-control" id="masspecialty" name="masspecialties">
-								<option value="-1" label="---Select Skills---" />
+								<option value="" label="---Select Skills---" />
 								<c:forEach var="masspecialtiesist" items="${masspecialties}">
 									<option value="${masspecialtiesist.id}">${ masspecialtiesist.name}</option>
 								</c:forEach>
 							</select>
+							<span id="special-error" style="color:red;"></span>
 						</div>
 				<div class="form-group">
 					<div class="row">

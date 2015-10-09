@@ -93,40 +93,48 @@ $(document).ready(function() {
 	var dtApplicant;
 	
 	function saveSkill(){
-		if ($('#skillForm').valid()) {
-		var masspecialty = $("#masspecialty").val();
-		var masspecialtyId = $("#masspecialty").val();
-
-		var rank = $('input:radio[name=rank]:checked').val();
-		var json = {
+		//if ($('#skillForm').valid()) {
+			var masspecialty = $("#masspecialty").val();
+			var masspecialtyId = $("#masspecialty").val();
+			
+			var rank = $('input:radio[name=rank]:checked').val();
+			var json = {
 				applicant : {"id" : id},
 				masspecialty : {"id": masspecialtyId, "name": $("#masspecialty option:selected").text()},
 				rank : rank
-				};
-		
-		$.ajax({
-			url : "skills/"+id,
-			type : "POST",
-			contentType :"application/json; charset=utf-8",
-			data : JSON.stringify(json),
-			success : function(data){
-				$('#skillModal').modal('hide');
-				dtApplicant.ajax.reload();
-				
-				new PNotify({
-				    title: 'Edit Skill Success!!',
-				    text: 'You can edit data',
-				    type: 'success',
-			        delay: 7000,
-			        buttons:{
-			        	closer_hover: false,
-			        	sticker: false
-			        }		
-				});
-			 }
-		});
+			};
+			
+			$.ajax({
+				url : "skills/"+id,
+				type : "POST",
+				contentType :"application/json; charset=utf-8",
+				data : JSON.stringify(json),
+				success : function(data){
+					
+					if(data == "success") {
+						$("#special-error").empty();
+						$('#skillModal').modal('hide');
+						dtApplicant.ajax.reload();
+						
+						new PNotify({
+						    title: 'Add Skill Success!!',
+						    text: 'You can edit data',
+						    type: 'success',
+					        delay: 7000,
+					        buttons:{
+					        	closer_hover: false,
+					        	sticker: false
+					        }		
+						});
+						//alert("can't save");
+						
+					} else {
+						$("#special-error").empty().append("duplicate special");
+					}
+				}
+			});
 		console.log(json);
-		};
+		//};
 	}
 
 	//Update 
