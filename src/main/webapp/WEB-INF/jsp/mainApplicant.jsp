@@ -44,7 +44,7 @@ var delete_text = "<spring:message code="main.delete"/>";
 	<!--Data Table for Applicant List -->
 	<c:set var="ss" value="display:none;"></c:set>
 	<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_STAFF')">
-		<div class="container table-responsive" id="table">
+		<div class="container table-responsive" id="table2">
 			<table  class="dataTable" id="dataTable" class="cell-border" style="width: 100%" >
 			<caption title="" class="tableHeader"><spring:message code="applicant.table.head" /></caption>
 				<thead>

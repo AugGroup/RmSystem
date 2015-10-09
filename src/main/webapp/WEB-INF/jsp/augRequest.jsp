@@ -54,7 +54,7 @@ var delete_tx = "<spring:message code="main.delete"/>";
 
 <div class="container">
 	<h1 align="center"><spring:message code="request.title"/></h1>
-	<div class="container table-responsive" id="table" >
+	<div class="container table-responsive" id="table2" >
 		<table class="dataTable" id="requestTable" class="cell-border" style="width: 100%">
 			<caption title="" class="tableHeader"><spring:message code="request.title" /></caption>
 			<thead>

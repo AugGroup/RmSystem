@@ -18,7 +18,7 @@
 		<spring:message code="request.title.approve" />
 	</h1>
 	<!------------------- Request DataTable------------------->
-	<div class="container table-responsive" id="table">
+	<div class="container table-responsive" id="table2">
 		<table class="dataTable" id="requestTable" class="cell-border" style="width: 100%">
 		<caption title="" class="tableHeader"><spring:message code="request.title.approve" /></caption>
 			<thead>

@@ -178,6 +178,15 @@
 	width: initial;
 }
 
+#table2 {
+	padding: 15px 5px 90px 10px;
+	margin-top: 25px; 
+	margin-bottom : 100px;
+	background: #E0DFDD;
+	margin-bottom: 100px;
+	width: initial;
+}
+
 .dataTable {
 	color: #414141;
 	background-color: #ababab;
