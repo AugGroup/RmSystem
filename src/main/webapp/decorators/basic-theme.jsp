@@ -97,98 +97,11 @@
 <link href="${ pageContext.request.contextPath }/static/resources/pageCss/email-main.css" rel="stylesheet" type="text/css"></link>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/static/resources/pageJS/email-main.js"></script>
 
+
 <body>
-<nav class="navbar navbar-back">
-	<div class="container-fluid " id="conDiv">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed top-toggle" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
-				<span class="sr-only">Toggle navigation</span> 
-				<span class="icon-bar"></span> 
-				<span class="icon-bar"></span> 
-				<span class="icon-bar"></span>
-			</button>
-			<img class="left-logo size-logo" id="logo" src="${pageContext.request.contextPath}/static/decorators/augmentis.jpg" alt="logo" />
-		</div>
 
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="navbar-collapse">
-			<ul class="nav navbar-nav" id="headerTop">
-				<li><a href="${pageContext.request.contextPath}/applicant"><span class="glyphicon glyphicon-home"></span></a></li>
-				<li><a href="${pageContext.request.contextPath}/request" style=""><spring:message code="request.button" /></a></li>
-				<li><a href="${pageContext.request.contextPath}/approve"><spring:message code="request.approve" /></a></li>
-				<li><a href="${pageContext.request.contextPath}/calendar"><spring:message code="request.calendar" /></a></li>
-				<li class="dropdown" >
-				
-					<a style="text-decoration: none;" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" 
-						id="btn_email" data-toggle="tooltip" data-placement="right" title="<spring:message code="warning.appointment" />"><spring:message code="request.email" /> <span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu" >
-						<li><a href="${pageContext.request.contextPath}/email/create"><spring:message code="request.email.header.create" /></a></li>
-						<li><a href="${pageContext.request.contextPath}/email/edit"><spring:message code="request.email.header.edit" /></a></li>
-						<li><a href="${pageContext.request.contextPath}/email/write"><spring:message code="request.email.header.write" /></a></li>
-	              		<li class="divider"></li>
-	            		<li class="dropdown-submenu" id="email-appointment-new-parent">
-	              			<a tabindex="-1" href="#">New Appointment Email</a>
-	              			<ul class="dropdown-menu" id="email-appointment-new">
-	              				<!-- <li><a href="#">send all appoinment success</a></li> -->
-	               				<!-- <li><a href="#">Second level</a></li>
-	               				<li><a href="#">Second level</a></li> -->
-	              			</ul>
-	            		</li>
-	            		
-	            		<li class="dropdown-submenu" id="email-appointment-update-parent">
-	              			<a tabindex="-1" href="#">Update Appointment Email</a>
-	              			<ul class="dropdown-menu" id="email-appointment-update">
-	              			</ul>
-	            		</li>
-					</ul>
-				</li>
-			</ul>
-		
-			<ul class="nav navbar-nav navbar-right">
-				<li id="bgLogout">						
-					<a id="linkLogout" class="navbar-link" href="<c:url value="/logout"/>">
-						<spring:message code="sitemesh.logout" /> | <%=name%>
-					</a>
-				</li>
-			</ul>
-			<div class="clearFloat"></div>
-			<ul class="nav navbar-nav navbar-right" id="top-flag">
-					<c:set var="locale">${pageContext.response.locale}</c:set>					
-					<li class="flags-link" >
-					
-					<a id="flag-link" class="navbar-link" href="${request.getRequestURL}?locale=en" > 
-						<b><img src="${pageContext.request.contextPath}/static/resources/images/flag_usa.png" alt="logo" class='img-flag ${ (locale eq "en") ? "img-active" : ""}' /></b>
-					</a>
-					
-					<a id="flag-link" class="navbar-link" href="${request.getRequestURL}?locale=th" > 
-						<img src="${pageContext.request.contextPath}/static/resources/images/flag_thailand.png" alt="logo" class='img-flag ${ (locale eq "th") ? "img-active" : ""}' />
-					</a>
-					
-					</li>
-					
-					<li >
-						<a style="text-decoration: none;" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-							<spring:message code="report.text" /> <span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu" id="dropdown_report">
-							<li><a href="${pageContext.request.contextPath}/report"><spring:message code="report.text" /></a></li>
-							<li><a href="${pageContext.request.contextPath}/monthlyReport"><spring:message code="report.text.monthly" /></a></li>
-						</ul>
-					</li>
-			
-			</ul>
-			
-		</div>
-		<!-- /.navbar-collapse -->
-	</div>
-	<!-- /.container-fluid -->
-</nav>
-
-<div class="body" >
-	<decorator:body />
-</div>
+<jsp:include page="header.jsp" />
+<div class="body" ><decorator:body /></div>
 
 <div class="footer">
 		<p class="text-muted credit">&copy; 2011-2015 Augmentis (Thailand) Limited. All rights reserved.</p>

@@ -3,6 +3,8 @@
 }
 
 .btn-email-alert {
+	border: 2px solid #fff !important;
+	border-radius:5px;
 	background-color: rgb(222, 145, 4) !important;
 }
 
@@ -45,7 +47,11 @@
 @media ( max-width : 768px) {
 	.email-notification {
 		border: none;
-		background-color: rgb(222, 145, 4) !important;
+		background-color: rgb(222, 145, 4);
+	}
+	
+	.tooltip {
+		display: none;
 	}
 	
 	.dropdown-menu .divider {
@@ -54,3 +60,12 @@
 	    overflow: hidden;
 	    background-color: #e5e5e5;
 	}
+	
+	.btn-email-alert {
+		margin:2px 0;
+		border: 2px solid #fff !important;
+		border-radius:5px;
+		background-color: rgb(222, 145, 4) !important;
+	}
+	
+}	
