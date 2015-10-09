@@ -1,19 +1,19 @@
 $(document).ready(function() {
 	
-//	$('#certificateForm').validate({
-//		rules : {
-//			certificationForm : {required : true},
-//			description : {required : true},
-//			name : {required : true},
-//			year : {required : true}
-//		},
-//		messages : {
-//			certificationForm : {required : valCer},
-//			description : {required : valCer},
-//			name : {required : valCer},
-//			year : {required : valCer}
-//		}
-//	});
+	$('#certificateForm').validate({
+		rules : {
+			certificationForm : {required : true},
+			description : {required : true},
+			name : {required : true},
+			year : {required : true}
+		},
+		messages : {
+			certificationForm : {required : valFrom},
+			description : {required : valDesc},
+			name : {required : valCer},
+			year : {required : valYear}
+		}
+	});
 //	
 //	$.ajaxSetup({
 //		/* statusCode: */

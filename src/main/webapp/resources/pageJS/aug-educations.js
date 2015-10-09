@@ -21,6 +21,7 @@ $(document).ready(function() {
 				faculty : {required : true},
 				major : {required : true},
 				gpa : {required : true},
+				startDate : {required : true},
 				graduate : {required : true}
 			},
 			messages : {
@@ -29,6 +30,7 @@ $(document).ready(function() {
 				faculty : {required : valFaculty},
 				major : {required : valMajor},
 				gpa : {required : valGPA},
+				startDate : {required : valStart},
 				graduate : {required : valYear}
 			}
 		});

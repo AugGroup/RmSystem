@@ -8,6 +8,9 @@
 
 <script>
 var valCer = "<spring:message code="valid.cer.cer"/>"
+var valFrom = "<spring:message code="valid.cer.from"/>"
+var valDesc = "<spring:message code="valid.cer.desc"/>"
+var valYear = "<spring:message code="valid.cer.year"/>"
 var valEdit = "<spring:message code="main.edit.info"/>";
 var valDelete = "<spring:message code="main.delete"/>";
 var id = ${id};
@@ -23,7 +26,7 @@ var id = ${id};
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4>
 						<span class="glyphicon glyphicon-lock"></span>
-						<spring:message code="cer.name" />
+						<spring:message code="cer.title" />
 					</h4>
 				</div>
 				<div class="modal-body" style="padding: 40px 50px;">
@@ -40,21 +43,21 @@ var id = ${id};
 <%-- 								placeholder="<spring:message code="cer.text.name"/>"> --%>
 <!-- 						</div> -->
 						<div class="form-group">
- 						    <label class="required">Name :</label>
-						    <input type="text" class="form-control" id="name" name="name" placeholder="${enter }${name}"/>
+ 						    <label class="required"><spring:message code="cer.name"/></label>
+						    <input type="text" class="form-control" id="name" name="name" placeholder="<spring:message code="cer.text.name"/>"/>
 	  					</div>
 	  					<div class="form-group">
-	  						<label class="required">Certification Form :</label> 
-	   						<input type="text" class="form-control" id="certificationForm" name="certificationForm" placeholder="${certificationForm} "/>
+	  						<label class="required"><spring:message code="cer.form"/></label> 
+	   						<input type="text" class="form-control" id="certificationForm" name="certificationForm" placeholder="<spring:message code="cer.text.form"/> "/>
 	 					 </div>
 	  					<div class="form-group">
-	   						<label class="required">Description :</label>
-	    					<textarea type="text" class="form-control" id="description" name="description" placeholder="${enter }${description}"></textarea>
+	   						<label class="required"><spring:message code="cer.desc"/></label>
+	    					<textarea type="text" class="form-control" id="description" name="description" placeholder="<spring:message code="cer.text.desc"/>"/></textarea>
 	  </div>
 				<div class="form-group">
-	   			 <label class="required">Year :</label>
+	   			 <label class="required"><spring:message code="cer.year"/></label>
 	    			<select class="form-control" id="year" name="year">
-										<option value="">---Select year---</option>						
+										<option value=""><spring:message code="cer.text.year"/></option>						
 										<option value="2020">2020</option>
 										<option value="2019">2019</option>
 										<option value="2018">2018</option>

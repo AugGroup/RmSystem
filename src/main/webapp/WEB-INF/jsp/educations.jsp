@@ -12,6 +12,7 @@ var valDegree = "<spring:message code="valid.ed.degree"/>";
 var valFaculty = "<spring:message code="valid.ed.faculty"/>";
 var valMajor = "<spring:message code="valid.ed.major"/>";
 var valGPA = "<spring:message code="valid.ed.gpa"/>";
+var valStart = "<spring:message code="valid.ed.start.date"/>"
 var valYear = "<spring:message code="valid.ed.year"/>";
 var valEdit = "<spring:message code="main.edit.info"/>";
 var valDelete = "<spring:message code="main.delete"/>";
@@ -55,7 +56,7 @@ var id = ${id};
 <!-- 							</div> -->
 
 	 						<div class="form-group">
-	 							<label for="degree"><spring:message code="education.degree"/></label><br>
+	 							<label class="required" for="degree"><spring:message code="education.degree"/></label><br>
 	 							<f:select path="degreeTypes" class="form-control" id="masdegreetype" name="masdegreetype" style="width: 165px">
 									<option value="-1" label="---Select DegreeType---" />
 									<c:forEach var="obj" items="${degreeTypes}">

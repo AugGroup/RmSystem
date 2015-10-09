@@ -15,7 +15,7 @@ var valOccupation = "<spring:message code="valid.fam.occ"/>";
 var valPositionFamily = "<spring:message code="valid.ex.position"/>";
 var valAgeFamily = "<spring:message code="valid.info.age"/>";
 var valSexFamily = "<spring:message code="valid.info.sex"/>";
-// var valTel = "<sprign:message code="valid.ref.tel"/>";
+var valTel = "<spring:message code="valid.ref.tel"/>";
 var valEdit = "<spring:message code="main.edit.info"/>";
 var valDelete = "<spring:message code="main.delete"/>";
 var id = ${id};
