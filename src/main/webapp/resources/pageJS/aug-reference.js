@@ -2,14 +2,14 @@ $(document).ready(function() {
 		
 		$('#referenceForm').validate({
 			rules : {
-				fullName : {required : true},
-				completeAddress : {required : true,},
+				name : {required : true},
+				address : {required : true,},
 				telNo : {required : true,},
 				occupationRef : {required : true,}
 			},
 			messages : {
-				fullName : {required : valName},
-				completeAddress : {required : valAddress},
+				name : {required : valName},
+				address : {required : valAddress},
 				telNo : {required : valTel},
 				occupationRef : {required : valOccupation}
 			}

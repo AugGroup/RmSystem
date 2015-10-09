@@ -17,27 +17,29 @@ $(document).ready(function() {
  	$('#experiencesForm').validate({
 		rules : {
 			workBackground : {required : true,},
-			emp : {required : true,},
-			addressBackground : {required : true,},
-			business : {required : true,},
-			positionBackground : {required : true,},
-			supervisorBackground : {required : true,},
-			salaryBackground : {required : true,},
-			descriptionBackground : {required : true,},
-			reasonLeaving : {required : true,}
+			applyDateStr : {required : true},
+			companyName : {required : true,},
+			address : {required : true,},
+			typeOfBusiness : {required : true,},
+			position : {required : true,},
+			reference : {required : true,},
+			salary : {required : true,},
+//			reference : {required : true},
+			responsibility : {required : true,},
+			reason : {required : true,}
 		},
 		messages : {
 			workBackground : {required : valWorkBackground},
-			fromWorkYear : {required : valFromYear},
-			toWorkYear : {required : valToYear},
-			emp : {required : valEmp},
-			addressBackground : {required : valAddress},
-			business : {required : valType},
-			positionBackground : {required : valPosition},
-			supervisorBackground : {required : valSupervisor},
-			salaryBackground : {required : valSalary},
-			descriptionBackground : {required : valDescription},
-			reasonLeaving : {required : valReason}
+			applyDateStr : {required : valFromYear},
+			companyName : {required : valEmp},
+			address : {required : valAddress},
+			typeOfBusiness : {required : valType},
+			position : {required : valPosition},
+			reference : {required : valSupervisor},
+			salary : {required : valSalary},
+//			reference : {required : valReference},
+			responsibility : {required : valDescription},
+			reason : {required : valReason}
 		}
 	});
 		
