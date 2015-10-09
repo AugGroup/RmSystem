@@ -91,7 +91,7 @@ function setBtnEmail(btn, flag) {
 	if (flag != 0) {
 		//btn.tooltip("show");
 		btn.addClass("btn-email-alert");
-		btn.blink();
+		//btn.blink();
 	} else {
 		//btn.tooltip("destroy");
 		btn.removeClass("btn-email-alert");

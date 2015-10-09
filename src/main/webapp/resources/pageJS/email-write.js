@@ -14,8 +14,8 @@ $(function(){
 		var subject = $("#subject").val();
 		var content = CKEDITOR.instances.preview.getData();
 		
-		alert(receiver + " " + cc + " " + subject);
-		alert(content);
+		//alert(receiver + " " + cc + " " + subject);
+		//alert(content);
 		
 		sendEmail(receiver, cc, subject, content);
 	});
