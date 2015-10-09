@@ -43,7 +43,7 @@ var id = ${id};
 							<span id="special-error" style="color:red;"></span>
 						</div>
 				<div class="form-group">
-					<div class="row">
+					<div class="row" id="rankSkill">
 						<label class="radio-inline" for="rank" > 
 		 			     	<input id="rank1" name="rank" value="1" type="radio" />1</label>
 		 			     <label class="radio-inline" for="rank" > 

@@ -15,6 +15,7 @@ var valOccupation = "<spring:message code="valid.fam.occ"/>";
 var valPositionFamily = "<spring:message code="valid.ex.position"/>";
 var valAgeFamily = "<spring:message code="valid.info.age"/>";
 var valSexFamily = "<spring:message code="valid.info.sex"/>";
+// var valTel = "<sprign:message code="valid.ref.tel"/>";
 var valEdit = "<spring:message code="main.edit.info"/>";
 var valDelete = "<spring:message code="main.delete"/>";
 var id = ${id};
@@ -48,8 +49,8 @@ var id = ${id};
 								placeholder="<spring:message code="family.text.name"/>">
 						</div>
 <!-- 						<div class="form-inline"> -->
-							<div class="form-group">
-								<label for="age"><spring:message
+						<div class="form-group">
+							<label for="age"><spring:message
 										code="info.age" /> </label> <input type="text" class="form-control"
 									id="age" name="age"
 									placeholder="<spring:message code="info.text.age"/>">

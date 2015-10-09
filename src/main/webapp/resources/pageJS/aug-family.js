@@ -6,23 +6,29 @@ $(document).ready(function() {
 				relationFamily : {required : true},
 				occupationFamily : {required : true},
 				addressFamily : {required : true},
+//				telNo : {required : true},
 				occupation : {required : true},
 				positionFamily : {required : true},
-				ageFamily : {required : true},
-				genderFamily : {required : true}
+				age : {required : true},
+				gender : {required : true}
 			},
 			messages : {
 				nameFamily : {required : valName},
 				relationFamily : {required : valRelation},
 				occupationFamily : {required : valOccupationFamily},
 				addressFamily : {required : valAddress},
+//				telNo : {required : valTel},
 				occupation : {required : valOccupation},
 				positionFamily : {required : valPositionFamily},
-				ageFamily : {required : valAgeFamily},
-				genderFamily : {required : valSexFamily},
+				age : {required : valAgeFamily},
+				gender : {required : valSexFamily},
 			}
 		});
+		
+		$("#telNo").mask("(999) 999-9999");
+		
 		var dtApplicant;
+		
 		if(dtApplicant) {
 			dtApplicant.ajax.reload();
 		}else {
@@ -60,17 +66,17 @@ $(document).ready(function() {
 			
 		function saveFamily(){
 			if ($('#familyForm').valid()) {
-			var name = $("#nameFamily").val();
-			var relationId = $('#relationFamily').val();
-			var relation = $('#relationFamily option:selected').text();
-			var occupation = $("#occupationFamily").val();
-			var address = $("#addressFamily").val();
-			var tel = $('#telNo').val();
-			var age = $('#age').val();
-			var gender = $('#gender').val();
-			var position = $("#positionFamily").val();
-			
-			var json = {"applicant" : {"id" : id},
+				var name = $("#nameFamily").val();
+				var relationId = $('#relationFamily').val();
+				var relation = $('#relationFamily option:selected').text();
+				var occupation = $("#occupationFamily").val();
+				var address = $("#addressFamily").val();
+				var tel = $('#telNo').val();
+				var age = $('#age').val();
+				var gender = $('#gender').val();
+				var position = $("#positionFamily").val();
+				
+				var json = {"applicant" : {"id" : id},
 						"familyName" : name,
 						"masRelationType" : {"id" : relationId},
 						"occupation" : occupation,
@@ -80,27 +86,27 @@ $(document).ready(function() {
 						"gender": gender,
 						"position" : position,
 						};
-			$.ajax({
-				contentType : "application/json; charset=utf-8",
-				type : "POST",
-				url : 'family/'+id,
-				data : JSON.stringify(json),
-				success : function(data) {
-					$('#familyModal').modal('hide');
-					dtApplicant.ajax.reload();
-					
-					new PNotify({
-				        title: 'Success',
-				        text: 'Successful Add Family!!!',
-				        type: 'success',
-				        delay: 10000,
-				        buttons:{
-				        	closer_hover: false,
-				        	sticker: false
-				        }		
-				    });
-				}
-			});
+				$.ajax({
+					contentType : "application/json; charset=utf-8",
+					type : "POST",
+					url : 'family/'+id,
+					data : JSON.stringify(json),
+					success : function(data) {
+						$('#familyModal').modal('hide');
+						dtApplicant.ajax.reload();
+						
+						new PNotify({
+					        title: 'Success',
+					        text: 'Successful Add Family!!!',
+					        type: 'success',
+					        delay: 10000,
+					        buttons:{
+					        	closer_hover: false,
+					        	sticker: false
+					        }		
+					    });
+					}
+				});
 			};
 
 		}
