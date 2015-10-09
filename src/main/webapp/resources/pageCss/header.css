@@ -13,46 +13,62 @@
 	height: 65px;
 }
 
-.nav li.dropdown > a:hover{
+.nav li.dropdown>a:hover {
 	text-decoration: none;
 }
 
-.nav > li > a {
+.nav>li>a {
 	color: #fff;
 }
 
-.nav > li > a:hover {
-	background: rgba(0,0,0,0);
+.nav>li>a:hover {
+	background: rgba(0, 0, 0, 0);
 	text-decoration: underline;
 }
 
-.nav > li > a:focus{
-	background: rgba(0,0,0,0);
+.nav>li>a:focus {
+	background: rgba(0, 0, 0, 0);
 }
 
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
-    background: rgba(0,0,0,0);
+	background: rgba(0, 0, 0, 0);
 }
 
 /* dropdown sub menu */
-.sub-menu >li >a{
+.sub-menu>li>a {
 	color: #000;
 }
 
-.sub-menu>li>a:hover{
+.sub-menu>li>a:hover {
 	background-color: #bdbdbd;
 }
 
 .navbar-nav>li>.dropdown-menu {
 	margin-top: -5px;
-	border-top-left-radius: 5px; 
-    border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.sub-menu>li#email-appointment-new-parent>a:hover {
+	background-color: rgba(0, 0, 0, 0);
+}
+
+.sub-menu>li#email-appointment-update-parent>a:hover {
+	background-color: rgba(0, 0, 0, 0);
+}
+
+#email-appointment-update>li>a {
+	background-color: rgb(222, 145, 4);
+}
+
+#email-appointment-new>li>a {
+	background-color: rgb(222, 145, 4);
 }
 /* end dropdown sub menu */
 
 /* toggle */
 .navbar-back .navbar-toggle {
-	margin-top:20px;
+	margin-top: 20px;
 	border-color: #fff;
 }
 
@@ -64,9 +80,8 @@
 	background-color: #555;
 }
 /* end toggle */
-
 .clearFloat {
-    clear: both;
+	clear: both;
 }
 
 /* ----- Logout ----- */
@@ -80,7 +95,7 @@
 }
 
 #linkLogout {
-	margin-top:-12px;
+	margin-top: -12px;
 	color: #808080;
 	font-family: Dosis-Regular;
 }
@@ -89,94 +104,86 @@
 /* ----- flag ----- */
 #top-flag {
 	display: block;
-    margin-top: -47px;
+	margin-top: -47px;
 	z-index: 10;
 }
 
-#flag-link{
-	background-color: rgba(0,0,0,0);
-	display: inline; 
+#flag-link {
+	background-color: rgba(0, 0, 0, 0);
+	display: inline;
 	padding: 0px;
 }
 
-.flags-link{
+.flags-link {
 	margin-top: auto;
 }
 
-.flag-active{
+.flag-active {
 	background-color: #fff;
 	color: white;
 }
 /* ----- end flag ----- */
-
-#btn_report{
+#btn_report {
 	margin-top: -8px;
 	text-decoration: none;
 }
 
 @media ( max-width : 1155px) {
 	#top-con {
-			margin-left: 0px;
-			margin-right: 0px;
-		}
+		margin-left: 0px;
+		margin-right: 0px;
+	}
 }
 /* ----- max-width ( 768px ) ----- */
 @media ( max-width : 768px) {
-	
 	#top-con {
 		margin-left: 0px;
 		margin-right: 0px;
 	}
-	
 	#logo {
 		margin-left: 10px;
 		padding: 3px;
 	}
-	
 	.navbar-back {
 		background: #707070;
 		height: auto;
 	}
-	
-	.nav li.dropdown > a:hover{
+	.nav li.dropdown>a:hover {
 		background-color: #444;
 	}
-	
-	.nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
+	.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
 		background-color: #444;
 	}
-	
-	.nav > li > a:hover {
+	.nav>li>a:hover {
 		text-decoration: none;
 		background-color: #444;
 	}
-	
-	.nav > li > a:focus{
+	.nav>li>a:focus {
 		background-color: #707070;
 	}
-	
-	.sub-menu >li >a{
+	.sub-menu>li>a {
 		color: #fff;
 	}
-	
-	.sub-menu>li>a:hover{
+	.sub-menu>li>a:hover {
 		color: #fff;
 		background-color: #bdbdbd;
 	}
-	
-	.sub-menu .open>a:focus{
+	.sub-menu .open>a:focus {
 		color: #fff;
 		background-color: #bdbdbd;
 	}
-	
-	.sub-menu > li#email-appointment-new-parent > a:hover {
-		background-color: rgba(0,0,0,0);
+	.sub-menu>li#email-appointment-new-parent>a:hover {
+		background-color: rgba(0, 0, 0, 0);
 	}
-	
-	#email-appointment-new > li > a{
+	.sub-menu>li#email-appointment-update-parent>a:hover {
+		background-color: rgba(0, 0, 0, 0);
+	}
+	#email-appointment-update>li>a {
 		background: #707070;
 	}
-	
+	#email-appointment-new>li>a {
+		background: #707070;
+	}
 	#bgLogout {
 		background-color: #707070;
 		width: auto;
@@ -184,30 +191,23 @@
 		color: #fff;
 		text-decoration: none;
 	}
-	
 	#linkLogout {
-		margin-top:-8px;
+		margin-top: -8px;
 		color: #fff;
 		text-decoration: none;
 	}
-	
-	#top-flag {	    
-    	margin-top: 0px;
+	#top-flag {
+		margin-top: 0px;
 	}
-	
-	.flags-link{
-		margin:10px 0px 10px 10px;
-		
+	.flags-link {
+		margin: 10px 0px 10px 10px;
 	}
-	
-	#btn_report{
+	#btn_report {
 		margin-top: auto;
 		text-decoration: none;
 	}
-
 }
 /* ----- end max-width ( 768px ) ----- */
-
 .navbar-link img {
 	width: 40px;
 	height: 25px;
