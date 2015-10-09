@@ -55,6 +55,7 @@ var id = ${id};
 					 <div class="col-md-6">
 								<input type="text" class="form-control" id="nameLanguage" name="nameLanguage"/>
 					</div>
+					<span id="nameLanguage-error" style="color:red;"></span>
 				</div>
 			</div>
 <%-- 							<label for="languages"><spring:message --%>

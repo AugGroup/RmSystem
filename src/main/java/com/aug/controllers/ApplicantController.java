@@ -43,6 +43,8 @@ import org.springframework.web.servlet.ModelAndView;
 // import services.MasDegreeTypeServiceTest;
 
 
+
+
 import com.aug.hrdb.dto.AbilityDto;
 import com.aug.hrdb.dto.AddressDto;
 import com.aug.hrdb.dto.ApplicantDto;
@@ -625,14 +627,22 @@ public class ApplicantController implements Serializable {
 	}
 	
 	@RequestMapping(value = "languages/languages/{id}", method = { RequestMethod.POST })
-	public @ResponseBody Language language(@RequestBody Language language,@PathVariable Integer id,Model model) {
+	public @ResponseBody String language(@RequestBody Language language,@PathVariable Integer id,Model model) {
 		model.addAttribute("id",id);
-		languageService.create(language);
-		Language lang = languageService.find(id);
+
+		String result = "fail";
+		Boolean chkName = languageService.checkLanguageName(id, language.getNameLanguage());
+		if(languageService.checkLanguageName(id, language.getNameLanguage()).equals(null)){
+			languageService.create(language);
+			//Language lang = languageService.find(id);
+		result = "success";
+		} else {
+			System.out.println("Not Save!!");
+		}
 //		Hibernate.initialize(lang.getApplicant().getTechnology());
 //		Hibernate.initialize(lang.getApplicant().getJoblevel());
 //		
-        return lang;
+        return result;
 
 	}
 	

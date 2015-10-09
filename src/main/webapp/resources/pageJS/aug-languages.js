@@ -118,8 +118,10 @@ $(document).ready(function() {
 			url : 'languages/'+id,
 			data : JSON.stringify(json),
 			success : function(data) {
-				$('#languagesModal').modal('hide');
-				dtApplicant.ajax.reload();
+				if( data == "success"){
+					$("#nameLanguage-error").empty();
+					$('#languagesModal').modal('hide');
+					dtApplicant.ajax.reload();
 				
 				new PNotify({
 			        title: 'Success',
@@ -131,9 +133,14 @@ $(document).ready(function() {
 			        	sticker: false
 			        }		
 			    });
+				}else{
+					$("#nameLanguage-error").empty().append("duplicate special");
+				//}
+				}
 			}
+			
 		}); 
-		};
+		//};
 	}
 	
 	//Update 
