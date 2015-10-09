@@ -89,7 +89,7 @@ $(document).ready(function() {
 		var reading = $('input[name="reading"]:checked').val();
 		var understanding = $('input[name="understanding"]:checked').val();
 		var writing = $('input[name="writing"]:checked').val();
-		
+		alert("lang"+languagesName);
 		if($("#languages option:selected").text()=='Other'){
 		var json = {
 				"applicant" : {"id" : id},
@@ -177,16 +177,40 @@ $(document).ready(function() {
 		var understanding = $('input[name="understanding"]:checked').val();
 		var writing = $('input[name="writing"]:checked').val();
 		
+//		var json = {
+//				"applicant" : {"id" : applicantId},
+//				"id" : id,
+//				"nameLanguage" : languages,
+//				"speaking" : speaking,
+//				"reading" : reading,
+//				"understanding" : understanding,
+//				"writing" : writing
+//				};
+//		
+		alert("lang"+nameLanguage);
+		if($("#languages option:selected").text()=='Other'){
 		var json = {
 				"applicant" : {"id" : applicantId},
 				"id" : id,
-				"nameLanguage" : languages,
+				"nameLanguage" : nameLanguage,
 				"speaking" : speaking,
 				"reading" : reading,
 				"understanding" : understanding,
 				"writing" : writing
 				};
-		
+		}
+		else{
+			var json = {
+					"applicant" : {"id" : applicantId},
+					"id" : id,
+					"nameLanguage" : languages,
+					"speaking" : speaking,
+					"reading" : reading,
+					"understanding" : understanding,
+					"writing" : writing
+					};
+			}
+			
 		$.ajax({
 			url : "updateLanguages/"+id,
 			type : "POST",
@@ -200,6 +224,7 @@ $(document).ready(function() {
 			 	var d = table.row(rowData).data();
 			 	
 			 		d.nameLanguage = data.nameLanguage;
+			 	alert(d.nameLanguage);
 			 		d.speaking = data.speaking;
 			 		d.reading = data.reading;
 			 		d.understanding = data.understanding;
