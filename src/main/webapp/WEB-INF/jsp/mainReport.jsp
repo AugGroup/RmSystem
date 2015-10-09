@@ -27,8 +27,8 @@
 					<input type="hidden" id="technologyId" name="technologyId">
 				</div>
 				<div class="form-group">
-					<label for="joblevel"><spring:message code="main.position1" /></label> 
-					<select name="joblevel" id="joblevel" class="form-control">
+					<label for="joblevel"><spring:message code="main.position1" /></label><br>
+					<select name="joblevel" id="joblevel" class="form-control" style="width: 165px">
 					<option value="-1" label="---Select Joblevel---" />
 						<c:forEach items="${jobLevels}" var="jobLevelList">
 							<option value="${jobLevelList.id}">${jobLevelList.name}</option>
@@ -37,8 +37,8 @@
 				</div>
 						
 				<div class="form-group">
-					<label for="technology"><spring:message code="main.position2" /></label> 
-					<select name="technology" id="technology" class="form-control">
+					<label for="technology"><spring:message code="main.position2" /></label><br> 
+					<select name="technology" id="technology" class="form-control" style="width: 165px">
 					<option value="-1" label="---Select Technology---" />
 						<c:forEach items="${technologies}" var="technologyList">
 							<option value="${technologyList.id}">${technologyList.name}</option>

@@ -360,17 +360,18 @@ $( function(){
 					detail : $("#appoint_detail").val(),
 					start: insStart,
 					end : insEnd,
-					mailStatus : 0
-					//applicant : { id :$("#applicantName option:selected").val() }
+					mailStatus : 0,
+					applicant : { id : 1/*$("#applicantName option:selected").val()*/}
 					/* login : login_id who insert this appointment will insert in controller :) */
 			};
 			var insData;
 				console.log(JSON.stringify(appointment));
 				
 				$.ajax({
-					url : "calendar/insertAppointment/"+$("#applicantName option:selected").val(),
+					url : "calendar/insertAppointment",
 					type : "POST",
-					contentType :"application/json; charset=utf-8", 
+					contentType : "application/json",
+					dataType : "json",
 					data : JSON.stringify(appointment),
 					success : function(data){
 						insData = {

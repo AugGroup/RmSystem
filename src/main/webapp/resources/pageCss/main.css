@@ -33,6 +33,8 @@
 	float: right;
 	color: #ffffff;
 }
+
+
 #dropdown_report > li >a {
 	font-size: 14px; 
 	color: #292929;
@@ -262,7 +264,7 @@ ul.pagination li.next>a{
 }
 
 .search_inputgroup {
-	width: 1000px;
+	width: 1200px;
 	float: right;
 	margin: 5px;
 	padding: 5px;
