@@ -105,7 +105,6 @@ var id = ${id};
 		</div>
 
 	</div>
-
 	<!-- Delete Model -->
 	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
 		aria-labelledby="ModalLabel" aria-hidden="true">
@@ -142,7 +141,7 @@ var id = ${id};
 	</div>
 
 	<br> <br>
-	<div id="table">
+	<div class="container table-responsive" id="table">
 		<table id="addressTable" class="display" cellspacing="0" width="100%">
 		<caption title="" class="tableHeader"><spring:message code="address.name"/></caption>
 			<thead>

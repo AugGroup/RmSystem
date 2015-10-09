@@ -118,7 +118,7 @@ var id = ${id};
 	</div>
 
 	<br> <br>
-	<div id="table">
+	<div class="container table-responsive" id="table">
 		<table id="skillTable" class="display" cellspacing="0" width="100%">
 		<caption title="" class="tableHeader"><spring:message code="skill.name"/></caption>
 			<thead>

@@ -191,9 +191,7 @@
 </div>
 
 <div class="footer">
-	<div class="container">
 		<p class="text-muted credit">&copy; 2011-2015 Augmentis (Thailand) Limited. All rights reserved.</p>
-	</div>
 </div>
 
 </body>
