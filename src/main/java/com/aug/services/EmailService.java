@@ -121,7 +121,7 @@ public class EmailService {
 		  public void prepare(MimeMessage mimeMessage) throws Exception {
 		          MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 //		          message.setTo(receiver.getEmail());
-		          message.setTo("bp_clash@hotmail.com");
+		          message.setTo("anat.pantera@gmail.com");
 		          message.setSubject(subject);
 		          
 		          //set cc

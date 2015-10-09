@@ -40,11 +40,13 @@ function sendEmail(appointmentId, cc, subject, content){
 			"content": content
 		},
 		success: function(data) {
-			alert("send email success...");
-			window.location.replace(contextPath + "/email/write");
+//			alert("send email success...");
+			$("#email-appointment-form").trigger("reset");
+			setNotify("Success", "Send email success.", "ok", "success");
+			//window.location.replace(contextPath + "/email/write");
 		},
 		error: function(){
-			alert("send error");
+			setNotify("Fail", "Send email fail.<br>please check your email before send.", "remove", "danger");
 		}
 	});
 }
@@ -66,3 +68,34 @@ function getTemplate(id) {
 		});
 	}
 }
+
+function setNotify(title, text, icon, type) {
+	new PNotify({
+	    title: title,
+	    text: text,
+	    icon: 'glyphicon glyphicon-' + icon,
+	    type: type,
+	    styling: 'bootstrap3'
+	});
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

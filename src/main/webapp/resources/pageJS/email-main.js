@@ -71,6 +71,19 @@ $(function(){
 	$emailAppointmentUpdate.off().on("click", ".update-email", function(){
 		window.location.replace(contextPath + "/email/write/appointment/" + $(this).data("id"));
 	});
+	
+	$.fn.blink = function() {
+	    setInterval($.proxy(function() {
+	        this.toggleClass('btn-email-alert');
+	    }, this), 500);
+	};
+	
+	$.fn.blinkClosure = function() {
+	    var jQueryMonad = this, toggleClass = this.toggleClass;
+	    setInterval(function() {
+	        toggleClass.apply(jQueryMonad, ['btn-email-alert']);
+	    }, 500);
+	};
 });
 
 function setBtnEmail(btn, flag) {
@@ -78,6 +91,7 @@ function setBtnEmail(btn, flag) {
 	if (flag != 0) {
 		//btn.tooltip("show");
 		btn.addClass("btn-email-alert");
+		btn.blink();
 	} else {
 		//btn.tooltip("destroy");
 		btn.removeClass("btn-email-alert");
@@ -87,7 +101,7 @@ function setBtnEmail(btn, flag) {
 function setNotification(parent, appointment) {
 	
 	parent.removeClass("disabled");
-	parent.addClass("email-notification");
+	parent.addClass("email-notification");	
 	appointment.addClass("dropdown-menu");
 	appointment.addClass("email-notification");
 }
