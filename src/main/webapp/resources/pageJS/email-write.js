@@ -34,12 +34,34 @@ function sendEmail(receiver, cc, subject, content){
 			"subject": subject,
 			"content": content
 		},
+		beforeSend: function(){
+			//alert("sending");
+			$("#emali-sending").modal("show");
+		},
 		success: function(data) {
-			alert("send email success...");
-			window.location.replace(contextPath + "/email/write");
+			if (data == "success") {
+				window.location.replace(contextPath + "/email/write");
+			} else {
+				//setNotify("Success", "Send email success.", "ok", "success");
+				setNotify("Fail", "Send email fail.<br>please check your email before send.", "remove", "danger");
+			}
+		},
+		complete: function(){
+			//alert("send success")
+			$("#emali-sending").modal("hide");
 		},
 		error: function(){
-			alert("send error");
+			setNotify("Fail", "Send email fail.<br>please check your email before send.", "remove", "danger");
 		}
+	});
+}
+
+function setNotify(title, text, icon, type) {
+	new PNotify({
+	    title: title,
+	    text: text,
+	    icon: 'glyphicon glyphicon-' + icon,
+	    type: type,
+	    styling: 'bootstrap3'
 	});
 }
