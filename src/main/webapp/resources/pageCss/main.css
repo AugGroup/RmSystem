@@ -248,6 +248,9 @@ ul.pagination li.next>a{
  color: #747474;
 }  
 
+.text {
+  margin-bottom: 40px 
+}
 
 /* -------- for report -------- */
 .report_search {

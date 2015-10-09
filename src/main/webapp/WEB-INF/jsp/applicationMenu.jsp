@@ -67,3 +67,4 @@ table.dataTable tr.even {
 		</div>
 	</div>
 </div>
+
