@@ -51,6 +51,19 @@
 		</div>
 	</div>
 </div>
+
+
+<!-- Sending modal -->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" style="margin-top: 20%;" id="emali-sending">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+    	<div class="text-center" style="padding: 10px;">
+	    	<p>Sending...</p>
+	    	<img src="${ pageContext.request.contextPath }/static/resources/mail-attachment/ajax-loader.gif" />
+	    </div>
+    </div>
+  </div>
+</div>
 <script type="text/javascript">
 	var contextPath = "${pageContext.request.contextPath}";
 	var languageNow = "${pageContext.response.locale}";

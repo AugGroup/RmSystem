@@ -12,6 +12,10 @@ $(function(){
 		  getTemplate($(this).val());
 	});
 	
+	$("#test").on("click", function(){
+		$("#email-sending").modal("show");
+	});
+	
 	$("#send").on("click", function(){
 //		sendEmail($("#applicant option:selected").val(), $("#mailTemplate option:selected").val(), $("#cc").val(), $("#subject").val());
 		var appointmentId = $("#receiver").data("id");
@@ -29,7 +33,6 @@ $(function(){
 function sendEmail(appointmentId, cc, subject, content){
 	
 	//alert(receiver + " " + cc + " " + subject + " " + content);
-	
 	$.ajax({
 		url: contextPath + "/email/send/appointment",
 		type: "POST",
@@ -39,11 +42,21 @@ function sendEmail(appointmentId, cc, subject, content){
 			"subject": subject,
 			"content": content
 		},
+		beforeSend: function(){
+			//alert("sending");
+			$("#emali-sending").modal("show");
+		},
 		success: function(data) {
-//			alert("send email success...");
-			$("#email-appointment-form").trigger("reset");
-			setNotify("Success", "Send email success.", "ok", "success");
-			//window.location.replace(contextPath + "/email/write");
+			if (data == "success") {
+				window.location.replace(contextPath + "/email/write");
+			} else {
+				//setNotify("Success", "Send email success.", "ok", "success");
+				setNotify("Fail", "Send email fail.<br>please check your email before send.", "remove", "danger");
+			}
+		},
+		complete: function(){
+			//alert("send success")
+			$("#emali-sending").modal("hide");
 		},
 		error: function(){
 			setNotify("Fail", "Send email fail.<br>please check your email before send.", "remove", "danger");
