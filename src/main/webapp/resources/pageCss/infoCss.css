@@ -10,7 +10,7 @@
     text-shadow: 2px 2px #EEBA10;
     height: 30px;
     margin-top: 10px;
-    margin-left: 5px;
+    /* margin-left: 5px; */
     margin-right: 5px;
     margin-bottom : 15px;
 }
@@ -22,7 +22,7 @@
     text-shadow: 2px 2px #EEBA10;
     height: 30px;
     margin-top: 10px;
-    margin-left: 5px;
+   /*  margin-left: 5px; */
     margin-right: 5px;
 }
 #official{
@@ -33,12 +33,12 @@
     text-shadow: 2px 2px #EEBA10;
     height: 30px;
     margin-top: 10px;
-    margin-left: 5px;
+   /*  margin-left: 5px; */
     margin-right: 5px;	
 }
 #info{
 	background: #E0DFDD;
-	
+	padding: 5px;
 }
 #applicantStatusStyle{
 	width:296px;

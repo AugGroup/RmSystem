@@ -17,9 +17,8 @@
 			<c:set var="actionName">saveInformations</c:set>
 		</c:otherwise>
 	</c:choose>
-<div class="row">
-<div class="col-md-1"></div>
-<div class="col-sm-12 col-md-10" id="info">
+<div class="row" style="padding-right: 77px; padding-left: 80px;">
+<div class="col-sm-12 col-md-12" id="info">
 <f:form id="informationApplicant" name="informationApplicant" action="${pageContext.request.contextPath}/${actionName}"
 		modelAttribute="applicant" method="post" enctype="multipart/form-data" class="form-inline">
 		<f:hidden path="id" />
@@ -51,10 +50,10 @@
 			
 			<div class="row">	
 				<div class="col-sm-12">
-					<span class="btn btn-warning btn-file" class="glyphicon glyphicon-picture"> 
+					<button class="btn btn-warning btn-file" class="glyphicon glyphicon-picture"> 
 						<span class="glyphicon glyphicon-picture"></span> Add Photo 
 						<input id="imageMultipartFile" name="imageMultipartFile" type="file" accept="image/*" class="file"/>
-					</span>
+					</button>
 					<f:hidden path="image" />
 				</div>
 			</div>
