@@ -139,8 +139,8 @@ $(document).ready(function() {
 				}
 			}
 			
-		}); 
-		//};
+ 		}); 
+		}
 	}
 	
 	//Update 

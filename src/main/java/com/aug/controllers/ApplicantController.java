@@ -602,20 +602,14 @@ public class ApplicantController implements Serializable {
 		model.addAttribute("id",id);
 		
 		String result = "fail";
-		Applicant applicant = applicantService.findById(id);
-		
 		
 		MasSpecialty masSpecialty = ability.getMasspecialty();
 		
 		if (abilityService.checkSpecialty(id,masSpecialty.getId())) {
-				/*System.out.println("ID = " + id);
-				System.out.println("ID SPECIAL = " + masSpecialty.getId());
-				System.out.println("Boolean = " + abilityService.checkSpecialty(id,masSpecialty.getId()));*/
 				abilityService.create(ability);
 				System.out.println("can save");
 				result = "success";
 		} else {
-			//ab = null;
 			System.out.println("Not Save!!");
 		}
 		
@@ -631,14 +625,16 @@ public class ApplicantController implements Serializable {
 		model.addAttribute("id",id);
 
 		String result = "fail";
-		Boolean chkName = languageService.checkLanguageName(id, language.getNameLanguage());
-		if(languageService.checkLanguageName(id, language.getNameLanguage()).equals(null)){
+//		Boolean chkName = languageService.checkLanguageName(id, language.getNameLanguage());
+		if(languageService.checkLanguageName(id, language.getNameLanguage())){
 			languageService.create(language);
 			//Language lang = languageService.find(id);
-		result = "success";
+			result = "success";
 		} else {
 			System.out.println("Not Save!!");
 		}
+		
+		System.out.println("final " + result);
 //		Hibernate.initialize(lang.getApplicant().getTechnology());
 //		Hibernate.initialize(lang.getApplicant().getJoblevel());
 //		
