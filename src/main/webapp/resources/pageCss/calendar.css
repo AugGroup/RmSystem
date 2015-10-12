@@ -98,10 +98,14 @@ div.popover > h3.popover-title.sent{
 
 #mailStatusPropSm{
 	background-color: #E0DFDD;
+	width:100%;
+	margin-left : 25px;
     margin-top: 15px;
     margin-bottom: 15px;
     padding-top: 10px;
     padding-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 #mailStatusPropMd{
@@ -122,11 +126,20 @@ div.popover > h3.popover-title.sent{
 	background-color: #efefef;
 }
 
-#trackingStatusPanel{
+#trackingStatusPanelMd{
 	background-color: #E0DFDD;
 	width : 270px;
 	margin-top: 15px;
 	margin-left: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#trackingStatusPanelSm{
+	background-color: #E0DFDD;
+	width : 100%;
+	margin-left: 25px;
+	margin-bottom : 15px;
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -143,6 +156,10 @@ span.label-mailsent{
 	background-color: #91E650;
 }
 
-#trackingStatusPanel a{
+#trackingStatusPanelSm a{
+    text-decoration: none;
+}
+
+#trackingStatusPanelMd a{
     text-decoration: none;
 }

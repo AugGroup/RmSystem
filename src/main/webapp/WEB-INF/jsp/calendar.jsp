@@ -5,42 +5,13 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/resources/pageCss/calendar.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/resources/datetime_picker/bootstrap-datetimepicker.min.css" />
 
-<style type="text/css">
-
-
-</style>
 
 <div id="calendar-container" class="container-fluid">
 	<div class="row">
-		<div class="col-xs-offset-6 col-xs-6 col-sm-offset-6 col-sm-6 visible-xs visible-sm">
-			<div id="mailStatusPropSm">
-				<div class="text-center"><h4>Email status</h4></div>
-				<div id="noEmailSending" class="media">
-					<div class="media-left">
-						<span class="label label-danger media-object">Appointment</span>
-					</div>
-					<div class="media-body">
-						<h6 class="media-heading">No E-mail sending</h6>
-					</div>
-				</div>
-				<div id="NoEmailUpdating" class="media">
-					<div class="media-left">
-						<span class="label label-warning media-object">Appointment</span>
-					</div>
-					<div class="media-body">
-						<h6 class="media-heading">No E-mail Updating</h6>
-					</div>
-				</div>
-				<div id="EmailSent" class="media">
-					<div class="media-left">
-						<span class="label label-success media-object">Appointment</span>
-					</div>
-					<div class="media-body">
-						<h6 class="media-heading">Email sent</h6>
-					</div>
-				</div>
-			</div>
-		</div>
+		
+		
+		
+		
 		<div id="calendarDiv" class="col-xs-11 col-sm-11 col-md-9 col-lg-9">
 			<div id='calendar'></div>
 		</div>
@@ -48,54 +19,29 @@
 			<div class="row"><div class="col-md-12">
 			<div id="mailStatusPropMd">
 				<div class="text-center"><h3>Email status</h3></div>
-				
-				<!-- <div id="noEmailSending" class="media">
-					<div class="media-left">
-						<h4><span class="label label-danger media-object">Appointment</span></h4>
-					</div>
-					<div class="media-body">
-						<h4 class="media-heading"><span class="label label-danger media-object">No E-mail Sending</span></h4>
-					</div>
-				</div>
-				<div id="NoEmailUpdating" class="media">
-					<div class="media-left">
-						<span class="label label-warning media-object">Appointment</span>
-					</div>
-					<div class="media-body">
-						<h4 class="media-heading">No E-mail Updating</h4>
-					</div>
-				</div>
-				<div id="EmailSent" class="media">
-					<div class="media-left">
-						<span class="label label-success media-object">Appointment</span>
-					</div>
-					<div class="media-body">
-						<h4 class="media-heading">Email Sent</h4>
-					</div>
-				</div> -->
-				
 				<ul class="list-group" >
-				  <li id="noSendEmail" class="list-group-item" role="button">
+				  <li class="list-group-item noSendEmail" role="button">
 				  </li>
-				  <li id="noEmailUpdate" class="list-group-item" role="button">
+				  <li class="list-group-item noEmailUpdate" role="button">
 				  </li>
-				  <li id="emailSent" class="list-group-item" role="button">
+				  <li class="list-group-item emailSent" role="button">
 				  </li>
 				</ul>
 				</div>
 			</div></div>
-			<div class="row"><div id="trackingStatusPanel" class="col-md-12">
+			<div class="row">
+				<div id="trackingStatusPanelMd" class="col-md-12">
 				<div class="text-center"><h3>Applicant Status</h3></div>
 				<div class="panel-group" id="applicantStatusList" role="tablist" aria-multiselectable="true">
 				  <div class="panel panel-default">
 				    <div class="panel-heading" role="tab" id="pendingTestHead">
 				      <h4 class="panel-title">
-				        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#trackingStatusPanel" href="#pendingTestList" aria-expanded="false" aria-controls="pendingTestList">
+				        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#trackingStatusPanelMd" href="#pendingTestListMd" aria-expanded="false" aria-controls="pendingTestListMd">
 				          Pending Test/Interview
 				        </a>
 				      </h4>
 				    </div>
-				    <div id="pendingTestList" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+				    <div id="pendingTestListMd" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 				      <div  class="list-group">
 				      	<!-- jQueryRender -->
 				      </div>
@@ -104,21 +50,74 @@
 				  <div class="panel panel-default">
 				    <div class="panel-heading" role="tab" id="pendingApproveHead">
 				      <h4 class="panel-title">
-				        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#trackingStatusPanel" href="#pendingApproveList" aria-expanded="false" aria-controls="pendingApproveList">
+				        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#trackingStatusPanelMd" href="#pendingApproveListMd" aria-expanded="false" aria-controls="pendingApproveListMd">
 				          Pending Approve
 				        </a>
 				      </h4>
 				    </div>
-				    <div id="pendingApproveList" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+				    <div id="pendingApproveListMd" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
 				      <div  class="list-group">
 				      	<!-- jQueryRender -->
 				      </div>
 				    </div>
 				  </div>
 				</div>
-			</div></div>
+				</div>
+			</div>
 		</div>
-	</div>
+		
+		<div class="col-xs-12 col-sm-12 visible-xs visible-sm">
+			<div id="mailStatusPropSm">
+				<div class="text-center"><h3>Email status</h3></div>
+				<ul class="list-group" >
+				  <li class="list-group-item noSendEmail" role="button">
+				  </li>
+				  <li class="list-group-item noEmailUpdate" role="button">
+				  </li>
+				  <li class="list-group-item emailSent" role="button">
+				  </li>
+				</ul>
+				</div>
+			</div>
+		</div>
+		<div id="trackingStatusPanelSm" class="col-xs-12 col-sm-12 visible-xs visible-sm ">
+		<div class="text-center"><h3>Applicant Status</h3></div>
+		<div class="panel-group" id="applicantStatusList" role="tablist" aria-multiselectable="true">
+		  <div class="panel panel-default">
+		    <div class="panel-heading" role="tab" id="pendingTestHead">
+		      <h4 class="panel-title">
+		        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#trackingStatusPanelSm" href="#pendingTestListSm" aria-expanded="false" aria-controls="pendingTestListSm">
+		          Pending Test/Interview
+		        </a>
+		      </h4>
+		    </div>
+		    <div id="pendingTestListSm" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+		      <div  class="list-group">
+		      	<!-- jQueryRender -->
+		      </div>
+		    </div>
+		  </div>
+		  <div class="panel panel-default">
+		    <div class="panel-heading" role="tab" id="pendingApproveHead">
+		      <h4 class="panel-title">
+		        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#trackingStatusPanelSm" href="#pendingApproveListSm" aria-expanded="false" aria-controls="pendingApproveListSm">
+		          Pending Approve
+		        </a>
+		      </h4>
+		    </div>
+		    <div id="pendingApproveListSm" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+		      <div  class="list-group">
+		      	<!-- jQueryRender -->
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		</div>
+		
+	</div><!-- end row -->
+	
+	
+	
 	
 	<!-- Insert Modal -->
 	<div class="modal fade" id="insModal">
@@ -360,7 +359,8 @@
 	        <h4 class="modal-title" id="modalHeader_appointmentList"></h4>
 	      </div>
 	      <div id="modalBody_appointmentList" class="modal-body">
-	      		<table id="appointmentListTable" class="display">
+	      	<div class="table-responsive">
+	      		<table id="appointmentListTable" class="display" style="width:50%; height:auto;">
 	      			<thead>
 	      				<tr>
 	      					<th>ID</th>
@@ -372,6 +372,7 @@
 	      				</tr>
 	      			</thead>
 	      		</table>
+	      	</div>
 	      </div>
 	    </div>
 	  </div>

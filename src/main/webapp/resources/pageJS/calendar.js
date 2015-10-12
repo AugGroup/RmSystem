@@ -158,19 +158,23 @@ function setApplicant(trackingStatus){//set Applicant
 	
 
 function setApplicantNameList(){//set Applicant
-	var $penndingTestNameList = $("#pendingTestList div.list-group");
-	var $penndingApproveNameList = $("#pendingApproveList div.list-group");
+	var $penndingTestNameListSm = $("#pendingTestListSm div.list-group");
+	var $penndingApproveNameListSm = $("#pendingApproveListSm div.list-group");
+	var $penndingTestNameListMd = $("#pendingTestListMd div.list-group");
+	var $penndingApproveNameListMd = $("#pendingApproveListMd div.list-group");
 	$.ajax({
 		url : "calendar/findByTrackingStatus/test",
 		type : "GET",
 		dataType : "json",
 		success : function(data){
-			$penndingTestNameList.empty();
+			$penndingTestNameListSm.empty();
+			$penndingTestNameListMd.empty();
 			$.each(data, function(i, item) {
 			    var getName = data[i].firstNameEN +" "+ data[i].lastNameEN +" ( " + data[i].technologyStr + " " + data[i].joblevelStr + "  )";
 			    var $div = "<div id='"+data[i].id+"' role='button' "+
 			    			"class='list-group-item applicant-list-item' >"+getName+"</div>";
-			    $penndingTestNameList.append($div);
+			    $penndingTestNameListSm.append($div);
+			    $penndingTestNameListMd.append($div);
 			})
 		},
 		error : function(error){
@@ -184,12 +188,14 @@ function setApplicantNameList(){//set Applicant
 		type : "GET",
 		dataType : "json",
 		success : function(data){
-			$penndingApproveNameList.empty();
+			$penndingApproveNameListSm.empty();
+			$penndingApproveNameListMd.empty();
 			$.each(data, function(i, item) {
 			    var getName = data[i].firstNameEN +" "+ data[i].lastNameEN +" ( " + data[i].technologyStr + " " + data[i].joblevelStr + "  )";
 			    var $div = "<div id='"+data[i].id+"' role='button' "+
 			    			"class='list-group-item applicant-list-item' >"+getName+"</div>";
-			    $penndingApproveNameList.append($div);
+			    $penndingApproveNameListSm.append($div);
+			    $penndingApproveNameListMd.append($div);
 			})
 		},
 		error : function(error){
@@ -228,7 +234,7 @@ function findNoEmailSending(){
 		contentType : "application/json",
 		dataType : "json",
 		success : function(data){
-			$("#noSendEmail").html("<span class='label label-nosend'>   </span> <span class='badge'>"+data+"</span> &nbsp;&nbsp;No E-mail Sending");
+			$(".noSendEmail").html("<span class='label label-nosend'>   </span> <span class='badge'>"+data+"</span> &nbsp;&nbsp;No E-mail Sending");
 		},
 		error : function(){
 			alert("Load appointment error")
@@ -243,7 +249,7 @@ function findNoEmailUpdate(){
 		contentType : "application/json",
 		dataType : "json",
 		success : function(data){
-			$("#noEmailUpdate").html("<span class='label label-noupdate'>   </span> <span class='badge'>"+data+"</span> &nbsp;&nbsp;No Update E-mail");
+			$(".noEmailUpdate").html("<span class='label label-noupdate'>   </span> <span class='badge'>"+data+"</span> &nbsp;&nbsp;No Update E-mail");
 		},
 		error : function(){
 			alert("Load appointment error")
@@ -258,7 +264,7 @@ function findEmailSent(){
 		contentType : "application/json",
 		dataType : "json",
 		success : function(data){
-			$("#emailSent").html("<span class='label label-mailsent'>   </span> <span class='badge'>"+data+"</span> &nbsp;&nbsp;Email Sent");
+			$(".emailSent").html("<span class='label label-mailsent'>   </span> <span class='badge'>"+data+"</span> &nbsp;&nbsp;Email Sent");
 		},
 		error : function(){
 			alert("Load appointment error")
