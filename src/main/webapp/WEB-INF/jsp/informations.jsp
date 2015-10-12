@@ -7,6 +7,11 @@
 <jsp:include page="infoSpringMessage.jsp" />
 
 <style>
+
+.row {
+	margin-right: 0;
+	margin-left: 0;
+}
 #con-body{
 	margin-top: 30px;
 }
