@@ -21,7 +21,9 @@
 		<intercept-url pattern="/login" access="permitAll" />
 		<intercept-url pattern="/logout" access="permitAll" />
 		<intercept-url pattern="/accessdenied" access="permitAll" />
-		<intercept-url pattern="/applicant"
+<!-- 		<intercept-url pattern="/applicant" -->
+<!-- 			access="hasAnyRole('ROLE_ADMIN','ROLE_STAFF','ROLE_MANAGER')" /> -->
+		<intercept-url pattern="/index"
 			access="hasAnyRole('ROLE_ADMIN','ROLE_STAFF','ROLE_MANAGER')" />
 		<intercept-url pattern="/**" access="isAuthenticated()" />
 		<logout logout-success-url="/logout" delete-cookies="JSESSIONID"
