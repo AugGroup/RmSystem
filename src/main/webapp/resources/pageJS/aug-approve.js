@@ -60,11 +60,7 @@ $(document).ready(function () {
 				        	   		return '<button id="btn_approve" class="btn btn-primary" data-id="' + data.id + '" data-toggle="modal" data-target="#approveModal"><span class="glyphicon glyphicon-edit"></span> '+approve_tx+' </button>';				        
 				        	   
 				        	}}
-				           ],
-		   				   initComplete :function(){
-		   				    $("#requestTable_previous").children().text("<"); 
-		   				    $("#requestTable_next").children().text(">");
-		   				   }
+				           ]
 				});
     	}
 		

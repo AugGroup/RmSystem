@@ -63,10 +63,6 @@ $(document).ready(function(){
 						      return '<a href="#deleteModal" id="btn_delete" data-id="' + data.id + '" data-toggle="modal" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove-sign"></span> '+delete_text+'</b>'
 				           }}
 				   ],
-				   initComplete :function(){
-				    $("#dataTable_previous").children().text("<"); 
-				    $("#dataTable_next").children().text(">");
-				   }
 				 });
 			}
 		});

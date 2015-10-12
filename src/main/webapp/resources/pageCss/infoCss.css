@@ -39,8 +39,10 @@
 	margin-right: 5px;
 }
 
-#info {
-	background: #E0DFDD;
+
+#info{
+	background: #EBEBEB;
+	padding: 5px;
 }
 
 #applicantStatusStyle {

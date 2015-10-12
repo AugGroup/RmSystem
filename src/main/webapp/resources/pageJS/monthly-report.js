@@ -45,10 +45,6 @@ $(document).ready(function () {
 				       {"data": "degree"},
 				       {"data": "gpa"},
 				       ],
-				       initComplete :function(){
-		   				    $("#reportTable_previous").children().text("<"); 
-		   				    $("#reportTable_next").children().text(">");
-		   				   }
 			});
 		}
 		});

@@ -98,7 +98,7 @@
 <script type="text/javascript" src="${ pageContext.request.contextPath }/static/resources/pageJS/email-main.js"></script>
 
 
-<body>
+<body background="${ pageContext.request.contextPath }/static/decorators/BG_W.jpg">
 
 <jsp:include page="header.jsp" />
 <div class="body" >
