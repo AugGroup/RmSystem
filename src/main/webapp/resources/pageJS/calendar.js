@@ -79,8 +79,8 @@ var $validform2 = $("#formEdit").validate({
 });
 
 function updateAppointmentDate(eventToUpdate, revertParam){
-	var updatedata = {id : eventToUpdate.id, start : eventToUpdate.start.format("YYYY-MM-DD HH:mm:ss"), 
-			end : eventToUpdate.end.format("YYYY-MM-DD HH:mm:ss"), mailStatus : eventToUpdate.mailStatus};
+	var updatedata = {id : eventToUpdate.id, start : eventToUpdate.start.tz("Asia/Bangkok").format("YYYY-MM-DD HH:mm:ss"), 
+			end : eventToUpdate.end.tz("Asia/Bangkok").format("YYYY-MM-DD HH:mm:ss"), mailStatus : eventToUpdate.mailStatus};
 	alertify.set({ 	buttonReverse: true,
 					labels: {
 					    ok     : yes,
@@ -399,7 +399,7 @@ function renderCalendar(){
 			if(event.mailStatus==0){
 				colorClass = "nosend";
 			}else if(event.mailStatus==1){
-				colorClass = "send";
+				colorClass = "sent";
 			}else if(event.mailStatus==2){
 				colorClass = "noupdate";
 			}
@@ -481,9 +481,10 @@ $( function(){
 		});
 		
 		$('#appointmentListTable').on( 'click', 'tbody tr', function () {
-			//alert($(this).children().eq(0).text());
 			$appointmentListModal.modal('hide');
+			$calendar.fullCalendar( 'changeView', 'agendaDay' )
 			$calendar.fullCalendar( 'gotoDate', $(this).children().eq(3).text() );
+			//$calendar.fullCalendar( 'select', $(this).children().eq(3).text() )
 		})
 		
 		$('#applicantFilter').on('change',function () {
@@ -533,8 +534,8 @@ $( function(){
 			var appointment = { 
 					topic : $("#appointmentTopic").val(),
 					detail : $("#appoint_detail").val(),
-					start: insStart.format("YYYY-MM-DD HH:mm:ss"),
-					end : insEnd.format("YYYY-MM-DD HH:mm:ss"),
+					start: insStart.tz("Asia/Bangkok").format("YYYY-MM-DD HH:mm:ss"),
+					end : insEnd.tz("Asia/Bangkok").format("YYYY-MM-DD HH:mm:ss"),
 					mailStatus : 0
 					//applicant : { id : 1/*$("#applicantName option:selected").val()*/}
 					/* login : login_id who insert this appointment will insert in controller :) */
