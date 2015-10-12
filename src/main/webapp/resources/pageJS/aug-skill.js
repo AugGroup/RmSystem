@@ -76,7 +76,7 @@ $(document).ready(function() {
 						//alert("can't save");
 						
 					} else {
-						$("#special-error").empty().append("duplicate special");
+						$("#special-error").empty().append(valDuplicate);
 					}
 				}
 			});

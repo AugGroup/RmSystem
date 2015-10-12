@@ -71,7 +71,7 @@ var id = ${id};
 						<div class="form-group">
  							<label for="relationFamily"><spring:message code="family.text.relation"/></label><br>
  							<select class="form-control" id="relationFamily" name="relationFamily">
-								<option value="-1" label="---Select Address Type---" />
+								<option value="-1" label="<spring:message code="family.text.select"/>" />
 								<c:forEach var="obj" items="${relations}">
 									<option value="${obj.id}">${obj.relationType}</option>
 								</c:forEach>
@@ -159,9 +159,9 @@ var id = ${id};
 					<th><spring:message code="family.data.relation" /></th>
 					<th><spring:message code="family.data.occupation" /></th>
 					<th><spring:message code="family.data.address" /></th>
-					<th>mobile</th>
-					<th>age</th>
-					<th>gender</th>
+					<th><spring:message code="info.tel"/></th>
+					<th><spring:message code="info.age"/></th>
+					<th><spring:message code="info.sex"/></th>
 					<th><spring:message code="family.data.position" /></th>
 					<th><spring:message code="main.edit.info" /></th>
 					<th><spring:message code="main.delete" /></th>

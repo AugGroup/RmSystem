@@ -106,11 +106,11 @@
 				<f:hidden path="createdTimeStamp" id="createdTimeStamp" />
 				<f:hidden path="createdBy" id="createdBy" />
 				<f:hidden path="masLocation"/>
-		
+
 				<div class="form-group"></div>
 		
 <!-- ********************	information	  ******************** -->
-				<h3 class="col-sm-12" id="infomation"> INFORMATION</h3>
+				<h3 class="col-sm-12" id="infomation"> <spring:message code="tab.info"/></h3>
 				<div class="row">
 					<div class="col-sm-3 text-center">
 						<div class="row">
@@ -190,7 +190,7 @@
 <!-- ********************	end information	  ******************** -->
 	
 <!-- ********************	GENERAL	  ******************** -->
-	<h3 class="col-sm-12" id="general" >GENERAL</h3>
+	<h3 class="col-sm-12" id="general" ><spring:message code="info.general"/></h3>
 	
 	<!-- row 1 -->
 	<div class="row">
@@ -740,7 +740,7 @@
 		</div>
 	</div>
 	
-	<h3 class="col-sm-12" id="official">OFFICIAL</h3>
+	<h3 class="col-sm-12" id="official"><spring:message code="info.official"/></h3>
 <!-- 			<div class="form-group"> -->
 		<div class="row">
 			<div class="col-sm-4">
@@ -769,7 +769,7 @@
 					<label for="jobLevel"><spring:message code="main.position1"/></label><br>
 					 <div id="jobLevel">
 						 <f:select path="joblevel.id" id="jobLevel" name="jobLevel" class="form-control">
-							<f:option value="-1" label="please select data"/>
+							<f:option value="-1" label="---please select job---"/>
 							<c:forEach var="jobLevelList" items="${jobLevels}">
 								<f:option value="${jobLevelList.id}">${jobLevelList.name}</f:option>
 							</c:forEach> 
@@ -783,7 +783,7 @@
 					<label for="technology"><spring:message code="main.position2"/> </label><br>
 					 <div id="technology">
 						 <f:select path="technology.id" id="technology" name="technology" class="form-control">
-							<f:option value="-1" label="please select data"/>
+							<f:option value="-1" label="---please select tech---"/>
 							<c:forEach var="technologyList" items="${technologies}">
 								<f:option value="${technologyList.id}">${technologyList.name}</f:option>
 							</c:forEach> 

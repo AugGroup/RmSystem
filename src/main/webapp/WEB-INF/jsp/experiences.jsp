@@ -52,7 +52,7 @@ var id = ${id};
 							</div>
 							
 							<div class="form-group" style="width:210px">
-								<label for="applyDateStr">From-to date </label>
+								<label for="applyDateStr"><spring:message code="exp.date"/> </label>
 								<input type="text" name="applyDateStr" id="applyDateStr" class="form-control" style="width:210px" placeholder="<spring:message code="report.text.month"/>"/>
             				</div>
 
@@ -83,7 +83,7 @@ var id = ${id};
 										code="exp.supervisor" /> </label> <input type="text"
 									class="form-control" id="reference"
 									name="reference"
-									placeholder="reference">
+									placeholder="<spring:message  code="exp.text.supervisor"/>">
 							</div>
 
 							<div class="form-group">
@@ -98,7 +98,7 @@ var id = ${id};
 										code="exp.desc" /> </label>
 								<textarea class="form-control" rows="5"
 									id="responsibility" name="responsibility"
-									placeholder="responsibility"></textarea>
+									placeholder="<spring:message code="exp.text.desc"/>"></textarea>
 							</div>
 
 							<div class="form-group">
@@ -167,14 +167,14 @@ var id = ${id};
 			<caption title="" class="tableHeader"><spring:message code="exp.name"/></caption>
 			<thead>
 				<tr>
-					<th>position</th>
-					<th><spring:message code="exp.data.emp" /></th>
-					<th>address</th>
-					<th>typeOfBusiness</th>
-					<th>reference</th>
-					<th>salary</th>
-					<th>DATE TO</th>
-					<th>DATE FROM</th>
+					<th><spring:message code="exp.data.position"/></th>
+					<th><spring:message code="exp.data.emp"/></th>
+					<th><spring:message code="tab.address"/></th>
+					<th><spring:message code="exp.business"/></th>
+					<th><spring:message code="ref.name"/></th>
+					<th><spring:message code="exp.data.salary"/></th>
+					<th><spring:message code="exp.date.to"/></th>
+					<th><spring:message code="exp.date.from"/></th>
 					<th><spring:message code="main.edit.info" /></th>
 					<th><spring:message code="main.delete" /></th>
 				</tr>

@@ -45,7 +45,7 @@ var id = ${id};
  						<div class="form-group">
  							<label for="addressType"><spring:message code="main.position1"/></label><br>
  							<select class="form-control" id="addressType" name="addressType">
-								<option value="-1" label="---Select Address Type---" />
+								<option value="-1" label="<spring:message code="address.text.select"/>" />
 								<c:forEach var="obj" items="${addresses}">
 									<option value="${obj.id}">${obj.name}</option>
 								</c:forEach>
@@ -83,7 +83,7 @@ var id = ${id};
 						<div class="form-group">
 							<label for="province"><spring:message code="address.province" /> </label>
 	 					 	<select  class="form-control" id="province" name="province">
-								<option value="-1" label="---Select Province---" />
+								<option value="-1" label="<spring:message code="address.text.select.proince"/>" />
 								<c:forEach var="obj" items="${ provinces }">
 									<option value="${obj.id }">${ obj.name}</option>
 								</c:forEach>

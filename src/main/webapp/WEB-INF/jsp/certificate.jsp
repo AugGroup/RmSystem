@@ -232,30 +232,28 @@ var id = ${id};
 		</div>
 	</div>
 	<br> <br>
-	
-			<div class="table-responsive" id="table">
-				<table id="certificateTable" class="display" cellspacing="0" width="100%">
-					<caption title="" class="tableHeader"><spring:message code="cer.name"/></caption>
-					<thead>
-						<tr>
-							<th>NAME</th>
-							<th>CERTIFICATION_FORM</th>
-							<th>DESCRIPTION</th>
-							<th>YEAR</th>
-							<th><spring:message code="main.edit.info" /></th>
-							<th><spring:message code="main.delete" /></th>
-		
-						</tr>
-					</thead>
-		
-		
-					<tbody></tbody>
-				</table>
-				<div align="right">
-					<button class="btn btn-warning" id="buttonAdd" data-toggle="modal" data-target="#certificateModal"><span class="glyphicon glyphicon-plus"></span> <spring:message code="cer.name.add"/></button>
-					<button class="btn btn-default" type="button" id="buttonBack" name="buttonBack" onclick="window.location='${pageContext.request.contextPath}/educations/${id}'"><span class="glyphicon glyphicon-step-backward"></span> Back </button>
-					<button class="btn btn-default" type="button" id="buttonNext" name="buttonNext" onclick="window.location='${pageContext.request.contextPath}/skills/${id}'"><span class="glyphicon glyphicon-step-forward"></span> Next </button>
-				</div>
-			</div>
-	
+	<div class="container table-responsive" id="table">
+		<table id="certificateTable" class="display" cellspacing="0" width="100%">
+			<caption title="" class="tableHeader"><spring:message code="cer.name"/></caption>
+			<thead>
+				<tr>
+					<th><spring:message code="cer.name"/></th>
+					<th><spring:message code="cer.form"/></th>
+					<th><spring:message code="cer.desc"/></th>
+					<th><spring:message code="cer.year"/></th>
+					<th><spring:message code="main.edit.info" /></th>
+					<th><spring:message code="main.delete" /></th>
+
+				</tr>
+			</thead>
+
+
+			<tbody></tbody>
+		</table>
+		<div align="right">
+			<button class="btn btn-warning" id="buttonAdd" data-toggle="modal" data-target="#certificateModal"><span class="glyphicon glyphicon-plus"></span> <spring:message code="cer.name.add"/></button>
+			<button class="btn btn-default" type="button" id="buttonBack" name="buttonBack" onclick="window.location='${pageContext.request.contextPath}/educations/${id}'"><span class="glyphicon glyphicon-step-backward"></span> Back </button>
+			<button class="btn btn-default" type="button" id="buttonNext" name="buttonNext" onclick="window.location='${pageContext.request.contextPath}/skills/${id}'"><span class="glyphicon glyphicon-step-forward"></span> Next </button>
+		</div>
+	</div>
 </div>

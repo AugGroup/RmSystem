@@ -44,10 +44,10 @@ var id = ${id};
 						<div class='col-sm-6' align="left">
 								
 									<select id="languages" name="languages" class="form-control ">
-										<option value="" label="---Select languages---"></option>
-										<option value="Thai">Thai</option>
-										<option value="English">English</option>
-										<option value="Other">Other</option>
+										<option value="" label="<spring:message code="languages.text.select"/>"></option>
+										<option value="Thai"><spring:message code="languages.thai"/></option>
+										<option value="English"><spring:message code="languages.eng"/></option>
+										<option value="Other"><spring:message code="languages.other"/></option>
 		
 									</select>
 				

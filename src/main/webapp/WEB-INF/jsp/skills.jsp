@@ -9,6 +9,7 @@
 <script>
 var valSkill = "<spring:message code="valid.skill.skill"/>";
 var valRank = "<spring:message code="valid.skill.rank"/>";
+var valDuplicate = "<spring:message code="valid.duplicate"/>";
 var valEdit = "<spring:message code="main.edit.info"/>";
 var valDelete = "<spring:message code="main.delete"/>";
 var id = ${id};
@@ -34,9 +35,9 @@ var id = ${id};
 							<input type="hidden" id="skillsId">
 						</div>
 						<div class="form-group">
-							<label for="skill">SPECIALTY :</label>
+							<label for="skill"><spring:message code="skill.specialty"/></label>
 							 <select class="form-control" id="masspecialty" name="masspecialties">
-								<option value="" label="---Select Skills---" />
+								<option value="" label="<spring:message code="skill.text.select"/>" />
 								<c:forEach var="masspecialtiesist" items="${masspecialties}">
 									<option value="${masspecialtiesist.id}">${ masspecialtiesist.name}</option>
 								</c:forEach>
@@ -124,8 +125,8 @@ var id = ${id};
 		<caption title="" class="tableHeader"><spring:message code="skill.name"/></caption>
 			<thead>
 				<tr>
-					<th>SPECIALTY</th>
-					<th>RANK</th>
+					<th><spring:message code="skill.specialty"/></th>
+					<th><spring:message code="skill.rank"/></th>
 					<th><spring:message code="main.edit.info" /></th>
 					<th><spring:message code="main.delete" /></th>
 
