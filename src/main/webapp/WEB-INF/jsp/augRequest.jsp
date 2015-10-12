@@ -234,11 +234,11 @@ var delete_tx = "<spring:message code="main.delete"/>";
 						<div class="col-md-6"><p id="tx_requestDate"></p></div>
 					</div>
 					<div class="row">
-						<div class="col-md-4" style="width: 170px;"><spring:message code="request.job" /></div>
+						<div class="col-md-4 col-md-offset-2" style="width: 170px;"><spring:message code="request.job" /></div>
 						<div class="col-md-6"><p id="tx_jobLevel"></p></div>
 					</div>
 					<div class="row">
-						<div class="col-md-4" style="width: 170px;"><spring:message code="request.tech" /></div>
+						<div class="col-md-4 col-md-offset-2" style="width: 170px;"><spring:message code="request.tech" /></div>
 						<div class="col-md-6"><p id="tx_technology"></p></div>
 					</div>
 					<div class="row">
