@@ -118,100 +118,131 @@ $P!{UNIVERSITY} $P!{MAJOR} $P!{TECHNOLOGY} $P!{JOBLEVEL} $P!{DEGREE} $P!{GPA}]]>
 	</background>
 	<title>
 		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="61" y="9" width="432" height="61" backcolor="#FFCC00" uuid="0526c416-9514-432c-bb4a-ebdd975a5e3a"/>
+			</rectangle>
 			<staticText>
-				<reportElement x="173" y="12" width="197" height="40" uuid="fe64e803-aa6e-434b-8020-c93869e4b458"/>
+				<reportElement x="99" y="19" width="345" height="40" uuid="fe64e803-aa6e-434b-8020-c93869e4b458"/>
 				<textElement textAlignment="Center">
-					<font size="24"/>
+					<font size="24" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Report]]></text>
 			</staticText>
 		</band>
 	</title>
-	<pageHeader>
-		<band height="48" splitType="Stretch"/>
-	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch">
+		<band height="72" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="2" width="36" height="20" uuid="5b7c8786-d813-430c-a296-08e7cd5e0369"/>
+				<reportElement x="0" y="40" width="52" height="30" uuid="5b7c8786-d813-430c-a296-08e7cd5e0369"/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[code]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="36" y="0" width="54" height="20" uuid="ee49f9d2-423e-43f7-a80a-92a751793fab"/>
+				<reportElement x="50" y="40" width="74" height="30" uuid="ee49f9d2-423e-43f7-a80a-92a751793fab"/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[applyDate]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="90" y="0" width="57" height="20" uuid="663ec4dd-6774-4e98-9ea6-c97e9060150e"/>
+				<reportElement x="121" y="40" width="100" height="30" uuid="663ec4dd-6774-4e98-9ea6-c97e9060150e"/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[Name]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="147" y="0" width="71" height="20" uuid="121c9c83-0b09-408e-82d5-f01b4330f1d5"/>
+				<reportElement x="221" y="40" width="41" height="30" uuid="121c9c83-0b09-408e-82d5-f01b4330f1d5"/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[joblevelName]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="218" y="2" width="82" height="20" uuid="75013987-b436-4f75-aaac-fdc3e37e894a"/>
+				<reportElement x="262" y="40" width="55" height="30" uuid="75013987-b436-4f75-aaac-fdc3e37e894a"/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[technologyName]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="300" y="0" width="57" height="20" uuid="2c35806a-8148-4b5a-9fb1-8c64dd23779f"/>
+				<reportElement x="317" y="40" width="82" height="30" uuid="2c35806a-8148-4b5a-9fb1-8c64dd23779f"/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[university]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="357" y="0" width="63" height="20" uuid="b73122a3-d203-4b5e-a0de-575e8638014f"/>
+				<reportElement x="399" y="40" width="61" height="30" uuid="b73122a3-d203-4b5e-a0de-575e8638014f"/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[degreeName]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="420" y="2" width="34" height="20" uuid="945cfee1-0a62-4786-9e70-7d875dd9e671"/>
+				<reportElement x="460" y="40" width="57" height="30" uuid="945cfee1-0a62-4786-9e70-7d875dd9e671"/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[major]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="454" y="2" width="100" height="20" uuid="d2cdbcfc-9f63-4f95-b14c-987b2c45656d"/>
+				<reportElement x="516" y="40" width="29" height="30" uuid="d2cdbcfc-9f63-4f95-b14c-987b2c45656d"/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[gpa]]></text>
 			</staticText>
+			<line>
+				<reportElement x="0" y="70" width="555" height="1" uuid="0babba61-318a-48f5-af54-d8d6808b2622"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="44" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="36" height="20" uuid="5436f988-f3c4-47ea-bce4-12b3217a2467"/>
+				<reportElement x="0" y="19" width="52" height="20" uuid="5436f988-f3c4-47ea-bce4-12b3217a2467"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{code}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="36" y="0" width="54" height="20" uuid="ab01a892-1c7e-403a-8d28-b99d0d5ebb1b"/>
+				<reportElement x="50" y="19" width="74" height="20" uuid="ab01a892-1c7e-403a-8d28-b99d0d5ebb1b"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{applyDate}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="90" y="0" width="57" height="20" uuid="f51da805-2838-4cac-8d5a-07aa53dd8f6d"/>
+				<reportElement x="121" y="19" width="100" height="20" uuid="f51da805-2838-4cac-8d5a-07aa53dd8f6d"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$V{name}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="218" y="0" width="82" height="20" uuid="5e5b8071-49e2-4633-bfe3-040384642951"/>
+				<reportElement x="262" y="19" width="55" height="20" uuid="5e5b8071-49e2-4633-bfe3-040384642951"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{technologyName}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="300" y="0" width="57" height="20" uuid="3e936806-11ef-46ee-a151-8ef8ee7f553f"/>
+				<reportElement x="317" y="19" width="80" height="20" uuid="3e936806-11ef-46ee-a151-8ef8ee7f553f"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{university}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="147" y="0" width="71" height="20" uuid="a299f976-cea8-4ed5-a61e-a83842a8ae16"/>
+				<reportElement x="222" y="19" width="40" height="20" uuid="a299f976-cea8-4ed5-a61e-a83842a8ae16"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{joblevelName}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="420" y="0" width="34" height="20" uuid="a557df0b-8e0a-4a17-a1f7-399ac9a3dc85"/>
+				<reportElement x="456" y="19" width="61" height="20" uuid="a557df0b-8e0a-4a17-a1f7-399ac9a3dc85"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{major}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="357" y="0" width="63" height="20" uuid="7e570207-dd58-40b6-aea2-13dbd813e369"/>
+				<reportElement x="396" y="19" width="61" height="20" uuid="7e570207-dd58-40b6-aea2-13dbd813e369"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{degreeName}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="455" y="0" width="100" height="20" uuid="47df7374-223d-474e-a0ca-d17605da4888"/>
+				<reportElement x="516" y="19" width="29" height="20" uuid="47df7374-223d-474e-a0ca-d17605da4888"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{gpa}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement x="1" y="0" width="555" height="1" uuid="799d6ecf-56d2-4719-b4da-12320925b0ed"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch"/>
