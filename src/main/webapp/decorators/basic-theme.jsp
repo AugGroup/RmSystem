@@ -101,10 +101,7 @@
 <body background="${ pageContext.request.contextPath }/static/decorators/BG_W.jpg">
 
 <jsp:include page="header.jsp" />
-<div class="body" >
-	<decorator:body /></div>
-
-
+<div class="body" ><decorator:body /></div>
 <div class="footer">
 		<p class="text-muted credit">&copy; 2011-2015 Augmentis (Thailand) Limited. All rights reserved.</p>
 </div>

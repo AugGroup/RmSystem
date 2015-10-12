@@ -4,10 +4,25 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<jsp:include page="applicationMenu.jsp" />
+
 <jsp:include page="infoSpringMessage.jsp" />
 
 <style>
+#con-body{
+	margin-top: 30px;
+}
+
+#btn-image{
+    margin-bottom: 5px;
+    margin-right: 75px;
+    margin-left: 75px;
+    width: 120px;
+    height: 120px;
+    background-position: center;
+    background-size: cover;
+    -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, .3);
+    display: inline-block;
+}
 
 .btn-information{
 	width: 210px;
@@ -15,7 +30,16 @@
 	margin:10px 25px;
 }
 
-@media ( max-width : 768px) {
+#marriageAddress {
+	width: 677px;
+	height: 30px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	margin-right: 25px;
+	margin-left: 25px;
+}
+
+@media ( max-width : 960px) {
 	.btn-information{
 		width: 100%;
 		margin: 0 0 15px 10px;
@@ -25,11 +49,34 @@
 		width: 100%;
 		margin: 0 0 15px 10px;
 	}
-}		
+}
+
+@media (min-width: 768px) and (max-width: 1200px){
+	*{
+		font-size: 14px;
+	}
+	.form-inline .form-control {
+	    display: inline-block;
+	    width: 100%;
+	    vertical-align: middle;
+	}
+	
+	.btn-information{
+		width: 100%;
+	}	
+	
+	#emergencyName , #emergencyTel ,#militaryServiceNo,#dateToBeDraft{
+		width: 210px
+	}
+	
+	#marriageAddress {
+		width: 100%;
+	}
+}	
 
 </style>
 <!-- tab informations -->
-<div class="container-fluid" >
+<div class="container-fluid" id="con-body">
 <c:choose>
 		<c:when test="${applicant.id ne null}">
 			<c:set var="actionName">infoEdit/${applicant.id}</c:set>
@@ -42,6 +89,8 @@
 	<div class="row">
 		<div class="col-md-1"></div>
 		<div class="col-sm-12 col-md-10" id="info">
+			<div class="row"><jsp:include page="applicationMenu.jsp" /></div>
+		
 			<f:form id="informationApplicant" name="informationApplicant" action="${pageContext.request.contextPath}/${actionName}"
 				modelAttribute="applicant" method="post" enctype="multipart/form-data" class="form-inline">
 				<f:hidden path="id" />
@@ -76,7 +125,7 @@
 						
 						<div class="row">	
 							<div class="col-sm-12">
-								<span class="btn btn-warning btn-file" class="glyphicon glyphicon-picture"> 
+								<span class="btn btn-warning btn-file" class="glyphicon glyphicon-picture" style="margin-bottom: 10px;"> 
 									<span class="glyphicon glyphicon-picture"></span> Add Photo 
 									<input id="imageMultipartFile" name="imageMultipartFile" type="file" accept="image/*" class="file"/>
 								</span>
@@ -751,6 +800,7 @@
 		</div>
 	</div>
 	</f:form>
+	</div>
 </div>
 </div>
-</div>
+
