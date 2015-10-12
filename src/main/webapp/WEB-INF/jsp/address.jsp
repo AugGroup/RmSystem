@@ -18,9 +18,11 @@ var valDelete = "<spring:message code="main.delete"/>";
 var id = ${id};
 </script>
 
-<jsp:include page="applicationMenu.jsp" />
 <div class="container" id="titleHead">
 
+<!-- <div class="row"> -->
+<jsp:include page="applicationMenu.jsp" />
+<!-- </div> -->
 	<div class="modal fade" id="addressModal" role="dialog">
 		<div class="modal-dialog">
 
@@ -141,28 +143,29 @@ var id = ${id};
 	</div>
 
 	<br> <br>
-	<div class="container table-responsive" id="table">
-		<table id="addressTable" class="display" cellspacing="0" width="100%">
-		<caption title="" class="tableHeader"><spring:message code="address.name"/></caption>
-			<thead>
-				<tr>
-					<th><spring:message code="address.data" /></th>
-					<th><spring:message code="address.data.house" /></th>
-					<th><spring:message code="address.data.road" /></th>
-					<th><spring:message code="address.data.district" /></th>
-					<th><spring:message code="address.data.sub.district" /></th>
-					<th><spring:message code="address.data.zipcode" /></th>
-					<th><spring:message code="address.data.provice" /></th>
-					<th><spring:message code="main.edit.info" /></th>
-					<th><spring:message code="main.delete" /></th>
-				</tr>
-			</thead>
-			<tbody></tbody>
-		</table>
-		<div align="right">
-			<button class="btn btn-warning" id="buttonAdd" data-toggle="modal" data-target="#addressModal"><span class="glyphicon glyphicon-plus"></span><spring:message code="address.name.add"/></button>
-			<button class="btn btn-default" type="button" id="buttonBack" name="buttonBack" onclick="window.location='${pageContext.request.contextPath}/info/${id}'"><span class="glyphicon glyphicon-step-backward"></span> Back </button>
-			<button class="btn btn-default" type="button" id="buttonNext" name="buttonNext" onclick="window.location='${pageContext.request.contextPath}/family/${id}'"><span class="glyphicon glyphicon-step-forward"></span> Next </button>
-		</div>
-	</div>
+			<div class="table-responsive" id="table">
+				<table id="addressTable" class="display" cellspacing="0" width="100%">
+				<caption title="" class="tableHeader"><spring:message code="address.name"/></caption>
+					<thead>
+						<tr>
+							<th><spring:message code="address.data" /></th>
+							<th><spring:message code="address.data.house" /></th>
+							<th><spring:message code="address.data.road" /></th>
+							<th><spring:message code="address.data.district" /></th>
+							<th><spring:message code="address.data.sub.district" /></th>
+							<th><spring:message code="address.data.zipcode" /></th>
+							<th><spring:message code="address.data.provice" /></th>
+							<th><spring:message code="main.edit.info" /></th>
+							<th><spring:message code="main.delete" /></th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+				<div align="right">
+					<button class="btn btn-warning" id="buttonAdd" data-toggle="modal" data-target="#addressModal"><span class="glyphicon glyphicon-plus"></span><spring:message code="address.name.add"/></button>
+					<button class="btn btn-default" type="button" id="buttonBack" name="buttonBack" onclick="window.location='${pageContext.request.contextPath}/info/${id}'"><span class="glyphicon glyphicon-step-backward"></span> Back </button>
+					<button class="btn btn-default" type="button" id="buttonNext" name="buttonNext" onclick="window.location='${pageContext.request.contextPath}/family/${id}'"><span class="glyphicon glyphicon-step-forward"></span> Next </button>
+				</div>
+			</div>
+	
 </div>

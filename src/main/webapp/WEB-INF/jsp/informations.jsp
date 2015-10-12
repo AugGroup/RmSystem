@@ -4,7 +4,6 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
 <jsp:include page="infoSpringMessage.jsp" />
 
 <style>
@@ -76,7 +75,7 @@
 
 </style>
 <!-- tab informations -->
-<div class="container-fluid" id="con-body">
+<div class="container" >
 <c:choose>
 		<c:when test="${applicant.id ne null}">
 			<c:set var="actionName">infoEdit/${applicant.id}</c:set>
@@ -87,10 +86,9 @@
 	</c:choose>
 
 	<div class="row">
-		<div class="col-md-1"></div>
-		<div class="col-sm-12 col-md-10" id="info">
-			<div class="row"><jsp:include page="applicationMenu.jsp" /></div>
-		
+
+		<div class="col-sm-12 col-md-offset-1 col-md-10" id="info">
+		<div class="row"><jsp:include page="applicationMenu.jsp" /></div>
 			<f:form id="informationApplicant" name="informationApplicant" action="${pageContext.request.contextPath}/${actionName}"
 				modelAttribute="applicant" method="post" enctype="multipart/form-data" class="form-inline">
 				<f:hidden path="id" />

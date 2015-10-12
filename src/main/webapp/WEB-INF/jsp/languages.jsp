@@ -17,8 +17,9 @@ var valDelete = "<spring:message code="main.delete"/>";
 var id = ${id};
 </script>
 
-<jsp:include page="applicationMenu.jsp" />
+
 <div class="container" id="titleHead">
+<jsp:include page="applicationMenu.jsp" />
 	<div class="modal fade" id="languagesModal" role="dialog">
 		<div class="modal-dialog">
 
@@ -191,7 +192,7 @@ var id = ${id};
 	</div>
 
 	<br> <br>
-	<div class="container table-responsive" id="table">
+	<div class="table-responsive" id="table">
 		<table id="languagesTable" class="display" cellspacing="0"
 			width="100%">
 			<caption title="" class="tableHeader"><spring:message code="languages.name.less"/></caption>

@@ -40,10 +40,10 @@
 }
 
 
-#info{
+/* #info{
 	background: #EBEBEB;
-	padding: 5px;
-}
+    padding-left: 5px;
+} */
 
 #applicantStatusStyle {
 	width: 296px;
@@ -52,7 +52,7 @@
 
 #informationApplicant {
 	color: #414141;
-	background: #E0DFDD;
+	background: #EBEBEB;
 	font-family: "Regular";
 	font-size: 16px;
 	color: #292929;
