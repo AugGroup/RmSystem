@@ -34,9 +34,9 @@ table.dataTable tr.even {
 <script type="text/javascript">
 </script>
 <div class="container-fluid">
-		<div class="row" style="padding-right: 77px; padding-left: 80px;">
-			<!-- <div class="col-md-1"></div> -->
-			<div class="col-sm-12 col-md-12" id="info">
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-sm-12 col-md-10" id="info">
 				<div class="dropdownMenu">
 		  			<button class="btn btn-defult dropdown-toggle" type="button" id="btnDropdownMenu" data-toggle="dropdown" aria-haspopup="true" 
 		  					aria-expanded="true"><spring:message code="menu.text"/> <span class="caret"></span>
