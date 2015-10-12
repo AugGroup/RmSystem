@@ -367,3 +367,8 @@ ul.pagination li.next>a{
   white-space: nowrap;
   font-family: Dosis-Regular;
 }
+
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
+	background-color: #DE9104;
+	background-image: linear-gradient(to bottom, #DE9104 0%, #DE9104 100%);
+}
