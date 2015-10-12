@@ -1,6 +1,22 @@
+@font-face {
+    font-family: 'Dosis-Bold';
+    src: url('../fonts/Dosis-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Dosis-Regular';
+    src: url('../fonts/Dosis-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Dosis-SemiBold';
+    src: url('../fonts/Dosis-SemiBold.ttf') format('truetype');
+}
+
 *{
 	font-family: Dosis-Regular;
 }
+
 #imagePreview {
 	margin-bottom: 7px;
 	width: 120px;
@@ -101,8 +117,8 @@
 .container {
 	font-family: "Regular";
 	position: relative;
-	//margin-left: 40px;
-	//margin-right: 40px;
+	margin-left: 40px;
+	margin-right: 40px;
 	padding-right: 0px;
 	padding-left: 0px;
 	width: 94%;
@@ -191,7 +207,6 @@
 }
 
 td {
-	font-family: "Regular";
 	font-size: 18px;
 	color: #414141;
 }
@@ -277,6 +292,7 @@ ul.pagination li.next>a{
 	padding: 5px;
 }
 #inputSearch.form-control{
+	font-family:Dosis-Regular;
 	margin-top: 27px;
 }
 
@@ -289,6 +305,7 @@ ul.pagination li.next>a{
 }
 
 #btn_search {
+	font-family:Dosis-Regular;
 	margin: 27px 5px 0px 5px;
 	float: right;
 	width: 95px;

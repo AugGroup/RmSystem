@@ -18,6 +18,7 @@
 }
 
 .nav>li>a {
+	font-family: Dosis-SemiBold;
 	color: #fff;
 }
 
@@ -86,6 +87,7 @@
 
 /* ----- Logout ----- */
 #bgLogout {
+	
 	background-color: #ffffff;
 	width: 183px;
 	height: 25px;
@@ -124,7 +126,7 @@
 }
 /* ----- end flag ----- */
 #btn_report {
-	margin-top: -8px;
+	margin-top: -5px;
 	text-decoration: none;
 }
 
