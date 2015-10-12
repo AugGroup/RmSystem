@@ -62,7 +62,7 @@ $(document).ready(function(){
 						   { data: function (data) {
 						      return '<a href="#deleteModal" id="btn_delete" data-id="' + data.id + '" data-toggle="modal" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove-sign"></span> '+delete_text+'</b>'
 				           }}
-				   ],
+				   ]
 				 });
 			}
 		});

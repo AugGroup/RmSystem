@@ -6,7 +6,14 @@ var insEnd;
 var type;
 var dateStart;
 var dateEnd;
+var $calendar;
 var $applicantName = $('#applicantName');
+var appointmentList_applicant ;
+var $appointmentListModal;
+
+
+
+
 
 var $validform = $("#formInsert").validate({			
 	rules:{
@@ -72,7 +79,8 @@ var $validform2 = $("#formEdit").validate({
 });
 
 function updateAppointmentDate(eventToUpdate, revertParam){
-	var updatedata = {id : eventToUpdate.id, start : eventToUpdate.start, end : eventToUpdate.end, mailStatus : eventToUpdate.mailStatus};
+	var updatedata = {id : eventToUpdate.id, start : eventToUpdate.start.format("YYYY-MM-DD HH:mm:ss"), 
+			end : eventToUpdate.end.format("YYYY-MM-DD HH:mm:ss"), mailStatus : eventToUpdate.mailStatus};
 	alertify.set({ 	buttonReverse: true,
 					labels: {
 					    ok     : yes,
@@ -93,11 +101,11 @@ function updateAppointmentDate(eventToUpdate, revertParam){
 	    			    type: 'success',
 	    			    delay: 750
 	    			});
-	    			var view = $('#calendar').fullCalendar('getView');//get view object
-    				$('#calendar').fullCalendar( 'destroy' );
+	    			var view = $calendar.fullCalendar('getView');//get view object
+	    			$calendar.fullCalendar( 'destroy' );
 	    			renderCalendar();
-    				$('#calendar').fullCalendar('changeView', view.name);
-    				$('#calendar').fullCalendar( 'gotoDate', eventToUpdate.start );
+	    			$calendar.fullCalendar('changeView', view.name);
+	    			$calendar.fullCalendar( 'gotoDate', eventToUpdate.start );
     				findNoEmailUpdate();
     				findEmailSent();
 	    		},
@@ -160,7 +168,7 @@ function setApplicantNameList(){//set Applicant
 			$penndingTestNameList.empty();
 			$.each(data, function(i, item) {
 			    var getName = data[i].firstNameEN +" "+ data[i].lastNameEN +" ( " + data[i].technologyStr + " " + data[i].joblevelStr + "  )";
-			    var $div = "<div data-id='"+data[i].id+"' role='button' "+
+			    var $div = "<div id='"+data[i].id+"' role='button' "+
 			    			"class='list-group-item applicant-list-item' >"+getName+"</div>";
 			    $penndingTestNameList.append($div);
 			})
@@ -179,7 +187,7 @@ function setApplicantNameList(){//set Applicant
 			$penndingApproveNameList.empty();
 			$.each(data, function(i, item) {
 			    var getName = data[i].firstNameEN +" "+ data[i].lastNameEN +" ( " + data[i].technologyStr + " " + data[i].joblevelStr + "  )";
-			    var $div = "<div data-id='"+data[i].id+"' role='button' "+
+			    var $div = "<div id='"+data[i].id+"' role='button' "+
 			    			"class='list-group-item applicant-list-item' >"+getName+"</div>";
 			    $penndingApproveNameList.append($div);
 			})
@@ -276,7 +284,7 @@ function getAllAppointmentInCalendar(applicantId){
 
 
 function renderCalendar(){
-	$('#calendar').fullCalendar({
+	$calendar = $('#calendar').fullCalendar({
 		header: {
 			left: 'prev,next today',
 			center: 'title',
@@ -289,10 +297,10 @@ function renderCalendar(){
 		buttonIcons: true,
 		select: function(start, end) {
 			//console.log(start);
-			var view = $('#calendar').fullCalendar('getView');//get view object
+			var view = $calendar.fullCalendar('getView');//get view object
 			if(view.name == "month"){ //if event that selected is month then show agendaDay view 
-				$('#calendar').fullCalendar('changeView', 'agendaDay');
-				$('#calendar').fullCalendar( 'gotoDate', start );
+				$calendar.fullCalendar('changeView', 'agendaDay');
+				$calendar.fullCalendar( 'gotoDate', start );
 			}else{
 				//if current view is date(and choose time range) when click on it insert modal should show
 				$validform.resetForm();
@@ -303,7 +311,7 @@ function renderCalendar(){
 				$('#insModal').modal('show');
 				insStart = start;
 				insEnd = end;
-				$('#calendar').fullCalendar('unselect');
+				$calendar.fullCalendar('unselect');
 			}
 		},
 		editable: true,//can't drage to move event to editing
@@ -418,7 +426,7 @@ function renderCalendar(){
 		,viewRender : function( view, element ){
 		}
 	}); // end full calendar
-	$('#calendar').fullCalendar('gotoDate', currentDate());//go to date after fullcalendar redered 
+	$calendar.fullCalendar('gotoDate', currentDate());//go to date after fullcalendar redered 
 	$('div.fc-center').addClass('text-center');
 	
 }//end rendercalendar
@@ -429,13 +437,54 @@ $( function(){
 		findNoEmailUpdate();
 		findEmailSent();
 		setApplicantNameList();
-
+		
 		$(".list-group").on("click", ".applicant-list-item", function(){
-			var $appointmentListModal = $("#appointmentListModal");
+			
+			if(appointmentList_applicant){
+				appointmentList_applicant.destroy();
+			}
+			
+			appointmentList_applicant = $('#appointmentListTable').DataTable({
+				paging: true,
+				hover:false,
+				sort:false,
+				ajax : {
+					url : 'calendar/findByApplicantId/'+$(this).attr('id'),
+					dataSrc : "",
+					type : 'POST'
+				},
+				 columns:[{data : "id"},
+				          {data : "topic"},
+					      {data : "detail"},
+					      {data : "start"},
+					      {data : "end"}
+					      //,{data : "mailStatus"}
+				 ],
+ 				 initComplete :function(){
+   				    $("#appointmentListTable_previous").children().text("<"); 
+   				    $("#appointmentListTable_next").children().text(">");
+   				 },
+   				 "dom": 'tp'
+				 
+			});
+					
+			
+			$appointmentListModal = $("#appointmentListModal");
+			var $modalHeader = $("#modalHeader_appointmentList");
+			$modalHeader.text($(this).text()+" 's Appointments");
+			
+			
 			$appointmentListModal.modal('show');
-			$appointmentListModal.closest('div.modal-body').html(1);
+			
+			
 			
 		});
+		
+		$('#appointmentListTable').on( 'click', 'tbody tr', function () {
+			//alert($(this).children().eq(0).text());
+			$appointmentListModal.modal('hide');
+			$calendar.fullCalendar( 'gotoDate', $(this).children().eq(3).text() );
+		})
 		
 		$('#applicantFilter').on('change',function () {
 	 		var trackingString = $("#applicantFilter option:selected").val();
@@ -454,7 +503,7 @@ $( function(){
 	 			url : "calendar/deleteAppointment/"+id,
 				type : "GET",
 				success : function(data){
-					$('#calendar').fullCalendar('removeEvents',eventdata.id );
+					$calendar.fullCalendar('removeEvents',eventdata.id );
 					$('#detailModal').modal("hide");
 					$('#delModal').modal("hide");
 					new PNotify({
@@ -484,8 +533,8 @@ $( function(){
 			var appointment = { 
 					topic : $("#appointmentTopic").val(),
 					detail : $("#appoint_detail").val(),
-					start: insStart,
-					end : insEnd,
+					start: insStart.format("YYYY-MM-DD HH:mm:ss"),
+					end : insEnd.format("YYYY-MM-DD HH:mm:ss"),
 					mailStatus : 0
 					//applicant : { id : 1/*$("#applicantName option:selected").val()*/}
 					/* login : login_id who insert this appointment will insert in controller :) */
@@ -508,8 +557,8 @@ $( function(){
 							mailStatus : data.mailStatus,
 							color: '#FF4512'
 						};
-						//console.log(data);
-						$('#calendar').fullCalendar('renderEvent', insData, true); // stick? = true
+						console.log(insData);
+						$calendar.fullCalendar('renderEvent', insData, true); // stick? = true
 						$('#insModal').modal('hide');	
 						$('#formInsert').trigger('reset');
 						findNoEmailSending();
@@ -545,7 +594,7 @@ $( function(){
 		 }) //end onclick
 		
 		 $("#confirmEditModal").on("click", "#confirmEditModal", function(){
-			 			 var updatedata = {id : id, topic : $("#appointmentTopicEdt").val() , detail : $("#appoint_detailEdt").val()}; 
+			 var updatedata = {id : id, topic : $("#appointmentTopicEdt").val() , detail : $("#appoint_detailEdt").val()}; 
 			 $.ajax({
 				url:"calendar/updateTopicAndDetail",
 				type: "POST",
@@ -564,7 +613,7 @@ $( function(){
 					    type: 'success',
 					    delay: 750
 					});
-					$('#calendar').fullCalendar( 'destroy' );
+					$calendar.fullCalendar( 'destroy' );
 	    			renderCalendar();
 				},
 				error:function (jqXHR, textStatus, error){

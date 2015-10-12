@@ -199,7 +199,7 @@ public class CalendarController {
 	@RequestMapping(value = "calendar/findByApplicantId/{applId}", method = RequestMethod.POST)
 	public @ResponseBody List<Appointment> findByApplicantId(@PathVariable Integer applId) {
 		List<Appointment> appointments = appointmentService.findByApplicant(applicantService.findById(applId));
-		System.out.println(appointments.toString());
+		//System.out.println(appointments.toString());
 		return appointments;
 	}
 	

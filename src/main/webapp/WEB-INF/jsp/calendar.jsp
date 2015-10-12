@@ -352,15 +352,26 @@
 	
 	
 	<!-- Modal -->
-	<div class="modal fade" id="appointmentListModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal fade" id="appointmentListModal" tabindex="-1" role="dialog" aria-labelledby="modal_appointmentList">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">Appointment list of xxxxxxxxx</h4>
+	        <h4 class="modal-title" id="modalHeader_appointmentList"></h4>
 	      </div>
-	      <div class="modal-body">
-	      	
+	      <div id="modalBody_appointmentList" class="modal-body">
+	      		<table id="appointmentListTable" class="display">
+	      			<thead>
+	      				<tr>
+	      					<th>ID</th>
+	      					<th>TOPIC</th>
+	      					<th>EDTAIL</th>
+	      					<th>START</th>
+	      					<th>END</th>
+<!-- 	      					<th>MAIL STATUS</th> -->
+	      				</tr>
+	      			</thead>
+	      		</table>
 	      </div>
 	    </div>
 	  </div>
