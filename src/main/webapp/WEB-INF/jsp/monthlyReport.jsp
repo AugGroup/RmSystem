@@ -36,7 +36,7 @@
 	</div>
 	</div>
 	<!------------------- Report DataTable-------------------> 
-	<div class="container table-responsive" id="table">
+	<div class="container table-responsive" id="table2">
     	<table  id="reportTable" class="cell-border" style="width: 100%">
     	<caption title="" class="tableHeader"><spring:message code="report.text.monthly" /></caption>
             <thead>
