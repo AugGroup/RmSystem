@@ -7,6 +7,7 @@
 .dropdownMenu {
  background: #EBEBEB;
  padding-left: 10px;
+ padding-bottom: 10px;
 }
 
 #btnDropdownMenu {
@@ -35,7 +36,7 @@ table.dataTable tr.even {
 </script>
 
   <div class="row">
-   <div class="col-sm-12" id="info">
+   <div class="col-sm-12" >
     <div class="dropdownMenu">
        <button class="btn btn-defult dropdown-toggle" type="button" id="btnDropdownMenu" data-toggle="dropdown" aria-haspopup="true" 
          aria-expanded="true"><spring:message code="menu.text"/> <span class="caret"></span>
