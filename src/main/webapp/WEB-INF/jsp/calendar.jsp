@@ -6,6 +6,14 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/resources/datetime_picker/bootstrap-datetimepicker.min.css" />
 
 
+<script type="text/javascript">
+	var approve_tx = '<spring:message code="edit.approve"/>';
+
+	$(document).ready(function(){
+		$("#calendar").addClass('active-menu'); 
+	});
+</script>
+
 <div id="calendar-container" class="container-fluid">
 	<div class="row">
 		

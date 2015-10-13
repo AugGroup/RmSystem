@@ -53,16 +53,6 @@
 	height: 75px;
 }
 
-/* #btn_report { */
-/* 	width: 75px; */
-/* 	height: 25px; */
-/* 	color:#fff; */
-/* 	background: #707070; */
-/* 	border: 2px solid #ffffff; */
-/* 	padding: 2px; */
-/* 	margin-top: 3px; */
-/* } */
-
 
 #marginTopemail {
 	margin-top: 7px;
@@ -372,3 +362,4 @@ ul.pagination li.next>a{
 	background-color: #DE9104;
 	background-image: linear-gradient(to bottom, #DE9104 0%, #DE9104 100%);
 }
+

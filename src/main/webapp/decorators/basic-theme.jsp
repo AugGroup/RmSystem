@@ -83,6 +83,8 @@
 	var contextPath = "${pageContext.request.contextPath}";
 </script>
 
+<title><decorator:title/></title>
+
 </head>
 <%
 	User user = (User) SecurityContextHolder.getContext()

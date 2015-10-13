@@ -6,11 +6,11 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/resources/pageCss/main.css" />
 <script src="<c:url value ="/static/resources/pageJS/main-applicant.js"/>"></script> 
+
 <script type="text/javascript">
 var editScore_text = "<spring:message code="edit.button.edit.score"/>"; 
 var editInfo_text = "<spring:message code="main.edit.info"/>"; 
 var delete_text = "<spring:message code="main.delete"/>";
-
 </script>
 <style>
 	#btnScore{
@@ -24,6 +24,12 @@ var delete_text = "<spring:message code="main.delete"/>";
 }
 	
 </style>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#applicant").addClass('active-menu'); 
+});
+</script>
 
 <div class="container">
 	<!--Input text for Search Applicant -->

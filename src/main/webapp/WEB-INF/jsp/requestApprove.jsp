@@ -10,13 +10,17 @@
 
 <script type="text/javascript">
 	var approve_tx = '<spring:message code="edit.approve"/>';
+
+	$(document).ready(function(){
+		$("#approve").addClass('active-menu'); 
+	});
 </script>
 
 <div class="container">
 
-	<h1 align="center">
+	<div><h1 align="center">
 		<spring:message code="request.title.approve" />
-	</h1>
+	</h1></div>
 	<!------------------- Request DataTable------------------->
 	<div class="container table-responsive" id="table2">
 		<table class="dataTable" id="requestTable" class="cell-border" style="width: 100%">

@@ -52,8 +52,14 @@ var delete_tx = "<spring:message code="main.delete"/>";
 	
 </style>
 
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#request").addClass('active-menu'); 
+});
+</script>
+
 <div class="container">
-	<h1 align="center"><spring:message code="request.title"/></h1>
+	<div><h1 align="center"><spring:message code="request.title"/></h1></div>
 	<div class="container table-responsive" id="table2" >
 		<table class="dataTable" id="requestTable" class="cell-border" style="width: 100%">
 			<caption title="" class="tableHeader"><spring:message code="request.title" /></caption>
