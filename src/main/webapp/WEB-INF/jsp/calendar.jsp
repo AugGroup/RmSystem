@@ -10,7 +10,7 @@
 	var approve_tx = '<spring:message code="edit.approve"/>';
 
 	$(document).ready(function(){
-		$("#calendar").addClass('active-menu'); 
+		$("#calendarPage").addClass('active-menu'); 
 	});
 </script>
 
