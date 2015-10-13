@@ -60,7 +60,12 @@ $(document).ready(function () {
 				        	   		return '<button id="btn_approve" class="btn btn-primary" data-id="' + data.id + '" data-toggle="modal" data-target="#approveModal"><span class="glyphicon glyphicon-edit"></span> '+approve_tx+' </button>';				        
 				        	   
 				        	}}
-				           ]
+				           ],
+				           language:{
+
+				        	    url: datatablei18n
+
+				        	  }
 				});
     	}
 		

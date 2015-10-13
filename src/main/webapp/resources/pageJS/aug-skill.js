@@ -32,7 +32,13 @@ $(document).ready(function() {
 				 return '<button id="buttonDelete" data-id="'+data.id+'" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger btn-mini"><span class="glyphicon glyphicon-remove-sign"></span> '+ valDelete +'</button>';
 			}
 		}],
-			searching : false
+		
+			searching : false,
+			language:{
+
+				    url: datatablei18n
+
+				  },	
 
 		});
 	}

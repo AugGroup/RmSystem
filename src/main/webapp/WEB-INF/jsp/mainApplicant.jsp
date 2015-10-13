@@ -11,6 +11,7 @@
 var editScore_text = "<spring:message code="edit.button.edit.score"/>"; 
 var editInfo_text = "<spring:message code="main.edit.info"/>"; 
 var delete_text = "<spring:message code="main.delete"/>";
+var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.response.locale}.json' />";
 </script>
 <style>
 	#btnScore{

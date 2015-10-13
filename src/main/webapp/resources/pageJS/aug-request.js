@@ -130,7 +130,12 @@
         	        		  return '<button id="btn_delete" class="btn btn-danger" data-id="' + data.id + '" data-toggle="modal" data-target="#deleteModal" disabled ><span class="glyphicon glyphicon-remove-sign"></span> '+delete_tx + '</button>'}
         	         	  }
         	          }
-        	          ]
+        	          ],
+        	          language:{
+
+        	        	    url: datatablei18n
+
+        	        	  }
         		 });
          }
         

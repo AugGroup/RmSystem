@@ -21,6 +21,7 @@ var valReason = "<spring:message code="valid.ex.reason"/>";
 var valEdit = "<spring:message code="main.edit.info"/>";
 var valDelete = "<spring:message code="main.delete"/>";
 var id = ${id};
+var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.response.locale}.json' />";
 </script>
 
 

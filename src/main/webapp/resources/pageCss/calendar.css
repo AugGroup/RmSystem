@@ -166,3 +166,14 @@ span.label-mailsent{
 	font-size: 15px;
 }
 
+.noSendEmail {
+	cursor: default;
+}
+
+.noEmailUpdate {
+	cursor: default;
+}
+
+.emailSent {
+	cursor: default;
+}

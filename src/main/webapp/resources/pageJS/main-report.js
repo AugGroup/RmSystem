@@ -18,6 +18,7 @@ $(document).ready(function () {
 				             ],
 				searching : false,
 				paging: true,
+				sort : false,
 				ajax :{
 					type:'POST',
 					url: 'report/search',
@@ -46,6 +47,11 @@ $(document).ready(function () {
 				       {data: "degree"},
 				       {data: "gpa"},
 				       ],
+				language:{
+
+						    url: datatablei18n
+
+						  }	
 			});
 			
 		}

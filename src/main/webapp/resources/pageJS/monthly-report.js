@@ -21,6 +21,7 @@ $(document).ready(function () {
 				             ],
 				searching : false,
 				paging: true,
+				sort : false,
 				ajax : {
 					type:'POST',
 					url: 'report/searchMonth',
@@ -45,6 +46,11 @@ $(document).ready(function () {
 				       {"data": "degree"},
 				       {"data": "gpa"},
 				       ],
+		    language:{
+
+						    url: datatablei18n
+
+						  },	
 			});
 		}
 		});

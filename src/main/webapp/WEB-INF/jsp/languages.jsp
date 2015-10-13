@@ -15,6 +15,7 @@ var valWrite = "<spring:message code="valid.lang.write"/>";
 var valEdit = "<spring:message code="main.edit.info"/>";
 var valDelete = "<spring:message code="main.delete"/>";
 var id = ${id};
+var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.response.locale}.json' />";
 </script>
 
 

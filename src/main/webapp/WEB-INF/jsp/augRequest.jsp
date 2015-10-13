@@ -24,6 +24,7 @@ var reqStatus = "<spring:message code="valid.req.status"/>";
 var preview_tx = "<spring:message code="request.preview"/>";
 var edit_tx = "<spring:message code="main.edit.info"/>";
 var delete_tx = "<spring:message code="main.delete"/>";
+var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.response.locale}.json' />";
 </script>
 
 <style>

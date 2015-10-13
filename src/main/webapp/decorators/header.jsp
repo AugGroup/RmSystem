@@ -76,12 +76,12 @@
 					<c:set var="locale">${pageContext.response.locale}</c:set>					
 					<li class="flags-link" >
 					
-					<a id="flag-link" class="navbar-link" href="${request.getRequestURL}?locale=en" > 
-						<b><img src="${pageContext.request.contextPath}/static/resources/images/flag_usa.png" alt="logo" class='img-flag ${ (locale eq "en") ? "flag-active" : ""}' /></b>
-					</a>
-					
 					<a id="flag-link" class="navbar-link" href="${request.getRequestURL}?locale=th" > 
 						<img src="${pageContext.request.contextPath}/static/resources/images/flag_thailand.png" alt="logo" class='img-flag ${ (locale eq "th") ? "flag-active" : ""}' />
+					</a>
+					
+					<a id="flag-link" class="navbar-link" href="${request.getRequestURL}?locale=en" > 
+						<b><img src="${pageContext.request.contextPath}/static/resources/images/flag_usa.png" alt="logo" class='img-flag ${ (locale eq "en") ? "flag-active" : ""}' /></b>
 					</a>
 					
 					</li>

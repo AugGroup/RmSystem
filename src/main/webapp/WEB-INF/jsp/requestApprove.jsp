@@ -9,6 +9,7 @@
 <script src="<c:url value ="/static/resources/pageJS/aug-approve.js"/>"></script>
 
 <script type="text/javascript">
+    var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.response.locale}.json' />";
 	var approve_tx = '<spring:message code="edit.approve"/>';
 
 	$(document).ready(function(){
