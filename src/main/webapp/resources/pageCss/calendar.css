@@ -129,10 +129,8 @@ div.popover > h3.popover-title.sent{
 #trackingStatusPanelMd{
 	background-color: #E0DFDD;
 	width : 270px;
-	margin-top: 15px;
 	margin-left: 15px;
-    padding-left: 15px;
-    padding-right: 15px;
+    margin-top: 15px;
 }
 
 #trackingStatusPanelSm{
@@ -163,3 +161,8 @@ span.label-mailsent{
 #trackingStatusPanelMd a{
     text-decoration: none;
 }
+
+#appointmentListTable tbody td{
+	font-size: 15px;
+}
+

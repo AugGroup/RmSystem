@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/resources/pageCss/calendar.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/resources/datetime_picker/bootstrap-datetimepicker.min.css" />
@@ -23,60 +23,9 @@
 		<div id="calendarDiv" class="col-xs-11 col-sm-11 col-md-9 col-lg-9">
 			<div id='calendar'></div>
 		</div>
-		<div class="col-md-2 col-lg-2 visible-md visible-lg">
-			<div class="row"><div class="col-md-12">
-			<div id="mailStatusPropMd">
-				<div class="text-center"><h3>Email status</h3></div>
-				<ul class="list-group" >
-				  <li class="list-group-item noSendEmail" role="button">
-				  </li>
-				  <li class="list-group-item noEmailUpdate" role="button">
-				  </li>
-				  <li class="list-group-item emailSent" role="button">
-				  </li>
-				</ul>
-				</div>
-			</div></div>
-			<div class="row">
-				<div id="trackingStatusPanelMd" class="col-md-12">
-				<div class="text-center"><h3>Applicant Status</h3></div>
-				<div class="panel-group" id="applicantStatusList" role="tablist" aria-multiselectable="true">
-				  <div class="panel panel-default">
-				    <div class="panel-heading" role="tab" id="pendingTestHead">
-				      <h4 class="panel-title">
-				        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#trackingStatusPanelMd" href="#pendingTestListMd" aria-expanded="false" aria-controls="pendingTestListMd">
-				          Pending Test/Interview
-				        </a>
-				      </h4>
-				    </div>
-				    <div id="pendingTestListMd" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-				      <div  class="list-group">
-				      	<!-- jQueryRender -->
-				      </div>
-				    </div>
-				  </div>
-				  <div class="panel panel-default">
-				    <div class="panel-heading" role="tab" id="pendingApproveHead">
-				      <h4 class="panel-title">
-				        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#trackingStatusPanelMd" href="#pendingApproveListMd" aria-expanded="false" aria-controls="pendingApproveListMd">
-				          Pending Approve
-				        </a>
-				      </h4>
-				    </div>
-				    <div id="pendingApproveListMd" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-				      <div  class="list-group">
-				      	<!-- jQueryRender -->
-				      </div>
-				    </div>
-				  </div>
-				</div>
-				</div>
-			</div>
-		</div>
-		
 		<div class="col-xs-12 col-sm-12 visible-xs visible-sm">
 			<div id="mailStatusPropSm">
-				<div class="text-center"><h3>Email status</h3></div>
+				<div class="text-center"><h3><spring:message code="appointment.email.status"/></h3></div>
 				<ul class="list-group" >
 				  <li class="list-group-item noSendEmail" role="button">
 				  </li>
@@ -85,17 +34,16 @@
 				  <li class="list-group-item emailSent" role="button">
 				  </li>
 				</ul>
-				</div>
 			</div>
 		</div>
 		<div id="trackingStatusPanelSm" class="col-xs-12 col-sm-12 visible-xs visible-sm ">
-		<div class="text-center"><h3>Applicant Status</h3></div>
+		<div class="text-center"><h3><spring:message code="appointment.applicant.status"/></h3></div>
 		<div class="panel-group" id="applicantStatusList" role="tablist" aria-multiselectable="true">
 		  <div class="panel panel-default">
 		    <div class="panel-heading" role="tab" id="pendingTestHead">
 		      <h4 class="panel-title">
 		        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#trackingStatusPanelSm" href="#pendingTestListSm" aria-expanded="false" aria-controls="pendingTestListSm">
-		          Pending Test/Interview
+		          <spring:message code="appointment.status.pending.test"/>
 		        </a>
 		      </h4>
 		    </div>
@@ -109,7 +57,7 @@
 		    <div class="panel-heading" role="tab" id="pendingApproveHead">
 		      <h4 class="panel-title">
 		        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#trackingStatusPanelSm" href="#pendingApproveListSm" aria-expanded="false" aria-controls="pendingApproveListSm">
-		          Pending Approve
+		          <spring:message code="appointment.status.pending.approve"/>
 		        </a>
 		      </h4>
 		    </div>
@@ -121,6 +69,61 @@
 		  </div>
 		</div>
 		</div>
+		
+		<div class="col-md-2 col-lg-2 visible-md visible-lg">
+			<div class="row">
+				<div class="col-md-12">
+				<div id="mailStatusPropMd">
+					<div class="text-center"><h3><spring:message code="appointment.email.status"/></h3></div>
+					<ul class="list-group" >
+					  <li class="list-group-item noSendEmail" role="button">
+					  </li>
+					  <li class="list-group-item noEmailUpdate" role="button">
+					  </li>
+					  <li class="list-group-item emailSent" role="button">
+					  </li>
+					</ul>
+				</div>
+				</div>
+			<div class="row">
+				<div class="col-md-12">
+				<div id="trackingStatusPanelMd" class="col-md-12">
+				<div class="text-center"><h3><spring:message code="appointment.applicant.status"/></h3></div>
+				<div class="panel-group" id="applicantStatusList" role="tablist" aria-multiselectable="true">
+				  <div class="panel panel-default">
+				    <div class="panel-heading" role="tab" id="pendingTestHead">
+				      <h4 class="panel-title">
+				        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#trackingStatusPanelMd" href="#pendingTestListMd" aria-expanded="false" aria-controls="pendingTestListMd">
+				          <spring:message code="appointment.status.pending.test"/>
+				        </a>
+				      </h4>
+				    </div>
+				    <div id="pendingTestListMd" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+				      <div  class="list-group">
+				      	<!-- jQueryRender -->
+				      </div>
+				    </div>
+				  </div>
+				  <div class="panel panel-default">
+				    <div class="panel-heading" role="tab" id="pendingApproveHead">
+				      <h4 class="panel-title">
+				        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#trackingStatusPanelMd" href="#pendingApproveListMd" aria-expanded="false" aria-controls="pendingApproveListMd">
+				          <spring:message code="appointment.status.pending.approve"/>
+				        </a>
+				      </h4>
+				    </div>
+				    <div id="pendingApproveListMd" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+				      <div  class="list-group">
+				      	<!-- jQueryRender -->
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				</div>
+				</div>
+			</div>
+		</div>
+		
 		
 	</div><!-- end row -->
 	
@@ -367,15 +370,16 @@
 	        <h4 class="modal-title" id="modalHeader_appointmentList"></h4>
 	      </div>
 	      <div id="modalBody_appointmentList" class="modal-body">
-	      	<div class="table-responsive">
-	      		<table id="appointmentListTable" class="display" style="width:50%; height:auto;">
+	      	<div class="table-responsive" style=" width:100%;">
+	      		<table id="appointmentListTable" class="display" >
+	      		<caption title="" class="tableHeader"><spring:message code="appointment.description"/></caption>
 	      			<thead>
 	      				<tr>
-	      					<th>ID</th>
-	      					<th>TOPIC</th>
-	      					<th>EDTAIL</th>
-	      					<th>START</th>
-	      					<th>END</th>
+	      					<th><spring:message code="appointment.id"/></th>
+	      					<th><spring:message code="appointment.topic"/></th>
+	      					<th><spring:message code="appointment.detail"/></th>
+	      					<th><spring:message code="appointment.start"/></th>
+	      					<th><spring:message code="appointment.end"/></th>
 <!-- 	      					<th>MAIL STATUS</th> -->
 	      				</tr>
 	      			</thead>
@@ -385,25 +389,28 @@
 	    </div>
 	  </div>
 	</div>
-	
+	</div>
 </div>
 
 <script type="text/javascript">
 	var contextPath = "${pageContext.request.contextPath}";
 	var languageNow = "${pageContext.response.locale}";
 
-	var yes = "<spring:message code="appointment.yes" />";
-	var no = "<spring:message code="appointment.no" />";
-	var confirmEditAppointmentDate = "<spring:message code="appointment.confirm.event.move" />";
-	var selectApplicant = "<spring:message code="appointment.select.applicant" />";
-	var validateApplicant = "<spring:message code="appointment.validate.select.applicant" />";
-	var validateTopic = "<spring:message code="appointment.validate.required.topic" />";
-	var validateTopicLenght = "<spring:message code="appointment.validate.required.topic.lenght" />";
-	var validateDatail = "<spring:message code="appointment.validate.required.detail" />";
-	var pnotifyInsert = "<spring:message code="appointment.pnotify.insert" />";
-	var pnotifyEdit = "<spring:message code="appointment.pnotify.edit" />";
-	var pnotifyDelete = "<spring:message code="appointment.pnotify.delete" />";
-
+	var yes = "<spring:message code='appointment.yes' />";
+	var no = "<spring:message code='appointment.no' />";
+	var confirmEditAppointmentDate = "<spring:message code='appointment.confirm.event.move' />";
+	var selectApplicant = "<spring:message code='appointment.select.applicant' />";
+	var validateApplicant = "<spring:message code='appointment.validate.select.applicant' />";
+	var validateTopic = "<spring:message code='appointment.validate.required.topic' />";
+	var validateTopicLenght = "<spring:message code='appointment.validate.required.topic.lenght' />";
+	var validateDatail = "<spring:message code='appointment.validate.required.detail' />";
+	var pnotifyInsert = "<spring:message code='appointment.pnotify.insert' />";
+	var pnotifyEdit = "<spring:message code='appointment.pnotify.edit' />";
+	var pnotifyDelete = "<spring:message code='appointment.pnotify.delete' />";
+	var appointmentEmailNosent = "<spring:message code='appointment.email.status.nosend' />";
+	var appointmentEmailSuccess = "<spring:message code='appointment.email.status.success' />";
+	var appointmentEmailNoUpdate = "<spring:message code='appointment.email.status.noupdate' />";
+	
 </script>
 
 <!-- Validate -->

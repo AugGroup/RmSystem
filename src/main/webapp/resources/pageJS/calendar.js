@@ -234,7 +234,7 @@ function findNoEmailSending(){
 		contentType : "application/json",
 		dataType : "json",
 		success : function(data){
-			$(".noSendEmail").html("<span class='label label-nosend'>   </span> <span class='badge'>"+data+"</span> &nbsp;&nbsp;No E-mail Sending");
+			$(".noSendEmail").html("<span class='label label-nosend'>   </span> <span class='badge'>"+data+"</span> &nbsp;&nbsp;"+appointmentEmailNosent);
 		},
 		error : function(){
 			alert("Load appointment error")
@@ -249,7 +249,7 @@ function findNoEmailUpdate(){
 		contentType : "application/json",
 		dataType : "json",
 		success : function(data){
-			$(".noEmailUpdate").html("<span class='label label-noupdate'>   </span> <span class='badge'>"+data+"</span> &nbsp;&nbsp;No Update E-mail");
+			$(".noEmailUpdate").html("<span class='label label-noupdate'>   </span> <span class='badge'>"+data+"</span> &nbsp;&nbsp;"+appointmentEmailNoUpdate);
 		},
 		error : function(){
 			alert("Load appointment error")
@@ -264,7 +264,7 @@ function findEmailSent(){
 		contentType : "application/json",
 		dataType : "json",
 		success : function(data){
-			$(".emailSent").html("<span class='label label-mailsent'>   </span> <span class='badge'>"+data+"</span> &nbsp;&nbsp;Email Sent");
+			$(".emailSent").html("<span class='label label-mailsent'>   </span> <span class='badge'>"+data+"</span> &nbsp;&nbsp;"+appointmentEmailSuccess);
 		},
 		error : function(){
 			alert("Load appointment error")
