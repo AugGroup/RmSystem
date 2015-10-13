@@ -37,7 +37,7 @@
 				<li><a href="${pageContext.request.contextPath}/request" id="request"><spring:message code="request.button" /></a></li>
 				<li><a href="${pageContext.request.contextPath}/approve" id="approve"><spring:message code="request.approve" /></a></li>
 				<li><a href="${pageContext.request.contextPath}/calendar" id="calendarPage"><spring:message code="request.calendar" /></a></li>
-				<li class="dropdown" >
+				<li class="dropdown" id="email-dropdown">
 					<a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" 
 						id="btn_email" data-toggle="tooltip" data-placement="right" title="<spring:message code="warning.appointment" />"><spring:message code="request.email" /> <span class="caret"></span>
 					</a>

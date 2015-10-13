@@ -30,16 +30,19 @@
 	color: rgb(222, 145, 4) !important;
 }
 
-.tooltip{
+#email-dropdown .tooltip{
 	z-index: 0 !important;
 }
 
-.tooltip.right .tooltip-arrow {
+#email-dropdown .tooltip.right .tooltip-arrow {
 	border-right-color: rgb(222, 145, 4) !important;
 }
 
-.tooltip-inner {
+#email-dropdown .tooltip-inner {
 	background-color: rgb(222, 145, 4) !important;
+	max-width: 140px;
+    /* If max-width does not work, try using width instead */
+    width: 140px; 
 }
 
 @media ( max-width : 768px) {
