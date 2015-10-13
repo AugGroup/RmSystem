@@ -4,6 +4,8 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<title><spring:message code="tab.info" /></title>
+
 <jsp:include page="infoSpringMessage.jsp" />
 
 <style>

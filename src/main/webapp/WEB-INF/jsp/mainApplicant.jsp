@@ -4,6 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 
+<title><spring:message code="applicant.table.head" /></title>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/resources/pageCss/main.css" />
 <script src="<c:url value ="/static/resources/pageJS/main-applicant.js"/>"></script> 
 

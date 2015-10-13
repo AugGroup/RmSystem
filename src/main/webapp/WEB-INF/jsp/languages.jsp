@@ -4,6 +4,8 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<title><spring:message code="languages.name.less" /></title>
+
 <script src="<c:url value ="/static/resources/pageJS/aug-languages.js"/>"></script> 
 
 <script>

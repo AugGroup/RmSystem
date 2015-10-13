@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title></title>
+<title><decorator:title/></title>
 
 <script
 	src='<c:url value ="/static/resources/js/jquery-1.11.3.min.js" />'></script>

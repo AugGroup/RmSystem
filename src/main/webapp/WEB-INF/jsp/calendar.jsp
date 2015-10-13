@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
+<title><spring:message code="request.calendar" /></title>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/resources/pageCss/calendar.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/resources/datetime_picker/bootstrap-datetimepicker.min.css" />
 

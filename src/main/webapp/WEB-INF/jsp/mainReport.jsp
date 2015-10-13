@@ -4,6 +4,8 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="f"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<title><spring:message code="report.text" /></title>
+
 <script src="<c:url value ="/static/resources/pageJS/main-report.js"/>"></script> 
 
 <script>
@@ -59,8 +61,7 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 				</div> 
 				<div class="form-group" style="width: 165px">
 					<label for="major"><spring:message code="education.major" /></label>
-					<input type="text" class="form-control" id="major" name="major" placeholder="
-					<spring:message code="education.text.major"/>" style="width: 165px">
+					<input type="text" class="form-control" id="major" name="major" placeholder="<spring:message code="education.text.major"/>" style="width: 165px">
 				</div>
 				<div class="form-group" style="width: 93px">
 					<label for="gpa"><spring:message code="education.gpa" /></label>

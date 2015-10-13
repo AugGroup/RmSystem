@@ -3,7 +3,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<title><spring:message code="request.application" /></title>
+<title><spring:message code="request.title" /></title>
 
 <%-- <jsp:include page="messageValidate.jsp"></jsp:include> --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/resources/pageCss/main.css" />

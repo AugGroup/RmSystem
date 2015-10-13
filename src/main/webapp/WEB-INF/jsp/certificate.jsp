@@ -4,6 +4,8 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<title><spring:message code="cer.title" /></title>
+
 <script src="<c:url value ="/static/resources/pageJS/aug-certificate.js"/>"></script> 
 
 <script>
@@ -235,7 +237,7 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 	<br> <br>
 	<div class="table-responsive" id="table">
 		<table id="certificateTable" class="display" cellspacing="0" width="100%">
-			<caption title="" class="tableHeader"><spring:message code="cer.name"/></caption>
+			<caption title="" class="tableHeader"><spring:message code="cer.title"/></caption>
 			<thead>
 				<tr>
 					<th><spring:message code="cer.name"/></th>
