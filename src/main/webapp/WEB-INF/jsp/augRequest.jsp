@@ -79,9 +79,11 @@ $(document).ready(function(){
 				</tr>
 			</thead>
 		</table>
+		<div>
 		<button id="btn_new_req" class="btn btn-warning" data-toggle="modal" data-target="#addRequestModal">
 			<span class="glyphicon glyphicon-plus"></span><spring:message code="request.add.new" />
 		</button>
+		</div>
 	</div>
 
 

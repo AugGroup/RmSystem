@@ -55,10 +55,10 @@
 
 		<div class="form-group col-xs-offset-9 col-sm-offset-10 col-md-offset-11" >
 		<c:set var="locale">${pageContext.response.locale}</c:set>
-			<a class='${ (locale eq "en") ? "" : "flag"}' href="${request.getRequestURL}?locale=en"> <img src="${pageContext.request.contextPath}/static/decorators/eng_flag.png"
-				alt="logo" class="img-flag" style="width: 30px; height: 20px;" /></a> 
 			<a class='${ (locale eq "th") ? "" : "flag"}' href="${request.getRequestURL}?locale=th"> <img src="${pageContext.request.contextPath}/static/decorators/thai_flag.jpg"
 				alt="logo" class="img-flag" style="width: 30px; height: 20px;" /></a>
+			<a class='${ (locale eq "en") ? "" : "flag"}' href="${request.getRequestURL}?locale=en"> <img src="${pageContext.request.contextPath}/static/decorators/eng_flag.png"
+				alt="logo" class="img-flag" style="width: 30px; height: 20px;" /></a> 
 
 		</div>
 	</div>

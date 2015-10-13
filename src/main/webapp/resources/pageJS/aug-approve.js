@@ -61,11 +61,12 @@ $(document).ready(function () {
 				        	   
 				        	}}
 				           ],
-				           language:{
+				language:{
 
 				        	    url: datatablei18n
 
-				        	  }
+				        	  },
+				        	  
 				});
     	}
 		
