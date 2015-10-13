@@ -84,7 +84,17 @@
 </script>
 
 <title><decorator:title/></title>
-
+<style type="text/css">
+	.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+	    background: none;
+	    border:none;
+	}
+	
+	.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+	    background-color: #ffc000;
+	    border: 2px solid #ffffff;
+	}
+</style>
 </head>
 <%
 	User user = (User) SecurityContextHolder.getContext()
