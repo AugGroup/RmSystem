@@ -135,12 +135,12 @@ $P!{UNIVERSITY} $P!{MAJOR} $P!{TECHNOLOGY} $P!{JOBLEVEL} $P!{DEGREE} $P!{GPA}]]>
 			<staticText>
 				<reportElement x="0" y="40" width="52" height="30" uuid="5b7c8786-d813-430c-a296-08e7cd5e0369"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[code]]></text>
+				<text><![CDATA[Code]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="50" y="40" width="74" height="30" uuid="ee49f9d2-423e-43f7-a80a-92a751793fab"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[applyDate]]></text>
+				<text><![CDATA[Apply Date]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="121" y="40" width="100" height="30" uuid="663ec4dd-6774-4e98-9ea6-c97e9060150e"/>
@@ -150,32 +150,32 @@ $P!{UNIVERSITY} $P!{MAJOR} $P!{TECHNOLOGY} $P!{JOBLEVEL} $P!{DEGREE} $P!{GPA}]]>
 			<staticText>
 				<reportElement x="221" y="40" width="41" height="30" uuid="121c9c83-0b09-408e-82d5-f01b4330f1d5"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[joblevelName]]></text>
+				<text><![CDATA[Joblevel]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="262" y="40" width="55" height="30" uuid="75013987-b436-4f75-aaac-fdc3e37e894a"/>
+				<reportElement x="262" y="40" width="65" height="30" uuid="75013987-b436-4f75-aaac-fdc3e37e894a"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[technologyName]]></text>
+				<text><![CDATA[Technology]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="317" y="40" width="82" height="30" uuid="2c35806a-8148-4b5a-9fb1-8c64dd23779f"/>
+				<reportElement x="327" y="40" width="72" height="30" uuid="2c35806a-8148-4b5a-9fb1-8c64dd23779f"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[university]]></text>
+				<text><![CDATA[University]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="399" y="40" width="61" height="30" uuid="b73122a3-d203-4b5e-a0de-575e8638014f"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[degreeName]]></text>
+				<text><![CDATA[Degree]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="460" y="40" width="57" height="30" uuid="945cfee1-0a62-4786-9e70-7d875dd9e671"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[major]]></text>
+				<text><![CDATA[Major]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="516" y="40" width="29" height="30" uuid="d2cdbcfc-9f63-4f95-b14c-987b2c45656d"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[gpa]]></text>
+				<text><![CDATA[GPA]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="70" width="555" height="1" uuid="0babba61-318a-48f5-af54-d8d6808b2622"/>
@@ -203,12 +203,12 @@ $P!{UNIVERSITY} $P!{MAJOR} $P!{TECHNOLOGY} $P!{JOBLEVEL} $P!{DEGREE} $P!{GPA}]]>
 				<textFieldExpression><![CDATA[$V{name}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="262" y="19" width="55" height="20" uuid="5e5b8071-49e2-4633-bfe3-040384642951"/>
+				<reportElement x="262" y="19" width="65" height="20" uuid="5e5b8071-49e2-4633-bfe3-040384642951"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{technologyName}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="317" y="19" width="80" height="20" uuid="3e936806-11ef-46ee-a151-8ef8ee7f553f"/>
+				<reportElement x="327" y="19" width="70" height="20" uuid="3e936806-11ef-46ee-a151-8ef8ee7f553f"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{university}]]></textFieldExpression>
 			</textField>

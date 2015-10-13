@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="summaryMonthly" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8dcf62fb-fcf7-43cf-92f7-4ad2fceb5bc5">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="18"/>
 	<parameter name="startDate" class="java.lang.String"/>
 	<parameter name="endDate" class="java.lang.String"/>
 	<queryString>
@@ -112,12 +112,12 @@ WHERE applicant.APPLY_DATE BETWEEN STR_TO_DATE($P{startDate},'%d/%m/%Y') AND STR
 						<pen lineWidth="2.0" lineStyle="Double"/>
 					</graphicElement>
 				</line>
-				<textField>
+				<textField pattern="MMMMM">
 					<reportElement x="257" y="39" width="100" height="20" uuid="d4c7c4c8-96dc-434d-b746-e400d5cd799f"/>
 					<textElement>
 						<font size="12" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{applyDate}.getMonth()]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{applyDate}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
@@ -156,27 +156,27 @@ WHERE applicant.APPLY_DATE BETWEEN STR_TO_DATE($P{startDate},'%d/%m/%Y') AND STR
 				<staticText>
 					<reportElement x="152" y="30" width="72" height="20" uuid="6303f258-6444-498d-b811-38de0a1e406b"/>
 					<textElement textAlignment="Center"/>
-					<text><![CDATA[applyDate]]></text>
+					<text><![CDATA[Apply Date]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="235" y="30" width="66" height="20" uuid="36e8646e-137e-40dd-bf5e-4b778abc5267"/>
 					<textElement textAlignment="Center"/>
-					<text><![CDATA[joblevelName]]></text>
+					<text><![CDATA[Joblevel]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="300" y="30" width="56" height="20" uuid="3db6da27-95dd-4244-8bdf-5523a866f4ff"/>
+					<reportElement x="300" y="30" width="63" height="20" uuid="3db6da27-95dd-4244-8bdf-5523a866f4ff"/>
 					<textElement textAlignment="Center"/>
-					<text><![CDATA[technologyName]]></text>
+					<text><![CDATA[Technology]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="407" y="30" width="63" height="20" uuid="b1282873-f812-4b5e-8768-5893cf187acd"/>
 					<textElement textAlignment="Center"/>
-					<text><![CDATA[degreeName]]></text>
+					<text><![CDATA[Degree]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="470" y="30" width="68" height="20" uuid="b8d1bb7e-db8a-41d7-98ac-88a890e8fb48"/>
 					<textElement textAlignment="Center"/>
-					<text><![CDATA[major]]></text>
+					<text><![CDATA[Major]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="77" y="30" width="76" height="20" uuid="c374d32d-63a6-4489-b923-78698d4fc024"/>
@@ -257,12 +257,12 @@ WHERE applicant.APPLY_DATE BETWEEN STR_TO_DATE($P{startDate},'%d/%m/%Y') AND STR
 				<textFieldExpression><![CDATA[$F{applyDate}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="235" y="17" width="56" height="20" uuid="35ba11db-5730-4930-9119-2f76033dce5c"/>
+				<reportElement x="235" y="17" width="65" height="20" uuid="35ba11db-5730-4930-9119-2f76033dce5c"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{joblevelName}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="291" y="17" width="56" height="20" uuid="44302e2f-383e-4cab-95d2-1d4722b8d57d"/>
+				<reportElement x="299" y="17" width="63" height="20" uuid="44302e2f-383e-4cab-95d2-1d4722b8d57d"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{technologyName}]]></textFieldExpression>
 			</textField>
