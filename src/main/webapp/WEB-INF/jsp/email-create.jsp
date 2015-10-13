@@ -20,7 +20,7 @@
 			
 			<div class="col-sm-12">
 				<div class="page-header">
-					<spring:message code="request.email.header.create" />
+					<div><spring:message code="request.email.header.create" /></div>
 				</div>
 			</div>
 			

@@ -15,7 +15,7 @@
 			
 			<div class="col-sm-12">
 				<div class="page-header">
-					<spring:message code="request.email.header.edit" />
+					<div><spring:message code="request.email.header.edit" /></div>
 				</div>
 			</div>
 			

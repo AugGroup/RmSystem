@@ -39,7 +39,7 @@
 				<li><a href="${pageContext.request.contextPath}/calendar" id="calendar"><spring:message code="request.calendar" /></a></li>
 				<li class="dropdown" >
 					<a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" 
-						id="btn_email" data-toggle="tooltip" data-placement="right" title="Warning Appointment"><spring:message code="request.email" /> <span class="caret"></span>
+						id="btn_email" data-toggle="tooltip" data-placement="right" title="<spring:message code="warning.appointment" />"><spring:message code="request.email" /> <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu sub-menu" >
 						<li><a href="${pageContext.request.contextPath}/email/create"><spring:message code="request.email.header.create" /></a></li>
@@ -47,7 +47,7 @@
 						<li><a href="${pageContext.request.contextPath}/email/write"><spring:message code="request.email.header.write" /></a></li>
 	              		<li class="divider"></li>
 	            		<li class="dropdown-submenu" id="email-appointment-new-parent">
-	              			<a tabindex="-1" href="#">New Appointment Email</a>
+	              			<a tabindex="-1" href="#"><spring:message code="request.email.new.appointment" /></a>
 	              			<ul class="dropdown-menu" id="email-appointment-new">
 	              				<!-- <li><a href="#">send all appoinment success</a></li> -->
 	               				<!-- <li><a href="#">Second level</a></li>
@@ -56,7 +56,7 @@
 	            		</li>
 	            		
 	            		<li class="dropdown-submenu" id="email-appointment-update-parent">
-	              			<a tabindex="-1" href="#">Update Appointment Email</a>
+	              			<a tabindex="-1" href="#"><spring:message code="request.email.update.appointment" /></a>
 	              			<ul class="dropdown-menu" id="email-appointment-update">
 	              			</ul>
 	            		</li>

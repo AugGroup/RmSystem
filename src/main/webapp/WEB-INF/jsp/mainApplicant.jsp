@@ -32,6 +32,7 @@ $(document).ready(function(){
 </script>
 
 <div class="container">
+<div><h1 align="center"><spring:message code="applicant.table.head" /></h1></div>
 	<!--Input text for Search Applicant -->
 	<div class="row" id="search_row">
 		<div class="col-md-8"></div>
