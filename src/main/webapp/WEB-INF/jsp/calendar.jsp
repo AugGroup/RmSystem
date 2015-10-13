@@ -30,11 +30,11 @@
 			<div id="mailStatusPropSm">
 				<div class="text-center"><h3><spring:message code="appointment.email.status"/></h3></div>
 				<ul class="list-group" >
-				  <li class="list-group-item noSendEmail" role="button">
+				  <li class="list-group-item noSendEmail" >
 				  </li>
-				  <li class="list-group-item noEmailUpdate" role="button">
+				  <li class="list-group-item noEmailUpdate" >
 				  </li>
-				  <li class="list-group-item emailSent" role="button">
+				  <li class="list-group-item emailSent" >
 				  </li>
 				</ul>
 			</div>
@@ -79,11 +79,11 @@
 				<div id="mailStatusPropMd">
 					<div class="text-center"><h3><spring:message code="appointment.email.status"/></h3></div>
 					<ul class="list-group" >
-					  <li class="list-group-item noSendEmail" role="button">
+					  <li class="list-group-item noSendEmail" >
 					  </li>
-					  <li class="list-group-item noEmailUpdate" role="button">
+					  <li class="list-group-item noEmailUpdate" >
 					  </li>
-					  <li class="list-group-item emailSent" role="button">
+					  <li class="list-group-item emailSent" >
 					  </li>
 					</ul>
 				</div>

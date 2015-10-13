@@ -88,6 +88,7 @@ div.popover > h3.popover-title.sent{
 }
 
 #calendar-container{
+	margin-left :  15px;
 	margin-top: 20px;
 	margin-right: 40px;
 }
@@ -98,14 +99,13 @@ div.popover > h3.popover-title.sent{
 
 #mailStatusPropSm{
 	background-color: #E0DFDD;
-	width:100%;
-	margin-left : 25px;
+	padding-left : 15px;
+	padding-right:15px;
+	padding-top: 15px;
+	padding-bottom :15px;
+    margin-left: 25px;
     margin-top: 15px;
-    margin-bottom: 15px;
-    padding-top: 10px;
-    padding-bottom: 15px;
-    padding-left: 15px;
-    padding-right: 15px;
+    width: 100%;
 }
 
 #mailStatusPropMd{
@@ -135,11 +135,9 @@ div.popover > h3.popover-title.sent{
 
 #trackingStatusPanelSm{
 	background-color: #E0DFDD;
-	width : 100%;
-	margin-left: 25px;
-	margin-bottom : 15px;
-    padding-left: 15px;
-    padding-right: 15px;
+    width: 92%;
+    margin-left: 40px;
+    margin-top: 15px;
 }
 
 span.label-nosend{
