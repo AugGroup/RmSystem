@@ -80,21 +80,21 @@
 	</bean> -->
 	<!-- Email -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com" />
-		<property name="port" value="587" />
-		<property name="username" value="anat.pantera@gmail.com" />
-		<property name="password" value="<-Gmail Password->" />
-
+		<property name="host" value="www.augmentis.biz" />
+		<property name="port" value="465" />
+		<property name="username" value="anat.abd@augmentis.biz" />
+		<property name="password" value="password" />
  
 		<!-- The name of the property, following JavaBean naming conventions -->
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.transport.protocol">smtp</prop>
 				<prop key="mail.smtp.auth">true</prop>
-				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.stqarttls.enable">true</prop>
 				<prop key="mail.debug">true</prop>
 			    <prop key="mail.mime.charset">UTF-8</prop>
 			    <prop key="mail.transport.protocol">smtp</prop>
+			    <prop key="mail.smtp.ssl.enable">true</prop>
 			</props>
 		</property>
 	</bean>

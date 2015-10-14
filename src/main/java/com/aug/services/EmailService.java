@@ -64,7 +64,7 @@ public class EmailService {
 		        MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 		          message.setTo(receiver);
 		          message.setSubject(subject);
-		          message.setFrom("anat.abd@augmentis.biz", "Anat Abdullagasim");
+		          message.setFrom("chalisa.pat@augmentis.biz", "Chalisa Pat");
 		          
 //		          message.setReplyTo("anat.abd@augmentis.biz");
 		          
