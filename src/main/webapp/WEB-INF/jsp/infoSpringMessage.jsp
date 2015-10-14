@@ -55,4 +55,7 @@
 	var employedRelation = "<spring:message code="valid.info.relation"/>";
 	var	previousEmployers = "<spring:message code="valid.info.pre.emp"/>";
 	var	previousEmployersReason = "<spring:message code="valid.ex.reason"/>";
+	var infoValidateAgeMax = "<spring:message code="info.age.validate.max"/>";
+	var infoValidateWeightMax = "<spring:message code="info.weight.validate.max"/>";
+	var infoValidateHeightMax = "<spring:message code="info.height.validate.max"/>";
 </script>

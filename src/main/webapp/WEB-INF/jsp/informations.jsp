@@ -162,7 +162,7 @@
 			<div class="col-sm-12">
 				<label for="age"><spring:message code="info.age"/></label>
 				<spring:message code="info.text.age" var="age"/><br>
-				<f:input path="age" id="age" name="age" class="form-control btn-information" placeholder="${age}" type="text"></f:input>
+				<f:input path="age" id="age" name="age" class="form-control btn-information numberonly" placeholder="${age}" type="text"></f:input>
 			</div>
 		</div>
 		
@@ -186,7 +186,7 @@
 			<div class="col-sm-12">
 				<label for="cardId"><spring:message code="info.id.card"/></label>
 				<spring:message code="info.text.card" var="card"/><br>
-				<f:input path="cardId" id="cardId" name="cardId" class="form-control btn-information" placeholder="${card}" type="text"></f:input>
+				<f:input path="cardId" id="cardId" name="cardId" class="form-control btn-information numberonly" placeholder="${card}" type="text"></f:input>
 			</div>
 		</div>
 	</div>
@@ -216,7 +216,7 @@
 			<div class="col-sm-12">
 				<label for="height"><spring:message code="info.height"/></label>
 				<spring:message code="info.text.height" var="height"/><br>
-				<f:input path="height" class="form-control btn-information" id="height" name="height" placeholder="${height}" type="text"></f:input>
+				<f:input path="height" class="form-control btn-information numberonly" id="height" name="height" placeholder="${height}" type="text"></f:input>
 			</div>
 		</div>
 		
@@ -224,7 +224,7 @@
 			<div class="col-sm-12">
 				<label for="weight"><spring:message code="info.weight"/></label>
 				<spring:message code="info.text.weight" var="weight"/><br>
-				<f:input path="weight" class="form-control btn-information" id="weight" name="weight" placeholder="${weight}" type="text"></f:input>
+				<f:input path="weight" class="form-control btn-information numberonly" id="weight" name="weight" placeholder="${weight}" type="text"></f:input>
 			</div>
 		</div>
 	</div>
@@ -261,7 +261,7 @@
 				<div class="col-sm-12">
 					<label for="children"><spring:message code="info.number.child"/> 
 					<spring:message code="info.text.children" var="children"/><br>
-					</label><br><f:input path="numberOfChildren" class="form-control btn-information" id="numberOfChildren" name="numberOfChildren" placeholder="${children}" type="text"></f:input>
+					</label><br><f:input path="numberOfChildren" class="form-control btn-information numberonly" id="numberOfChildren" name="numberOfChildren" placeholder="${children}" type="text"></f:input>
 				</div>
 			</div>
 			
@@ -339,7 +339,7 @@
 				<div class="col-sm-12">
 							<label for="militaryFromYear"><spring:message code="info.military.fromYear"/></label>
 							<spring:message code="info.text.from" var="from"/><br>
-							<f:input path="militaryFromYear" class="form-control btn-information" id="militaryFromYear" name="militaryFromYear" placeholder="${from}" type="text"></f:input><br>
+							<f:input path="militaryFromYear" class="form-control btn-information numberonly" id="militaryFromYear" name="militaryFromYear" placeholder="${from}" type="text"></f:input><br>
 				</div>
 			</div>
 			
@@ -347,7 +347,7 @@
 				<div class="col-sm-12">
 						<label for="militarytoYear"><spring:message code="info.military.toYear"/></label>
 						<spring:message code="info.text.to" var="to"/><br>
-						<f:input path="militarytoYear" class="form-control btn-information" id="militarytoYear" name="militarytoYear" placeholder="${to}" type="text"></f:input><br>
+						<f:input path="militarytoYear" class="form-control btn-information numberonly" id="militarytoYear" name="militarytoYear" placeholder="${to}" type="text"></f:input><br>
 				</div>
 			</div>
 			<div class="col-sm-3">
@@ -523,7 +523,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-12">
+		<div class="col-sm-12" style="padding-bottom:25px;">
 			<div id="nowEmployedRadioButton">
 				<f:radiobutton path="nowEmployed" id="nowEmployedYes" name="nowEmployed" value="Yes"></f:radiobutton><label><spring:message code="info.yes"/></label>
 				<f:radiobutton path="nowEmployed" id="nowEmployedNo" name="nowEmployed" value="No"></f:radiobutton><label><spring:message code="info.no"/></label>
@@ -686,7 +686,7 @@
 				<div class="col-sm-12" >
 					<label for="salary"><spring:message code="info.salary"/></label>
 					<spring:message code="info.text.salary" var="salary"/><br>
-					<f:input path="expectedSalary" class="form-control btn-information" id="expectedSalary" name="expectedSalary" placeholder="${salary}" type="text"></f:input>
+					<f:input path="expectedSalary" class="form-control btn-information numberonly" id="expectedSalary" name="expectedSalary" placeholder="${salary}" type="text"></f:input>
 				</div>
 			</div>
 		 </div>
@@ -734,4 +734,3 @@
 	</f:form>
 	</div>
 </div>
-
