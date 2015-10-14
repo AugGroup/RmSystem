@@ -188,8 +188,8 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 		</table>
 		<div align="right">
 			<button class="btn btn-warning" id="buttonAdd" data-toggle="modal" data-target="#experiencesModal"><span class="glyphicon glyphicon-plus"></span><spring:message code="exp.name.add" /></button>
-			<button class="btn btn-default" type="button" id="buttonBack" name="buttonBack" onclick="window.location='${pageContext.request.contextPath}/references/${id}'"><span class="glyphicon glyphicon-step-backward"></span> Back </button>
-			<button class="btn btn-default" type="button" id="buttonNext" name="buttonNext" onclick="window.location='${pageContext.request.contextPath}/applicant'"><span class="glyphicon glyphicon-ok"></span> Finish </button>
+			<button class="btn btn-default" type="button" id="buttonBack" name="buttonBack" onclick="window.location='${pageContext.request.contextPath}/references/${id}'"><span class="glyphicon glyphicon-step-backward"></span> <spring:message code="button.back"/> </button>
+			<button class="btn btn-default" type="button" id="buttonNext" name="buttonNext" onclick="window.location='${pageContext.request.contextPath}/applicant'"><span class="glyphicon glyphicon-ok"></span> <spring:message code="button.finish"/> </button>
 		</div>
 	</div>
 </div>
