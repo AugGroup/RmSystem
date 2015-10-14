@@ -15,7 +15,7 @@
 	var approve_tx = '<spring:message code="edit.approve"/>';
 
 	$(document).ready(function(){
-		$("#approve").addClass('active-menu'); 
+		$("#approvePage").addClass('active-menu'); 
 	});
 </script>
 

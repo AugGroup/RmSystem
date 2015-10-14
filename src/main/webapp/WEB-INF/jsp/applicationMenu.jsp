@@ -33,6 +33,20 @@ table.dataTable tr.even {
 }
 </style>
 <script type="text/javascript">
+function checkId(id){
+	if(id == null || id == ""){
+		$( "ul#applicationMenu li" ).addClass('disabled');
+		$( "ul#applicationMenu li a" ).removeAttr('href');
+		
+		$( "ul#applicationMenu li#information" ).addClass('active');
+		$( "ul#applicationMenu li#information" ).removeClass('disabled');
+		$( "ul#applicationMenu li#information a" ).attr('href',"${pageContext.request.contextPath}/informations/");
+	}
+}
+
+$(document).ready(function(){
+	checkId("${id}");	
+});
 </script>
 
   <div class="row">
@@ -41,10 +55,10 @@ table.dataTable tr.even {
        <button class="btn btn-defult dropdown-toggle" type="button" id="btnDropdownMenu" data-toggle="dropdown" aria-haspopup="true" 
          aria-expanded="true"><spring:message code="menu.text"/> <span class="caret"></span>
        </button>
-      <ul class="dropdown-menu" aria-labelledby="btnDropdownMenu">
-        <li class='${ (tag eq "information") ? "active" : ""}'><a href="${pageContext.request.contextPath}/info/${id}"><span
+      <ul class="dropdown-menu" id="applicationMenu" aria-labelledby="btnDropdownMenu">
+        <li id="information" class='${ (tag eq "information") ? "active" : ""}'><a href="${pageContext.request.contextPath}/info/${id}"><span
          class="glyphicon glyphicon-user"></span> <spring:message code="tab.info"/></a></li>
-        <li class='${ (tag eq "address") ? "active" : ""}'><a href="${pageContext.request.contextPath}/address/${id}"><span
+        <li class='${ (tag eq "address") ? "active" : ""}' ><a href="${pageContext.request.contextPath}/address/${id}"><span
         class="glyphicon glyphicon-home"></span> <spring:message code="tab.address"/></a></li>
       <li class='${ (tag eq "family") ? "active" : ""}'><a  href="${pageContext.request.contextPath}/family/${id}"><span
         class="glyphicon glyphicon-file"></span> <spring:message code="tab.family"/></a></li>

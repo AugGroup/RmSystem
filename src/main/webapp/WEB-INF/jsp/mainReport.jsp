@@ -24,23 +24,28 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 	<div class="report_search" align="right" style="float: right;">
 		<f:form method="post" name="reportForm" target="_blank" commandName="searchReportDTO"
 			action="${pageContext.request.contextPath}/report/preview" cssClass="form-inline">
-			
-			<div class="search_inputgroup">
-				<%-- <h3><spring:message code="report.text.search" /></h3> --%>
-				<div class="form-group">
-					<input type="hidden" id="jobLevelId" name="jobLevelId">
-					<input type="hidden" id="technologyId" name="technologyId">
-				</div>
-				<div class="form-group">
-					<label for="joblevel"><spring:message code="main.position1" /></label><br>
-					<select name="joblevel" id="joblevel" class="form-control" style="width: 165px">
-					<option value="-1" label="---Select Joblevel---" />
-						<c:forEach items="${jobLevels}" var="jobLevelList">
-							<option value="${jobLevelList.id}">${jobLevelList.name}</option>
-						</c:forEach>
-					</select>
-				</div>
+			<div class="row">
+				<div class="search_inputgroup">
+					<%-- <h3><spring:message code="report.text.search" /></h3> --%>
+					<div class="form-group">
+						<input type="hidden" id="jobLevelId" name="jobLevelId">
+						<input type="hidden" id="technologyId" name="technologyId">
+					</div>
+					
+					<div class="col-sm-12">
+						<div class="col-sm-12 col-md-2">
+							<div class="form-group">
+								<label for="joblevel"><spring:message code="main.position1" /></label><br>
+								<select name="joblevel" id="joblevel" class="form-control" >
+								<option value="-1" label="---Select Joblevel---" />
+									<c:forEach items="${jobLevels}" var="jobLevelList">
+										<option value="${jobLevelList.id}">${jobLevelList.name}</option>
+									</c:forEach>
+								</select>
+							</div>
+						</div>	
 						
+
 				<div class="form-group">
 					<label for="technology"><spring:message code="main.position2" /></label><br> 
 					<select name="technology" id="technology" class="form-control" style="width: 165px">
@@ -73,12 +78,8 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 					<input type="text" class="form-control" id="university" name="university" 
 					placeholder="<spring:message code="report.enter.school"/>" style="width: 165px">
 				</div>
-
-				<button type="button" class="btn btn-primary" id="btn_search">
-					<span class="glyphicon glyphicon-search"></span><spring:message code="main.button.search" />
-				</button>
 			</div>
-
+			
 			<div class="search_inputgroup" align="right">
 				<div class="form-group" id="radio_inputgroup">
 					<label for="reportType"><spring:message code="report.text.type" /> </label> 
@@ -90,7 +91,9 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 					<span class="glyphicon glyphicon-search"></span><spring:message code="request.preview" />
 				</button>
 			</div>
-
+			
+		</div>
+		</div>
 		</f:form>
 	</div>
 	</div>

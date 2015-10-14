@@ -77,6 +77,15 @@
 
 </style>
 <!-- tab informations -->
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$("#applicantPage").addClass('active-menu'); 
+});
+
+</script>
+
 <div class="container">
 <c:choose>
 		<c:when test="${applicant.id ne null}">

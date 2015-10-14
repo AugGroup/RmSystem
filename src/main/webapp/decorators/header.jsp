@@ -32,10 +32,10 @@
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="navbar-collapse">
-			<ul class="nav navbar-nav" id="nav-menu" style="margin-top: 10px;">
-				<li><a href="${pageContext.request.contextPath}/applicant" id="applicant"><span class="glyphicon glyphicon-home "></span></a></li>
-				<li><a href="${pageContext.request.contextPath}/request" id="request"><spring:message code="request.button" /></a></li>
-				<li><a href="${pageContext.request.contextPath}/approve" id="approve"><spring:message code="request.approve" /></a></li>
+			<ul class="nav navbar-nav" id="nav-menu">
+				<li><a href="${pageContext.request.contextPath}/applicant" id="applicantPage"><span class="glyphicon glyphicon-home "></span></a></li>
+				<li><a href="${pageContext.request.contextPath}/request" id="requestPage"><spring:message code="request.button" /></a></li>
+				<li><a href="${pageContext.request.contextPath}/approve" id="approvePage"><spring:message code="request.approve" /></a></li>
 				<li><a href="${pageContext.request.contextPath}/calendar" id="calendarPage"><spring:message code="request.calendar" /></a></li>
 				<li class="dropdown" >
 					<a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" 

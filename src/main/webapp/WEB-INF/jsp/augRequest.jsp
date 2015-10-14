@@ -55,7 +55,7 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#request").addClass('active-menu'); 
+	$("#requestPage").addClass('active-menu'); 
 });
 </script>
 
