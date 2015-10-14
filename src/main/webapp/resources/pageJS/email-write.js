@@ -40,7 +40,8 @@ function sendEmail(receiver, cc, subject, content){
 		},
 		success: function(data) {
 			if (data == "success") {
-				window.location.replace(contextPath + "/email/write");
+				//window.location.replace(contextPath + "/email/write");
+				alert("send success");
 			} else {
 				//setNotify("Success", "Send email success.", "ok", "success");
 				setNotify("Fail", "Send email fail.<br>please check your email before send.", "remove", "danger");

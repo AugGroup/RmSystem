@@ -4,14 +4,18 @@ import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.context.Context;
+import org.aspectj.bridge.MessageWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.mail.MailParseException;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
@@ -60,6 +64,9 @@ public class EmailService {
 		        MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 		          message.setTo(receiver);
 		          message.setSubject(subject);
+		          message.setFrom("anat.abd@augmentis.biz", "Anat Abdullagasim");
+		          
+//		          message.setReplyTo("anat.abd@augmentis.biz");
 		          
 		          //set cc
 		          if (!cc.equals("")) {
@@ -69,8 +76,8 @@ public class EmailService {
 		  			message.setCc(allCc);
 		  		  }
 
-		          FileSystemResource map = new FileSystemResource(path + "map.jpg");
-		          message.addAttachment(map.getFilename(), map);
+		          //FileSystemResource map = new FileSystemResource(path + "map.jpg");
+		          //message.addAttachment(map.getFilename(), map);
 		          
 		          message.setText(encode, true);
 		  }
@@ -78,6 +85,7 @@ public class EmailService {
 		
 		//send email
 		mailSender.send(preparator);
+		
 	}
 	
 	

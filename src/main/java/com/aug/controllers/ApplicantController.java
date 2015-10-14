@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.persistence.criteria.Root;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -169,13 +170,18 @@ public class ApplicantController implements Serializable {
 	@Autowired
 	private ReportService reportService;
 	
-	@RequestMapping(value = "/applicant", method = { RequestMethod.GET })
+	@RequestMapping(value =  "/applicant", method = { RequestMethod.GET })
 	public String helloPage(Model model) {
 		User user = (User) SecurityContextHolder.getContext()
 				.getAuthentication().getPrincipal();
 		String name = user.getUsername();
 		model.addAttribute("name", name);
 		return "mainApplicant";
+	}
+	
+	@RequestMapping(value="/",method={RequestMethod.GET})
+	public String root(){
+		return "redirect:/applicant";
 	}
 
 	/*-------------------- initBinder --------------------*/
