@@ -18,11 +18,8 @@
 </script>
 
 <div id="calendar-container" class="container-fluid">
+	<div><h1 align="center"><spring:message code="request.calendar"/></h1></div>
 	<div class="row">
-		
-		
-		
-		
 		<div id="calendarDiv" class="col-xs-11 col-sm-11 col-md-9 col-lg-9">
 			<div id='calendar'></div>
 		</div>
