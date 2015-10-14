@@ -263,7 +263,7 @@ public class ApplicantController implements Serializable {
 		applicant.setTrackingStatus(applicantDto.getTrackingStatus());
 		applicant.setMasLocation("TH");
 		
-		if (applicant.getTrackingStatus().equals("Approve")) {
+		if (applicant.getTrackingStatus().equals("Approve") && applicant.getTechScore().equals("Pass")) {
 			
 			//find user
 			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

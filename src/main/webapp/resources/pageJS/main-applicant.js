@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	var dtApplicant
-	/* $('#EditStatusForm').validate({
+	$('#EditStatusForm').validate({
 			rules:{
 				inputRequesterName:{required: true},
 				inputScore:{required: true},
@@ -11,13 +11,13 @@ $(document).ready(function(){
 			  	},
 			messages: {
 				inputRequesterName:{required: "Requester name is required"},
-			  	inputScore:{required: "Score is required"},
-			  	inputTechScore:{required: "Technical score is required"},
-			  	inputAttitudeHome:{required: "Attitude at home is required"},
-			  	inputAttitudeOffice:{required: "Attitude at office is required"},
-			  	inputStatus:{required: "Request status is required"}
+			  	inputScore:{required: valScore},
+			  	inputTechScore:{required: valTech},
+			  	inputAttitudeHome:{required: valAttHome},
+			  	inputAttitudeOffice:{required: valAttOffice},
+			  	inputStatus:{required: valStatus}
 			  	}
-		}); */
+	});
 		
 	//Search By Position and Show function
 	$('#btn_search').on('click', function(){
