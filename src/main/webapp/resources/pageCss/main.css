@@ -354,4 +354,8 @@ ul.pagination li.next>a{
 	background-color: #DE9104;
 	background-image: linear-gradient(to bottom, #DE9104 0%, #DE9104 100%);
 }
-
+ul.dropdown-menu{
+    background-color: #efefef;
+    border : none;
+    border-radius: 0px;
+}

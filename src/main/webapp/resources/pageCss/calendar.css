@@ -175,3 +175,7 @@ span.label-mailsent{
 .emailSent {
 	cursor: default;
 }
+
+#appointmentListTable thead tr{
+	color: #ffffff;
+}
