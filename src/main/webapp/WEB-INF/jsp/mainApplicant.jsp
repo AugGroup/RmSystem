@@ -104,6 +104,7 @@ $(document).ready(function(){
 								<spring:message code="edit.radio.pass" /></label>
 								<label class="radio-inline"> <input type="radio" value="Not" id="inputTechScore" name="inputTechScore">
 								<spring:message code="edit.radio.notPass" /></label>
+								<span id="error-approve"></span>
 							</div>
 							<div class="form-group">
 								<label for="inputScore"><spring:message code="edit.attitude.score" /> </label>

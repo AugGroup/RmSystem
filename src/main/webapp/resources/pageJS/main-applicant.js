@@ -72,6 +72,7 @@ $(document).ready(function(){
 	
 	//EditStatusModal
 	$('#EditStatusModal').on('show.bs.modal',function(e){
+		$("#error-approve").empty();
 		var button = e.relatedTarget;
 		if (button != null){
 			var applicantId = $(button).data("id");
@@ -82,6 +83,12 @@ $(document).ready(function(){
 					updateUser(button);
 				});
 			}
+		}
+	});
+	
+	$("#inputTechScore").on("change", function(){
+		if( $(this).val() == "Pass" ) {
+			$("#error-approve").empty();
 		}
 	});
 		
@@ -109,6 +116,8 @@ $(document).ready(function(){
 		
 		//Update Score Fuction
 		function updateUser(button){
+			$("#error-approve").empty();
+			
 			var id = $(button).data("id");
 			var score = $("#inputScore").val();
 			var techScore = $('input[name="inputTechScore"]:checked').val();
@@ -123,13 +132,20 @@ $(document).ready(function(){
 					"attitudeOffice" : attitudeOffice,
 					"trackingStatus" : trackingStatus
 					};
-			if($("#EditStatusForm").valid()){
+			
+			if(trackingStatus == "Approve" && techScore != "Pass") {
+				//alert("can't approve.");
+				$("#error-approve").css("color","red");
+				$("#error-approve").empty().append("can't approve.");
+			} else if($("#EditStatusForm").valid()){
+				$("#error-approve").empty();
 				$.ajax({
 					url : "update/score/"+id,
 					type : "POST",
 					contentType :"application/json; charset=utf-8", 
 					data : JSON.stringify(json),
 					success : function(data){
+						console.log(data);
 						$('#EditStatusModal').modal('hide');
 						var table = $('#dataTable').DataTable();	
 					 	var rowData = table.row(button.closest('tr')).index(); 
