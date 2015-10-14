@@ -23,6 +23,7 @@ $(function(){
 
 function sendEmail(receiver, cc, subject, content){
 	
+	$("#emali-sending").modal("show");
 	$.ajax({
 		url: contextPath + "/email/send",
 		type: "POST",
@@ -34,11 +35,8 @@ function sendEmail(receiver, cc, subject, content){
 			"subject": subject,
 			"content": content
 		},
-		beforeSend: function(){
-			//alert("sending");
-			$("#emali-sending").modal("show");
-		},
 		success: function(data) {
+			$("#emali-sending").modal("hide");
 			if (data == "success") {
 				window.location.replace(contextPath + "/email/write");
 				//alert("send success");
@@ -47,11 +45,8 @@ function sendEmail(receiver, cc, subject, content){
 				setNotify("Fail", "Send email fail.<br>please check your email before send.", "remove", "danger");
 			}
 		},
-		complete: function(){
-			//alert("send success")
-			$("#emali-sending").modal("hide");
-		},
 		error: function(){
+			$("#emali-sending").modal("hide");
 			setNotify("Fail", "Send email fail.<br>please check your email before send.", "remove", "danger");
 		}
 	});

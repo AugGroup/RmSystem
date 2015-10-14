@@ -64,7 +64,8 @@ public class EmailService {
 		        MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 		          message.setTo(receiver);
 		          message.setSubject(subject);
-		          message.setFrom("chalisa.pat@augmentis.biz", "Chalisa Pat");
+		          //message.setFrom("chalisa.pat@augmentis.biz", "Chalisa Patanadamrongchai");
+		          message.setFrom("anat.abd@augmentis.biz", "Anat Abdullagasim");
 		          
 //		          message.setReplyTo("anat.abd@augmentis.biz");
 		          
@@ -76,8 +77,8 @@ public class EmailService {
 		  			message.setCc(allCc);
 		  		  }
 
-		          //FileSystemResource map = new FileSystemResource(path + "map.jpg");
-		          //message.addAttachment(map.getFilename(), map);
+		          FileSystemResource map = new FileSystemResource(path + "map.jpg");
+		          message.addAttachment(map.getFilename(), map);
 		          
 		          message.setText(encode, true);
 		  }
