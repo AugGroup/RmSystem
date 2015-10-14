@@ -6,76 +6,9 @@
 
 <title><spring:message code="tab.info" /></title>
 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/resources/pageCss/infoCss.css" />
 <jsp:include page="infoSpringMessage.jsp" />
 
-<style>
-#con-body{
-	margin-top: 30px;
-}
-
-#btn-image{
-    margin-bottom: 5px;
-    margin-right: 75px;
-    margin-left: 75px;
-    width: 120px;
-    height: 120px;
-    background-position: center;
-    background-size: cover;
-    -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, .3);
-    display: inline-block;
-}
-
-.btn-information{
-	width: 210px;
-	height: 30px;
-	margin:10px 25px;
-}
-
-#marriageAddress {
-	width: 677px;
-	height: 30px;
-	margin-bottom: 10px;
-	margin-top: 10px;
-	margin-right: 25px;
-	margin-left: 25px;
-}
-
-@media ( max-width : 960px) {
-	.btn-information{
-		width: 100%;
-		margin: 0 0 15px 10px;
-	}
-	
-	#marriageAddress, #emergencyAddress,#militaryReason, #previousEmployersReason {
-		width: 100%;
-		margin: 0 0 15px 10px;
-	}
-}
-
-@media (min-width: 768px) and (max-width: 1200px){
-	*{
-		font-size: 14px;
-	}
-	.form-inline .form-control {
-	    display: inline-block;
-	    width: 100%;
-	    vertical-align: middle;
-	}
-	
-	.btn-information{
-		width: 100%;
-	}	
-	
-	#emergencyName , #emergencyTel ,#militaryServiceNo,#dateToBeDraft{
-		width: 210px
-	}
-	
-	#marriageAddress {
-		width: 100%;
-	}
-}	
-
-</style>
 <!-- tab informations -->
 <div class="container">
 <c:choose>
@@ -106,7 +39,7 @@
 		
 <!-- ********************	information	  ******************** -->
 		
-				<h3 class="col-sm-12" id="infomation"> INFORMATION</h3>
+				<h3 class="col-sm-12" id="infomation"> <spring:message code="tab.info" /></h3>
 				<div class="row">
 					<div class="col-sm-3 text-center">
 						<div class="row">
@@ -186,7 +119,7 @@
 <!-- ********************	end information	  ******************** -->
 	
 <!-- ********************	GENERAL	  ******************** -->
-	<h3 class="col-sm-12" id="general" >GENERAL</h3>
+	<h3 class="col-sm-12" id="general" ><spring:message code="info.general" /></h3>
 	
 	<!-- row 1 -->
 	<div class="row">
@@ -736,7 +669,7 @@
 		</div>
 	</div>
 	
-	<h3 class="col-sm-12" id="official">OFFICIAL</h3>
+	<h3 class="col-sm-12" id="official"><spring:message code="info.official" /></h3>
 <!-- 			<div class="form-group"> -->
 		<div class="row">
 			<div class="col-sm-4">

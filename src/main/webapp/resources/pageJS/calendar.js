@@ -97,9 +97,10 @@ function updateAppointmentDate(eventToUpdate, revertParam){
 	    		dataType : "json",
 	    		success: function(result){
 	    			new PNotify({
-	    			    title: result.title +"<br>" + pnotifyEdit,
+	    				title: pnotifySuccess,
+	    			    text: result.title +"<br>" + pnotifyEdit,
 	    			    type: 'success',
-	    			    delay: 750
+	    			    delay: 1000,
 	    			});
 	    			var view = $calendar.fullCalendar('getView');//get view object
 	    			$calendar.fullCalendar( 'destroy' );
@@ -514,9 +515,10 @@ $( function(){
 					$('#detailModal').modal("hide");
 					$('#delModal').modal("hide");
 					new PNotify({
-					    title: data + "<br>" + pnotifyDelete,
+						title: pnotifySuccess,
+						text: data + "<br>" + pnotifyDelete,
 					    icon: false,
-					    delay: 750
+					    delay: 1000
 					});
 					findNoEmailSending();
 					findNoEmailUpdate();
@@ -524,10 +526,10 @@ $( function(){
 				},
 				error : function (error) {
 					new PNotify({
-					    title: "Can't Delete!",
-					    text: error,
+					    title: pnotifyError,
+					    text: pnotifyError,
 					    type: 'error',
-					    delay: 750
+					    delay: 1000
 					});
 				}
 	 		})
@@ -570,9 +572,10 @@ $( function(){
 						$('#formInsert').trigger('reset');
 						findNoEmailSending();
 						new PNotify({
-						    title: data.title +"<br>"+ pnotifyInsert,
+							title: pnotifySuccess,
+						    text: data.title +"<br>"+ pnotifyInsert,
 						    type: 'success',
-						    delay: 750
+						    delay: 1000
 						});
 					}
 				});//end ajax
@@ -616,9 +619,10 @@ $( function(){
 					$('#confirmEditModal').modal("hide");
 					$('#editModal').modal("hide");
 					new PNotify({
-					    title: result.title +"<br>" + pnotifyEdit,
+						title: pnotifySuccess,
+					    text: result.title +"<br>" + pnotifyEdit,
 					    type: 'success',
-					    delay: 750
+					    delay: 1000
 					});
 					$calendar.fullCalendar( 'destroy' );
 	    			renderCalendar();
