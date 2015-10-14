@@ -41,16 +41,16 @@
 		</div>
 		<div id="trackingStatusPanelSm" class="col-xs-12 col-sm-12 visible-xs visible-sm ">
 		<div class="text-center"><h3><spring:message code="appointment.applicant.status"/></h3></div>
-		<div class="panel-group" id="applicantStatusList" role="tablist" aria-multiselectable="true">
+		<div class="panel-group" id="applicantStatusListSm" role="tablist" aria-multiselectable="true">
 		  <div class="panel panel-default">
 		    <div class="panel-heading" role="tab" id="pendingTestHead">
 		      <h4 class="panel-title">
-		        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#trackingStatusPanelSm" href="#pendingTestListSm" aria-expanded="false" aria-controls="pendingTestListSm">
+		        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#applicantStatusListSm" href="#pendingTestListSm" aria-expanded="true" aria-controls="pendingTestListSm">
 		          <spring:message code="appointment.status.pending.test"/>
 		        </a>
 		      </h4>
 		    </div>
-		    <div id="pendingTestListSm" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+		    <div id="pendingTestListSm" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="pendingTestHead">
 		      <div  class="list-group">
 		      	<!-- jQueryRender -->
 		      </div>
@@ -59,12 +59,12 @@
 		  <div class="panel panel-default">
 		    <div class="panel-heading" role="tab" id="pendingApproveHead">
 		      <h4 class="panel-title">
-		        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#trackingStatusPanelSm" href="#pendingApproveListSm" aria-expanded="false" aria-controls="pendingApproveListSm">
+		        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#applicantStatusListSm" href="#pendingApproveListSm" aria-expanded="false" aria-controls="pendingApproveListSm">
 		          <spring:message code="appointment.status.pending.approve"/>
 		        </a>
 		      </h4>
 		    </div>
-		    <div id="pendingApproveListSm" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+		    <div id="pendingApproveListSm" class="panel-collapse collapse" role="tabpanel" aria-labelledby="pendingApproveHead">
 		      <div  class="list-group">
 		      	<!-- jQueryRender -->
 		      </div>
@@ -92,16 +92,16 @@
 				<div class="col-md-12">
 				<div id="trackingStatusPanelMd" class="col-md-12">
 				<div class="text-center"><h3><spring:message code="appointment.applicant.status"/></h3></div>
-				<div class="panel-group" id="applicantStatusList" role="tablist" aria-multiselectable="true">
+				<div class="panel-group" id="applicantStatusListMd" role="tablist" aria-multiselectable="true">
 				  <div class="panel panel-default">
 				    <div class="panel-heading" role="tab" id="pendingTestHead">
 				      <h4 class="panel-title">
-				        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#trackingStatusPanelMd" href="#pendingTestListMd" aria-expanded="false" aria-controls="pendingTestListMd">
+				        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#applicantStatusListMd" href="#pendingTestListMd" aria-expanded="true" aria-controls="pendingTestListMd">
 				          <spring:message code="appointment.status.pending.test"/>
 				        </a>
 				      </h4>
 				    </div>
-				    <div id="pendingTestListMd" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+				    <div id="pendingTestListMd" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 				      <div  class="list-group">
 				      	<!-- jQueryRender -->
 				      </div>
@@ -110,7 +110,7 @@
 				  <div class="panel panel-default">
 				    <div class="panel-heading" role="tab" id="pendingApproveHead">
 				      <h4 class="panel-title">
-				        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#trackingStatusPanelMd" href="#pendingApproveListMd" aria-expanded="false" aria-controls="pendingApproveListMd">
+				        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#applicantStatusListMd" href="#pendingApproveListMd" aria-expanded="false" aria-controls="pendingApproveListMd">
 				          <spring:message code="appointment.status.pending.approve"/>
 				        </a>
 				      </h4>
@@ -374,7 +374,7 @@
 	      </div>
 	      <div id="modalBody_appointmentList" class="modal-body">
 	      	<div class="table-responsive" style=" width:100%;">
-	      		<table id="appointmentListTable" class="display" >
+	      		<table id="appointmentListTable" >
 	      		<caption title="" class="tableHeader"><spring:message code="appointment.description"/></caption>
 	      			<thead>
 	      				<tr>
