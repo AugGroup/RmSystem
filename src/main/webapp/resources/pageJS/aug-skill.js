@@ -20,7 +20,7 @@ $(document).ready(function() {
 			hover:false,
 			sort:false,
 			ajax : {
-				url : 'findByIdSkill/'+id,
+				url : contextPath + '/findByIdSkill/'+id,
 				type : 'POST'
 			},
 			columns : [ {data : "masspecialty"},
@@ -58,7 +58,7 @@ $(document).ready(function() {
 			};
 			
 			$.ajax({
-				url : "skills/"+id,
+				url : contextPath + "/skills/"+id,
 				type : "POST",
 				contentType :"application/json; charset=utf-8",
 				data : JSON.stringify(json),
@@ -93,7 +93,7 @@ $(document).ready(function() {
 	//Update 
 	function findById(id){
 		$.ajax({
-			url : "findSkillId/" + id,
+			url : contextPath + "/findSkillId/" + id,
 			type : "POST",
 			success : function(data){
 				console.log(id);
@@ -126,7 +126,7 @@ $(document).ready(function() {
 					};
 			
 			$.ajax({
-				url : "updateSkills/"+id,
+				url : contextPath + "/updateSkills/"+id,
 				type : "POST",
 				contentType :"application/json; charset=utf-8",
 				data : JSON.stringify(json),
@@ -173,7 +173,7 @@ $(document).ready(function() {
         var id = $(button).data("id");
         var index = dtApplicant.row(button.closest("tr")).index();
         $.ajax({
-            url: "deleteSkill/" + id,
+            url: contextPath + "/deleteSkill/" + id,
             type: "POST",
             success: function () {
             	dtApplicant.row(index).remove().draw();

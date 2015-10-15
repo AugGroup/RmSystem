@@ -48,7 +48,7 @@ $(document).ready(function () {
 				hover:false,
 				sort:false,
 				ajax : {
-					url : 'findByIdAddress/'+id,
+					url : contextPath + '/findByIdAddress/'+id,
 					type : 'POST'
 				},
 				columns : [ {data : "masaddresstypeName"},
@@ -95,7 +95,7 @@ $(document).ready(function () {
 							"zipcode":zipcode};
 			
 				$.ajax({
-					url : contextPath + 'address/'+id,
+					url : contextPath + '/address/'+id,
 					contentType : "application/json",
 					type : "POST",
 					data : JSON.stringify(json),
@@ -125,7 +125,7 @@ $(document).ready(function () {
 		//Find by Id
 		function findById(id){
 			$.ajax({
-				url : "findAddressId/" + id,
+				url : contextPath + "/findAddressId/" + id,
 				type : "POST",
 				success : function(data){
 					showFillData(data);
@@ -175,7 +175,7 @@ $(document).ready(function () {
 					};
 			
 			$.ajax({
-				url : "updateAddress/"+id,
+				url : contextPath + "/updateAddress/"+id,
 				type : "POST",
 				contentType :"application/json; charset=utf-8",
 				data : JSON.stringify(json),
@@ -232,7 +232,7 @@ $(document).ready(function () {
             var id = $(button).data("id");
             var index = dtApplicant.row(button.closest("tr")).index();
             $.ajax({
-                url: "deleteAddress/" + id,
+                url: contextPath + "/deleteAddress/" + id,
                 type: "POST",
                 success: function () {
                 	dtApplicant.row(index).remove().draw();

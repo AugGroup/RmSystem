@@ -28,7 +28,7 @@ $(document).ready(function() {
 			hover:false,
 			sort:false,
 			ajax : {
-				url : 'findByIdLanguages/' +id,
+				url : contextPath + '/findByIdLanguages/' +id,
 				type : 'POST'
 			},
 			columns : [ {data : "nameLanguage"},
@@ -116,7 +116,7 @@ $(document).ready(function() {
  		$.ajax({
 			contentType : "application/json",
 			type : "POST",
-			url : 'languages/'+id,
+			url : contextPath + '/languages/'+id,
 			data : JSON.stringify(json),
 			success : function(data) {
 				if( data == "success"){
@@ -147,7 +147,7 @@ $(document).ready(function() {
 	//Update 
 	function findById(id){
 		$.ajax({
-			url : "findLanguagesId/" + id,
+			url : contextPath + "/findLanguagesId/" + id,
 			type : "POST",
 			success : function(data){
 				showFillData(data);
@@ -220,7 +220,7 @@ $(document).ready(function() {
 			}
 			
 		$.ajax({
-			url : "updateLanguages/"+id,
+			url : contextPath + "/updateLanguages/"+id,
 			type : "POST",
 			contentType :"application/json; charset=utf-8",
 			data : JSON.stringify(json),
@@ -271,7 +271,7 @@ $(document).ready(function() {
         var id = $(button).data("id");
         var index = dtApplicant.row(button.closest("tr")).index();
         $.ajax({
-            url: "deleteLanguages/" + id,
+            url: contextPath + "/deleteLanguages/" + id,
             type: "POST",
             success: function () {
             	dtApplicant.row(index).remove().draw();

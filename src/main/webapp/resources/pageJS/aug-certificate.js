@@ -52,7 +52,7 @@ $(document).ready(function() {
 			hover:false,
 			sort:false,
 			ajax : {
-				url : 'findByIdCertificate/'+id,
+				url : contextPath + '/findByIdCertificate/'+id,
 				type : 'POST'
 			},
 			columns : [ {data : "name"},
@@ -91,7 +91,7 @@ $(document).ready(function() {
 				};
 		
 		$.ajax({
-			url : "certificates/"+id,
+			url : contextPath + "/certificates/"+id,
 			type : "POST",
 			contentType :"application/json; charset=utf-8",
 			data : JSON.stringify(json),
@@ -121,7 +121,7 @@ $(document).ready(function() {
 	//Update 
 	function findById(id){
 		$.ajax({
-			url : "findCertificateId/" + id,
+			url : contextPath + "/findCertificateId/" + id,
 			type : "POST",
 			success : function(data){
 				showFillData(data);
@@ -158,7 +158,7 @@ $(document).ready(function() {
 				};
 		
 		$.ajax({
-			url : "updateCertificates/"+id,
+			url : contextPath + "/updateCertificates/"+id,
 			type : "POST",
 			contentType :"application/json; charset=utf-8",
 			data : JSON.stringify(json),
@@ -210,7 +210,7 @@ $(document).ready(function() {
         var id = $(button).data("id");
         var index = dtApplicant.row(button.closest("tr")).index();
         $.ajax({
-            url: "deleteCertificate/" + id,
+            url: contextPath + "/deleteCertificate/" + id,
             type: "POST",
             success: function () {
             	dtApplicant.row(index).remove().draw();

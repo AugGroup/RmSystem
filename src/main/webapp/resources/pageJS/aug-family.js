@@ -37,7 +37,7 @@ $(document).ready(function() {
 				hover:false,
 				sort:false,
 				ajax : {
-					url : 'findByIdFamily/'+id,
+					url : contextPath + '/findByIdFamily/'+id,
 					type : 'POST',
 					dataSrc : ""
 				},
@@ -90,7 +90,7 @@ $(document).ready(function() {
 				$.ajax({
 					contentType : "application/json; charset=utf-8",
 					type : "POST",
-					url : 'family/'+id,
+					url : contextPath + '/family/'+id,
 					data : JSON.stringify(json),
 					success : function(data) {
 						$('#familyModal').modal('hide');
@@ -115,7 +115,7 @@ $(document).ready(function() {
 		//Update 
 		function findById(id){
 			$.ajax({
-				url : "findFamilyId/" + id,
+				url : contextPath + "/findFamilyId/" + id,
 				type : "POST",
 				success : function(data){
 					showFillData(data);
@@ -166,7 +166,7 @@ $(document).ready(function() {
 					};
 			
 			$.ajax({
-				url : "updateFamily/"+id,
+				url : contextPath + "/updateFamily/"+id,
 				type : "POST",
 				contentType :"application/json; charset=utf-8",
 				data : JSON.stringify(json),
@@ -219,7 +219,7 @@ $(document).ready(function() {
 	        var id = $(button).data("id");
 	        var index = dtApplicant.row(button.closest("tr")).index();
 	        $.ajax({
-	            url: "deleteFamily/" + id,
+	            url: contextPath + "/deleteFamily/" + id,
 	            type: "POST",
 	            success: function () {
 	            	dtApplicant.row(index).remove().draw();

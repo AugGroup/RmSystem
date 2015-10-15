@@ -45,7 +45,7 @@ $(document).ready(function() {
 				hover:false,
 				sort:false,
 				ajax : {
-					url : 'findByIdEducation/'+ id,
+					url : contextPath + '/findByIdEducation/'+ id,
 					type : 'POST'
 				},
 
@@ -102,7 +102,7 @@ $(document).ready(function() {
 	 			$.ajax({
 					contentType : "application/json",
 					type : "POST",
-					url : 'educations/' + id,
+					url : contextPath + '/educations/' + id,
 					data : JSON.stringify(json),
 					success : function(data) {
 						$('#educationModal').modal('hide');
@@ -128,7 +128,7 @@ $(document).ready(function() {
 		function findById(id){
 			console.log(id);
 			$.ajax({
-				url : "findEducationId/" + id,
+				url : contextPath + "/findEducationId/" + id,
 				type : "POST",
 				success : function(data){
 					console.log(data.schoolName);
@@ -177,7 +177,7 @@ $(document).ready(function() {
 					};
 			
 			$.ajax({
-				url : "updateEducations/"+id,
+				url : contextPath + "/updateEducations/"+id,
 				type : "POST",
 				contentType :"application/json; charset=utf-8",
 				data : JSON.stringify(json),
@@ -231,7 +231,7 @@ $(document).ready(function() {
             var id = $(button).data("id");
             var index = dtApplicant.row(button.closest("tr")).index();
             $.ajax({
-                url: "deleteEducation/" + id,
+                url: contextPath + "/deleteEducation/" + id,
                 type: "POST",
                 success: function () {
                 	dtApplicant.row(index).remove().draw();
