@@ -140,10 +140,10 @@ WHERE applicant.APPLY_DATE BETWEEN STR_TO_DATE($P{startDate},'%d/%m/%Y') AND STR
 					<textElement textAlignment="Center">
 						<font size="12" isBold="true"/>
 					</textElement>
-					<text><![CDATA[MONTH SUMMARY]]></text>
+					<text><![CDATA[MONTH SUMMARY : ]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="153" y="24" width="100" height="20" uuid="54265baa-b3be-43c8-beaa-097f742896bf"/>
+					<reportElement x="160" y="24" width="100" height="20" uuid="54265baa-b3be-43c8-beaa-097f742896bf"/>
 					<textFieldExpression><![CDATA[$V{By_Date_COUNT}]]></textFieldExpression>
 				</textField>
 			</band>
@@ -251,7 +251,7 @@ WHERE applicant.APPLY_DATE BETWEEN STR_TO_DATE($P{startDate},'%d/%m/%Y') AND STR
 	</title>
 	<detail>
 		<band height="37" splitType="Stretch">
-			<textField>
+			<textField pattern="dd MMMMM yyyy">
 				<reportElement x="153" y="17" width="71" height="20" uuid="ff1c507e-1474-46ba-96e4-9b1ceeffe7ef"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{applyDate}]]></textFieldExpression>

@@ -192,7 +192,7 @@ $P!{UNIVERSITY} $P!{MAJOR} $P!{TECHNOLOGY} $P!{JOBLEVEL} $P!{DEGREE} $P!{GPA}]]>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{code}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="dd MMMMM yyyy">
 				<reportElement x="50" y="19" width="74" height="20" uuid="ab01a892-1c7e-403a-8d28-b99d0d5ebb1b"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{applyDate}]]></textFieldExpression>
