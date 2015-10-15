@@ -98,7 +98,7 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 	</div>
 	</div>
 	<!------------------- Report DataTable------------------->
-	<div class="container table-responsive" id="table2">
+	<div class="table-responsive" id="table2">
 		<table class="dataTable" id="reportTable" class="cell-border" style="width: 100%">
 		<caption title="" class="tableHeader"><spring:message code="report.text" /></caption>
 			<thead>

@@ -18,16 +18,12 @@
 </script>
 
 <div id="calendar-container" class="container-fluid">
+	<div><h1 align="center"><spring:message code="request.calendar"/></h1></div>
 	<div class="row">
-		
-		
-		
-		
 		<div id="calendarDiv" class="col-xs-11 col-sm-11 col-md-9 col-lg-9">
 			<div id='calendar'></div>
 		</div>
-		<div class="col-xs-12 col-sm-12 visible-xs visible-sm">
-			<div id="mailStatusPropSm">
+		<div id="mailStatusPropSm" class="col-xs-12 col-sm-12 visible-xs visible-sm">
 				<div class="text-center"><h3><spring:message code="appointment.email.status"/></h3></div>
 				<ul class="list-group" >
 				  <li class="list-group-item noSendEmail" >
@@ -37,7 +33,6 @@
 				  <li class="list-group-item emailSent" >
 				  </li>
 				</ul>
-			</div>
 		</div>
 		<div id="trackingStatusPanelSm" class="col-xs-12 col-sm-12 visible-xs visible-sm ">
 		<div class="text-center"><h3><spring:message code="appointment.applicant.status"/></h3></div>

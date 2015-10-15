@@ -1,5 +1,23 @@
 //<script>
  	$(document).ready(function() {
+	 		$(".numberonly").keydown(function (e) {
+	 	        // Allow: backspace, delete, tab, escape, enter and .
+	 	        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+	 	             // Allow: Ctrl+A, Command+A
+	 	            (e.keyCode == 65 && ( e.ctrlKey === true || e.metaKey === true ) ) || 
+	 	             // Allow: home, end, left, right, down, up
+	 	            (e.keyCode >= 35 && e.keyCode <= 40)) {
+	 	                 // let it happen, don't do anything
+	 	                 return;
+	 	        }
+	 	        // Ensure that it is a number and stop the keypress
+	 	        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+	 	            e.preventDefault();
+	 	        }
+	 	    });
+	 		
+ 		
+ 		
  			$('.input-group.date').datepicker({
  							startView : 2,
  							todayBtn : "linked",
@@ -203,17 +221,17 @@
 					lastNameEN : {required : true},
 					nickNameEN : {required : true},
 					tel : {required : true,},
-					email : {required : true,email : true},
+					email : {required : true, email : true},
 					birthDate : {required : true},
 					placeBirth : {required : true},
-					age : {required : true},
+					age : {required : true, max : 100},
 					religion : {required : true},
 					nationality : {required : true},
 					cardId : {required : true},
 					cardIssuedOffice : {required : true},
 					cardExpiryDate : {required : true},
-					height : {required : true},
-					weight : {required : true}, 
+					height : {required : true, max : 250},
+					weight : {required : true, max : 200}, 
 					sex : {required : true},
 					applicantStatus : {required : true},
 					numberOfChildren : {required : true},
@@ -256,14 +274,14 @@
 					      email: emailFormat},
 					birthDate : {required : birthDate},
 					placeBirth : {required : placeBirth},
-					age : {required : age},
+					age : {required : age, max : infoValidateAgeMax},
 					religion : {required : religion},
 					nationality : {required : nationality},
 					cardId : {required : cardId},
 					cardIssuedOffice : {required : cardIssuedOffice},
 					cardExpiryDate : {required : cardExpiryDate},
-					height : {required : height},
-					weight : {required : weight},
+					height : {required : height, max : infoValidateHeightMax},
+					weight : {required : weight, max : infoValidateWeightMax},
 					sex : {required : sex},
 					applicantStatus : {required : applicantStatus},
 					numberOfChildren : {required : numberOfChildren},

@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	var dtApplicant
-	/* $('#EditStatusForm').validate({
+	$('#EditStatusForm').validate({
 			rules:{
 				inputRequesterName:{required: true},
 				inputScore:{required: true},
@@ -11,13 +11,13 @@ $(document).ready(function(){
 			  	},
 			messages: {
 				inputRequesterName:{required: "Requester name is required"},
-			  	inputScore:{required: "Score is required"},
-			  	inputTechScore:{required: "Technical score is required"},
-			  	inputAttitudeHome:{required: "Attitude at home is required"},
-			  	inputAttitudeOffice:{required: "Attitude at office is required"},
-			  	inputStatus:{required: "Request status is required"}
+			  	inputScore:{required: valScore},
+			  	inputTechScore:{required: valTech},
+			  	inputAttitudeHome:{required: valAttHome},
+			  	inputAttitudeOffice:{required: valAttOffice},
+			  	inputStatus:{required: valStatus}
 			  	}
-		}); */
+	});
 		
 	//Search By Position and Show function
 	$('#btn_search').on('click', function(){
@@ -72,6 +72,7 @@ $(document).ready(function(){
 	
 	//EditStatusModal
 	$('#EditStatusModal').on('show.bs.modal',function(e){
+		$("#error-approve").empty();
 		var button = e.relatedTarget;
 		if (button != null){
 			var applicantId = $(button).data("id");
@@ -82,6 +83,12 @@ $(document).ready(function(){
 					updateUser(button);
 				});
 			}
+		}
+	});
+	
+	$("#inputTechScore").on("change", function(){
+		if( $(this).val() == "Pass" ) {
+			$("#error-approve").empty();
 		}
 	});
 		
@@ -109,6 +116,8 @@ $(document).ready(function(){
 		
 		//Update Score Fuction
 		function updateUser(button){
+			$("#error-approve").empty();
+			
 			var id = $(button).data("id");
 			var score = $("#inputScore").val();
 			var techScore = $('input[name="inputTechScore"]:checked').val();
@@ -123,13 +132,20 @@ $(document).ready(function(){
 					"attitudeOffice" : attitudeOffice,
 					"trackingStatus" : trackingStatus
 					};
-			if($("#EditStatusForm").valid()){
+			
+			if(trackingStatus == "Approve" && techScore != "Pass") {
+				//alert("can't approve.");
+				$("#error-approve").css("color","red");
+				$("#error-approve").empty().append("can't approve.");
+			} else if($("#EditStatusForm").valid()){
+				$("#error-approve").empty();
 				$.ajax({
 					url : "update/score/"+id,
 					type : "POST",
 					contentType :"application/json; charset=utf-8", 
 					data : JSON.stringify(json),
 					success : function(data){
+						console.log(data);
 						$('#EditStatusModal').modal('hide');
 						var table = $('#dataTable').DataTable();	
 					 	var rowData = table.row(button.closest('tr')).index(); 

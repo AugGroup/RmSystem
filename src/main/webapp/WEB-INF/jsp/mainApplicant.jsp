@@ -10,6 +10,11 @@
 <script src="<c:url value ="/static/resources/pageJS/main-applicant.js"/>"></script> 
 
 <script type="text/javascript">
+var valScore = "<spring:message code="valid.score"/>";
+var valTech = "<spring:message code="valid.tech"/>";
+var valAttHome = "<spring:message code="valid.attitude.home"/>";
+var valAttOffice = "<spring:message code="valid.attitude.office"/>";
+var valStatus = "<spring:message code="valid.status"/>";
 var editScore_text = "<spring:message code="edit.button.edit.score"/>"; 
 var editInfo_text = "<spring:message code="main.edit.info"/>"; 
 var delete_text = "<spring:message code="main.delete"/>";
@@ -99,6 +104,7 @@ $(document).ready(function(){
 								<spring:message code="edit.radio.pass" /></label>
 								<label class="radio-inline"> <input type="radio" value="Not" id="inputTechScore" name="inputTechScore">
 								<spring:message code="edit.radio.notPass" /></label>
+								<span id="error-approve"></span>
 							</div>
 							<div class="form-group">
 								<label for="inputScore"><spring:message code="edit.attitude.score" /> </label>
