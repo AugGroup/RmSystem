@@ -1,7 +1,5 @@
 package com.aug.controllers;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,7 +24,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.aug.hrdb.dto.ApplicantDto;
 import com.aug.hrdb.dto.AppointmentDto;
-import com.aug.hrdb.entities.Applicant;
 import com.aug.hrdb.entities.Appointment;
 import com.aug.hrdb.entities.Login;
 import com.aug.hrdb.services.ApplicantService;
