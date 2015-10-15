@@ -84,7 +84,7 @@ $(document).ready(function() {
 		
 	function saveExperience(){
 		var temp = $("#applyDateStr").val().toString();
-		alert(temp);
+//		alert(temp);
 		var dateSplit =  temp.split("-");
 //		var dateSplit =  $('input[name="applyDateStr"]').split("-");
 		if ($('#experiencesForm').valid()) {
@@ -169,7 +169,7 @@ $(document).ready(function() {
 			if ($('#experiencesForm').valid()) {
 //				alert($("#applyDateStr"));
 				var temp = $("#applyDateStr").val().toString();
-				alert(temp);
+//				alert(temp);
 				var dateSplit =  temp.split("-");
 				var id = $(button).data("id");
 				var applicantId = $("#applicant").val();
