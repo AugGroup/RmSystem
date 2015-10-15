@@ -24,6 +24,11 @@ var reqStatus = "<spring:message code="valid.req.status"/>";
 var preview_tx = "<spring:message code="request.preview"/>";
 var edit_tx = "<spring:message code="main.edit.info"/>";
 var delete_tx = "<spring:message code="main.delete"/>";
+var pnotifyAdd="<spring:message code="pnotify.add"/>";
+var pnotifyEdit="<spring:message code="pnotify.edit"/>";
+var pnotifyDel="<spring:message code="pnotify.delete"/>";
+var pnotifySuccess="<spring:message code="pnotify.success"/>";
+var pnotifyError="<spring:message code="pnotify.error"/>";
 var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.response.locale}.json' />";
 </script>
 

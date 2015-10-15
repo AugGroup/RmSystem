@@ -159,6 +159,19 @@
                 type: 'POST',
                 success: function () {
                     dtRequest.row(index).remove().draw();
+                    new PNotify({
+				        title: pnotifySuccess,
+				        text: pnotifyDel,
+				        type: 'success',
+				        delay: 1000,
+				        buttons:{
+				        	closer_hover: false,
+				        	sticker: false
+				        }		
+				    });
+				},
+				error : function() {
+					alert("error");
                 }
             });
         }
@@ -223,16 +236,19 @@
             			dtRequest.ajax.reload();
             			//console.log(data.requesterName);
             			new PNotify({
-    				    	title: 'Edit request is successful.',
-    				    	text: '',
-    				    	type: 'success',
-    				    	delay: 3000,
-    				    	buttons: {
-    				    			closer_hover: false,
-    				    	        sticker: false
-    				    	    }
-    					});
-            		},
+					        title: pnotifySuccess,
+					        text: pnotifyAdd,
+					        type: 'success',
+					        delay: 1000,
+					        buttons:{
+					        	closer_hover: false,
+					        	sticker: false
+					        }		
+					    });
+					},
+					error : function() {
+						alert("error");
+            		}
             		 
             	});
             };
@@ -324,16 +340,19 @@
                     /*dtRequest.ajax.reload();*/ //change to use draw table 
                     
                     new PNotify({
-				    	title: 'Edit request is successful.',
-				    	text: '',
-				    	type: 'success',
-				    	delay: 3000,
-				    	buttons: {
-				    			closer_hover: false,
-				    	        sticker: false
-				    	    }
-					});
-                }
+				        title: pnotifySuccess,
+				        text: pnotifyEdit,
+				        type: 'success',
+				        delay: 1000,
+				        buttons:{
+				        	closer_hover: false,
+				        	sticker: false
+				        }		
+				    });
+				},
+				error : function() {
+					alert("error");
+				}
             });
             };
         }
