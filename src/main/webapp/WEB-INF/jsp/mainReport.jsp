@@ -13,47 +13,47 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 </script>
 
 <style>
-.report_preview {
-	margin-right: 0px;
-	float: right;
+
+#divCon{
+	width: 100%;
 }
+.form-inline .form-control {
+	display: inline-block;
+	width: 100%;
+	vertical-align: middle;
+	font-size: 10px;
+}
+
+.report_search {
+	float:left;
+    width: 100%;
+}
+.report_preview { 
+	margin-top:10px;
+	margin-right: 25px;
+	float: right;
+} 
 
 .div_btn_search{
 	float: right;
+	margin-right: -27px;
 }
 
-@media (max-width: 1100px){
+.div_btn_report{
+	float: right;
+	margin-right: -27px;
 }
 
-@media (min-width: 768px){
-	.form-inline .form-control {
-	    display: inline-block;
-	    width: 100%;
-	    vertical-align: middle;
-	    font-size: 10px;
+@media (max-width: 992px){
+	
+	.div_btn_search{
+		float: right;
+		margin-right: 0px;
 	}
 	
-	#divCon{
-		width: 100%;
-	}
-	
-	.report_search {
-		float:left;
-	    width: 100%;
-	}
-}
-
-@media (min-width: 960px){
-	.report_preview {
-	    margin-right: 25px;
-	    float: right;
-	}
-}
-
-@media (max-width: 960px){
-	.report_preview {
-	    margin-right: 25px;
-	    float: right;
+	.div_btn_report{
+		float: right;
+		margin-right: 0px;
 	}
 }
 
@@ -83,6 +83,22 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 	
 	#radio_inputgroup {
     	margin: 15px 15px 0px 5px;
+	}
+	
+	.div_btn_search{
+		float: right;
+		margin-right: 0px;
+	}
+	
+	.report_preview {
+		margin-top:10px;
+	    margin-right: 25px;
+	    float: right;
+	}
+
+	.div_btn_report{
+		float: right;
+		margin-right: 0px;
 	}
 }
 
@@ -182,9 +198,11 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 								<input type="radio" value="xls" id="reportType" name="reportType"><spring:message code="report.text.xls" />
 							</div>
 							
-							<button type="button" class="btn btn-primary submit" data-toggle="modal" data-target="#previewReportModal" id="btn_preview">
-								<span class="glyphicon glyphicon-search"></span><spring:message code="request.preview" />
-							</button>
+							<div class="div_btn_report" >
+								<button type="button" class="btn btn-primary submit" data-toggle="modal" data-target="#previewReportModal" id="btn_preview">
+									<span class="glyphicon glyphicon-search"></span><spring:message code="request.preview" />
+								</button>
+							</div>
 					</div>
 				</div>
 			</div>
