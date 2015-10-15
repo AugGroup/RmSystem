@@ -20,6 +20,7 @@ var valSexFamily = "<spring:message code="valid.info.sex"/>";
 var valTel = "<spring:message code="valid.ref.tel"/>";
 var valEdit = "<spring:message code="main.edit.info"/>";
 var valDelete = "<spring:message code="main.delete"/>";
+var digitOnly = "<spring:message code="valid.digit.only"/>";
 var id = ${id};
 var pnotifyAdd="<spring:message code="pnotify.add"/>";
 var pnotifyEdit="<spring:message code="pnotify.edit"/>";

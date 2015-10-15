@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	
-	$('#languagesForm').validate({
+	var $validateLang = $('#languagesForm').validate({
 		rules : {
 			languages : {required : true},
 			speaking : {required : true},
@@ -298,6 +298,11 @@ $(document).ready(function() {
 			}
         });
     }
+    
+    $('#languagesModal').on('hide.bs.modal', function (e) {
+    	$validateLang.resetForm();
+    })
+    
     
     $('#languagesModal').on('shown.bs.modal', function (e) {
     	var button = e.relatedTarget;

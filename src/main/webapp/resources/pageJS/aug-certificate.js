@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	
-	$('#certificateForm').validate({
+	var $validateCert = $('#certificateForm').validate({
 		rules : {
 			certificationForm : {required : true},
 			description : {required : true},
@@ -231,6 +231,10 @@ $(document).ready(function() {
         });
     }
 	
+    $('#certificateModal').on('hide.bs.modal', function (e) {
+    	$validateCert.resetForm();
+    });
+    
     $('#certificateModal').on('shown.bs.modal', function (e) {
     	var button = e.relatedTarget;
 		if(button != null){

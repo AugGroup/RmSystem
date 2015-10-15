@@ -1,6 +1,9 @@
 $(document).ready(function() {
 	
-	$('#skillForm').validate({
+	var $validateSkill = $('#skillForm').validate({
+		errorPlacement: function(error, element) {
+		    error.insertAfter($("#rank10").closest('label'));
+		},
 		rules : {
 			skill : {required : true},
 			rank : {required: true}
@@ -198,7 +201,11 @@ $(document).ready(function() {
 			}
         });
     }
-	
+    $('#skillModal').on('hide.bs.modal', function (e) {
+    	$validateSkill.resetForm();
+    })
+    
+    
     $('#skillModal').on('shown.bs.modal', function (e) {
     	var button = e.relatedTarget;
 		if(button != null){

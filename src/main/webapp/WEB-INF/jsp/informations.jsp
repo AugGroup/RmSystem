@@ -152,7 +152,7 @@ $(document).ready(function(){
 			<div class="col-sm-12">
 				<label for="birthday"><span class="glyphicon glyphicon-calendar"></span> <spring:message code="info.birthday"/></label><br>
 				<div class="input-group btn-information date" id="birthDay">
-					<f:input path="birthDate" id="birthDate" name="birthDate" class="form-control"></f:input><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+					<f:input path="birthDate" id="birthDate" name="birthDate" class="form-control datepicker_readonly"></f:input><span class="input-group-addon"><i class="glyphicon glyphicon-th" ></i></span>
 				</div>
 				<br><label for="birthDate" class="error"></label>
 			</div>
@@ -217,7 +217,7 @@ $(document).ready(function(){
 			<div class="col-sm-12">
 				<label for="cardExpiryDate"><span class="glyphicon glyphicon-calendar"></span><spring:message code="info.expiration.date"/></label><br>
 				<div class="input-group date btn-information" id="cardExpiryDay">
-					<f:input path="cardExpiryDate" id="cardExpiryDate" name="cardExpiryDate" class="form-control"></f:input><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+					<f:input path="cardExpiryDate" id="cardExpiryDate" name="cardExpiryDate" class="form-control datepicker_readonly" ></f:input><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
 				</div>
 				<br><label for="cardExpiryDate" class="error"></label>
 			</div>
@@ -709,7 +709,7 @@ $(document).ready(function(){
 					<label for="jobLevel"><spring:message code="main.position1"/></label><br>
 					 <div id="jobLevel">
 						 <f:select path="joblevel.id" id="jobLevel" name="jobLevel" class="form-control">
-							<f:option value="-1" label="please select data"/>
+							<f:option value="" >please select data</f:option>
 							<c:forEach var="jobLevelList" items="${jobLevels}">
 								<f:option value="${jobLevelList.id}">${jobLevelList.name}</f:option>
 							</c:forEach> 
@@ -723,7 +723,7 @@ $(document).ready(function(){
 					<label for="technology"><spring:message code="main.position2"/> </label><br>
 					 <div id="technology">
 						 <f:select path="technology.id" id="technology" name="technology" class="form-control">
-							<f:option value="-1" label="please select data"/>
+							<f:option value="" >please select data</f:option>
 							<c:forEach var="technologyList" items="${technologies}">
 								<f:option value="${technologyList.id}">${technologyList.name}</f:option>
 							</c:forEach> 

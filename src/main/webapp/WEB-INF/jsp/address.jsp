@@ -15,6 +15,7 @@ var valSubDistrict = "<spring:message code="valid.addr.sub.district"/>";
 var valProvince = "<spring:message code="valid.addr.province"/>";
 var valEdit = "<spring:message code="main.edit.info"/>";
 var valDelete = "<spring:message code="main.delete"/>";
+var valZipCode = "<spring:message code="valid.addr.zipcode"/>";
 var id = ${id};
 var pnotifyAdd="<spring:message code="pnotify.add"/>";
 var pnotifyEdit="<spring:message code="pnotify.edit"/>";

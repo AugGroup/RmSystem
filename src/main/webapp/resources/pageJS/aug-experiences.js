@@ -14,7 +14,7 @@ $(document).ready(function() {
 			autoclose: true 
 	});
 	
- 	$('#experiencesForm').validate({
+ 	var $validateExp = $('#experiencesForm').validate({
 		rules : {
 			workBackground : {required : true,},
 			applyDateStr : {required : true},
@@ -286,6 +286,11 @@ alert("error");
 	        });
 	    }
 
+	    $('#experiencesModal').on('shown.bs.modal', function (e) {
+	    	$validateExp.resetForm();
+	    })
+	    
+	    
 	    $('#experiencesModal').on('shown.bs.modal', function (e) {
 	    	var button = e.relatedTarget;
 			if(button != null){

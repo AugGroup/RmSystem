@@ -74,7 +74,7 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 		 			     	<input id="rank9" name="rank" value="9" type="radio" />9</label>
 		 			     <label class="radio-inline" for="rank" > 
 		 			     	<input id="rank10" name="rank" value="10" type="radio" />10</label>
-		 			  </div>	
+		 		  </div>	
 		 		</div>
 	 <br> <br>
 						<button type="button" class="btn btn-warning" id="btn_save">

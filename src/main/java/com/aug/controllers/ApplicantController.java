@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FilenameUtils;
 import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +43,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 // import services.MasDegreeTypeServiceTest;
+
 
 
 
@@ -513,6 +515,7 @@ public class ApplicantController implements Serializable {
 		if(applicantDto.getImageMultipartFile()!=null&&applicantDto.getImageMultipartFile().getSize()>0){
 			try {
 				applicantDto.setImage(applicantDto.getImageMultipartFile().getOriginalFilename());
+				//System.out.println(applicantDto.getImageMultipartFile().getOriginalFilename());
 				uploadService.upload("Applicant",applicantDto.getImageMultipartFile().getOriginalFilename(),applicantDto.getImageMultipartFile());
 			} catch (RuntimeException e) {
 				e.printStackTrace();

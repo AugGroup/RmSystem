@@ -1,22 +1,5 @@
 //<script>
  	$(document).ready(function() {
-	 		$(".numberonly").keydown(function (e) {
-	 	        // Allow: backspace, delete, tab, escape, enter and .
-	 	        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
-	 	             // Allow: Ctrl+A, Command+A
-	 	            (e.keyCode == 65 && ( e.ctrlKey === true || e.metaKey === true ) ) || 
-	 	             // Allow: home, end, left, right, down, up
-	 	            (e.keyCode >= 35 && e.keyCode <= 40)) {
-	 	                 // let it happen, don't do anything
-	 	                 return;
-	 	        }
-	 	        // Ensure that it is a number and stop the keypress
-	 	        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-	 	            e.preventDefault();
-	 	        }
-	 	    });
-	 		
- 		
  		
  			$('.input-group.date').datepicker({
  							startView : 2,
@@ -41,6 +24,22 @@
 					        }
 					        
 					    });
+//			 ----------------------------------------------------
+			 
+			 
+			 	$(document).on("focusin", ".datepicker_readonly", function(event) {
+
+				  $(this).prop('readonly', true);
+
+				});
+
+				$(document).on("focusout", ".datepicker_readonly", function(event) {
+
+				  $(this).prop('readonly', false);
+
+				});
+			 
+			 
 	//-------------------------------------------
 				var $previousNo = $("#previousNo");
 			
@@ -224,14 +223,14 @@
 					email : {required : true, email : true},
 					birthDate : {required : true},
 					placeBirth : {required : true},
-					age : {required : true, max : 100},
+					age : {required : true, digits: true, minlength : 2, maxlength:3},
 					religion : {required : true},
 					nationality : {required : true},
 					cardId : {required : true},
 					cardIssuedOffice : {required : true},
 					cardExpiryDate : {required : true},
-					height : {required : true, max : 250},
-					weight : {required : true, max : 200}, 
+					height : {required : true, digits : true, minlength : 2, maxlength:3 },
+					weight : {required : true, digits : true, minlength : 2, maxlength:3 }, 
 					sex : {required : true},
 					applicantStatus : {required : true},
 					numberOfChildren : {required : true},
@@ -274,14 +273,14 @@
 					      email: emailFormat},
 					birthDate : {required : birthDate},
 					placeBirth : {required : placeBirth},
-					age : {required : age, max : infoValidateAgeMax},
+					age : {required : age, digits : digitOnly, minlength:minDigitTwo, maxlength : maxDigitThree},
 					religion : {required : religion},
 					nationality : {required : nationality},
 					cardId : {required : cardId},
 					cardIssuedOffice : {required : cardIssuedOffice},
 					cardExpiryDate : {required : cardExpiryDate},
-					height : {required : height, max : infoValidateHeightMax},
-					weight : {required : weight, max : infoValidateWeightMax},
+					height : {required : height, digits : digitOnly, minlength:minDigitTwo, maxlength : maxDigitThree},
+					weight : {required : weight, digits : digitOnly, minlength:minDigitTwo, maxlength : maxDigitThree},
 					sex : {required : sex},
 					applicantStatus : {required : applicantStatus},
 					numberOfChildren : {required : numberOfChildren},
@@ -303,8 +302,8 @@
 					emergencyAddress : {required : emergencyAddress},
 					applyDate : {required : applyDate},
 					department : {required : department},
-//					jobLevel : {required : position1},
-//					technology : {required : position2},
+					jobLevel : {required : joblevelVal},
+					technology : {required : technologyVal},
 					expectedSalary : {required : expectedSalary},
 					nowEmployed : {required : nowEmployed},
 					employedName : {required : employedName},

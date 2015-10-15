@@ -10,14 +10,14 @@ $(document).ready(function () {
 	var $provinceId = $("#province");
 	var $province = $('#province option:selected');
 		
-	$('#addressForm').validate({
+	var $validAddress = $('#addressForm').validate({
 		rules : {
 			addressType : {required : true},
 			houseNo : {required : true},
 			road : {required : true},
 			district : {required : true},
 			subDistrict : {required : true},
-			zipcode : {required : true},
+			zipcode : {required : true, digits:true},
 			province : {required : true}
 		},
 		messages : {
@@ -26,7 +26,8 @@ $(document).ready(function () {
 			road : {required : valRoad},
 			district : {required : valDistrict},
 			subDistrict : {required : valSubDistrict},
-			province : {required : valProvince}
+			province : {required : valProvince},
+			zipcode : {required : valZipCode}
 		}
 	});
 	
@@ -253,7 +254,16 @@ $(document).ready(function () {
             });
         }
 		
+       
+        $('#addressModal').on('hide.bs.modal', function (e) {
+        	// do something...
+        	$validAddress.resetForm();
+		})
+		
+		
+		
         $('#addressModal').off("click").on('shown.bs.modal', function (e) {
+        	//$validAddress.resetForm();
         	var button = e.relatedTarget;
 			if(button != null){
 				var id = $(button).data("id");

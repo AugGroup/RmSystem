@@ -14,7 +14,16 @@ $(document).ready(function() {
 				autoclose: true
 		});
 	
-		$('#educationsForm').validate({
+		$(document).on("focusin", ".datepicker_readonly", function(event) {
+			$(this).prop('readonly', true);
+		});
+
+		$(document).on("focusout", ".datepicker_readonly", function(event) {
+		    $(this).prop('readonly', false);
+		});
+		
+		
+		var $validateEdu = $('#educationsForm').validate({
 			rules : {
 				university : {required : true},
 				degree : {required : true},
@@ -256,6 +265,11 @@ $(document).ready(function() {
                 }
             });
         }
+        
+        $('#educationModal').on('hide.bs.modal', function (e) {
+        	$validateEdu.resetForm();
+        });
+        
         
         $('#educationModal').on('shown.bs.modal', function (e) {
         	var button = e.relatedTarget;

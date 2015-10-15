@@ -1,6 +1,6 @@
 $(document).ready(function() {
 		
-		$('#referenceForm').validate({
+		var $validateRef = $('#referenceForm').validate({
 			rules : {
 				name : {required : true},
 				address : {required : true,},
@@ -205,6 +205,11 @@ $(document).ready(function() {
 				}
 	        });
 	    }
+	    
+	    $('#referenceModal').on('shown.bs.modal', function (e) {
+	    	$validateRef.resetForm();
+	    })
+	    
 		
 	    $('#referenceModal').on('shown.bs.modal', function (e) {
 	    	var button = e.relatedTarget;

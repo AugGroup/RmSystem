@@ -1,6 +1,6 @@
 $(document).ready(function() {
 		
-		$('#familyForm').validate({
+		var $validFamily = $('#familyForm').validate({
 			rules : {
 				nameFamily : {required : true},
 				relationFamily : {required : true},
@@ -9,7 +9,7 @@ $(document).ready(function() {
 				telNo : {required : true},
 				occupation : {required : true},
 				positionFamily : {required : true},
-				age : {required : true},
+				age : {required : true, digits:true},
 				gender : {required : true}
 			},
 			messages : {
@@ -20,7 +20,7 @@ $(document).ready(function() {
 				telNo : {required : valTel},
 				occupation : {required : valOccupation},
 				positionFamily : {required : valPositionFamily},
-				age : {required : valAgeFamily},
+				age : {required : valAgeFamily, digits : digitOnly},
 				gender : {required : valSexFamily},
 			}
 		});
@@ -246,6 +246,11 @@ $(document).ready(function() {
 	        });
 	    }
 		
+	    
+	    $('#familyModal').on('shown.bs.modal', function (e) {
+	    	$validFamily.resetForm();
+	    });
+	    
 	    $('#familyModal').on('shown.bs.modal', function (e) {
 	    	var button = e.relatedTarget;
 			if(button != null){
