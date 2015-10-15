@@ -77,11 +77,7 @@
 <script src='<c:url value="/static/resources/js/fullcalendar.min.js"/>'></script>
 <script src='<c:url value="/static/resources/js/calendar_lang-all.js"/>'></script>
 
-<link rel="stylesheet" type="text/css"
-	href="<c:url value ="/static/resources/pageCss/main.css"/>">
-<script type="text/javascript">
-	var contextPath = "${pageContext.request.contextPath}";
-</script>
+<link rel="stylesheet" type="text/css" href="<c:url value ="/static/resources/pageCss/main.css"/>">
 
 <title><decorator:title/></title>
 <style type="text/css">
@@ -95,20 +91,20 @@
 	    border: 2px solid #ffffff;
 	}
 </style>
+
+<!-- Email -->
+<link href="${ pageContext.request.contextPath }/static/resources/pageCss/email-main.css" rel="stylesheet" type="text/css"></link>
+<script type="text/javascript" src="${ pageContext.request.contextPath }/static/resources/pageJS/email-main.js"></script>
+
+<!-- Page Context -->
+<script type="text/javascript" src="${ pageContext.request.contextPath }/static/resources/pageJS/pageContext.js"></script>
+
 </head>
 <%
 	User user = (User) SecurityContextHolder.getContext()
 			.getAuthentication().getPrincipal();
 	String name = user.getUsername();
 %>
-<script type="text/javascript">
-	var contextPath = "${pageContext.request.contextPath}";
-	var local = '${pageContext.response.locale}';
-</script>
-
-<link href="${ pageContext.request.contextPath }/static/resources/pageCss/email-main.css" rel="stylesheet" type="text/css"></link>
-<script type="text/javascript" src="${ pageContext.request.contextPath }/static/resources/pageJS/email-main.js"></script>
-
 
 <body background="${ pageContext.request.contextPath }/static/decorators/BG_W.jpg">
 
