@@ -552,7 +552,7 @@ public class ApplicantController implements Serializable {
 		return "informations";
 	}
 
-	@RequestMapping(value = "address/address/{id}", method = { RequestMethod.POST })
+	@RequestMapping(value = "/address/{id}", method = { RequestMethod.POST })
 	public @ResponseBody Address saveAddress(@RequestBody Address address,@PathVariable Integer id,Model model) {
 		model.addAttribute("id",id);
 		addressService.create(address);
@@ -563,7 +563,7 @@ public class ApplicantController implements Serializable {
         return addr;
 	}
 	
-	@RequestMapping(value = "family/family/{id}", method = { RequestMethod.POST })
+	@RequestMapping(value = "/family/{id}", method = { RequestMethod.POST })
 	public @ResponseBody Family saveFamily(@RequestBody Family family,@PathVariable Integer id,Model model) {
 		model.addAttribute("id",id);
 		familyService.create(family);
@@ -574,7 +574,7 @@ public class ApplicantController implements Serializable {
         return fam;
 	}
 	
-	@RequestMapping(value = "educations/educations/{id}", method = { RequestMethod.POST })
+	@RequestMapping(value = "/educations/{id}", method = { RequestMethod.POST })
 	public @ResponseBody Education educations(@RequestBody Education education,@PathVariable Integer id,Model model) {
 		model.addAttribute("id",id);
 		
@@ -587,7 +587,7 @@ public class ApplicantController implements Serializable {
 
 	}
 	
-	@RequestMapping(value = "certificates/certificates/{id}", method = { RequestMethod.POST })
+	@RequestMapping(value = "/certificates/{id}", method = { RequestMethod.POST })
 	public @ResponseBody Certification certification(@RequestBody Certification certification,@PathVariable Integer id,Model model) {
 		model.addAttribute("id",id);
 		certificationService.create(certification);
@@ -598,7 +598,7 @@ public class ApplicantController implements Serializable {
 
 	}
 	
-	@RequestMapping(value = "/skills/skills/{id}", method = { RequestMethod.POST })
+	@RequestMapping(value = "/skills/{id}", method = { RequestMethod.POST })
 	public @ResponseBody String skill(@RequestBody Ability ability,@PathVariable Integer id,Model model) {
 		model.addAttribute("id",id);
 		
@@ -621,7 +621,7 @@ public class ApplicantController implements Serializable {
 
 	}
 	
-	@RequestMapping(value = "languages/languages/{id}", method = { RequestMethod.POST })
+	@RequestMapping(value = "/languages/{id}", method = { RequestMethod.POST })
 	public @ResponseBody String language(@RequestBody Language language,@PathVariable Integer id,Model model) {
 		model.addAttribute("id",id);
 
@@ -643,7 +643,7 @@ public class ApplicantController implements Serializable {
 
 	}
 	
-	@RequestMapping(value = "references/references/{id}", method = { RequestMethod.POST })
+	@RequestMapping(value = "/references/{id}", method = { RequestMethod.POST })
 	public @ResponseBody Reference references(@RequestBody Reference reference,@PathVariable Integer id,Model model) {
 		model.addAttribute("id",id);
 		referenceService.create(reference);
@@ -654,7 +654,7 @@ public class ApplicantController implements Serializable {
 
 	}
 	
-	@RequestMapping(value = "experiences/experiences/{id}", method = { RequestMethod.POST })
+	@RequestMapping(value = "/experiences/{id}", method = { RequestMethod.POST })
 	public @ResponseBody Experience experiences(@RequestBody Experience experience,@PathVariable Integer id,Model model) {
 		model.addAttribute("id",id);
 		experienceService.create(experience);

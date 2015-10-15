@@ -95,7 +95,7 @@ $(document).ready(function () {
 							"zipcode":zipcode};
 			
 				$.ajax({
-					url : 'address/'+id,
+					url : contextPath + 'address/'+id,
 					contentType : "application/json",
 					type : "POST",
 					data : JSON.stringify(json),
