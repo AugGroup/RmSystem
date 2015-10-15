@@ -67,6 +67,11 @@
 <script type="text/javascript">
 	var contextPath = "${pageContext.request.contextPath}";
 	var languageNow = "${pageContext.response.locale}";
+	var pnotifyAdd="<spring:message code="pnotify.add"/>";
+	var pnotifyEdit="<spring:message code="pnotify.edit"/>";
+	var pnotifyDel="<spring:message code="pnotify.delete"/>";
+	var pnotifySuccess="<spring:message code="pnotify.success"/>";
+	var pnotifyError="<spring:message code="pnotify.error"/>";
 </script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/resources/bootstrap-tagsinput/bootstrap-tagsinput.css" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>

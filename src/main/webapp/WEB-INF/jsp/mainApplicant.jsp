@@ -18,6 +18,11 @@ var valStatus = "<spring:message code="valid.status"/>";
 var editScore_text = "<spring:message code="edit.button.edit.score"/>"; 
 var editInfo_text = "<spring:message code="main.edit.info"/>"; 
 var delete_text = "<spring:message code="main.delete"/>";
+var pnotifyAdd="<spring:message code="pnotify.add"/>";
+var pnotifyEdit="<spring:message code="pnotify.edit"/>";
+var pnotifyDel="<spring:message code="pnotify.delete"/>";
+var pnotifySuccess="<spring:message code="pnotify.success"/>";
+var pnotifyError="<spring:message code="pnotify.error"/>";
 var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.response.locale}.json' />";
 </script>
 <style>

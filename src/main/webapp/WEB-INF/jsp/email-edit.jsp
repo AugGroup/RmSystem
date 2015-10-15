@@ -99,6 +99,11 @@
 	var deleteAsk= "<spring:message code="request.email.delete.templete.ask" />";
 	var delBtn= "<spring:message code="button.delete" />";
 	var editBtn= "<spring:message code="button.edit" />";
+	var pnotifyAdd="<spring:message code="pnotify.add"/>";
+	var pnotifyEdit="<spring:message code="pnotify.edit"/>";
+	var pnotifyDel="<spring:message code="pnotify.delete"/>";
+	var pnotifySuccess="<spring:message code="pnotify.success"/>";
+	var pnotifyError="<spring:message code="pnotify.error"/>";
 	
 </script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/resources/ckeditor/ckeditor.js"></script>

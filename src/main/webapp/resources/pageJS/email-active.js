@@ -1,8 +1,9 @@
-function showNotity(title,type) {
+function showNotify(title,text,type) {
 	new PNotify({
 		title: title,
+		text: text,
 	    type: type,
-	    delay: 3000
+	    delay: 1000
 	});
 }
 function showModal(title, detail,btn) {
@@ -61,7 +62,7 @@ $( document ).ready(function() {
 				    	if(data == "success"){
 				    		CKEDITOR.instances.template.setData("");
 				    		$("#templateName").val(null);
-				    		showNotity(createSuccess,"success");
+				    		showNotify(pnotifySuccess,createSuccess,"success");
 				    	}else{
 				    		new PNotify({
 				    			title: createFail,
@@ -72,7 +73,7 @@ $( document ).ready(function() {
 				    	}
 					},
 					error:function (jqXHR, textStatus, error){
-						showNotity(createFail,"error");
+						showNotify(pnotifyError,createFail,"error");
 					}
 				});
 			});
@@ -99,11 +100,11 @@ $( document ).ready(function() {
 				    contentType : 'application/json',
 				    success : function(data){	
 				    	cleanModal();
-				    	showNotity(updateSuccess,"success")
+				    	showNotify(pnotifySuccess,updateSuccess,"success")
 				    },
 				    error:function (jqXHR, textStatus, error){
 				    	cleanModal();
-				    	showNotity(updateFail,"error");
+				    	showNotify(pnotifyError,updateFail,"error");
 				    }
 				});
 			});
@@ -128,12 +129,12 @@ $( document ).ready(function() {
 				    	$('select option[value=""]').attr("selected",true);
 				 		$id="";		    	
 				    	cleanModal();
-				    	showNotity(deleteSuccess,"success");
+				    	showNotify(pnotifySuccess,deleteSuccess,"success");
 				    	
 				    },
 				    error:function (jqXHR, textStatus, error){
 				    	cleanModal();
-				    	showNotity(deleteFail,"error");
+				    	showNotify(pnotifyError,deleteFail,"error");
 				    }
 				});
 			});

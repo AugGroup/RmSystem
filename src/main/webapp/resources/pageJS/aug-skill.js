@@ -70,20 +70,22 @@ $(document).ready(function() {
 						dtApplicant.ajax.reload();
 						
 						new PNotify({
-						    title: 'Add Skill Success!!',
-						    text: 'You can edit data',
-						    type: 'success',
-					        delay: 7000,
+					        title: pnotifySuccess,
+					        text: pnotifyAdd,
+					        type: 'success',
+					        delay: 1000,
 					        buttons:{
 					        	closer_hover: false,
 					        	sticker: false
 					        }		
-						});
-						//alert("can't save");
+					    });
 						
 					} else {
 						$("#special-error").empty().append(valDuplicate);
 					}
+				},
+				error : function() {
+					alert("error");
 				}
 			});
 		console.log(json);
@@ -141,17 +143,20 @@ $(document).ready(function() {
 			 		d.rank = data.rank;
 			 		table.row(rowData).data(d).draw();
 			 		
-					new PNotify({
-					    title: 'Edit Skill Success!!',
-					    text: 'You can edit data',
-					    type: 'success',
-				        delay: 7000,
+			 		new PNotify({
+				        title: pnotifySuccess,
+				        text: pnotifyEdit,
+				        type: 'success',
+				        delay: 1000,
 				        buttons:{
 				        	closer_hover: false,
 				        	sticker: false
 				        }		
-					});
-				 }
+				    });
+				},
+				error : function() {
+					alert("error");
+				}
 			});
 
 		};
@@ -177,17 +182,20 @@ $(document).ready(function() {
             type: "POST",
             success: function () {
             	dtApplicant.row(index).remove().draw();
-				new PNotify({
-				    title: 'Delete Success',
-				    text: 'You can delete data',
-				    type: 'success',
-			        delay: 7000,
+            	new PNotify({
+			        title: pnotifySuccess,
+			        text: pnotifyEdit,
+			        type: 'success',
+			        delay: 1000,
 			        buttons:{
 			        	closer_hover: false,
 			        	sticker: false
 			        }		
-				});
-            }
+			    });
+			},
+			error : function() {
+				alert("error");
+			}
         });
     }
 	

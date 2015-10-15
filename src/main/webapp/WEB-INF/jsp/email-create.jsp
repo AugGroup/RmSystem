@@ -111,6 +111,11 @@
 	var matchingName= "<spring:message code="request.email.pnotify.name.matching" />";
 	var createTitle= "<spring:message code="request.email.create.templete.title" />";
 	var createAsk= "<spring:message code="request.email.create.templete.ask" />";
+	var pnotifyAdd="<spring:message code="pnotify.add"/>";
+	var pnotifyEdit="<spring:message code="pnotify.edit"/>";
+	var pnotifyDel="<spring:message code="pnotify.delete"/>";
+	var pnotifySuccess="<spring:message code="pnotify.success"/>";
+	var pnotifyError="<spring:message code="pnotify.error"/>";
 	
 </script>
 

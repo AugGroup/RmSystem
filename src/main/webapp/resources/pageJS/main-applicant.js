@@ -158,16 +158,18 @@ $(document).ready(function(){
 					 	table.row(rowData).data(d).draw();
 					 	
 					 	new PNotify({
-					    	title: 'Edit score is successful',
-					    	text: '',
-					    	type: 'success',
-					    	delay: 3000,
-					    	buttons: {
-					    			closer_hover: false,
-					    	        sticker: false
-					    	    }
-						});
-					 	
+					        title: pnotifySuccess,
+					        text: pnotifyEdit,
+					        type: 'success',
+					        delay: 1000,
+					        buttons:{
+					        	closer_hover: false,
+					        	sticker: false
+					        }		
+					    });
+					},
+					error : function() {
+						alert("error");
 					}
 				});
 			}
@@ -195,16 +197,19 @@ $(document).ready(function(){
 	            success: function () {
 	            	dtApplicant.row(index).remove().draw();
 	            	new PNotify({
-	            		title: 'Delete Success',
-						text: 'You can delete data',
-						type: 'success',
-						delay: 3000,
-				    	buttons: {
-				    			closer_hover: false,
-				    	        sticker: false
-				    	    }
-	            	});
-	            }
+				        title: pnotifySuccess,
+				        text: pnotifyDel,
+				        type: 'success',
+				        delay: 1000,
+				        buttons:{
+				        	closer_hover: false,
+				        	sticker: false
+				        }		
+				    });
+				},
+				error : function() {
+					alert("error");
+				}
 			});
 		}
 		

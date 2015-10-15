@@ -88,6 +88,7 @@ function setNotify(title, text, icon, type) {
 	    text: text,
 	    icon: 'glyphicon glyphicon-' + icon,
 	    type: type,
+	    delay: 2000,
 	    styling: 'bootstrap3'
 	});
 }
