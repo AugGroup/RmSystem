@@ -201,17 +201,19 @@ $(document).ready(function() {
 				 		d.gpa = data.gpa;
 				 		
 				 		table.row(rowData).data(d).draw();
-				 		
-						new PNotify({
-						    title: 'Edit Education Success!!',
-						    text: 'You can edit data',
-						    type: 'success',
-					        delay: 10000,
+				 		new PNotify({
+					        title: pnotifySuccess,
+					        text: pnotifyEdit,
+					        type: 'success',
+					        delay: 1000,
 					        buttons:{
 					        	closer_hover: false,
 					        	sticker: false
 					        }		
-						});
+					    });
+					},
+					error : function() {
+						alert("error");
 				 }
 			});
 			};

@@ -125,15 +125,18 @@ $(document).ready(function() {
 				dtApplicant.ajax.reload();
 				
 				new PNotify({
-			        title: 'Success',
-			        text: 'Successful Add Experience!!!',
+			        title: pnotifySuccess,
+			        text: pnotifyAdd,
 			        type: 'success',
-			        delay: 10000,
+			        delay: 1000,
 			        buttons:{
 			        	closer_hover: false,
 			        	sticker: false
 			        }		
 			    });
+			},
+			error : function() {
+				alert("error");
 			}
 		});
 		};
@@ -228,16 +231,19 @@ $(document).ready(function() {
 					 	
 				 		table.row(rowData).data(d).draw();
 				 		
-						new PNotify({
-						    title: 'Edit Reference Success!!',
-						    text: 'You can edit data',
-						    type: 'success',
-					        delay: 10000,
+				 		new PNotify({
+					        title: pnotifySuccess,
+					        text: pnotifyEdit,
+					        type: 'success',
+					        delay: 1000,
 					        buttons:{
 					        	closer_hover: false,
 					        	sticker: false
 					        }		
-						});
+					    });
+					},
+					error : function() {
+alert("error");
 					 }
 				});
 			};
@@ -263,16 +269,19 @@ $(document).ready(function() {
 	            type: "POST",
 	            success: function () {
 	            	dtApplicant.row(index).remove().draw();
-					new PNotify({
-					    title: 'Delete Success',
-					    text: 'You can delete data',
-					    type: 'success',
-				        delay: 10000,
+	            	new PNotify({
+				        title: pnotifySuccess,
+				        text: pnotifyDel,
+				        type: 'success',
+				        delay: 1000,
 				        buttons:{
 				        	closer_hover: false,
 				        	sticker: false
 				        }		
-					});
+				    });
+				},
+				error : function() {
+alert("error");
 	            }
 	        });
 	    }
