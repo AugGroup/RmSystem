@@ -75,11 +75,13 @@ $(function(){
 });
 
 function setBtnEmail(badge, flag) {
-	//alert(flag);
+//	alert(flag);
 	if (flag != 0) {
 		badge.empty().append(flag);
+		$("#btn_email").tooltip();
 	} else {
 		badge.empty();
+		$("#btn_email").tooltip("destroy");
 	}
 }
 
