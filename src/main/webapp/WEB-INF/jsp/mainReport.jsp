@@ -104,6 +104,13 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 
 </style>
 
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#btn_report").addClass('active-menu'); 
+	$("#reportPage").addClass('active-menu'); 
+});
+</script>
+
 <div class="container">
 	<!------------------- Report header------------------->
 	<div class="row">

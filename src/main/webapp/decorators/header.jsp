@@ -37,14 +37,14 @@
 				<li><a href="${pageContext.request.contextPath}/request" id="requestPage"><spring:message code="request.button" /></a></li>
 				<li><a href="${pageContext.request.contextPath}/approve" id="approvePage"><spring:message code="request.approve" /></a></li>
 				<li><a href="${pageContext.request.contextPath}/calendar" id="calendarPage"><spring:message code="request.calendar" /></a></li>
-				<li class="dropdown" id="email-dropdown">
-					<a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" 
+				<li class="dropdown emailPage" id="email-dropdown">
+					<a  href="#" class="dropdown-toggle emailPage" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" 
 						id="btn_email" data-toggle="tooltip" data-placement="right" title="<spring:message code="warning.appointment" />"><spring:message code="request.email" /> <span class="badge" id="email-badge"></span> <span class="caret"></span>
 					</a>
-					<ul class="dropdown-menu sub-menu" >
-						<li><a href="${pageContext.request.contextPath}/email/create"><spring:message code="request.email.header.create" /></a></li>
-						<li><a href="${pageContext.request.contextPath}/email/edit"><spring:message code="request.email.header.edit" /></a></li>
-						<li><a href="${pageContext.request.contextPath}/email/write"><spring:message code="request.email.header.write" /></a></li>
+					<ul class="dropdown-menu sub-menu" id="sub-menu-email">
+						<li  ><a href="${pageContext.request.contextPath}/email/create" id="emailCreatePage"><spring:message code="request.email.header.create" /></a></li>
+						<li id="emailEditPage"><a href="${pageContext.request.contextPath}/email/edit"><spring:message code="request.email.header.edit" /></a></li>
+						<li id="emailWritePage"><a href="${pageContext.request.contextPath}/email/write"><spring:message code="request.email.header.write" /></a></li>
 	              		<li class="divider"></li>
 	            		<li class="dropdown-submenu" id="email-appointment-new-parent">
 	              			<a tabindex="-1" href="#"><spring:message code="request.email.new.appointment" /></a>
@@ -91,8 +91,8 @@
 							<spring:message code="report.text" /> <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu sub-menu" id="dropdown_report">
-							<li><a href="${pageContext.request.contextPath}/report"><spring:message code="report.text" /></a></li>
-							<li><a href="${pageContext.request.contextPath}/monthlyReport"><spring:message code="report.text.monthly" /></a></li>
+							<li><a href="${pageContext.request.contextPath}/report" id="reportPage" ><spring:message code="report.text" /></a></li>
+							<li><a href="${pageContext.request.contextPath}/monthlyReport" id="monthlyPage"><spring:message code="report.text.monthly" /></a></li>
 						</ul>
 					</li>
 			

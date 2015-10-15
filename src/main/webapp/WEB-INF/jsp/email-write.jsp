@@ -8,6 +8,13 @@
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/resources/pageCss/email-write.css" />
 
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#emailPage").addClass('active-menu'); 
+	$("#emailWritePage").addClass('.active-menu-sub'); 
+});
+</script>
+
 <div class="container-fluid">
 	<div class="col-sm-1"></div>
 	<div class="col-sm-12 col-md-10" id="email-section">

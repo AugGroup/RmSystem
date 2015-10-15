@@ -19,7 +19,7 @@
 }
 
 #email-badge {
-	background-color: #DE9104;
+	background-color: #b70000;
 }
 
 .email-notififation-li:hover {
@@ -39,11 +39,11 @@
 }
 
 #email-dropdown .tooltip.right .tooltip-arrow {
-	border-right-color: rgb(222, 145, 4) !important;
+	border-right-color: #b70000 !important;
 }
 
 #email-dropdown .tooltip-inner {
-	background-color: rgb(222, 145, 4) !important;
+	background-color: #b70000 !important;
 	max-width: 140px;
     /* If max-width does not work, try using width instead */
     width: 140px; 

@@ -11,6 +11,13 @@
 
 <title><spring:message code="request.email.header.create" /></title>
 
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".emailPage").addClass('active-menu'); 
+	$("#emailCreatePage").addClass('active-menu-sub'); 
+});
+</script>
+
 <div class="container-fluid">
 	
 	<div class="col-sm-1"></div>

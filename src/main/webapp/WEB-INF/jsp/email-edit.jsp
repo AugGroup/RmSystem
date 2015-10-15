@@ -8,6 +8,12 @@
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/resources/pageCss/email-create.css" />
 
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#emailPage").addClass('active-menu'); 
+	$("#emailEditPage").addClass('active-menu-sub'); 
+});
+</script>
 
 <div class="container-fluid">
 	<div class="col-sm-1"></div>

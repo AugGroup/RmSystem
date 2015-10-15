@@ -28,8 +28,6 @@ ul#nav-menu > li > a{
 .nav li.dropdown>a{
 	width:auto;
 	height:50px;
-	/* border: 2px solid #fff !important; */
-	border-radius:5px;
 }
 .nav li.dropdown>a:hover {
 	text-decoration: none;
@@ -51,12 +49,19 @@ ul#nav-menu > li > a{
 
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
 	background: rgba(0, 0, 0, 0);
+	color: rgb(222, 145, 4);
 }
-
+	
 .active-menu{
 	background-color: rgb(222, 145, 4) !important;
 	color: #fff !important;
 }
+
+.active-menu-sub{
+	background-color: rgb(222, 145, 4) !important;
+	color: #fff !important;
+}
+
 /* dropdown sub menu */
 .nav li>a#btn_report {
 	width: 86px;
@@ -72,13 +77,12 @@ ul#nav-menu > li > a{
 }
 
 .sub-menu>li>a:hover {
-	background-color: #bdbdbd;
+	background-color: #fff;
 }
 
 .navbar-nav>li>.dropdown-menu {
 	margin-top: -5px;
-/* 	border-top-left-radius: 5px; */
-/* 	border-top-right-radius: 5px; */
+	border-radius: 5px;
 }
 
 .sub-menu>li#email-appointment-new-parent>a:hover {
@@ -91,10 +95,20 @@ ul#nav-menu > li > a{
 
 #email-appointment-update>li>a {
 	background-color: rgb(222, 145, 4);
+	color: #000 !important;
+}
+
+#email-appointment-update>li>a:hover {
+	color: #fff !important;
 }
 
 #email-appointment-new>li>a {
 	background-color: rgb(222, 145, 4);
+	color: #000 !important;
+}
+
+#email-appointment-new>li>a:hover {
+	color: #fff !important;
 }
 /* end dropdown sub menu */
 
@@ -131,6 +145,11 @@ ul#nav-menu > li > a{
 	margin-top: -12px;
 	color: #808080;
 	font-family: Dosis-Regular;
+	text-decoration: none;
+}
+
+#linkLogout:hover {
+	text-decoration: underline;
 }
 /* ----- end Logout ----- */
 
@@ -166,10 +185,7 @@ ul#nav-menu > li > a{
 }
 /* ----- max-width ( 768px ) ----- */
 @media ( max-width : 768px) {
-	#top-con {
-		margin-left: 0px;
-		margin-right: 0px;
-	}
+
 	#logo {
 		margin-left: 10px;
 		padding: 3px;
@@ -199,12 +215,19 @@ ul#nav-menu > li > a{
 	.nav>li>a:hover {
 		text-decoration: none;
 		background-color: #444;
+		color: rgb(222, 145, 4); 
 	}
 	.nav>li>a:focus {
 		background-color: #707070;
 	}
+	
+	.sub-menu{
+		background-color: #707070 !important;
+		border-radius:0px !important; 
+	}
+	
 	.sub-menu>li>a {
-		color: #fff;
+		color: #fff !important;
 	}
 	.sub-menu>li>a:hover {
 		color: #fff;
@@ -222,9 +245,17 @@ ul#nav-menu > li > a{
 	}
 	#email-appointment-update>li>a {
 		background: #707070;
+		color:#fff !important;
+	}
+	#email-appointment-update>li>a:hover {
+		color: rgb(222, 145, 4) !important;
 	}
 	#email-appointment-new>li>a {
 		background: #707070;
+		color:#fff !important;
+	}
+	#email-appointment-new>li>a:hover {
+		color: rgb(222, 145, 4) !important;
 	}
 	.nav li>a#btn_report {
 		width: 100%;
@@ -240,9 +271,12 @@ ul#nav-menu > li > a{
 		color: #fff;
 		text-decoration: none;
 	}
-	#linkLogout {
-		margin-top: -8px;
+	#linkLogout{		
 		color: #fff;
+		text-decoration: none;
+	}
+	#linkLogout:hover{		
+		color: rgb(222, 145, 4);
 		text-decoration: none;
 	}
 	#top-flag {
@@ -254,6 +288,11 @@ ul#nav-menu > li > a{
 	#btn_report {
 		margin-top: auto;
 		text-decoration: none;
+	}
+	
+	.active-menu{
+		background-color: #444 !important;
+		color: #fff !important;
 	}
 }
 /* ----- end max-width ( 768px ) ----- */
