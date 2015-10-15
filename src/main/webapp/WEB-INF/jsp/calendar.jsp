@@ -408,6 +408,8 @@
 	var appointmentEmailNosent = "<spring:message code='appointment.email.status.nosend' />";
 	var appointmentEmailSuccess = "<spring:message code='appointment.email.status.success' />";
 	var appointmentEmailNoUpdate = "<spring:message code='appointment.email.status.noupdate' />";
+	var pnotifySuccess="<spring:message code="pnotify.success"/>";
+	var pnotifyError="<spring:message code="pnotify.error"/>";
 	
 </script>
 

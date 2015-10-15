@@ -121,15 +121,18 @@ $(document).ready(function () {
 					$("#approveModal").modal('hide');
 					
 					new PNotify({
-				    	title: 'Edit Approve status is successful.',
-				    	text: '',
-				    	type: 'success',
-				    	delay: 3000,
-				    	buttons: {
-				    			closer_hover: false,
-				    	        sticker: false
-				    	    }
-					});
+				        title: pnotifySuccess,
+				        text: pnotifyEdit,
+				        type: 'success',
+				        delay: 1000,
+				        buttons:{
+				        	closer_hover: false,
+				        	sticker: false
+				        }		
+				    });
+				},
+				error : function() {
+					alert("error");
 					}
 				});
 			}

@@ -5,13 +5,16 @@
 
 <title><spring:message code="request.title.approve" /></title>
 
-<title>Request for Application</title>
-
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/resources/pageCss/main.css" />
 <script src="<c:url value ="/static/resources/pageJS/aug-approve.js"/>"></script>
 
 <script type="text/javascript">
     var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.response.locale}.json' />";
+    var pnotifyAdd="<spring:message code="pnotify.add"/>";
+    var pnotifyEdit="<spring:message code="pnotify.edit"/>";
+    var pnotifyDel="<spring:message code="pnotify.delete"/>";
+    var pnotifySuccess="<spring:message code="pnotify.success"/>";
+    var pnotifyError="<spring:message code="pnotify.error"/>";
 	var approve_tx = '<spring:message code="edit.approve"/>';
 
 	$(document).ready(function(){

@@ -517,7 +517,7 @@ $( function(){
 					new PNotify({
 						title: pnotifySuccess,
 						text: data + "<br>" + pnotifyDelete,
-					    icon: false,
+						type: 'success',
 					    delay: 1000
 					});
 					findNoEmailSending();

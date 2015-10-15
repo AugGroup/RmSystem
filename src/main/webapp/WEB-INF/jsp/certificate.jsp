@@ -16,6 +16,11 @@ var valYear = "<spring:message code="valid.cer.year"/>"
 var valEdit = "<spring:message code="main.edit.info"/>";
 var valDelete = "<spring:message code="main.delete"/>";
 var id = ${id};
+var pnotifyAdd="<spring:message code="pnotify.add"/>";
+var pnotifyEdit="<spring:message code="pnotify.edit"/>";
+var pnotifyDel="<spring:message code="pnotify.delete"/>";
+var pnotifySuccess="<spring:message code="pnotify.success"/>";
+var pnotifyError="<spring:message code="pnotify.error"/>";
 var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.response.locale}.json' />";
 </script>
 
