@@ -99,13 +99,8 @@
 }
 
 .container {
-	font-family: "Regular";
 	position: relative;
-	margin-left: 40px;
-	margin-right: 40px;
-	padding-right: 0px;
-	padding-left: 0px;
-	width: 94%;
+	width: 95%;
 }
 
 .form-group {
@@ -262,14 +257,13 @@ ul.pagination li.next>a{
 /* -------- for report -------- */
 .report_search {
 	position: relative;
-	/* padding-left: 20%; */
 	padding-top: 50px;
-	/* height: 200px; */
 	width: 85%;
+	float: right;
 }
 
 .search_inputgroup {
-	width: 1200px;
+	width: auto;
 	float: right;
 	margin: 5px;
 	padding: 5px;
@@ -284,13 +278,17 @@ ul.pagination li.next>a{
 }
 
 #radio_inputgroup {
+	display: inline-block;
 	margin: 0px 15px 0px 5px;
+}
+
+.report_preview{
+	float:right;
 }
 
 #btn_search {
 	font-family:Dosis-Regular;
-	margin: 27px 5px 0px 5px;
-	float: right;
+	margin-top: 25px ;
 	width: 95px;
 }
 

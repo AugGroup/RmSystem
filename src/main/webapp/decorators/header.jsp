@@ -81,7 +81,7 @@
 					</a>
 					
 					<a id="flag-link" class="navbar-link" href="${request.getRequestURL}?locale=en" > 
-						<b><img src="${pageContext.request.contextPath}/static/resources/images/flag_usa.png" alt="logo" class='img-flag ${ (locale eq "en") ? "flag-active" : ""}' /></b>
+						<img src="${pageContext.request.contextPath}/static/resources/images/flag_usa.png" alt="logo" class='img-flag ${ (locale eq "en") ? "flag-active" : ""}' />
 					</a>
 					
 					</li>

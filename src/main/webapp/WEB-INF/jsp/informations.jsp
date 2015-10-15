@@ -15,6 +15,9 @@
 
 $(document).ready(function(){
 	$("#applicantPage").addClass('active-menu'); 
+	if("${id}" == null || "${id}" == ""){
+		$("#applicationMenu").hide();
+	}
 });
 
 </script>
@@ -31,8 +34,7 @@ $(document).ready(function(){
 
 	<div class="row">
 
-		<div class="col-sm-12 col-md-12" >
-		<jsp:include page="applicationMenu.jsp" /></div>
+		<div class="col-sm-12 col-md-12" id="applicationMenu" ><jsp:include page="applicationMenu.jsp" /></div>
 			<f:form id="informationApplicant" name="informationApplicant" action="${pageContext.request.contextPath}/${actionName}"
 				modelAttribute="applicant" method="post" enctype="multipart/form-data" class="form-inline">
 				<f:hidden path="id" />
