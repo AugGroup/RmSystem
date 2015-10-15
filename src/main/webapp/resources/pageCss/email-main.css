@@ -18,6 +18,10 @@
 	background-color: #FFFFFF;
 }
 
+#email-badge {
+	background-color: #DE9104;
+}
+
 .email-notififation-li:hover {
 	background-color: #FFFFFF;	
 }

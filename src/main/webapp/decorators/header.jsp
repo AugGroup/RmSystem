@@ -39,7 +39,7 @@
 				<li><a href="${pageContext.request.contextPath}/calendar" id="calendarPage"><spring:message code="request.calendar" /></a></li>
 				<li class="dropdown" id="email-dropdown">
 					<a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" 
-						id="btn_email" data-toggle="tooltip" data-placement="right" title="<spring:message code="warning.appointment" />"><spring:message code="request.email" /> <span class="caret"></span>
+						id="btn_email" data-toggle="tooltip" data-placement="right" title="<spring:message code="warning.appointment" />"><spring:message code="request.email" /> <span class="badge" id="email-badge"></span> <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu sub-menu" >
 						<li><a href="${pageContext.request.contextPath}/email/create"><spring:message code="request.email.header.create" /></a></li>

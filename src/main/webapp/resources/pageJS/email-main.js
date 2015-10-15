@@ -6,9 +6,10 @@ $(function(){
 	var $emailAppointmentUpdate = $("#email-appointment-update");
 	
 	var $btnEmail = $("#btn_email");
+	var $badge = $("#email-badge");
 	
-	var flagNew = 0;
-	var flagUpdate = 0;
+	var newAppointment = 0;
+	var updateAppointment = 0;
 	
 	$btnEmail.tooltip();
 	
@@ -24,13 +25,13 @@ $(function(){
 				var result = "";
 				$.each(data, function(index, value) {					
 					result += '<li class="email-notififation-li"><a href="#" class="new-email" data-id="' + value.id + '">' + value.topic + '</a></li>';
+					newAppointment++;
 				});
 				setNotification($parentNew, $emailAppointmentNew);
 				$emailAppointmentNew.empty().append(result);
-				flagNew = 1;
 			}
 //			/alert("flagNew: " + flagNew);
-			setBtnEmail($btnEmail, flagNew + flagUpdate);
+			setBtnEmail($badge, newAppointment + updateAppointment);
 		},
 		error: function() {
 			alert("error find new appoinment");
@@ -50,13 +51,13 @@ $(function(){
 				var result = "";
 				$.each(data, function(index, value) {
 					result += '<li class="email-notififation-li"><a href="#" class="update-email" data-id="' + value.id + '">' + value.topic + '</a></li>';
+					updateAppointment++;
 				});
 				setNotification($parentUpdate, $emailAppointmentUpdate);
 				$emailAppointmentUpdate.empty().append(result);
-				flagUpdate = 1;
 			}
 			//alert("flagUpdate: " + flagUpdate);
-			setBtnEmail($btnEmail, flagNew + flagUpdate);
+			setBtnEmail($badge, newAppointment + updateAppointment);
 			//alert(setBtnFlag);
 		},
 		error: function() {
@@ -71,30 +72,14 @@ $(function(){
 	$emailAppointmentUpdate.off().on("click", ".update-email", function(){
 		window.location.replace(contextPath + "/email/write/appointment/" + $(this).data("id"));
 	});
-	
-	$.fn.blink = function() {
-	    setInterval($.proxy(function() {
-	        this.toggleClass('btn-email-alert');
-	    }, this), 500);
-	};
-	
-	$.fn.blinkClosure = function() {
-	    var jQueryMonad = this, toggleClass = this.toggleClass;
-	    setInterval(function() {
-	        toggleClass.apply(jQueryMonad, ['btn-email-alert']);
-	    }, 500);
-	};
 });
 
-function setBtnEmail(btn, flag) {
+function setBtnEmail(badge, flag) {
 	//alert(flag);
 	if (flag != 0) {
-		//btn.tooltip("show");
-		btn.addClass("btn-email-alert");
-		//btn.blink();
+		badge.empty().append(flag);
 	} else {
-		//btn.tooltip("destroy");
-		btn.removeClass("btn-email-alert");
+		badge.empty();
 	}
 }
 

@@ -28,7 +28,7 @@ ul#nav-menu > li > a{
 .nav li.dropdown>a{
 	width:auto;
 	height:50px;
-	border: 2px solid #fff !important;
+	/* border: 2px solid #fff !important; */
 	border-radius:5px;
 }
 .nav li.dropdown>a:hover {
