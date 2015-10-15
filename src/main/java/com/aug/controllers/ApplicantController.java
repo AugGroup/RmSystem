@@ -170,18 +170,13 @@ public class ApplicantController implements Serializable {
 	@Autowired
 	private ReportService reportService;
 	
-	@RequestMapping(value =  "/applicant", method = { RequestMethod.GET })
+	@RequestMapping(value = {"/","/applicant"}, method = { RequestMethod.GET })
 	public String helloPage(Model model) {
 		User user = (User) SecurityContextHolder.getContext()
 				.getAuthentication().getPrincipal();
 		String name = user.getUsername();
 		model.addAttribute("name", name);
 		return "mainApplicant";
-	}
-	
-	@RequestMapping(value="/",method={RequestMethod.GET})
-	public String root(){
-		return "redirect:/applicant";
 	}
 
 	/*-------------------- initBinder --------------------*/
