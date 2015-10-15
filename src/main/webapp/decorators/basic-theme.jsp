@@ -92,12 +92,15 @@
 	}
 </style>
 
+<!-- Page Context -->
+<script type="text/javascript">
+	var contextPath = "${pageContext.request.contextPath}";
+	var local = '${pageContext.response.locale}';
+</script>
+
 <!-- Email -->
 <link href="${ pageContext.request.contextPath }/static/resources/pageCss/email-main.css" rel="stylesheet" type="text/css"></link>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/static/resources/pageJS/email-main.js"></script>
-
-<!-- Page Context -->
-<script type="text/javascript" src="${ pageContext.request.contextPath }/static/resources/pageJS/pageContext.js"></script>
 
 </head>
 <%
