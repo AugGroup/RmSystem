@@ -78,6 +78,103 @@ var $validform2 = $("#formEdit").validate({
 	
 });
 
+//----------email---------
+function setEmailAlert() {
+	var $parentNew = $("#email-appointment-new-parent");
+	var $parentUpdate = $("#email-appointment-update-parent");
+	
+	var $emailAppointmentNew = $("#email-appointment-new");
+	var $emailAppointmentUpdate = $("#email-appointment-update");
+	
+	var $btnEmail = $("#btn_email");
+	var $badge = $("#email-badge");
+	
+	var newAppointment = 0;
+	var updateAppointment = 0;
+	
+	$btnEmail.tooltip();
+	
+	//set new appointment
+	//alert("callNew");
+	$.ajax({
+		url: contextPath + "/email/find/waitAppointment",
+		type: "GET",
+		success: function(data) {
+			if (!data) {
+				removeNotification($parentNew, $emailAppointmentNew);
+			} else {
+				var result = "";
+				$.each(data, function(index, value) {					
+					result += '<li class="email-notififation-li"><a href="#" class="new-email" data-id="' + value.id + '">' + value.topic + '</a></li>';
+					newAppointment++;
+				});
+				setNotification($parentNew, $emailAppointmentNew);
+				$emailAppointmentNew.empty().append(result);
+			}
+//			/alert("flagNew: " + flagNew);
+			setBtnEmail($badge, newAppointment + updateAppointment);
+		},
+		error: function() {
+			alert("error find new appoinment");
+		}
+	});
+	
+	//set update appointment
+	//alert("callUpdate");
+	$.ajax({
+		url: contextPath + "/email/find/updateAppointment",
+		type: "GET",
+		success: function(data) {
+			if (!data) {
+				//alert("null");
+				removeNotification($parentUpdate, $emailAppointmentUpdate);
+			} else {
+				var result = "";
+				$.each(data, function(index, value) {
+					result += '<li class="email-notififation-li"><a href="#" class="update-email" data-id="' + value.id + '">' + value.topic + '</a></li>';
+					updateAppointment++;
+				});
+				setNotification($parentUpdate, $emailAppointmentUpdate);
+				$emailAppointmentUpdate.empty().append(result);
+			}
+			//alert("flagUpdate: " + flagUpdate);
+			setBtnEmail($badge, newAppointment + updateAppointment);
+			//alert(setBtnFlag);
+		},
+		error: function() {
+			alert("error find update appoinment");
+		}
+	});
+}
+
+function setBtnEmail(badge, flag) {
+	//alert(flag);
+	if (flag != 0) {
+		badge.empty().append(flag);
+		$("#btn_email").tooltip();
+	} else {
+		badge.empty();
+		$("#btn_email").tooltip("destroy");
+	}
+}
+
+function setNotification(parent, appointment) {
+	
+	parent.removeClass("disabled");
+	parent.addClass("email-notification");	
+	appointment.addClass("dropdown-menu");
+	appointment.addClass("email-notification");
+}
+
+function removeNotification(parent, appointment) {
+	
+	parent.addClass("disabled");
+	parent.removeClass("email-notification");
+	appointment.removeClass("dropdown-menu");
+	appointment.removeClass("email-notification");
+}
+//----------email---------
+
 function updateAppointmentDate(eventToUpdate, revertParam){
 	var updatedata = {id : eventToUpdate.id, start : eventToUpdate.start.tz("Asia/Bangkok").format("YYYY-MM-DD HH:mm:ss"), 
 			end : eventToUpdate.end.tz("Asia/Bangkok").format("YYYY-MM-DD HH:mm:ss"), mailStatus : eventToUpdate.mailStatus};
@@ -109,6 +206,7 @@ function updateAppointmentDate(eventToUpdate, revertParam){
 	    			$calendar.fullCalendar( 'gotoDate', eventToUpdate.start );
     				findNoEmailUpdate();
     				findEmailSent();
+    				setEmailAlert();
 	    		},
 	    		
 	    		error:function (jqXHR, textStatus, error){
@@ -120,9 +218,9 @@ function updateAppointmentDate(eventToUpdate, revertParam){
 	        // user clicked "cancel"
 	    	revertParam();
 	    }
-	});
-	
+	});	
 }
+
 function currentDate(){// use For getCurrentDate
 	var date = new Date();
 	var month = date.getMonth()+1;
@@ -523,6 +621,7 @@ $( function(){
 					findNoEmailSending();
 					findNoEmailUpdate();
 					findEmailSent();
+					setEmailAlert();
 				},
 				error : function (error) {
 					new PNotify({
@@ -571,6 +670,7 @@ $( function(){
 						$('#insModal').modal('hide');	
 						$('#formInsert').trigger('reset');
 						findNoEmailSending();
+						setEmailAlert();
 						new PNotify({
 							title: pnotifySuccess,
 						    text: data.title +"<br>"+ pnotifyInsert,
