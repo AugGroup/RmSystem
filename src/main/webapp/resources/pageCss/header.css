@@ -42,7 +42,7 @@ ul#nav-menu > li > a{
 
 .nav>li>a:hover {
 	background: rgba(0, 0, 0, 0);
-	text-decoration: underline;
+	color: rgb(222, 145, 4);
 }
 
 .nav>li>a:focus {
@@ -55,7 +55,7 @@ ul#nav-menu > li > a{
 
 .active-menu{
 	background-color: rgb(222, 145, 4) !important;
-	text-decoration: none !important;
+	color: #fff !important;
 }
 /* dropdown sub menu */
 .nav li>a#btn_report {
