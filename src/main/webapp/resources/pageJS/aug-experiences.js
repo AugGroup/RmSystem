@@ -23,7 +23,7 @@ $(document).ready(function() {
 			typeOfBusiness : {required : true,},
 			position : {required : true,},
 			reference : {required : true,},
-			salary : {required : true,},
+			salary : {required : true, digits:true},
 //			reference : {required : true},
 			responsibility : {required : true,},
 			reason : {required : true,}
@@ -36,7 +36,7 @@ $(document).ready(function() {
 			typeOfBusiness : {required : valType},
 			position : {required : valPosition},
 			reference : {required : valSupervisor},
-			salary : {required : valSalary},
+			salary : {required : valSalary, digits:digitOnly},
 //			reference : {required : valReference},
 			responsibility : {required : valDescription},
 			reason : {required : valReason}
@@ -286,7 +286,7 @@ alert("error");
 	        });
 	    }
 
-	    $('#experiencesModal').on('shown.bs.modal', function (e) {
+	    $('#experiencesModal').on('hide.bs.modal', function (e) {
 	    	$validateExp.resetForm();
 	    })
 	    

@@ -29,6 +29,7 @@ var pnotifyDel="<spring:message code="pnotify.delete"/>";
 var pnotifySuccess="<spring:message code="pnotify.success"/>";
 var pnotifyError="<spring:message code="pnotify.error"/>";
 var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.response.locale}.json' />";
+var digitOnly = "<spring:message code="valid.digit.only"/>";
 </script>
 
 
