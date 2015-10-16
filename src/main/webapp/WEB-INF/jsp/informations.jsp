@@ -255,7 +255,7 @@ $(document).ready(function(){
 		<div id="applicantStatusStyle" class="col-sm-3">
 			<label for="applicantStatus"><spring:message code="info.marriage.status"/></label>
 			<div id="applicantStatusRadioButton">
-				<f:radiobutton path="applicantStatus" id="applicantStatusSingle" name="applicantStatus" value="Single"></f:radiobutton><label> <spring:message code="info.single"/></label>
+				<f:radiobutton path="applicantStatus" id="applicantStatusSingle" name="applicantStatus" value="Single" checked="checked" ></f:radiobutton><label> <spring:message code="info.single"/></label>
 				<f:radiobutton path="applicantStatus" id="applicantStatusMarried" name="applicantStatus" value="Married"></f:radiobutton><label> <spring:message code="info.married"/></label>
 				<f:radiobutton path="applicantStatus" id="applicantStatusDivorced" name="applicantStatus" value="Divorced"></f:radiobutton><label> <spring:message code="info.divorced"/></label>
 			 	<br><label for="applicantStatus" class="error"></label>
@@ -329,7 +329,7 @@ $(document).ready(function(){
 		<div class="col-sm-12">
 			<div id="militaryStatusRadioButton">
 				<f:radiobutton path="militaryStatus" id="militaryStatusYes" name="militaryStatus" value="Yes"></f:radiobutton><label><spring:message code="info.yes"/></label>
-				<f:radiobutton path="militaryStatus" id="militaryStatusNo" name="militaryStatus" value="No"></f:radiobutton><label><spring:message code="info.no"/></label>
+				<f:radiobutton path="militaryStatus" id="militaryStatusNo" name="militaryStatus" value="No" checked="checked"></f:radiobutton><label><spring:message code="info.no"/></label>
 				<br><label for="militaryStatus" class="error"></label>
 			</div>
 		</div>
@@ -537,7 +537,7 @@ $(document).ready(function(){
 		<div class="col-sm-12" style="padding-bottom:25px;">
 			<div id="nowEmployedRadioButton">
 				<f:radiobutton path="nowEmployed" id="nowEmployedYes" name="nowEmployed" value="Yes"></f:radiobutton><label><spring:message code="info.yes"/></label>
-				<f:radiobutton path="nowEmployed" id="nowEmployedNo" name="nowEmployed" value="No"></f:radiobutton><label><spring:message code="info.no"/></label>
+				<f:radiobutton path="nowEmployed" id="nowEmployedNo" name="nowEmployed" value="No" checked="checked"></f:radiobutton><label><spring:message code="info.no"/></label>
 				<br><label for="nowEmployed" class="error"></label>
 			</div>
 		</div>
@@ -628,7 +628,7 @@ $(document).ready(function(){
 <!-- 			<div id="previousEmployers"> -->
 				<div id="previousEmployersRadioButton">
 						<f:radiobutton path="previousEmployers" id="previousEmployersYes" name="previousEmployers" value="Yes"></f:radiobutton><label><spring:message code="info.know"/></label>
-						<f:radiobutton path="previousEmployers" id="previousEmployersNo" name="previousEmployers" value="No"></f:radiobutton><label><spring:message code="info.notKnow"/></label>
+						<f:radiobutton path="previousEmployers" id="previousEmployersNo" name="previousEmployers" value="No" checked="checked"></f:radiobutton><label><spring:message code="info.notKnow"/></label>
 					<br><label for="previousEmployers" class="error"></label>
 				</div>
 <!-- 			</div> -->

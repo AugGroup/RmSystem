@@ -458,13 +458,13 @@ public class ApplicantController implements Serializable {
 		String endDate = "";
 		if (!applyDate.isEmpty()) {
 			String dateStr = applyDate;
-			System.out.println("dateStr :" + dateStr);
+//			System.out.println("dateStr :" + dateStr);
 			String[] parts = dateStr.split(" \\- ");
 			startDate = parts[0];
-			System.out.println("startDate : " + startDate);
+//			System.out.println("startDate : " + startDate);
 			endDate = parts[1];
-			System.out.println("endDate : " + endDate);
-			System.out.println("endDate123 : ");
+//			System.out.println("endDate : " + endDate);
+//			System.out.println("endDate123 : ");
 			reportApplicantList = applicantService.findReportByMonth(startDate,
 					endDate);
 		} else {

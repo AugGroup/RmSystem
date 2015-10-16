@@ -135,7 +135,6 @@
 			var $militaryYes = $("#militaryYes");
 			$militaryYes.hide();
 			$militaryNo.hide();
-//			$("#militaryStatusRadioButton").hide();
 
 			
  			    $("input:radio[name='sex']").change(function(){  
@@ -256,8 +255,8 @@
  					emergencyAddress : {required : true},
  					applyDate : {required : true}, 
  					department : {required : true},
-// 					jobLevel : {required : true},
-// 					technology : {required : true},
+ 					jobLevel : {required : true},
+ 					technology : {required : true},
  					expectedSalary : {required : true},
  					nowEmployed : {required : true},
  					employedName : {required : true},
