@@ -51,10 +51,11 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 								</c:forEach>
 							</select>
 							<span id="special-error" style="color:red;"></span>
+							<label id="masspecialty-error" class="error" for="masspecialty"></label>
 						</div>
 				<div class="form-group">
-					<div class="row" id="rankSkill">
-						<label class="radio-inline" for="rank" > 
+					<div class="" id="rankSkill">
+						<label class="radio-inline" for="rank"> 
 		 			     	<input id="rank1" name="rank" value="1" type="radio" />1</label>
 		 			     <label class="radio-inline" for="rank" > 
 		 			     	<input id="rank2" name="rank" value="2" type="radio" />2</label>
@@ -74,8 +75,9 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 		 			     	<input id="rank9" name="rank" value="9" type="radio" />9</label>
 		 			     <label class="radio-inline" for="rank" > 
 		 			     	<input id="rank10" name="rank" value="10" type="radio" />10</label>
+		 			     	<label id="rank-error" class="error" for="rank" style="display: inline-block;"></label>
 		 		  	</div>	
-		 		</div><label for="rank" class="error"></label>
+		 		</div><!-- <label for="rank" class="error"></label> -->
 		 			<button type="button" class="btn btn-warning" id="btn_save">
 						<span class="glyphicon glyphicon-save"></span>
 						<spring:message code="edit.button.save" />

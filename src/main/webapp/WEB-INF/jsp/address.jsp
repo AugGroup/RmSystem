@@ -90,7 +90,7 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 						<div class="form-group">
 							<label for="province"><spring:message code="address.province" /> </label>
 	 					 	<select  class="form-control" id="province" name="province">
-								<option value="-1" label="<spring:message code="address.text.select.proince"/>" />
+								<option value="" label="<spring:message code="address.text.select.proince"/>" />
 								<c:forEach var="obj" items="${ provinces }">
 									<option value="${obj.id }">${ obj.name}</option>
 								</c:forEach>
