@@ -207,9 +207,8 @@ WHERE applicant.APPLY_DATE BETWEEN STR_TO_DATE($P{startDate},'%d/%m/%Y') AND STR
 					</graphicElement>
 				</line>
 				<staticText>
-					<reportElement x="26" y="30" width="46" height="20" uuid="a3150a40-fbc9-4b6d-84e8-54f15b935028"/>
-					<textElement textAlignment="Center"/>
-					<text><![CDATA[Code]]></text>
+					<reportElement x="26" y="30" width="46" height="20" uuid="9022913b-8628-49bc-86b4-78175ce4d039"/>
+					<text><![CDATA[code]]></text>
 				</staticText>
 			</band>
 		</groupHeader>
@@ -282,7 +281,7 @@ WHERE applicant.APPLY_DATE BETWEEN STR_TO_DATE($P{startDate},'%d/%m/%Y') AND STR
 				<textFieldExpression><![CDATA[$V{name}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="26" y="17" width="46" height="20" uuid="a9e4bf69-69ba-4175-8df6-1a42985a2b77"/>
+				<reportElement x="26" y="17" width="46" height="20" uuid="53b499a6-ed1a-4426-aded-81fbd16f9f93"/>
 				<textFieldExpression><![CDATA[$F{code}]]></textFieldExpression>
 			</textField>
 		</band>

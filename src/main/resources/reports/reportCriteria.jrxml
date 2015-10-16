@@ -188,7 +188,7 @@ $P!{UNIVERSITY} $P!{MAJOR} $P!{TECHNOLOGY} $P!{JOBLEVEL} $P!{DEGREE} $P!{GPA}]]>
 	<detail>
 		<band height="44" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="19" width="52" height="20" uuid="5436f988-f3c4-47ea-bce4-12b3217a2467"/>
+				<reportElement x="1" y="19" width="51" height="20" uuid="5436f988-f3c4-47ea-bce4-12b3217a2467"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{code}]]></textFieldExpression>
 			</textField>
