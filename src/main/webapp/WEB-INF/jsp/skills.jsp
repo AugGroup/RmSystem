@@ -60,15 +60,16 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 										</c:forEach>
 									</select>
 									<span id="special-error" style="color:red;"></span>
+									<label id="masspecialty-error" class="error" for="masspecialty"></label>
 								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-12">
-								<label for="fg-rankskill"><spring:message code="skill.specialty"/></label>
+								<label for="fg-rankskill"><spring:message code="skill.rank"/></label>
 								<div class="form-group" id="fg-rankskill">
 									 <label class="radio-inline" for="rank" > 
-					 			     	<input id="rank1" name="rank" value="1" type="radio" />1</label>
+					 			     	<input id="rank1" name="rank" value="1" type="radio" checked/>1</label>
 					 			     <label class="radio-inline" for="rank" > 
 					 			     	<input id="rank2" name="rank" value="2" type="radio" />2</label>
 					 			     <label class="radio-inline" for="rank" > 
@@ -169,4 +170,3 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 		</div>
 	</div>
 </div>
->>>>>>> edit edu,exp,lang,skill

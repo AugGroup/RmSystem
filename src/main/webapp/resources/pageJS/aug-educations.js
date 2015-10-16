@@ -26,7 +26,7 @@ $(document).ready(function() {
 		var $validateEdu = $('#educationsForm').validate({
 			rules : {
 				university : {required : true},
-				masdegreetype : {required : true},
+				degree : {required : true},
 				faculty : {required : true},
 				major : {required : true},
 				gpa : {required : true},
@@ -35,7 +35,7 @@ $(document).ready(function() {
 			},
 			messages : {
 				university : {required : valUniversity},
-				masdegreetype : {required : valDegree},
+				degree : {required : valDegree},
 				faculty : {required : valFaculty},
 				major : {required : valMajor},
 				gpa : {required : valGPA},
@@ -43,7 +43,7 @@ $(document).ready(function() {
 				graduate : {required : valYear}
 			},
 			errorPlacement: function(error, element) {
-		        error.appendTo( element.closest('.row'));
+		        error.appendTo( element.parent("div").closest('.form-group'));
 		    }
 		});
 

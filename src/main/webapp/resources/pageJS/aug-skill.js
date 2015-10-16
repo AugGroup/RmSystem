@@ -3,7 +3,7 @@ $(document).ready(function() {
 	var $validateSkill = $('#skillForm').validate({
 		errorPlacement: function(error, element) {
 			
-			if(element.attr("type") == "radio"){
+			if(element.attr("name") == "rank"){
 				error.insertAfter(element.closest("#rank10"));
 			}
 			else{
