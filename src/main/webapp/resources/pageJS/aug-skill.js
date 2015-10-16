@@ -5,11 +5,11 @@ $(document).ready(function() {
 		    error.insertAfter($("#rank10").closest('label'));
 		},
 		rules : {
-			skill : {required : true},
+			masspecialty : {required : true},
 			rank : {required: true}
 		},
 		messages : {
-			skill : {required : valSkill},
+			masspecialty : {required : valSkill},
 			rank : {required: valRank}
 		}
 	});

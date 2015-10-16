@@ -67,7 +67,7 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 	 						<div class="form-group">
 	 							<label class="required" for="degree"><spring:message code="education.degree"/></label><br>
 	 							<f:select path="degreeTypes" class="form-control" id="masdegreetype" name="masdegreetype" style="width: 165px">
-									<option value="-1" label="<spring:message code="education.text.degreeType"/>" />
+									<option value="" label="<spring:message code="education.text.degreeType"/>" />
 									<c:forEach var="obj" items="${degreeTypes}">
 										<option value="${obj.id}">${obj.name}</option>
 									</c:forEach>

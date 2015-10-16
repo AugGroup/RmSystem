@@ -44,7 +44,7 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 						</div>
 						<div class="form-group">
 							<label for="skill"><spring:message code="skill.specialty"/></label>
-							 <select class="form-control" id="masspecialty" name="masspecialties">
+							 <select class="form-control" id="masspecialty" name="masspecialty">
 								<option value="" label="<spring:message code="skill.text.select"/>" />
 								<c:forEach var="masspecialtiesist" items="${masspecialties}">
 									<option value="${masspecialtiesist.id}">${ masspecialtiesist.name}</option>
@@ -74,17 +74,18 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 		 			     	<input id="rank9" name="rank" value="9" type="radio" />9</label>
 		 			     <label class="radio-inline" for="rank" > 
 		 			     	<input id="rank10" name="rank" value="10" type="radio" />10</label>
-		 		  </div>	
-		 		</div>
+		 		  	</div>	
+		 		</div><label for="rank" class="error"></label>
+		 			<button type="button" class="btn btn-warning" id="btn_save">
+						<span class="glyphicon glyphicon-save"></span>
+						<spring:message code="edit.button.save" />
+					</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<spring:message code="button.cancel" />
+					</button>
+				</form>
+		 	</div>
 	 <br> <br>
-						<button type="button" class="btn btn-warning" id="btn_save">
-							<span class="glyphicon glyphicon-save"></span>
-							<spring:message code="edit.button.save" />
-						</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">
-							<spring:message code="button.cancel" />
-						</button>
-					</form>
 				</div>
 			</div>
 
@@ -148,4 +149,3 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 			<button class="btn btn-default" type="button" id="buttonNext" name="buttonNext" onclick="window.location='${pageContext.request.contextPath}/languages/${id}'"><span class="glyphicon glyphicon-step-forward"></span> <spring:message code="button.next"/> </button>
 		</div>
 	</div>
-</div>
