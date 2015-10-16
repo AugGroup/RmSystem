@@ -246,7 +246,7 @@ $(document).ready(function(){
 		<div class="col-sm-3">
 			<label for="sex"> <spring:message code="info.sex"/></label>
 			<div id="sexRadioButton">
-				<f:radiobutton path="sex" value="Female" name="sex" id="sexFamle" ></f:radiobutton><label> <spring:message code="info.female"/></label>
+				<f:radiobutton path="sex" value="Female" name="sex" id="sexFemale" checked="checked" ></f:radiobutton><label> <spring:message code="info.female"/></label>
 				<f:radiobutton path="sex" value="Male" name="sex" id="sexMale" ></f:radiobutton><label> <spring:message code="info.male"/></label>
  				<br><label for="sex" class="error"></label>
  			</div>
