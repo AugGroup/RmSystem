@@ -55,28 +55,33 @@ $(document).ready(function() {
 	//================================================
 	 $("#languages").prop('readonly','readonly');
 		
-		
+	  var $nameLang = $("#nameLanguage");
+	  $nameLang.hide();
 	  $('#languages').change(function() {
 		  
 		  if($("#languages option:selected").text()=='Other'){
-			  
-				$("#nameLanguage").prop('readonly',false);
-			    $('#nameLanguage').val('');
+			    $nameLang.show();
+			    $nameLang.prop('readonly',false);
+			    $nameLang.val('');
 	
 		   }
 		  
-		  if($("#languages option:selected").text()=='English'){
-			  
-				$("#nameLanguage").prop('readonly',true);
-			    $('#nameLanguage').val($("#languages option:selected").text());
+		  else if($("#languages option:selected").text()=='English'){
+			    $nameLang.show();
+			    $nameLang.prop('readonly',true);
+				$nameLang.val($("#languages option:selected").text());
 	
 		   }
 		  
-		  if($("#languages option:selected").text()=='Thai'){
-			  
-				$("#nameLanguage").prop('readonly',true);
-			    $('#nameLanguage').val($("#languages option:selected").text());
+		  else if($("#languages option:selected").text()=='Thai'){
+			    $nameLang.show();
+			    $nameLang.prop('readonly',true);
+			    $nameLang.val($("#languages option:selected").text());
 	
+		   }else{
+			    $nameLang.show();
+			    $nameLang.prop('readonly',true);
+			    $nameLang.hide();
 		   }
 				
 		});
@@ -301,6 +306,7 @@ $(document).ready(function() {
     
     $('#languagesModal').on('hide.bs.modal', function (e) {
     	$validateLang.resetForm();
+    	$nameLang.hide();
     })
     
     

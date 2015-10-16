@@ -13,7 +13,14 @@ $(document).ready(function() {
 			format : "dd-mm-yyyy",
 			autoclose: true 
 	});
-	
+		
+	$(document).on("focusin", "#applyDateStr", function(event) {
+		  $(this).prop('readonly', true);
+	});
+	$(document).on("focusout", "#applyDateStr", function(event) {
+		  $(this).prop('readonly', false);
+	});
+		
  	var $validateExp = $('#experiencesForm').validate({
 		rules : {
 			workBackground : {required : true,},
@@ -40,7 +47,10 @@ $(document).ready(function() {
 //			reference : {required : valReference},
 			responsibility : {required : valDescription},
 			reason : {required : valReason}
-		}
+		},
+		errorPlacement: function(error, element) {
+	        error.appendTo( element.parent("div").closest('.form-group'));
+	    }
 	});
 		
 	var dtApplicant;

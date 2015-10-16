@@ -41,7 +41,10 @@ $(document).ready(function() {
 				gpa : {required : valGPA},
 				startDate : {required : valStart},
 				graduate : {required : valYear}
-			}
+			},
+			errorPlacement: function(error, element) {
+		        error.appendTo( element.closest('.row'));
+		    }
 		});
 
 		var dtApplicant;

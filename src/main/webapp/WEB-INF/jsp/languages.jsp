@@ -48,25 +48,22 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 							
 						
 			<div class="form-group">
+				<label for="languages"><spring:message
+									code="languages.name.less" /></label>
 				<div class="row">
-						<div class='col-sm-6' align="left">
-								
-									<select id="languages" name="languages" class="form-control ">
-										<option value="" label="<spring:message code="languages.text.select"/>"></option>
-										<option value="Thai"><spring:message code="languages.thai"/></option>
-										<option value="English"><spring:message code="languages.eng"/></option>
-										<option value="Other"><spring:message code="languages.other"/></option>
-		
-									</select>
-				
-							</div>
-				<div class="form-group">
-					 <div class="col-md-6">
-								<input type="text" class="form-control" id="nameLanguage" name="nameLanguage"/>
+					<div class='col-sm-6' align="left">
+						<select id="languages" name="languages" class="form-control ">
+							<option value="" label="<spring:message code="languages.text.select"/>"></option>
+							<option value="Thai"><spring:message code="languages.thai"/></option>
+							<option value="English"><spring:message code="languages.eng"/></option>
+							<option value="Other"><spring:message code="languages.other"/></option>
+						</select>
+					</div>
+					<div class="col-md-6">
+						<input type="text" class="form-control" id="nameLanguage" name="nameLanguage"/>
 					</div>
 					<span id="nameLanguage-error" style="color:red;"></span>
-				</div>
-			</div>
+			    </div>
 <%-- 							<label for="languages"><spring:message --%>
 <%-- 									code="languages.name.less" /> </label> <input type="text" --%>
 <!-- 								class="form-control" id="languages" name="languages" -->

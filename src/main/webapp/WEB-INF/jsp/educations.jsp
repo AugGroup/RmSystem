@@ -106,15 +106,21 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 							<div class="form-group">
 								<label for="startDate"><spring:message
 										code="education.start" /> </label> 
+								<div class="input-group btn-information date" id="startDate">
 								<input type="text" class="form-control datepicker_readonly" id="startDate" name="startDate"
 									placeholder="<spring:message code="education.text.start"/>" >
+									<span class="input-group-addon"><i class="glyphicon glyphicon-th" ></i></span>
+								</div>
 							</div>
 
 							<div class="form-group">
 								<label for="graduate"><spring:message
 										code="education.graduate" /> </label> 
+								<div class="input-group btn-information date" id="graduate">
 								<input type="text" class="form-control datepicker_readonly" id="graduate" name="graduate"
 									placeholder="<spring:message code="education.text.graduate"/>" >
+									<span class="input-group-addon"><i class="glyphicon glyphicon-th" ></i></span>
+								</div>
 							</div>
 							<br> <br>
 							<button type="button" class="btn btn-warning" id="btn_save">

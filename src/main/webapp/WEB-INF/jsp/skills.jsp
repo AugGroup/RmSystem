@@ -24,6 +24,12 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 </script>
 
 
+<style type="text/css">
+	#fg-rankskill{
+	width:120%;
+	}
+</style>
+
 <div class="container" id="titleHead">
 <jsp:include page="applicationMenu.jsp" />
 	<div class="modal fade" id="skillModal" role="dialog">
@@ -37,58 +43,69 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 						<spring:message code="skill.name" />
 					</h4>
 			<div class="modal-body" style="padding: 40px 50px;">
-				<form role="form" id="skillForm">
-						<div class="form-group">
-							<input type="hidden" id="applicant" name="applicant" value="${id}">
-							<input type="hidden" id="skillsId">
+				<div class="container-fluid">
+					<form role="form" id="skillForm">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="hidden" id="applicant" name="applicant" value="${id}">
+									<input type="hidden" id="skillsId">
+								</div>
+								<div class="form-group">
+									<label for="masspecialty"><spring:message code="skill.specialty"/></label>
+									<select class="form-control" id="masspecialty" name="masspecialties">
+										<option value="" label="<spring:message code="skill.text.select"/>" />
+										<c:forEach var="masspecialtiesist" items="${masspecialties}">
+											<option value="${masspecialtiesist.id}">${ masspecialtiesist.name}</option>
+										</c:forEach>
+									</select>
+									<span id="special-error" style="color:red;"></span>
+								</div>
+							</div>
 						</div>
-						<div class="form-group">
-							<label for="skill"><spring:message code="skill.specialty"/></label>
-							 <select class="form-control" id="masspecialty" name="masspecialty">
-								<option value="" label="<spring:message code="skill.text.select"/>" />
-								<c:forEach var="masspecialtiesist" items="${masspecialties}">
-									<option value="${masspecialtiesist.id}">${ masspecialtiesist.name}</option>
-								</c:forEach>
-							</select>
-							<span id="special-error" style="color:red;"></span>
-							<label id="masspecialty-error" class="error" for="masspecialty"></label>
+						<div class="row">
+							<div class="col-md-12">
+								<label for="fg-rankskill"><spring:message code="skill.specialty"/></label>
+								<div class="form-group" id="fg-rankskill">
+									 <label class="radio-inline" for="rank" > 
+					 			     	<input id="rank1" name="rank" value="1" type="radio" />1</label>
+					 			     <label class="radio-inline" for="rank" > 
+					 			     	<input id="rank2" name="rank" value="2" type="radio" />2</label>
+					 			     <label class="radio-inline" for="rank" > 
+					 			     	<input id="rank3" name="rank" value="3" type="radio" />3</label>
+					 			     <label class="radio-inline" for="rank" > 
+					 			     	<input id="rank4" name="rank" value="4" type="radio" />4</label>
+					 			     <label class="radio-inline" for="rank" > 
+					 			     	<input id="rank5" name="rank" value="5" type="radio" />5</label>
+					 			     <label class="radio-inline" for="rank" > 
+					 			     	<input id="rank6" name="rank" value="6" type="radio" />6</label>
+					 			     <label class="radio-inline" for="rank" > 
+					 			     	<input id="rank7" name="rank" value="7" type="radio" />7</label>
+					 			     <label class="radio-inline" for="rank" > 
+					 			     	<input id="rank8" name="rank" value="8" type="radio" />8</label>
+					 			     <label class="radio-inline" for="rank" > 
+					 			     	<input id="rank9" name="rank" value="9" type="radio" />9</label>
+					 			     <label class="radio-inline" for="rank" > 
+					 			     	<input id="rank10" name="rank" value="10" type="radio" />10</label>
+						 		</div>
+							</div>
 						</div>
-				<div class="form-group">
-					<div class="" id="rankSkill">
-						<label class="radio-inline" for="rank"> 
-		 			     	<input id="rank1" name="rank" value="1" type="radio" />1</label>
-		 			     <label class="radio-inline" for="rank" > 
-		 			     	<input id="rank2" name="rank" value="2" type="radio" />2</label>
-		 			     <label class="radio-inline" for="rank" > 
-		 			     	<input id="rank3" name="rank" value="3" type="radio" />3</label>
-		 			     <label class="radio-inline" for="rank" > 
-		 			     	<input id="rank4" name="rank" value="4" type="radio" />4</label>
-		 			     <label class="radio-inline" for="rank" > 
-		 			     	<input id="rank5" name="rank" value="5" type="radio" />5</label>
-		 			     <label class="radio-inline" for="rank" > 
-		 			     	<input id="rank6" name="rank" value="6" type="radio" />6</label>
-		 			     <label class="radio-inline" for="rank" > 
-		 			     	<input id="rank7" name="rank" value="7" type="radio" />7</label>
-		 			     <label class="radio-inline" for="rank" > 
-		 			     	<input id="rank8" name="rank" value="8" type="radio" />8</label>
-		 			     <label class="radio-inline" for="rank" > 
-		 			     	<input id="rank9" name="rank" value="9" type="radio" />9</label>
-		 			     <label class="radio-inline" for="rank" > 
-		 			     	<input id="rank10" name="rank" value="10" type="radio" />10</label>
-		 			     	<label id="rank-error" class="error" for="rank" style="display: inline-block;"></label>
-		 		  	</div>	
-		 		</div><!-- <label for="rank" class="error"></label> -->
-		 			<button type="button" class="btn btn-warning" id="btn_save">
-						<span class="glyphicon glyphicon-save"></span>
-						<spring:message code="edit.button.save" />
-					</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">
-						<spring:message code="button.cancel" />
-					</button>
-				</form>
-		 	</div>
-	 <br> <br>
+						<div class="row">
+							<div class="col-md-12">
+								<button type="button" class="btn btn-warning" id="btn_save">
+									<span class="glyphicon glyphicon-save"></span>
+									<spring:message code="edit.button.save" />
+								</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									<spring:message code="button.cancel" />
+								</button>
+							</div>
+						</div>
+					</form>
 				</div>
+						
+				
+			</div>
 			</div>
 
 		</div>
@@ -151,3 +168,5 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 			<button class="btn btn-default" type="button" id="buttonNext" name="buttonNext" onclick="window.location='${pageContext.request.contextPath}/languages/${id}'"><span class="glyphicon glyphicon-step-forward"></span> <spring:message code="button.next"/> </button>
 		</div>
 	</div>
+</div>
+>>>>>>> edit edu,exp,lang,skill
