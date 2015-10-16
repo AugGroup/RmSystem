@@ -4,6 +4,7 @@
 }
 
 #logo{
+	position:absolute;
 	width: 170px; 
 	height: 75px;
 	margin-right: 12px;
@@ -17,6 +18,10 @@
 .navbar-back {
 	background: #707070;
 	height: 65px;
+}
+
+#nav-menu{
+	margin-left: 170px;
 }
 
 ul#nav-menu > li > a{
@@ -156,7 +161,7 @@ ul#nav-menu > li > a{
 /* ----- flag ----- */
 #top-flag {
 	display: block;
-	margin-top: -47px;
+	margin-top: -38px;
 	margin-right: -14px;
 	z-index: 10;
 }
@@ -188,11 +193,15 @@ ul#nav-menu > li > a{
 
 	#logo {
 		margin-left: 10px;
-		padding: 3px;
 	}
 	.navbar-back {
 		background: #707070;
 		height: auto;
+	}
+	
+	#nav-menu{
+		margin-top:20px;
+		margin-left: -15px;
 	}
 	
 	ul#nav-menu > li > a{
@@ -294,6 +303,7 @@ ul#nav-menu > li > a{
 		background-color: #444 !important;
 		color: #fff !important;
 	}
+
 }
 /* ----- end max-width ( 768px ) ----- */
 .navbar-link img {

@@ -80,6 +80,30 @@
 <link rel="stylesheet" type="text/css" href="<c:url value ="/static/resources/pageCss/main.css"/>">
 
 <title><decorator:title/></title>
+<link rel="shortcut icon" type="image/x-icon" href="${ pageContext.request.contextPath }/static/decorators/favicon.ico">
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#goToTop').hide();
+	//Check to see if the window is top if not then display button
+	$(window).scroll(function(){
+		if ($(this).scrollTop() > 300) {
+			
+			$('.scrollToTop').fadeIn();
+		} else {
+			$('.scrollToTop').fadeOut();
+		}
+	});
+	
+	//Click event to scroll to top
+	$('.scrollToTop').click(function(){
+		$('html, body').animate({scrollTop : 0},800);
+		return false;
+	});
+	
+});
+
+</script>
 <style type="text/css">
 	.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
 	    background: none;
@@ -88,7 +112,18 @@
 	
 	.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
 	    background-color: #ffc000;
-	    border: 2px solid #ffffff;
+	}
+	
+	.scrollToTop{
+		width:60px;
+		height:60px;		
+		position:fixed;
+		bottom:55px;
+		right:40px;
+	}
+	
+	.scrollToTop:hover{
+		text-decoration:none;
 	}
 </style>
 
@@ -113,6 +148,7 @@
 
 <jsp:include page="header.jsp" />
 <div class="body" ><decorator:body /></div>
+<a href="#" class="scrollToTop" id="goToTop"><img src = "${ pageContext.request.contextPath }/static/decorators/uparrow.png" width="54px" height="54px" /></a>
 <div class="footer">
 		<p class="text-muted credit">&copy; 2011-2015 Augmentis (Thailand) Limited. All rights reserved.</p>
 </div>
