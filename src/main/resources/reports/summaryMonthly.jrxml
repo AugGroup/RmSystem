@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="summaryMonthly" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8dcf62fb-fcf7-43cf-92f7-4ad2fceb5bc5">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="18"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="startDate" class="java.lang.String"/>
 	<parameter name="endDate" class="java.lang.String"/>
 	<queryString>
@@ -197,11 +197,6 @@ WHERE applicant.APPLY_DATE BETWEEN STR_TO_DATE($P{startDate},'%d/%m/%Y') AND STR
 					</textElement>
 					<textFieldExpression><![CDATA[$F{major}]]></textFieldExpression>
 				</textField>
-				<staticText>
-					<reportElement x="26" y="30" width="46" height="20" uuid="4436de8e-79d8-4a1a-99a4-f808311e137c"/>
-					<textElement textAlignment="Center"/>
-					<text><![CDATA[Code]]></text>
-				</staticText>
 				<line>
 					<reportElement x="26" y="24" width="504" height="1" uuid="ce0280c1-5ae0-4a28-a8ae-d78c58a75b84"/>
 				</line>
@@ -211,6 +206,11 @@ WHERE applicant.APPLY_DATE BETWEEN STR_TO_DATE($P{startDate},'%d/%m/%Y') AND STR
 						<pen lineStyle="Dashed"/>
 					</graphicElement>
 				</line>
+				<staticText>
+					<reportElement x="26" y="30" width="46" height="20" uuid="a3150a40-fbc9-4b6d-84e8-54f15b935028"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Code]]></text>
+				</staticText>
 			</band>
 		</groupHeader>
 		<groupFooter>
@@ -282,8 +282,7 @@ WHERE applicant.APPLY_DATE BETWEEN STR_TO_DATE($P{startDate},'%d/%m/%Y') AND STR
 				<textFieldExpression><![CDATA[$V{name}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="26" y="17" width="46" height="20" uuid="d8ffbffa-6cf8-4899-a7a1-dd77c7ca29da"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="26" y="17" width="46" height="20" uuid="a9e4bf69-69ba-4175-8df6-1a42985a2b77"/>
 				<textFieldExpression><![CDATA[$F{code}]]></textFieldExpression>
 			</textField>
 		</band>
