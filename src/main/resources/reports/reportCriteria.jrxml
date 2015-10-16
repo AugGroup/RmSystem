@@ -29,7 +29,7 @@ applicant.APPLICANT_STATUS AS applicantStatus,
 applicant.APPLY_DATE AS applyDate,
 applicant.ATTITUDE_HOME AS attitudeHome,
 applicant.ATTITUDE_OFFICE AS attitudeOffice,
-applicant.APPLICANT_CODE AS code,
+applicant.APPLICANT_CODE AS appCode,
 applicant.EMAIL AS email,
 applicant.FIRSTNAME_EN AS firstNameEN,
 applicant.LASTNAME_EN AS lastNameEn,
@@ -72,7 +72,6 @@ $P!{UNIVERSITY} $P!{MAJOR} $P!{TECHNOLOGY} $P!{JOBLEVEL} $P!{DEGREE} $P!{GPA}]]>
 	<field name="applyDate" class="java.sql.Timestamp"/>
 	<field name="attitudeHome" class="java.lang.String"/>
 	<field name="attitudeOffice" class="java.lang.String"/>
-	<field name="code" class="java.lang.String"/>
 	<field name="email" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
@@ -110,6 +109,7 @@ $P!{UNIVERSITY} $P!{MAJOR} $P!{TECHNOLOGY} $P!{JOBLEVEL} $P!{DEGREE} $P!{GPA}]]>
 	<field name="joblevelName" class="java.lang.String"/>
 	<field name="technologyCode" class="java.lang.String"/>
 	<field name="technologyName" class="java.lang.String"/>
+	<field name="appCode" class="java.lang.String"/>
 	<variable name="name" class="java.lang.String">
 		<variableExpression><![CDATA[$F{firstNameEN}+" "+$F{lastNameEn}]]></variableExpression>
 	</variable>
@@ -132,11 +132,6 @@ $P!{UNIVERSITY} $P!{MAJOR} $P!{TECHNOLOGY} $P!{JOBLEVEL} $P!{DEGREE} $P!{GPA}]]>
 	</title>
 	<columnHeader>
 		<band height="72" splitType="Stretch">
-			<staticText>
-				<reportElement x="0" y="40" width="52" height="30" uuid="5b7c8786-d813-430c-a296-08e7cd5e0369"/>
-				<textElement textAlignment="Center"/>
-				<text><![CDATA[Code]]></text>
-			</staticText>
 			<staticText>
 				<reportElement x="50" y="40" width="74" height="30" uuid="ee49f9d2-423e-43f7-a80a-92a751793fab"/>
 				<textElement textAlignment="Center"/>
@@ -183,16 +178,16 @@ $P!{UNIVERSITY} $P!{MAJOR} $P!{TECHNOLOGY} $P!{JOBLEVEL} $P!{DEGREE} $P!{GPA}]]>
 					<pen lineWidth="2.0"/>
 				</graphicElement>
 			</line>
+			<staticText>
+				<reportElement x="0" y="40" width="53" height="30" uuid="1f16f4d1-cdba-405e-ad27-1fae14f2aeeb"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Code]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="44" splitType="Stretch">
-			<textField>
-				<reportElement x="1" y="19" width="51" height="20" uuid="5436f988-f3c4-47ea-bce4-12b3217a2467"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{code}]]></textFieldExpression>
-			</textField>
-			<textField pattern="dd MMMMM yyyy">
+			<textField pattern="d/M/yyyy">
 				<reportElement x="50" y="19" width="74" height="20" uuid="ab01a892-1c7e-403a-8d28-b99d0d5ebb1b"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{applyDate}]]></textFieldExpression>
@@ -232,10 +227,15 @@ $P!{UNIVERSITY} $P!{MAJOR} $P!{TECHNOLOGY} $P!{JOBLEVEL} $P!{DEGREE} $P!{GPA}]]>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{gpa}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="1" y="19" width="51" height="20" uuid="c0abcfd5-b801-431f-b47c-e38d31c1da3b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{appCode}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch">
+		<band height="42" splitType="Stretch">
 			<line>
 				<reportElement x="1" y="0" width="555" height="1" uuid="799d6ecf-56d2-4719-b4da-12320925b0ed"/>
 				<graphicElement>

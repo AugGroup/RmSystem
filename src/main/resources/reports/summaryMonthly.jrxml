@@ -54,7 +54,7 @@ WHERE applicant.APPLY_DATE BETWEEN STR_TO_DATE($P{startDate},'%d/%m/%Y') AND STR
 	<field name="applyDate" class="java.sql.Timestamp"/>
 	<field name="attitudeHome" class="java.lang.String"/>
 	<field name="attitudeOffice" class="java.lang.String"/>
-	<field name="code" class="java.lang.String"/>
+	<field name="appCode" class="java.lang.String"/>
 	<field name="email" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
@@ -207,8 +207,9 @@ WHERE applicant.APPLY_DATE BETWEEN STR_TO_DATE($P{startDate},'%d/%m/%Y') AND STR
 					</graphicElement>
 				</line>
 				<staticText>
-					<reportElement x="26" y="30" width="46" height="20" uuid="9022913b-8628-49bc-86b4-78175ce4d039"/>
-					<text><![CDATA[code]]></text>
+					<reportElement x="26" y="30" width="51" height="20" uuid="d9a3c8ee-6429-4bab-af5d-47dc82524cdd"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Code]]></text>
 				</staticText>
 			</band>
 		</groupHeader>
@@ -250,7 +251,7 @@ WHERE applicant.APPLY_DATE BETWEEN STR_TO_DATE($P{startDate},'%d/%m/%Y') AND STR
 	</title>
 	<detail>
 		<band height="37" splitType="Stretch">
-			<textField pattern="dd MMMMM yyyy">
+			<textField pattern="d/M/yyyy">
 				<reportElement x="153" y="17" width="71" height="20" uuid="ff1c507e-1474-46ba-96e4-9b1ceeffe7ef"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{applyDate}]]></textFieldExpression>
@@ -281,8 +282,9 @@ WHERE applicant.APPLY_DATE BETWEEN STR_TO_DATE($P{startDate},'%d/%m/%Y') AND STR
 				<textFieldExpression><![CDATA[$V{name}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="26" y="17" width="46" height="20" uuid="53b499a6-ed1a-4426-aded-81fbd16f9f93"/>
-				<textFieldExpression><![CDATA[$F{code}]]></textFieldExpression>
+				<reportElement x="26" y="17" width="51" height="20" uuid="15940e54-5360-438c-ac08-f0abdd66123a"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{appCode}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
