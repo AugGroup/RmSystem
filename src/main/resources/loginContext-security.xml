@@ -24,7 +24,7 @@
 <!-- 		<intercept-url pattern="/applicant" -->
 <!-- 			access="hasAnyRole('ROLE_ADMIN','ROLE_STAFF','ROLE_MANAGER')" /> -->
 		<intercept-url pattern="/index"
-			access="hasAnyRole('ROLE_ADMIN','ROLE_STAFF','ROLE_MANAGER')" />
+			access="hasAnyRole('ROLE_ADMIN','ROLE_STAFF','ROLE_HR')" />
 		<intercept-url pattern="/**" access="isAuthenticated()" />
 		<logout logout-success-url="/logout" delete-cookies="JSESSIONID"
 			invalidate-session="true" />
@@ -48,7 +48,7 @@
 		<authentication-provider>
 			<jdbc-user-service data-source-ref="dataSource"
 				users-by-username-query="select username,password,1 from LOGIN where username=?"
-				authorities-by-username-query="select LOGIN.username ,MAS_ROLE.type from LOGIN,MAS_ROLE,LOGINROLE where (LOGINROLE.masrole_id = MAS_ROLE.id) AND LOGIN.username=?" />
+				authorities-by-username-query="select LOGIN.username ,MAS_ROLE.type from LOGIN,MAS_ROLE,LOGINROLE where (LOGINROLE.login_id = LOGIN.id AND LOGINROLE.masrole_id = MAS_ROLE.id) AND LOGIN.username=?" />
 		</authentication-provider>
 	</authentication-manager>
 

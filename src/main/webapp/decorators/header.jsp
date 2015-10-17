@@ -8,6 +8,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="f"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 
 <link rel="stylesheet" type="text/css" href="<c:url value ="/static/resources/pageCss/header.css"/>">
 <%
@@ -34,8 +35,12 @@
 		<div class="collapse navbar-collapse" id="navbar-collapse">
 			<ul class="nav navbar-nav" id="nav-menu">
 				<li><a href="${pageContext.request.contextPath}/applicant" id="applicantPage"><span class="glyphicon glyphicon-home "></span></a></li>
-				<li><a href="${pageContext.request.contextPath}/request" id="requestPage"><spring:message code="request.button" /></a></li>
-				<li><a href="${pageContext.request.contextPath}/approve" id="approvePage"><spring:message code="request.approve" /></a></li>
+				<sec:authorize access="hasAnyRole('ROLE_STAFF','ROLE_ADMIN')">
+					<li><a href="${pageContext.request.contextPath}/request" id="requestPage"><spring:message code="request.button" /></a></li>
+				</sec:authorize>
+				<sec:authorize access="hasAnyRole('ROLE_HR','ROLE_ADMIN')">
+					<li><a href="${pageContext.request.contextPath}/approve" id="approvePage"><spring:message code="request.approve" /></a></li>
+				</sec:authorize>
 				<li><a href="${pageContext.request.contextPath}/calendar" id="calendarPage"><spring:message code="request.calendar" /></a></li>
 				<li class="dropdown emailPage" id="email-dropdown">
 					<a  href="#" class="dropdown-toggle emailPage" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" 
