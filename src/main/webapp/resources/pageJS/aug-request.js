@@ -15,6 +15,7 @@
     	/* ------------------ Date picker format ------------------ */
     	$('.input-group.date').datepicker({
     		format: "dd-mm-yyyy",
+    		todayBtn : "linked",
 			startView: 2,
 			autoclose: true 
 			}); 
@@ -117,25 +118,23 @@
         	          },
         	          {data: function (data) {
         	        	  if(data.status!="Approve"){
-                        	return '<button id="btn_edit" class="btn btn-warning" data-id="' + data.id + '" data-toggle="modal" data-target="#addRequestModal"><span class="glyphicon glyphicon-edit"></span> '+edit_tx + '</button>';
+                        	return '<button class="btn btn-warning btn_edit" data-id="' + data.id + '" data-toggle="modal" data-target="#addRequestModal"><span class="glyphicon glyphicon-edit"></span> '+edit_tx + '</button>';
         	        	  }else{
-        	        		return '<button id="btn_edit" class="btn btn-warning" data-id="' + data.id + '" data-toggle="modal" data-target="#addRequestModal" disabled><span class="glyphicon glyphicon-edit"></span> '+edit_tx + '</button>';
+        	        		return '<button class="btn btn-warning disabled btn_edit" data-id="' + data.id + '" data-toggle="modal" data-target="#addRequestModal"><span class="glyphicon glyphicon-edit"></span> '+edit_tx + '</button>';
             	          }
         	        	}
         	          },
         	          {data: function (data) {
-        	        	  if(data.status!="Approve"){
-        	        	 	  return '<button id="btn_delete" class="btn btn-danger" data-id="' + data.id + '" data-toggle="modal" data-target="#deleteModal"><span class="glyphicon glyphicon-remove-sign"></span> '+delete_tx + '</button>';
-        	        	  }else{
-        	        		  return '<button id="btn_delete" class="btn btn-danger" data-id="' + data.id + '" data-toggle="modal" data-target="#deleteModal" disabled ><span class="glyphicon glyphicon-remove-sign"></span> '+delete_tx + '</button>'}
-        	         	  }
+        	        	 	return '<button class="btn btn-danger btn_delete" data-id="' + data.id + '" data-toggle="modal" data-target="#deleteModal"><span class="glyphicon glyphicon-remove-sign"></span> '+delete_tx + '</button>';
+        	        	}
         	          }
         	          ],
         	          language:{
-
-        	        	    url: datatablei18n
-
-        	        	  }
+        	        	  url: datatablei18n
+        	          },
+        	          initComplete:function(data){
+        	        	  setNotAllowed();
+        	          }  
         		 });
          }
         
@@ -388,3 +387,14 @@
             $('#tx_status').text(data.status);
             }
         });
+  
+		function setNotAllowed() {
+			$(".btn_edit").each(function(k,v){
+				
+				if ( $(this).hasClass("disabled") ) {
+					$(this).closest("td").hover(function(){ $(this).css("cursor","not-allowed"); }); 
+				}
+				
+				
+			});
+		}

@@ -1,4 +1,4 @@
-$(document).ready(function () {
+ $(document).ready(function () {
 //		$.ajaxSetup({
 //		/* statusCode: */
 //			statusCode : {
@@ -57,15 +57,19 @@ $(document).ready(function () {
 				           {"data": "numberApplicant"},
 				           {"data": "status"},
 				           {data: function (data) {
-				        	   		return '<button id="btn_approve" class="btn btn-primary" data-id="' + data.id + '" data-toggle="modal" data-target="#approveModal"><span class="glyphicon glyphicon-edit"></span> '+approve_tx+' </button>';				        
-				        	   
+				        	   if(data.status == "Approve"){
+				        		   return '<button " class="btn btn-primary disabled btn_approve" data-id="' + data.id + '" data-toggle="modal" data-target="#approveModal"><span class="glyphicon glyphicon-edit"></span> '+approve_tx+' </button>';
+				        	   } else {
+				        		   return '<button " class="btn btn-primary" data-id="' + data.id + '" data-toggle="modal" data-target="#approveModal"><span class="glyphicon glyphicon-edit"></span> '+approve_tx+' </button>';
+				        	   }
 				        	}}
 				           ],
 				language:{
-
-				        	    url: datatablei18n
-
-				        	  },
+				    url: datatablei18n
+				},
+				initComplete:function(data){
+					setNotAllowed();
+				}
 				        	  
 				});
     	}
@@ -136,5 +140,17 @@ $(document).ready(function () {
 					}
 				});
 			}
+		
+		function setNotAllowed(data){
+			$(".btn_approve").each(function(i,j){
+				
+				if( $(this).hasClass("disabled")){
+					$(this).closest("td").hover(function(){
+						$(this).css("cursor","not-allowed");
+					});
+				}
+				
+			});
+		}
 		
 	});
