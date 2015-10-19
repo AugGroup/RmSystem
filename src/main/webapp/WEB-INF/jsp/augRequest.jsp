@@ -66,7 +66,7 @@ $(document).ready(function(){
 
 <div class="container">
 	<div><h1 align="center"><spring:message code="request.title"/></h1></div>
-	<div class="container table-responsive" id="table2" >
+	<div class="table-responsive" id="table2" >
 		<table class="dataTable" id="requestTable" class="cell-border" style="width: 100%">
 			<caption title="" class="tableHeader"><spring:message code="request.title" /></caption>
 			<thead>

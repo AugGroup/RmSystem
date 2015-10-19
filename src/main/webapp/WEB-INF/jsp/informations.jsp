@@ -244,21 +244,25 @@ $(document).ready(function(){
 	<!-- row 4 -->
 	<div class="row">
 		<div class="col-sm-3">
-			<label for="sex"> <spring:message code="info.sex"/></label>
-			<div id="sexRadioButton">
-				<f:radiobutton path="sex" value="Female" name="sex" id="sexFemale" checked="checked" ></f:radiobutton><label> <spring:message code="info.female"/></label>
-				<f:radiobutton path="sex" value="Male" name="sex" id="sexMale" ></f:radiobutton><label> <spring:message code="info.male"/></label>
- 				<br><label for="sex" class="error"></label>
- 			</div>
+			<div class="col-sm-12">
+				<label for="sex"> <spring:message code="info.sex"/></label>
+				<div id="sexRadioButton">
+					<f:radiobutton path="sex" value="Female" name="sex" id="sexFamle" ></f:radiobutton><label> <spring:message code="info.female"/></label>
+					<f:radiobutton path="sex" value="Male" name="sex" id="sexMale" ></f:radiobutton><label> <spring:message code="info.male"/></label>
+	 				<br><label for="sex" class="error"></label>
+	 			</div>
+	 		</div>
 		</div>
 		
 		<div id="applicantStatusStyle" class="col-sm-3">
-			<label for="applicantStatus"><spring:message code="info.marriage.status"/></label>
-			<div id="applicantStatusRadioButton">
-				<f:radiobutton path="applicantStatus" id="applicantStatusSingle" name="applicantStatus" value="Single" checked="checked" ></f:radiobutton><label> <spring:message code="info.single"/></label>
-				<f:radiobutton path="applicantStatus" id="applicantStatusMarried" name="applicantStatus" value="Married"></f:radiobutton><label> <spring:message code="info.married"/></label>
-				<f:radiobutton path="applicantStatus" id="applicantStatusDivorced" name="applicantStatus" value="Divorced"></f:radiobutton><label> <spring:message code="info.divorced"/></label>
-			 	<br><label for="applicantStatus" class="error"></label>
+			<div class="col-sm-12">
+				<label for="applicantStatus"><spring:message code="info.marriage.status"/></label>
+				<div id="applicantStatusRadioButton">
+					<f:radiobutton path="applicantStatus" id="applicantStatusSingle" name="applicantStatus" value="Single"></f:radiobutton><label> <spring:message code="info.single"/></label>
+					<f:radiobutton path="applicantStatus" id="applicantStatusMarried" name="applicantStatus" value="Married"></f:radiobutton><label> <spring:message code="info.married"/></label>
+					<f:radiobutton path="applicantStatus" id="applicantStatusDivorced" name="applicantStatus" value="Divorced"></f:radiobutton><label> <spring:message code="info.divorced"/></label>
+				 	<br><label for="applicantStatus" class="error"></label>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -322,15 +326,16 @@ $(document).ready(function(){
 	<!-- end row 5 -->
 
 	<!-- row 6 -->
-	<div class="row" >
-		<div class="col-sm-12">
-			<label for="military"><spring:message code="info.military.ask"/></label>
-		</div>
-		<div class="col-sm-12">
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="col-sm-12" style="padding-bottom: 15px;">
+				<label for="military"><spring:message code="info.military.ask"/></label>
+				
 			<div id="militaryStatusRadioButton">
-				<f:radiobutton path="militaryStatus" id="militaryStatusYes" name="militaryStatus" value="Yes"></f:radiobutton><label><spring:message code="info.yes"/></label>
-				<f:radiobutton path="militaryStatus" id="militaryStatusNo" name="militaryStatus" value="No" checked="checked"></f:radiobutton><label><spring:message code="info.no"/></label>
-				<br><label for="militaryStatus" class="error"></label>
+					<f:radiobutton path="militaryStatus" id="militaryStatusYes" name="militaryStatus" value="Yes"></f:radiobutton><label><spring:message code="info.yes"/></label>
+					<f:radiobutton path="militaryStatus" id="militaryStatusNo" name="militaryStatus" value="No"></f:radiobutton><label><spring:message code="info.no"/></label>
+					<br><label for="militaryStatus" class="error"></label>
+			</div>
 			</div>
 		</div>
 	</div>
@@ -340,9 +345,11 @@ $(document).ready(function(){
 	<div id="militaryYes">	
 		
 		<div class="row">
-			<div class="col-sm-12">
-				<label for="militaryComplete"><spring:message code="info.military.yes"/></label>
-			</div>	
+			<div class="col-sm-4">
+				<div class="col-sm-12">
+					<label for="militaryComplete"><spring:message code="info.military.yes"/></label>
+				</div>	
+			</div>
 		</div>
 		
 		<div class="row">
@@ -419,14 +426,15 @@ $(document).ready(function(){
 	
 	<!-- row 9 -->
 	<div class="row">
-		<div class="col-sm-12">
+		<div class="col-sm-3">
+			<div class="col-sm-12">
 					<label for="knowAugmentis"><spring:message code="info.know.aug"/></label>
+			</div>
 		</div>
 	</div>
 	
 	<div class="row">
 		<div class="col-sm-12">
-		
 			<div class="col-sm-2">
 				<div class="checkbox">
 					 <c:choose>
@@ -527,18 +535,17 @@ $(document).ready(function(){
 	</div>
 	<!-- end row 9 -->
 			
-	<!-- row 10 -->		
+	<!-- row 10 -->	
 	<div class="row" >
-		<div class="col-sm-12">
-			<label for="nowEmployed"><spring:message code="info.ask.company"/></label><br>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-12" style="padding-bottom:25px;">
-			<div id="nowEmployedRadioButton">
-				<f:radiobutton path="nowEmployed" id="nowEmployedYes" name="nowEmployed" value="Yes"></f:radiobutton><label><spring:message code="info.yes"/></label>
-				<f:radiobutton path="nowEmployed" id="nowEmployedNo" name="nowEmployed" value="No" checked="checked"></f:radiobutton><label><spring:message code="info.no"/></label>
-				<br><label for="nowEmployed" class="error"></label>
+		<div class="col-sm-6">
+				<div class="col-sm-12" style="padding-bottom: 15px;">
+					<label for="nowEmployed"><spring:message code="info.ask.company"/></label><br>
+			
+				<div id="nowEmployedRadioButton">
+					<f:radiobutton path="nowEmployed" id="nowEmployedYes" name="nowEmployed" value="Yes"></f:radiobutton><label><spring:message code="info.yes"/></label>
+					<f:radiobutton path="nowEmployed" id="nowEmployedNo" name="nowEmployed" value="No"></f:radiobutton><label><spring:message code="info.no"/></label>
+					<br><label for="nowEmployed" class="error"></label>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -547,8 +554,10 @@ $(document).ready(function(){
 	<!-- row 11 -->		
 	<div id="nowEmployedKnow">
 		<div class="row" >
-			<div class="col-sm-12" >
-				<label for="nameRelation"><spring:message code="info.write.yes"/></label>
+			<div class="col-sm-8" >
+				<div class="col-sm-12" >
+					<label for="nameRelation"><spring:message code="info.write.yes"/></label>
+				</div>
 			</div>
 		</div>
 		
@@ -582,8 +591,10 @@ $(document).ready(function(){
 	
 	<!-- row 12 -->	
 	<div class="row">
-		<div class="col-sm-12">
-			<label for="emergency"><spring:message code="info.ask.case"/></label>
+		<div class="col-sm-6">
+			<div class="col-sm-12">
+				<label for="emergency"><spring:message code="info.ask.case"/></label>
+			</div>
 		</div>
 	</div>
 	
@@ -617,8 +628,10 @@ $(document).ready(function(){
 	
 	<!-- row 13 -->	
 	<div class="row">
-		<div class="col-sm-12" >
-			<label for="previousEmployers"><spring:message code="info.ask.inquiry"/> </label>
+		<div class="col-sm-8" >
+			<div class="col-sm-12" >
+				<label for="previousEmployers"><spring:message code="info.ask.inquiry"/> </label>
+			</div>
 		</div>
 	</div>
 	
