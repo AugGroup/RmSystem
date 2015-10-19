@@ -736,11 +736,12 @@ $(document).ready(function(){
 					<label for="technology"><spring:message code="main.position2"/> </label><br>
 					 <div id="technology">
 						 <f:select path="technology.id" id="technology" name="technology" class="form-control">
-							<f:option value="" >please select data</f:option>
+							<f:option value="-1" >please select data</f:option>
 							<c:forEach var="technologyList" items="${technologies}">
 								<f:option value="${technologyList.id}">${technologyList.name}</f:option>
 							</c:forEach> 
 						</f:select> 
+						<f:errors path="technology.id" cssClass="error" />
 					</div>
 				</div>
 			</div>

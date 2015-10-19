@@ -30,6 +30,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -43,6 +44,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 // import services.MasDegreeTypeServiceTest;
+
+
 
 
 
@@ -103,6 +106,7 @@ import com.aug.hrdb.services.ReferenceService;
 import com.aug.services.DownloadService;
 import com.aug.services.ReportService;
 import com.aug.services.UploadService;
+import com.aug.validators.MasTechnologyValidator;
 
 import net.sf.jasperreports.engine.JRParameter;
 
@@ -113,6 +117,8 @@ public class ApplicantController implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static Logger LOGGER = LoggerFactory.getLogger(ApplicantController.class);
 
+	@Autowired
+	private MasTechnologyValidator masTechnologyValidator;
 	@Autowired
 	private ApplicantService applicantService;
 //	@Autowired
@@ -505,7 +511,8 @@ public class ApplicantController implements Serializable {
 	//////////////////        SAVE METHOD        /////////////////////
 
 	@RequestMapping(value = "/saveInformations", method = { RequestMethod.POST })
-	public String saveInformations(@ModelAttribute ApplicantDto applicantDto, Model model,MultipartFile multipartFile)
+	public String saveInformations(@ModelAttribute ApplicantDto applicantDto, Model model,MultipartFile multipartFile,
+			BindingResult result)
 			throws ParseException {
 		
 		int year = Calendar.getInstance().get(Calendar.YEAR);
@@ -543,6 +550,12 @@ public class ApplicantController implements Serializable {
 				e.printStackTrace();
 			}
 		}
+		
+		masTechnologyValidator.validate(applicantDto.getTechnology(), result);
+		if(result.hasErrors()){
+			return "infomations";
+		}
+		
 		
 //		if(applicantDTO.getPosition1().getId()<0) applicantDTO.setPosition1(null);
 //		if(applicantDTO.getPosition2().getId()<0) applicantDTO.setPosition2(null);
