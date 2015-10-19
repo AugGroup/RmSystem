@@ -60,4 +60,6 @@
 	var digitOnly = "<spring:message code="valid.digit.only"/>";
 	var joblevelVal = "<spring:message code="valid.req.joblevel"/>";
 	var technologyVal = "<spring:message code="valid.req.technology"/>";
+	var resumeMultipartFile = "<spring:message code="valid.req.resume"/>";
+	var imageMultipartFile =  "<spring:message code="valid.req.image"/>";
 </script>

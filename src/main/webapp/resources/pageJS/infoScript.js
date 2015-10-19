@@ -211,7 +211,15 @@
 			        }
 				});
 		   		
-//		   	----------------------------------		   		
+//		   	----------------------------------		
+		   		$.validator.addMethod("aFunction", function(value, element) {
+		   			        if (value == "-1")
+		   			            return false;
+		   			        else
+		   			            return true;
+		   			    },
+		   			    "Please select a value");
+		   		
 			 $('#informationApplicant').validate({
 				
 				rules : {firstNameTH : {required : true},
@@ -261,7 +269,9 @@
  					nowEmployed : {required : true},
  					employedName : {required : true},
  					employedPosition : {required : true},
- 					employedRelation : {required : true}
+ 					employedRelation : {required : true},
+ 					resumeMultipartFile : {required : true},
+ 					imageMultipartFile : {}
 				},
 				messages : {firstNameTH : {required : firstNameTH},
 					lastNameTH : {required : lastNameTH},
@@ -311,8 +321,18 @@
 					employedPosition : {required : employedPosition},
 					employedRelation : {required : employedRelation},
 					previousEmployers : {required :  previousEmployers},
- 					previousEmployersReason : {required :  previousEmployersReason}
+ 					previousEmployersReason : {required : previousEmployersReason},
+ 					resumeMultipartFile : {required : resumeMultipartFile},
+ 					imageMultipartFile :{required : imageMultipartFile}
 				}
+//				},
+//				errorReplacement : function (error,element){
+//					//error.insertAfter(closest("div.form-group"));
+//					if(element.attr("name") === resumeMultipartFile){
+//						error.appendTo($("label.resume"))
+//					}
+//					
+//				}
 
 			});
 

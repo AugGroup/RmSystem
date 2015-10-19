@@ -72,7 +72,8 @@ $(document).ready(function(){
 									<span class="glyphicon glyphicon-picture"></span> Add Photo 
 									<input id="imageMultipartFile" name="imageMultipartFile" type="file" accept="image/*" class="file"/>
 								</span>
-								<f:hidden path="image" />
+								<f:hidden path="image" /><br><label for="imageMultipartFile" class="error"></label>
+								
 							</div>
 						</div>
 					</div>
@@ -667,9 +668,10 @@ $(document).ready(function(){
 <!-- 			<span class="btn btn-warning btn-file"><span class="glyphicon glyphicon-plus"></span> Resume <input id="resumeMultipartFile" name="resumeMultipartFile" type="file" accept="image/*" class="file"/></span> -->
 
 			<label class="resume">
-    			<input type="file" id="resumeMultipartFile" name="resumeMultipartFile" type="file" accept="image/*" class="file"/>
+    			<input type="file" id="resumeMultipartFile" name="resumeMultipartFile" type="file" accept="image/*" class="file" />
     			<span>Resume</span>
-			</label>
+			</label><br><label for="resumeMultipartFile" class="error"></label>
+			
 			<f:hidden path="resume"/>
 		<c:choose>
  			<c:when test="${not empty applicant.resume}">
@@ -721,13 +723,20 @@ $(document).ready(function(){
 				<div class="col-sm-12" >
 					<label for="jobLevel"><spring:message code="main.position1"/></label><br>
 					 <div id="jobLevel">
+					
 						 <f:select path="joblevel.id" id="jobLevel" name="jobLevel" class="form-control">
-							<f:option value="" >please select data</f:option>
+							<f:option value="-1" >please select data</f:option>
 							<c:forEach var="jobLevelList" items="${jobLevels}">
 								<f:option value="${jobLevelList.id}">${jobLevelList.name}</f:option>
 							</c:forEach> 
-						</f:select>  
+						</f:select>
+<%-- 						 <c:choose> --%>
+<%-- 					 		<c:when test="${job eq -1} "> --%>
+								<label for="joblevel" class="error" ></label>
+<%-- 							</c:when> --%>
+<%-- 						</c:choose> --%>
 					</div>
+					
 				</div>
 			</div>
 			
@@ -738,7 +747,7 @@ $(document).ready(function(){
 						 <f:select path="technology.id" id="technology" name="technology" class="form-control">
 							<f:option value="-1" >please select data</f:option>
 							<c:forEach var="technologyList" items="${technologies}">
-								<f:option value="${technologyList.id}">${technologyList.name}</f:option>
+								<f:option value="${technologyList.id}" >${technologyList.name}</f:option>
 							</c:forEach> 
 						</f:select> 
 						<f:errors path="technology.id" cssClass="error" />
