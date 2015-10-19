@@ -234,6 +234,9 @@
             			$('#addRequestModal').modal('hide');
             			dtRequest.ajax.reload();
             			//console.log(data.requesterName);
+            			
+            			setNotAllowed();
+            			
             			new PNotify({
 					        title: pnotifySuccess,
 					        text: pnotifyAdd,
@@ -338,6 +341,8 @@
                     $("#addRequestModal").modal('hide');
                     /*dtRequest.ajax.reload();*/ //change to use draw table 
                     
+                    setNotAllowed();
+                    
                     new PNotify({
 				        title: pnotifySuccess,
 				        text: pnotifyEdit,
@@ -385,16 +390,20 @@
             $('#tx_jobLevel').text(data.masJobLevelName);
             $('#tx_technology').text(data.masTechnologyName);
             $('#tx_status').text(data.status);
-            }
-        });
+        }
+        
+        function setNotAllowed() {
+        	$(".btn_edit").each(function(k,v){
+        		
+        		//alert("setNotAllowed");
+        		
+        		if ( $(this).hasClass("disabled") ) {
+        			$(this).closest("td").hover(function(){ $(this).css("cursor","not-allowed"); }); 
+        		}
+        		
+        		
+        	});
+        }
+});
   
-		function setNotAllowed() {
-			$(".btn_edit").each(function(k,v){
-				
-				if ( $(this).hasClass("disabled") ) {
-					$(this).closest("td").hover(function(){ $(this).css("cursor","not-allowed"); }); 
-				}
-				
-				
-			});
-		}
+
