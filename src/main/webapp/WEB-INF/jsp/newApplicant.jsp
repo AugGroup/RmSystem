@@ -733,7 +733,7 @@ $(document).ready(function(){
 			</div>
 			
 			<div class="col-sm-6">
-				<div class="col-sm-12" >
+				<div class="col-sm-12" id="tech">
 					<label for="technology"><spring:message code="main.position2"/> </label><br>
 					 <div id="technology">
 						 <f:select path="technology.id" id="technology" name="technology" class="form-control">

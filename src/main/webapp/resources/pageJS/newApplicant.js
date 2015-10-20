@@ -211,7 +211,8 @@
 			        }
 				});
 		   		
-//		   	----------------------------------		   		
+//		   	----------------------------------		
+		   		
 			 $('#informationApplicant').validate({
 				
 				rules : {
@@ -254,15 +255,16 @@
 // 					emergencyName : {required : true},
 // 					emergencyTel : {required : true},
 // 					emergencyAddress : {required : true},
-					applyDate : {required : true}, 
-// 					department : {required : true},
- 					jobLevel : {required : true},
+ 					applyDate : {required : true},
+ 					joblevel : {required : true},
  					technology : {required : true}
-// 					expectedSalary : {required : true},
+// 					expectedSalary : {required : true, digits: true},
 // 					nowEmployed : {required : true},
 // 					employedName : {required : true},
 // 					employedPosition : {required : true},
-// 					employedRelation : {required : true}
+// 					employedRelation : {required : true},
+// 					resumeMultipartFile : {required : true},
+// 					imageMultipartFile : {required : true}
 				},
 				messages : {
 //					firstNameTH : {required : firstNameTH},
@@ -304,19 +306,37 @@
 //					emergencyTel : {required : emergencyTel},
 //					emergencyAddress : {required : emergencyAddress},
 					applyDate : {required : applyDate},
-//					department : {required : department},
-					jobLevel : {required : joblevelVal},
-					technology : {required : technologyVal},
-//					expectedSalary : {required : expectedSalary},
+					joblevel : {required : joblevelVal},
+					technology : {required : technologyVal}
+//					expectedSalary : {required : expectedSalary, digits : digitOnly},
 //					nowEmployed : {required : nowEmployed},
 //					employedName : {required : employedName},
 //					employedPosition : {required : employedPosition},
 //					employedRelation : {required : employedRelation},
 //					previousEmployers : {required :  previousEmployers},
-// 					previousEmployersReason : {required :  previousEmployersReason}
+// 					previousEmployersReason : {required : previousEmployersReason},
+// 					resumeMultipartFile : {required : resumeMultipartFile},
+// 					imageMultipartFile :{required : imageMultipartFile}
 				}
+//				},
+//				errorReplacement : function (error,element){
+//					//error.insertAfter(closest("div.form-group"));
+//					if(element.attr("name") === resumeMultipartFile){
+//						error.appendTo($("label.resume"))
+//					}
+//					
+//				}
 
 			});
+			 $("#jobLevel").on("change", function(){
+//				 alert( $("#jobLevel option:selected").val() );
+				 if ( $("#jobLevel option:selected").val() == 4 || $("#jobLevel option:selected").val() == 11 ) {
+					 $("#tech").show();
+				 } else {
+					 $("#tech").val(6);
+					 $("#tech").hide();
+				 }
+			 });
 
 });
 
