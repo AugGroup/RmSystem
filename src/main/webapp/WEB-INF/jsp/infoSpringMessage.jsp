@@ -58,6 +58,7 @@
 	var minDigitTwo = "<spring:message code="valid.minDigit.two"/>";
 	var maxDigitThree = "<spring:message code="valid.maxDigit.three"/>";
 	var digitOnly = "<spring:message code="valid.digit.only"/>";
+	var lettersOnly = "<spring:message code="valid.letters.only"/>";
 	var joblevelVal = "<spring:message code="valid.req.joblevel"/>";
 	var technologyVal = "<spring:message code="valid.req.technology"/>";
 	var resumeMultipartFile = "<spring:message code="valid.req.resume"/>";

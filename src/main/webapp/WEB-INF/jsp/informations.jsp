@@ -729,7 +729,7 @@ $(document).ready(function(){
 <%-- 								<f:option value="${jobLevelList.id}">${jobLevelList.name}</f:option> --%>
 <%-- 							</c:forEach>  --%>
 <%-- 						</f:select> --%>
-						<f:select  id="joblevel" path="joblevel"  class="form-control" >
+						<f:select  id="joblevel" path="joblevel.id"  class="form-control" >
     						
 	    						<option  value=""><spring:message code="info.select.data"/></option>
 	  							<f:options items="${ jobLevels }"  itemValue="id" itemLabel="name" />
@@ -750,7 +750,7 @@ $(document).ready(function(){
 <%-- 								<f:option value="${technologyList.id}" >${technologyList.name}</f:option> --%>
 <%-- 							</c:forEach>  --%>
 <%-- 						</f:select>  --%>
-						<f:select  id="technology" path="technology"  class="form-control" >
+						<f:select  id="technology" path="technology.id"  class="form-control" >
     						
 	    						<option  value=""><spring:message code="info.select.data"/> </option>
 	  							<f:options items="${ technologies }"  itemValue="id" itemLabel="name" />
