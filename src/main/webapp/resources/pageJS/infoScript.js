@@ -271,7 +271,7 @@
  					employedPosition : {required : true},
  					employedRelation : {required : true},
  					resumeMultipartFile : {required : true},
- 					imageMultipartFile : {}
+ 					imageMultipartFile : {required : true}
 				},
 				messages : {firstNameTH : {required : firstNameTH},
 					lastNameTH : {required : lastNameTH},
