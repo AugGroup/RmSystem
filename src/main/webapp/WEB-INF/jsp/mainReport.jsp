@@ -5,106 +5,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <title><spring:message code="report.text" /></title>
-
+<link rel="stylesheet" type="text/css" href="<c:url value ="/static/resources/pageCss/mainReport.css"/>">
 <script src="<c:url value ="/static/resources/pageJS/main-report.js"/>"></script> 
-
-<script>
-var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.response.locale}.json' />";
-</script>
-
-<style>
-
-#divCon{
-	width: 100%;
-}
-.form-inline .form-control {
-	display: inline-block;
-	width: 100%;
-	vertical-align: middle;
-	font-size: 10px;
-}
-
-.report_search {
-	float:left;
-    width: 100%;
-}
-.report_preview { 
-	margin-top:10px;
-	margin-right: 25px;
-	float: right;
-} 
-
-.div_btn_search{
-	float: right;
-	margin-right: -27px;
-}
-
-.div_btn_report{
-	float: right;
-	margin-right: -27px;
-}
-
-@media (max-width: 992px){
-	
-	.div_btn_search{
-		float: right;
-		margin-right: 0px;
-	}
-	
-	.div_btn_report{
-		float: right;
-		margin-right: 0px;
-	}
-}
-
-@media (max-width: 768px){
-	.form-inline .form-control {
-	    display: inline-block;
-	    width: 100%;
-	    vertical-align: middle;
-	    font-size: 14px;
-	}
-	
-	.search_inputgroup {
-		width: 100%;
-		float: none;
-		margin: 0px;
-		padding: 0px;
-	}
-	
-	.report_search {
-	    width: 100%;
-	}
-	
-	#divCon{
-		width: 100%;
-		float: right;
-	}
-	
-	#radio_inputgroup {
-    	margin: 15px 15px 0px 5px;
-	}
-	
-	.div_btn_search{
-		float: right;
-		margin-right: 0px;
-	}
-	
-	.report_preview {
-		margin-top:10px;
-	    margin-right: 25px;
-	    float: right;
-	}
-
-	.div_btn_report{
-		float: right;
-		margin-right: 0px;
-	}
-}
-
-</style>
-
 <script type="text/javascript">
+var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.response.locale}.json' />";
+
 $(document).ready(function(){
 	$("#btn_report").addClass('active-menu'); 
 	$("#reportPage").addClass('active-menu'); 

@@ -1,0 +1,128 @@
+.report_search {
+	position: relative;
+	padding-top: 50px;
+	width: 85%;
+	float: right;
+}
+
+.search_inputgroup {
+	width: auto;
+	float: right;
+	margin: 5px;
+	padding: 5px;
+}
+#inputSearch.form-control{
+	font-family:Dosis-Regular;
+	margin-top: 27px;
+}
+
+#search_row {
+	margin: 30px;
+}
+
+#radio_inputgroup {
+	display: inline-block;
+	margin: 0px 15px 0px 5px;
+}
+
+.report_preview{
+	float:right;
+}
+
+#btn_search {
+	font-family:Dosis-Regular;
+	margin-top: 25px ;
+	width: 95px;
+}
+
+#btn_preview {
+	margin: 0px 5px 0px 5px;
+	width: 95px;
+}
+#divCon{
+	width: 100%;
+}
+.form-inline .form-control {
+	display: inline-block;
+	width: 100%;
+	vertical-align: middle;
+	font-size: 10px;
+}
+
+.report_search {
+	float:left;
+    width: 100%;
+}
+.report_preview { 
+	margin-top:10px;
+	margin-right: 25px;
+	float: right;
+} 
+
+.div_btn_search{
+	float: right;
+	margin-right: -27px;
+}
+
+.div_btn_report{
+	float: right;
+	margin-right: -27px;
+}
+
+@media (max-width: 992px){
+	
+	.div_btn_search{
+		float: right;
+		margin-right: 0px;
+	}
+	
+	.div_btn_report{
+		float: right;
+		margin-right: 0px;
+	}
+}
+
+@media (max-width: 768px){
+	.form-inline .form-control {
+	    display: inline-block;
+	    width: 100%;
+	    vertical-align: middle;
+	    font-size: 14px;
+	}
+	
+	.search_inputgroup {
+		width: 100%;
+		float: none;
+		margin: 0px;
+		padding: 0px;
+	}
+	
+	.report_search {
+	    width: 100%;
+	}
+	
+	#divCon{
+		width: 100%;
+		float: right;
+	}
+	
+	#radio_inputgroup {
+    	margin: 15px 15px 0px 5px;
+	}
+	
+	.div_btn_search{
+		float: right;
+		margin-right: 0px;
+	}
+	
+	.report_preview {
+		margin-top:10px;
+	    margin-right: 25px;
+	    float: right;
+	}
+
+	.div_btn_report{
+		float: right;
+		margin-right: 0px;
+	}
+}

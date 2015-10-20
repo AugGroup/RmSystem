@@ -206,7 +206,7 @@ $(document).ready(function() {
 	        });
 	    }
 	    
-	    $('#referenceModal').on('shown.bs.modal', function (e) {
+	    $('#referenceModal').on('hide.bs.modal', function (e) {
 	    	$validateRef.resetForm();
 	    })
 	    

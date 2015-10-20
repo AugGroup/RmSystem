@@ -19,6 +19,18 @@
 			startView: 2,
 			autoclose: true 
 			}); 
+    	
+    	$(document).on("focusin", ".datepicker_readonly", function(event) {
+
+		  $(this).prop('readonly', true);
+
+		});
+
+		$(document).on("focusout", ".datepicker_readonly", function(event) {
+
+		  $(this).prop('readonly', false);
+
+		});
 //    	/* ------------------ajax setup ------------------ */
 //    	$.ajaxSetup({
 //    		/* statusCode: */
@@ -54,7 +66,7 @@
 //		
 			 
 		/*-------------------- Validate Request Form--------------------*/
-		$('#requestForm').validate({
+		var $requestForm = $('#requestForm').validate({
 			rules:{
 				inputRequesterName:{required: true},
 				inputRequestDate:{required: true},
@@ -175,6 +187,11 @@
             });
         }
 
+        $('#addRequestModal').on('hide.bs.modal', function (e) {
+        	$requestForm.resetForm();
+        })
+        
+        
         /*-------------------- Save and Edit Request Modal Function--------------------*/
         $('#addRequestModal').off("click").on('shown.bs.modal', function (e) {
         	var button = e.relatedTarget;

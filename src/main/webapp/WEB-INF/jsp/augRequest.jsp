@@ -118,15 +118,15 @@ $(document).ready(function(){
 						<div class="form-group">
 							<label for="inputRequestDate"><spring:message code="request.date" /></label>
 							<div class="input-group date">
-								<input type="text" class="form-control" name="inputRequestDate" id="inputRequestDate">
+								<input type="text" class="form-control datepicker_readonly" name="inputRequestDate" id="inputRequestDate">
 								<span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
 							</div>
 							<label for="inputRequestDate" class="error"></label>
 						</div>
 						<div class="form-group">
-							<label for="joblevel"><spring:message code="main.position1" /></label> 
-							<select name="joblevel" id="joblevel" class="form-control">
-							<option value="-1" label="---Select Joblevel---" />
+							<label for="inputJoblevel"><spring:message code="main.position1" /></label> 
+							<select name="inputJoblevel" id="inputJoblevel" class="form-control">
+							<option value=""><spring:message code="info.select.data"/></option> 
 								<c:forEach items="${jobLevels}" var="jobLevelList">
 									<option value="${jobLevelList.id}">${jobLevelList.name}</option>
 								</c:forEach>
@@ -134,9 +134,9 @@ $(document).ready(function(){
 						</div>
 						
 						<div class="form-group">
-							<label for="technology"><spring:message code="main.position2" /></label> 
-							<select name="technology" id="technology" class="form-control">
-							<option value="-1" label="---Select Technology---" />
+							<label for="inputTechnology"><spring:message code="main.position2" /></label> 
+							<select name="inputTechnology" id="inputTechnology" class="form-control">
+							<option value=""><spring:message code="info.select.data"/></option> 
 								<c:forEach items="${technologies}" var="technologyList">
 									<option value="${technologyList.id}">${technologyList.name}</option>
 								</c:forEach>
@@ -149,7 +149,7 @@ $(document).ready(function(){
 						<div class="form-group">
 							<label for="inputApproveDate"><spring:message code="request.approve.date" /></label>
 							<div class="input-group date">
-								<input type="text" class="form-control" name="inputApproveDate" id="inputApproveDate">
+								<input type="text" class="form-control datepicker_readonly" name="inputApproveDate" id="inputApproveDate">
 								<span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
 							</div>
 							<label for="inputApproveDate" class="error"></label>
