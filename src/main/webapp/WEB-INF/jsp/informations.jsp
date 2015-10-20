@@ -702,7 +702,7 @@ $(document).ready(function(){
 				<div class="col-sm-12" >
 					<label for="applyDate"><span class="glyphicon glyphicon-calendar"></span><spring:message code="info.apply.date"/></label><br>
 					<div class="input-group date btn-information" id="applyDay">
-						<f:input path="applyDate" id="applyDate" name="applyDate" class="form-control"></f:input><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>							
+						<f:input path="applyDate" id="applyDate" name="applyDate" class="form-control datepicker_readonly"></f:input><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>							
 					</div>
 					<br><label for="applyDate" class="error"></label>
 				</div>
@@ -723,13 +723,12 @@ $(document).ready(function(){
 				<div class="col-sm-12" >
 					<label for="jobLevel"><spring:message code="main.position1"/></label><br>
 					 <div id="jobLevelLists">
-						 <f:select path="joblevel.id" id="jobLevel" name="jobLevel" class="required">
+						 <f:select path="joblevel.id" id="jobLevel" name="jobLevel" class="required" >
 							<f:option value="">please select data</f:option>
 							<c:forEach var="jobLevelList" items="${jobLevels}">
 								<f:option value="${jobLevelList.id}">${jobLevelList.name}</f:option>
 							</c:forEach> 
 						</f:select>
-								<label for="jobLevel" class="error" ></label>
 					</div>
 				</div>
 			</div>
@@ -738,13 +737,12 @@ $(document).ready(function(){
 				<div class="col-sm-12" >
 					<label for="technology"><spring:message code="main.position2"/> </label><br>
 					 <div id="technologyLists">
-						 <f:select path="technology.id" id="technology" name="technology" class="required">
+						 <f:select path="technology.id" id="technology" name="technology" class="required" >
 							<f:option value="" >please select data</f:option>
 							<c:forEach var="technologyList" items="${technologies}">
 								<f:option value="${technologyList.id}" >${technologyList.name}</f:option>
 							</c:forEach> 
 						</f:select> 
-								<label for="technology" class="error" ></label>
 					</div>
 				</div>
 			</div>
