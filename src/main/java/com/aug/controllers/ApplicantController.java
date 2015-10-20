@@ -552,7 +552,7 @@ public class ApplicantController implements Serializable {
 		model.addAttribute("id", applicantDto.getId());
 		model.addAttribute("applicant", applicantDto);
 	
-		return "informations";
+		return "mainApplicant";
 	}
 
 	@RequestMapping(value = "/address/{id}", method = { RequestMethod.POST })
@@ -675,7 +675,7 @@ public class ApplicantController implements Serializable {
 	@RequestMapping(value = "/informations", method = { RequestMethod.GET })
 	public String informations(Model model) {
 		LOGGER.info("**** Welcome to Application Controller ****");
-		return "informations";
+		return "newApplicant";
 
 	}
 	

@@ -4,7 +4,6 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<script src='<c:url value ="/static/resources/pageJS/infoScript.js"/>'></script>
 <script>
 	var firstNameTH = "<spring:message code="valid.info.first.th"/>";
 	var	lastNameTH = "<spring:message code="valid.info.last.th"/>";

@@ -1,0 +1,323 @@
+//<script>
+ 	$(document).ready(function() {
+ 		
+ 			$('.input-group.date').datepicker({
+ 							startView : 2,
+ 							todayBtn : "linked",
+ 							format : "dd/mm/yyyy",
+ 							autoclose: true
+ 						});
+			
+			 $("#tel").mask("(999) 999-9999");
+			 $("#emergencyTel").mask("(999) 999-9999");
+			 $("#cardId").mask("9999-9999-9999-9");
+			 $("#imageMultipartFile").on("change", function(){
+					        var files = !!this.files ? this.files : [];
+					        if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+					        if (/^image/.test( files[0].type)){ // only image file
+					            var reader = new FileReader(); // instance of the FileReader
+					            reader.readAsDataURL(files[0]); // read the local file
+					            reader.onloadend = function(){ // set image data as background of div
+					            	
+					                $("#imagePreview").css("background-image", "url("+this.result+")");
+			   	              }
+					        }
+					        
+					    });
+//			 ----------------------------------------------------
+			 
+			 
+			 	$(document).on("focusin", ".datepicker_readonly", function(event) {
+
+				  $(this).prop('readonly', true);
+
+				});
+
+				$(document).on("focusout", ".datepicker_readonly", function(event) {
+
+				  $(this).prop('readonly', false);
+
+				});
+			 
+			 
+	//-------------------------------------------
+				var $previousNo = $("#previousNo");
+			
+				if ($("#previousEmployersYes").prop("checked")) {
+					$previousNo.hide();
+	    		}
+	   	 	 	if ($("#previousEmployersNo").prop("checked")) {
+	   	 	 		$previousNo.show();
+ 				}
+	   	 	
+		    $("input:radio[name='previousEmployers']").click(function () {
+		    	if(this.value === 'No' && this.checked){
+		    		$previousNo.show();
+		        }else{
+		        	$previousNo.hide();
+		        }
+	        });
+			
+// 		    -----------------------------------------------
+			 
+			
+			
+			 $("#noticeNewspaper").click(function () {
+				 var $newspaper = $("#newspaper");
+			            if ($(this).is(":checked")) {
+			            	$newspaper.show();
+			            }else{
+			            	$newspaper.hide();
+			            }
+			            	
+			        });
+
+				 $("#noticeMagazine").click(function () {
+					 var $magazine = $("#magazine");  
+					 if ($(this).is(":checked")) {
+			            	$magazine.show();
+			            }else{
+			            	$magazine.hide();
+			            }
+			        });
+			    
+			    $("#noticeWebSite").click(function () {
+					 var $webSite = $("#webSite");
+
+			    	if ($(this).is(":checked")) {
+		            	$webSite.show();
+		            }else{
+		            	$webSite.hide();
+		            }
+		        });
+			    
+			    $("#noticeFriend").click(function () {
+					 var $friend = $("#friend");
+
+			    	if ($(this).is(":checked")) {
+		            	$friend.show();
+		            }else{
+		            	$friend.hide();
+		            }
+		        });
+			    
+			    $("#noticeOther").click(function () {
+					 var $other = $("#other");
+
+			    	if ($(this).is(":checked")) {
+		            	$other.show();
+		            }else{
+		            	$other.hide();
+		            }
+		        });
+
+// 			    ---------------------------------------
+			var $nowEmployedKnow = $("#nowEmployedKnow");
+
+				if ($("#nowEmployedYes").prop("checked")) {
+					$nowEmployedKnow.show();
+		    		}
+		   	 	if ($("#nowEmployedNo").prop("checked")) {
+		   	 		$nowEmployedKnow.hide();
+	    			}
+		   	 	
+			    $("input:radio[name='nowEmployed']").click(function () {
+			    	if(this.value === 'Yes' && this.checked){
+			    		$nowEmployedKnow.show();
+			        }else{
+			        	$nowEmployedKnow.hide();
+			        }
+		        });
+
+// 					------------------------------------------- (sex&&militaryStatus)
+			var $drafted = $("#drafted");
+		    var $militaryNo = $("#militaryNo");	
+			var $militaryYes = $("#militaryYes");
+			$militaryYes.hide();
+			$militaryNo.hide();
+
+			
+ 			    $("input:radio[name='sex']").change(function(){  
+			        if(this.value === 'Female'){
+			        	if ($("#militaryStatusYes").prop("checked")) {
+			        		$drafted.hide();
+ 					    	$militaryYes.show();
+ 					    	$militaryNo.hide();
+			    		}else{
+			    			$drafted.hide();
+ 					    	$militaryYes.show();
+ 					    	$militaryNo.hide();
+			    		}
+			   	 	 	
+			        }else{
+			        	if ($("#militaryStatusNo").prop("checked")) {
+			        		$drafted.show();
+ 					    	$militaryYes.hide();
+ 					    	$militaryNo.show();
+			    		}else{
+			    			$drafted.show();
+ 					    	$militaryYes.show();
+ 					    	$militaryNo.hide();
+			    		}
+			        }
+			    });
+ 			   $("#sexFemale").attr("checked");
+ 			   $("#militaryStatusNo").attr("checked");
+ 			   $("input:radio[name='militaryStatus']").change(function () {
+ 			    	if(this.value === 'Yes'){
+ 			    		if ($("#sexFemale").prop("checked")) {
+ 			    			$drafted.hide();
+ 					    	$militaryYes.show();
+ 					    	$militaryNo.hide();
+ 					    }else
+ 					    	{
+ 					    	$drafted.show();
+ 					    	$militaryYes.show();
+ 					    	$militaryNo.hide();
+ 					    	}
+ 			        }else{
+ 			        	if ($("#sexFemale").prop("checked")) {
+ 			        		$drafted.hide();
+ 	 			        	$militaryYes.hide();
+ 					    	$militaryNo.hide();
+ 					    }else
+ 					    	{
+ 					    	$drafted.show();
+ 					    	$militaryYes.hide();
+ 					    	$militaryNo.show();
+ 					    	}
+ 			        
+ 	
+ 			        }
+ 		        });
+
+// 			---------------------------------
+			var $married = $("#married");
+ 				if ($("#applicantStatusSingle").prop("checked")) {
+ 					$married.hide();
+		    	}
+		    	if ($("#applicantStatusMarried").prop("checked")) {
+		    		$married.show();
+	    		}
+		   		if ($("#applicantStatusDivorced").prop("checked")) {
+		   			$married.show();
+	    		}
+			 
+		   		$("input:radio[name='applicantStatus']").click(function(){
+		            if(this.value === 'Single' && this.checked){
+		            	$married.hide();
+			        } else {
+			            $married.show();
+			        }
+				});
+		   		
+//		   	----------------------------------		   		
+			 $('#informationApplicant').validate({
+				
+				rules : {
+//					firstNameTH : {required : true},
+//					lastNameTH : {required : true},
+//					nickNameTH : {required : true},
+					firstNameEN : {required : true},
+					lastNameEN : {required : true},
+//					nickNameEN : {required : true},
+//					tel : {required : true,},
+					email : {required : true, email : true},
+//					birthDate : {required : true},
+//					placeBirth : {required : true},
+//					age : {required : true, digits: true, minlength : 2, maxlength:3},
+//					religion : {required : true},
+//					nationality : {required : true},
+//					cardId : {required : true},
+//					cardIssuedOffice : {required : true},
+//					cardExpiryDate : {required : true},
+//					height : {required : true, digits : true, minlength : 2, maxlength:3 },
+//					weight : {required : true, digits : true, minlength : 2, maxlength:3 }, 
+//					sex : {required : true},
+//					applicantStatus : {required : true},
+//					numberOfChildren : {required : true},
+//					spouseName : {required : true},
+//					marriageCertificateNo : {required : true},
+//					issueOficeMarriage : {required : true},
+//					marriageAddress : {required : true},
+//					occupationMarriage : {required : true},
+//					militaryStatus : {required : true},
+//					militaryFromYear : {required : true},
+//					militarytoYear : {required : true},
+//					branchService : {required : true},
+//					militaryPlace : {required : true},
+//					militaryServiceNo : {required : true},
+//					militaryReason : {required : true},
+//					dateToBeDrafted : {required : true},
+//					previousEmployers : {required : true},
+// 					previousEmployersReason : {required : true},
+// 					emergencyName : {required : true},
+// 					emergencyTel : {required : true},
+// 					emergencyAddress : {required : true},
+					applyDate : {required : true}, 
+// 					department : {required : true},
+ 					jobLevel : {required : true},
+ 					technology : {required : true}
+// 					expectedSalary : {required : true},
+// 					nowEmployed : {required : true},
+// 					employedName : {required : true},
+// 					employedPosition : {required : true},
+// 					employedRelation : {required : true}
+				},
+				messages : {
+//					firstNameTH : {required : firstNameTH},
+//					lastNameTH : {required : lastNameTH},
+//					nickNameTH : {required : nickNameTH},
+					firstNameEN : {required : firstNameEN},
+					lastNameEN : {required : lastNameEN},
+//					nickNameEN : {required : nickNameEN},
+//					tel : {required : tel},
+					email :{required: email,
+					      email: emailFormat},
+//					birthDate : {required : birthDate},
+//					placeBirth : {required : placeBirth},
+//					age : {required : age, digits : digitOnly, minlength:minDigitTwo, maxlength : maxDigitThree},
+//					religion : {required : religion},
+//					nationality : {required : nationality},
+//					cardId : {required : cardId},
+//					cardIssuedOffice : {required : cardIssuedOffice},
+//					cardExpiryDate : {required : cardExpiryDate},
+//					height : {required : height, digits : digitOnly, minlength:minDigitTwo, maxlength : maxDigitThree},
+//					weight : {required : weight, digits : digitOnly, minlength:minDigitTwo, maxlength : maxDigitThree},
+//					sex : {required : sex},
+//					applicantStatus : {required : applicantStatus},
+//					numberOfChildren : {required : numberOfChildren},
+//					spouseName : {required : spouseName},
+//					marriageCertificateNo : {required : marriageCertificateNo},
+//					issueOficeMarriage : {required : issueOficeMarriage},
+//					marriageAddress : {required : marriageAddress},
+//					occupationMarriage : {required : occupationMarriage},
+//					militaryStatus : {required : militaryStatus},
+//					militaryFromYear : {required : militaryFromYear},
+//					militarytoYear : {required : militarytoYear},
+//					branchService : {required : branchService},
+//					militaryPlace : {required : militaryPlace},
+//					militaryServiceNo : {required : militaryServiceNo},
+//					militaryReason : {required : militaryReason},
+//					dateToBeDrafted : {required : dateToBeDrafted},
+//					emergencyName : {required : emergencyName},
+//					emergencyTel : {required : emergencyTel},
+//					emergencyAddress : {required : emergencyAddress},
+					applyDate : {required : applyDate},
+//					department : {required : department},
+					jobLevel : {required : joblevelVal},
+					technology : {required : technologyVal},
+//					expectedSalary : {required : expectedSalary},
+//					nowEmployed : {required : nowEmployed},
+//					employedName : {required : employedName},
+//					employedPosition : {required : employedPosition},
+//					employedRelation : {required : employedRelation},
+//					previousEmployers : {required :  previousEmployers},
+// 					previousEmployersReason : {required :  previousEmployersReason}
+				}
+
+			});
+
+});
+
+//</script>

@@ -7,7 +7,7 @@
 <title><spring:message code="tab.info" /></title>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/resources/pageCss/infoCss.css" />
-<script src='<c:url value ="/static/resources/pageJS/infoScript.js"/>'></script>
+<script src='<c:url value ="/static/resources/pageJS/newApplicant.js"/>'></script>
 <jsp:include page="infoSpringMessage.jsp" />
 
 <!-- tab informations -->
@@ -73,8 +73,7 @@ $(document).ready(function(){
 									<span class="glyphicon glyphicon-picture"></span> Add Photo 
 									<input id="imageMultipartFile" name="imageMultipartFile" type="file" accept="image/*" class="file"/>
 								</span>
-								<f:hidden path="image" /><br><label for="imageMultipartFile" class="error"></label>
-								
+								<f:hidden path="image" />
 							</div>
 						</div>
 					</div>
@@ -669,10 +668,9 @@ $(document).ready(function(){
 <!-- 			<span class="btn btn-warning btn-file"><span class="glyphicon glyphicon-plus"></span> Resume <input id="resumeMultipartFile" name="resumeMultipartFile" type="file" accept="image/*" class="file"/></span> -->
 
 			<label class="resume">
-    			<input type="file" id="resumeMultipartFile" name="resumeMultipartFile" type="file" accept="application/pdf,image/*,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="file" />
+    			<input type="file" id="resumeMultipartFile" name="resumeMultipartFile" type="file" accept="image/*" class="file"/>
     			<span>Resume</span>
-			</label><br><label for="resumeMultipartFile" class="error"></label>
-			
+			</label>
 			<f:hidden path="resume"/>
 		<c:choose>
  			<c:when test="${not empty applicant.resume}">
@@ -684,7 +682,7 @@ $(document).ready(function(){
 <%-- 			<label for="file"><spring:message code="info.transcript"/></label><br> --%>
 <!-- 				<span class="btn btn-warning btn-file"><span class="glyphicon glyphicon-plus"></span> Transcript <input id="transcriptMultipartFile" name="transcriptMultipartFile" type="file" accept="image/*" class="file"/></span> -->
 			<label class="transcript">
-    			<input id="transcriptMultipartFile" name="transcriptMultipartFile" type="file" accept="application/pdf,image/*,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="file"/>
+    			<input id="transcriptMultipartFile" name="transcriptMultipartFile" type="file" accept="image/*" class="file"/>
     			<span>Transcript</span>
 			</label>
 			<f:hidden path="transcript"/>
@@ -703,7 +701,7 @@ $(document).ready(function(){
 				<div class="col-sm-12" >
 					<label for="applyDate"><span class="glyphicon glyphicon-calendar"></span><spring:message code="info.apply.date"/></label><br>
 					<div class="input-group date btn-information" id="applyDay">
-						<f:input path="applyDate" id="applyDate" name="applyDate" class="form-control datepicker_readonly"></f:input><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>							
+						<f:input path="applyDate" id="applyDate" name="applyDate" class="form-control"></f:input><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>							
 					</div>
 					<br><label for="applyDate" class="error"></label>
 				</div>
@@ -723,20 +721,13 @@ $(document).ready(function(){
 		 	<div class="col-sm-6">
 				<div class="col-sm-12" >
 					<label for="jobLevel"><spring:message code="main.position1"/></label><br>
-					 <div id="jobLevelLists">
-<%-- 						 <f:select path="joblevel.id" id="jobLevel" name="jobLevel" class="form-control"> --%>
-<%-- 							<f:option value="">please select data</f:option> --%>
-<%-- 							<c:forEach var="jobLevelList" items="${jobLevels}"> --%>
-<%-- 								<f:option value="${jobLevelList.id}">${jobLevelList.name}</f:option> --%>
-<%-- 							</c:forEach>  --%>
-<%-- 						</f:select> --%>
-						<f:select  id="joblevel" path="joblevel.id"  class="form-control" >
-    						
-	    						<option  value=""><spring:message code="info.select.data"/></option>
-	  							<f:options items="${ jobLevels }"  itemValue="id" itemLabel="name" />
-								
-							</f:select>
-								<br><label for="jobLevel" class="error" ></label>
+					 <div id="jobLevel">
+						 <f:select path="joblevel.id" id="jobLevel" name="jobLevel" class="form-control">
+							<f:option value="" >please select data</f:option>
+							<c:forEach var="jobLevelList" items="${jobLevels}">
+								<f:option value="${jobLevelList.id}">${jobLevelList.name}</f:option>
+							</c:forEach> 
+						</f:select>  
 					</div>
 				</div>
 			</div>
@@ -744,20 +735,13 @@ $(document).ready(function(){
 			<div class="col-sm-6">
 				<div class="col-sm-12" >
 					<label for="technology"><spring:message code="main.position2"/> </label><br>
-					 <div id="technologyLists">
-<%-- 						 <f:select path="technology.id" id="technology" name="technology" class="form-control"> --%>
-<%-- 							<f:option value="" >please select data</f:option> --%>
-<%-- 							<c:forEach var="technologyList" items="${technologies}"> --%>
-<%-- 								<f:option value="${technologyList.id}" >${technologyList.name}</f:option> --%>
-<%-- 							</c:forEach>  --%>
-<%-- 						</f:select>  --%>
-						<f:select  id="technology" path="technology.id"  class="form-control" >
-    						
-	    						<option  value=""><spring:message code="info.select.data"/> </option>
-	  							<f:options items="${ technologies }"  itemValue="id" itemLabel="name" />
-	  							
-							</f:select>
-								<br><label for="technology" class="error" ></label>
+					 <div id="technology">
+						 <f:select path="technology.id" id="technology" name="technology" class="form-control">
+							<f:option value="" >please select data</f:option>
+							<c:forEach var="technologyList" items="${technologies}">
+								<f:option value="${technologyList.id}">${technologyList.name}</f:option>
+							</c:forEach> 
+						</f:select> 
 					</div>
 				</div>
 			</div>
