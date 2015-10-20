@@ -3,6 +3,7 @@ $(document).ready(function() {
 	var $validateLang = $('#languagesForm').validate({
 		rules : {
 			languages : {required : true},
+			nameLanguage : {required : true},
 			speaking : {required : true},
 			understanding : {required : true},
 			reading : {required : true},
@@ -10,6 +11,7 @@ $(document).ready(function() {
 			
 		messages : {
 			languages : {required : valName},
+			nameLanguage : {required : valNameLanguage},
 			speaking : {required : valSpeak},
 			understanding : {required : valUnderstand},
 			reading : {required : valRead},

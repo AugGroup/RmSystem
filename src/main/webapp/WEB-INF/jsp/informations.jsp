@@ -668,7 +668,7 @@ $(document).ready(function(){
 <!-- 			<span class="btn btn-warning btn-file"><span class="glyphicon glyphicon-plus"></span> Resume <input id="resumeMultipartFile" name="resumeMultipartFile" type="file" accept="image/*" class="file"/></span> -->
 
 			<label class="resume">
-    			<input type="file" id="resumeMultipartFile" name="resumeMultipartFile" type="file" accept="image/*" class="file" />
+    			<input type="file" id="resumeMultipartFile" name="resumeMultipartFile" type="file" accept="application/pdf,image/*,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="file" />
     			<span>Resume</span>
 			</label><br><label for="resumeMultipartFile" class="error"></label>
 			
@@ -683,7 +683,7 @@ $(document).ready(function(){
 <%-- 			<label for="file"><spring:message code="info.transcript"/></label><br> --%>
 <!-- 				<span class="btn btn-warning btn-file"><span class="glyphicon glyphicon-plus"></span> Transcript <input id="transcriptMultipartFile" name="transcriptMultipartFile" type="file" accept="image/*" class="file"/></span> -->
 			<label class="transcript">
-    			<input id="transcriptMultipartFile" name="transcriptMultipartFile" type="file" accept="image/*" class="file"/>
+    			<input id="transcriptMultipartFile" name="transcriptMultipartFile" type="file" accept="application/pdf,image/*,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="file"/>
     			<span>Transcript</span>
 			</label>
 			<f:hidden path="transcript"/>

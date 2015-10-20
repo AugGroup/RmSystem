@@ -16,6 +16,7 @@ var valRead = "<spring:message code="valid.lang.read"/>";
 var valWrite = "<spring:message code="valid.lang.write"/>";
 var valEdit = "<spring:message code="main.edit.info"/>";
 var valDelete = "<spring:message code="main.delete"/>";
+var valNameLanguage = "<spring:message code="valid.lang.nameLanguage"/>";
 var id = ${id};
 var pnotifyAdd="<spring:message code="pnotify.add"/>";
 var pnotifyEdit="<spring:message code="pnotify.edit"/>";

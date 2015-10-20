@@ -61,8 +61,8 @@ var digitOnly = "<spring:message code="valid.digit.only"/>";
 							</div>
 							
 							<div class="form-group" style="width:210px">
-								<label for="applyDateStr"><spring:message code="exp.date"/> </label>
-								<div class="input-group btn-information date" id="applyDateStr">
+								<label for="applyDateStrDiv"><spring:message code="exp.date"/> </label>
+								<div class="input-group btn-information date" id="applyDateStrDiv">
 								<input type="text" name="applyDateStr" id="applyDateStr" class="form-control" style="width:210px" placeholder="<spring:message code="report.text.month"/>"/>
             					<span class="input-group-addon"><i class="glyphicon glyphicon-th" ></i></span>
             					</div>

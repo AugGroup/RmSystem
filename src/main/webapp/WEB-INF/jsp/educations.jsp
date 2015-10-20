@@ -65,26 +65,15 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 <!-- 							</div> -->
 
 	 						<div class="form-group">
-	 							<label class="required" for="degree"><spring:message code="education.degree"/></label><br>
-	 							<f:select path="degreeTypes" class="form-control" id="masdegreetype" name="masdegreetype" style="width: 165px">
-									<option value="" label="<spring:message code="education.text.degreeType"/>" />
-									<c:forEach var="obj" items="${degreeTypes}">
-										<option value="${obj.id}">${obj.name}</option>
-									</c:forEach>
-								</f:select>
+	 							<label for="masdegreetype"><spring:message code="education.degree"/></label><br>
+								<f:select  id="masdegreetype" name="masdegreetype" path="degreeTypes"  class="form-control" >
+    						
+	    						<option  value=""><spring:message code="education.text.degreeType"/> </option>
+	  							<f:options items="${ degreeTypes }"  itemValue="id" itemLabel="name" />
+	  							
+							</f:select>
+								<br><label for="masdegreetype" class="error" ></label>
 							</div> 
-							
-<%-- 							<div class="form-group" style="width: 165px">
-								<label for="degree"><spring:message code="education.degree" /></label>
-								<select name="degree" id='degree' class="form-control"
-										style="width: 165px">
-									<option value='' selected='selected'><spring:message code="report.text.select" /></option>
-									<option value='Bachelor'><spring:message code="report.bachelor"/></option>
-									<option value='Master'><spring:message code="report.master"/></option>
-									<option value='Doctor'><spring:message code="report.doctor"/></option>
-								</select>
-							</div> --%>
-
 							<div class="form-group">
 								<label for="faculty"><spring:message
 										code="education.faculty" /> </label> <input type="text"
@@ -104,19 +93,16 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 							</div>
 							
 							<div class="form-group">
-								<label for="startDate"><spring:message
-										code="education.start" /> </label> 
-								<div class="input-group btn-information date" id="startDate">
-								<input type="text" class="form-control datepicker_readonly" id="startDate" name="startDate"
-									placeholder="<spring:message code="education.text.start"/>" >
+								<label for="startDateDiv"><spring:message code="education.start" /> </label> 
+								<div class="input-group btn-information date" id="startDateDiv">
+								<input type="text" class="form-control datepicker_readonly" id="startDate" name="startDate" placeholder="<spring:message code="education.text.start"/>" >
 									<span class="input-group-addon"><i class="glyphicon glyphicon-th" ></i></span>
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label for="graduate"><spring:message
-										code="education.graduate" /> </label> 
-								<div class="input-group btn-information date" id="graduate">
+								<label for="graduateDiv"><spring:message code="education.graduate" /> </label> 
+								<div class="input-group btn-information date" id="graduateDiv">
 								<input type="text" class="form-control datepicker_readonly" id="graduate" name="graduate"
 									placeholder="<spring:message code="education.text.graduate"/>" >
 									<span class="input-group-addon"><i class="glyphicon glyphicon-th" ></i></span>
