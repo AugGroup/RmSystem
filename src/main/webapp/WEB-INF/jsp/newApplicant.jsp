@@ -721,13 +721,20 @@ $(document).ready(function(){
 		 	<div class="col-sm-6">
 				<div class="col-sm-12" >
 					<label for="jobLevel"><spring:message code="main.position1"/></label><br>
-					 <div id="jobLevel">
-						 <f:select path="joblevel.id" id="jobLevel" name="jobLevel" class="form-control">
-							<f:option value="" >please select data</f:option>
-							<c:forEach var="jobLevelList" items="${jobLevels}">
-								<f:option value="${jobLevelList.id}">${jobLevelList.name}</f:option>
-							</c:forEach> 
-						</f:select>  
+					  <div id="jobLevelLists">
+<%-- 						 <f:select path="joblevel.id" id="jobLevel" name="jobLevel" class="form-control"> --%>
+<%-- 							<f:option value="">please select data</f:option> --%>
+<%-- 							<c:forEach var="jobLevelList" items="${jobLevels}"> --%>
+<%-- 								<f:option value="${jobLevelList.id}">${jobLevelList.name}</f:option> --%>
+<%-- 							</c:forEach>  --%>
+<%-- 						</f:select> --%>
+						<f:select  id="joblevel" path="joblevel.id"  class="form-control" >
+    						
+	    						<option  value=""><spring:message code="info.select.data"/></option>
+	  							<f:options items="${ jobLevels }"  itemValue="id" itemLabel="name" />
+								
+							</f:select>
+								<br><label for="jobLevel" class="error" ></label>
 					</div>
 				</div>
 			</div>
@@ -735,13 +742,20 @@ $(document).ready(function(){
 			<div class="col-sm-6">
 				<div class="col-sm-12" id="tech">
 					<label for="technology"><spring:message code="main.position2"/> </label><br>
-					 <div id="technology">
-						 <f:select path="technology.id" id="technology" name="technology" class="form-control">
-							<f:option value="" >please select data</f:option>
-							<c:forEach var="technologyList" items="${technologies}">
-								<f:option value="${technologyList.id}">${technologyList.name}</f:option>
-							</c:forEach> 
-						</f:select> 
+					 <div id="technologyLists">
+<%-- 						 <f:select path="technology.id" id="technology" name="technology" class="form-control"> --%>
+<%-- 							<f:option value="" >please select data</f:option> --%>
+<%-- 							<c:forEach var="technologyList" items="${technologies}"> --%>
+<%-- 								<f:option value="${technologyList.id}" >${technologyList.name}</f:option> --%>
+<%-- 							</c:forEach>  --%>
+<%-- 						</f:select>  --%>
+						<f:select  id="technology" path="technology.id"  class="form-control" >
+    						
+	    						<option  value=""><spring:message code="info.select.data"/> </option>
+	  							<f:options items="${ technologies }"  itemValue="id" itemLabel="name" />
+	  							
+							</f:select>
+								<br><label for="technology" class="error" ></label>
 					</div>
 				</div>
 			</div>
