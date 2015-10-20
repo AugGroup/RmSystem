@@ -212,13 +212,6 @@
 				});
 		   		
 //		   	----------------------------------		
-		   		$.validator.addMethod("aFunction", function(value, element) {
-		   			        if (value == "-1")
-		   			            return false;
-		   			        else
-		   			            return true;
-		   			    },
-		   			    "Please select a value");
 		   		
 			 $('#informationApplicant').validate({
 				
@@ -261,9 +254,8 @@
  					emergencyName : {required : true},
  					emergencyTel : {required : true},
  					emergencyAddress : {required : true},
- 					applyDate : {required : true}, 
- 					department : {required : true},
- 					jobLevel : {valueNotEquals: ""},
+ 					applyDate : {required : true},
+ 					joblevel : {required : true},
  					technology : {required : true},
  					expectedSalary : {required : true, digits: true},
  					nowEmployed : {required : true},
@@ -312,8 +304,7 @@
 					emergencyTel : {required : emergencyTel},
 					emergencyAddress : {required : emergencyAddress},
 					applyDate : {required : applyDate},
-					department : {required : department},
-					jobLevel : {valueNotEquals : joblevelVal},
+					joblevel : {required : joblevelVal},
 					technology : {required : technologyVal},
 					expectedSalary : {required : expectedSalary, digits : digitOnly},
 					nowEmployed : {required : nowEmployed},
