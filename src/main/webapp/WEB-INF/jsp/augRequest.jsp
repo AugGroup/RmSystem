@@ -153,7 +153,6 @@ $(document).ready(function(){
 								<span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
 							</div>
 							<label for="inputApproveDate" class="error"></label>
-							
 						</div>
 						<div class="form-group">
 							<label for="inputNumberApplicant"><spring:message code="request.number" /></label> 
