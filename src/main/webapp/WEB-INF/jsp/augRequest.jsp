@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -136,13 +137,15 @@ $(document).ready(function(){
 						</div>
 						
 						<div class="form-group">
-							<label for="inputTechnology"><spring:message code="main.position2" /></label> 
-							<select name="inputTechnology" id="inputTechnology" class="form-control">
-							<option value=""><spring:message code="info.select.data"/></option> 
-								<c:forEach items="${technologies}" var="technologyList">
-									<option value="${technologyList.id}">${technologyList.name}</option>
-								</c:forEach> 
-							</select> 
+							<div id="tech">
+								<label for="inputTechnology"><spring:message code="main.position2" /></label> 
+								<select name="inputTechnology" id="inputTechnology" class="form-control">
+								<option value=""><spring:message code="info.select.data"/></option> 
+									<c:forEach items="${technologies}" var="technologyList">
+										<option value="${technologyList.id}">${technologyList.name}</option>
+									</c:forEach> 
+								</select> 
+							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputNumberApplicant"><spring:message code="request.number" /></label> 
@@ -316,3 +319,4 @@ $(document).ready(function(){
 	</div> -->
 
 </div>
+

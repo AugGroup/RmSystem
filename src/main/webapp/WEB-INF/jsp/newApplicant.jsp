@@ -417,7 +417,7 @@ $(document).ready(function(){
 			<div class="col-sm-12">
 			<label for="dateToBeDrafted"><span class="glyphicon glyphicon-calendar"></span><spring:message code="info.military.date"/></label><br>
 				<div class="input-group date btn-information" id="dateToBeDraft">
-					<f:input path="dateToBeDrafted" id="dateToBeDrafted" name="dateToBeDrafted" class="form-control"></f:input><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+					<f:input path="dateToBeDrafted" id="dateToBeDrafted" name="dateToBeDrafted" class="form-control datepicker_readonly"></f:input><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
 				</div>
 					<br><label for="dateToBeDrafted" class="error"></label>
 			</div>
@@ -701,7 +701,7 @@ $(document).ready(function(){
 				<div class="col-sm-12" >
 					<label for="applyDate"><span class="glyphicon glyphicon-calendar"></span><spring:message code="info.apply.date"/></label><br>
 					<div class="input-group date btn-information" id="applyDay">
-						<f:input path="applyDate" id="applyDate" name="applyDate" class="form-control"></f:input><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>							
+						<f:input path="applyDate" id="applyDate" name="applyDate" class="form-control datepicker_readonly"></f:input><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>							
 					</div>
 					<br><label for="applyDate" class="error"></label>
 				</div>

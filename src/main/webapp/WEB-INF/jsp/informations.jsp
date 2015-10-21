@@ -418,7 +418,7 @@ $(document).ready(function(){
 			<div class="col-sm-12">
 			<label for="dateToBeDrafted"><span class="glyphicon glyphicon-calendar"></span><spring:message code="info.military.date"/></label><br>
 				<div class="input-group date btn-information" id="dateToBeDraft">
-					<f:input path="dateToBeDrafted" id="dateToBeDrafted" name="dateToBeDrafted" class="form-control"></f:input><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+					<f:input path="dateToBeDrafted" id="dateToBeDrafted" name="dateToBeDrafted" class="form-control datepicker_readonly"></f:input><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
 				</div>
 					<br><label for="dateToBeDrafted" class="error"></label>
 			</div>
@@ -742,7 +742,7 @@ $(document).ready(function(){
 			</div>
 			
 			<div class="col-sm-6">
-				<div class="col-sm-12" >
+				<div class="col-sm-12" id="tech">
 					<label for="technology"><spring:message code="main.position2"/> </label><br>
 					 <div id="technologyLists">
 <%-- 						 <f:select path="technology.id" id="technology" name="technology" class="form-control"> --%>

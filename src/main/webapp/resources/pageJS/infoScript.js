@@ -321,6 +321,18 @@
 					imageMultipartFile :{required : imageMultipartFile}
 				}
 			});
+				 $("#joblevel").on("change", function(){
+//					 alert( $("#jobLevel option:selected").val() );
+					 if ( $("#joblevel option:selected").val() == 4 || $("#joblevel option:selected").val() == 11 ) {
+						 $("#tech").show();
+						 //alert( $("#joblevel option:selected").val() );
+					 } else {
+						 $("#technology option:selected").val("6");
+						 $("#tech").hide();
+						 //alert($("#technology option:selected").val());
+					 }
+	});
+				 
 
 });
 

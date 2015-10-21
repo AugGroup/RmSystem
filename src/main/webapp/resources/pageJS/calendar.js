@@ -404,21 +404,21 @@ function renderCalendar(){
 			if(start < moment(moment().format('LL'))){
 				alertify.alert(passDate);
 			}else{
-			var view = $calendar.fullCalendar('getView');//get view object
-			if(view.name == "month"){ //if event that selected is month then show agendaDay view 
-				$calendar.fullCalendar('changeView', 'agendaDay');
-				$calendar.fullCalendar( 'gotoDate', start );
-			}else{
-				//if current view is date(and choose time range) when click on it insert modal should show
-				$validform.resetForm();
-				$('#formInsert').trigger('reset');
-				setApplicant("all"); 
-				$("#insStartDate").text(moment(start).format("HH:mm MMMM D, YYYY"));
-				$("#insEndDate").text(moment(end).format("HH:mm MMMM D, YYYY"));
-				$('#insModal').modal('show');
-				insStart = start;
-				insEnd = end;
-				$calendar.fullCalendar('unselect');
+				var view = $calendar.fullCalendar('getView');//get view object
+				if(view.name == "month"){ //if event that selected is month then show agendaDay view 
+					$calendar.fullCalendar('changeView', 'agendaDay');
+					$calendar.fullCalendar( 'gotoDate', start );
+				}else{
+					//if current view is date(and choose time range) when click on it insert modal should show
+					$validform.resetForm();
+					$('#formInsert').trigger('reset');
+					setApplicant("all"); 
+					$("#insStartDate").text(moment(start).format("HH:mm MMMM D, YYYY"));
+					$("#insEndDate").text(moment(end).format("HH:mm MMMM D, YYYY"));
+					$('#insModal').modal('show');
+					insStart = start;
+					insEnd = end;
+					$calendar.fullCalendar('unselect');
 				}
 			}
 		},

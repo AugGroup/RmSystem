@@ -1,4 +1,4 @@
-  $(document).ready(function () {
+$(document).ready(function () {
         var $inputRequesterName = $('#inputRequesterName');
         var $inputRequestDate = $('#inputRequestDate');
         var $inputApprovalName = $('#inputApprovalName');
@@ -431,6 +431,16 @@
         		
         	});
         }
+        
+        $("#inputJoblevel").on("change", function(){
+//			 alert( $("#jobLevel option:selected").val() );
+			 if ( $("#inputJoblevel option:selected").val() == 4 || $("#inputJoblevel option:selected").val() == 11 ) {
+				 $("#tech").show();
+				 //alert( $("#joblevel option:selected").val() );
+			 } else {
+				 $("#inputTechnology option:selected").val("6");
+				 $("#tech").hide();
+				 //alert($("#technology option:selected").val());
+			 }
+        });
 });
-  
-
