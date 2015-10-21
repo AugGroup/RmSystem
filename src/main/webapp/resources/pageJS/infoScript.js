@@ -212,13 +212,17 @@
 				});
 		   		
 //		   	----------------------------------		
-		   		
-			 $('#informationApplicant').validate({
-				
-				rules : {
-					firstNameTH : {required : true,lettersonly: true},
-					lastNameTH : {required : true,lettersonly: true},
-					nickNameTH : {required : true,lettersonly: true},
+		   		jQuery.validator.addMethod("onlyThai", function(value, element) {
+			   		  // allow any non-whitespace characters as the host part
+			   		  return this.optional( element ) || /^[ก-๙]+$/.test( value );
+			   		}, thaiOnly);
+			   		
+			   		
+				 $('#informationApplicant').validate({
+					
+				rules : {firstNameTH : {required : true,onlyThai : true},
+					lastNameTH : {required : true,onlyThai: true},
+					nickNameTH : {required : true,onlyThai: true},
 					firstNameEN : {required : true,lettersonly: true},
 					lastNameEN : {required : true,lettersonly: true},
 					nickNameEN : {required : true,lettersonly: true},
@@ -266,10 +270,9 @@
  					resumeMultipartFile : {required : true},
  					imageMultipartFile : {required : true}
 				},
-				messages : {
-					firstNameTH : {required : firstNameTH,lettersonly: lettersOnly},
-					lastNameTH : {required : lastNameTH,lettersonly: lettersOnly},
-					nickNameTH : {required : nickNameTH,lettersonly: lettersOnly},
+				messages : {firstNameTH : {required : firstNameTH},
+					lastNameTH : {required : lastNameTH},
+					nickNameTH : {required : nickNameTH},
 					firstNameEN : {required : firstNameEN,lettersonly: lettersOnly},
 					lastNameEN : {required : lastNameEN,lettersonly: lettersOnly},
 					nickNameEN : {required : nickNameEN,lettersonly: lettersOnly},
@@ -316,7 +319,7 @@
 					previousEmployers : {required :  previousEmployers},
  					previousEmployersReason : {required : previousEmployersReason},
  					resumeMultipartFile : {required : resumeMultipartFile},
- 					imageMultipartFile :{required : imageMultipartFile}
+					imageMultipartFile :{required : imageMultipartFile}
 				}
 //				},
 //				errorReplacement : function (error,element){

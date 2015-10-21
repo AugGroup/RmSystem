@@ -401,7 +401,9 @@ function renderCalendar(){
 		selectable: true,
 		buttonIcons: true,
 		select: function(start, end) {
-			//console.log(start);
+			if(start < moment(moment().format('LL'))){
+				alertify.alert(passDate);
+			}else{
 			var view = $calendar.fullCalendar('getView');//get view object
 			if(view.name == "month"){ //if event that selected is month then show agendaDay view 
 				$calendar.fullCalendar('changeView', 'agendaDay');
@@ -417,6 +419,7 @@ function renderCalendar(){
 				insStart = start;
 				insEnd = end;
 				$calendar.fullCalendar('unselect');
+				}
 			}
 		},
 		editable: true,//can't drage to move event to editing
@@ -666,7 +669,7 @@ $( function(){
 							color: '#FF4512'
 						};
 						console.log(insData);
-						$calendar.fullCalendar('renderEvent', insData, true); // stick? = true
+						$calendar.fullCalendar('renderEvent', insData); // stick? = true
 						$('#insModal').modal('hide');	
 						$('#formInsert').trigger('reset');
 						findNoEmailSending();

@@ -42,8 +42,9 @@
 <link rel="stylesheet" type="text/css" media="all"
 	href="<c:url value ="/static/resources/css/pnotify.custom.min.css"/>" />
 
-<script
-	src='<c:url value ="/static/resources/js/jquery.validate.min.js"/>'></script>
+<script src='<c:url value ="/static/resources/js/jquery.validate.min.js"/>'></script>
+<script src="<c:url value ="/static/resources/js/messages_th.min.js"/>"></script>
+	
 <script
 	src='<c:url value ="/static/resources/js/additional-methods.min.js"/>'></script>
 
@@ -51,7 +52,7 @@
 <script src='<c:url value ="/static/resources/js/jquery.inputmask.bundle.min.js" />'></script>
 
 <script src='<c:url value ="/static/resources/js/jquery.maskedinput.js" />'></script>
-<script src='<c:url value ="/static/resources/js/date.js" />'></script>
+<script src='<c:url value ="/static/resources/js/date.js" />'></s1cript>
 <script src='<c:url value ="/static/resources/js/dataTables.bootstrap.js"/>'></script>
 <link rel="stylesheet" type="text/css" media="all" href="<c:url value ="/static/resources/css/dataTables.bootstrap.css"/>" />
 

@@ -410,6 +410,8 @@
 	var appointmentEmailNoUpdate = "<spring:message code='appointment.email.status.noupdate' />";
 	var pnotifySuccess="<spring:message code="pnotify.success"/>";
 	var pnotifyError="<spring:message code="pnotify.error"/>";
+	var passDate = "<spring:message code='appointment.pass.date' />";
+
 	
 </script>
 
