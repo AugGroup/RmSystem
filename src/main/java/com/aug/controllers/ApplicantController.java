@@ -505,7 +505,7 @@ public class ApplicantController implements Serializable {
 	//////////////////        SAVE METHOD        /////////////////////
 
 	@RequestMapping(value = "/saveInformations", method = { RequestMethod.POST })
-	public String saveInformations(@ModelAttribute ApplicantDto applicantDto, Model model,MultipartFile multipartFile)
+	public String saveInformations(@ModelAttribute ApplicantDto applicantDto,MultipartFile multipartFile)
 			throws ParseException {
 		
 		int year = Calendar.getInstance().get(Calendar.YEAR);
@@ -549,10 +549,14 @@ public class ApplicantController implements Serializable {
 //		if(applicantDTO.getPosition3().getId()<0) applicantDTO.setPosition3(null);
 		applicantService.saveInformations(applicantDto);
 
-		model.addAttribute("id", applicantDto.getId());
-		model.addAttribute("applicant", applicantDto);
+//		User user = (User) SecurityContextHolder.getContext()
+//				.getAuthentication().getPrincipal();
+//		String name = user.getUsername();
+//		model.addAttribute("name", name);
+//		model.addAttribute("id", applicantDto.getId());
+//		model.addAttribute("applicant", applicantDto);
 	
-		return "mainApplicant";
+		return "redirect:/applicant";
 	}
 
 	@RequestMapping(value = "/address/{id}", method = { RequestMethod.POST })
