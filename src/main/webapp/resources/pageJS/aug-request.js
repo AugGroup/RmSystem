@@ -6,10 +6,8 @@
         var $inputNumberApplicant = $('#inputNumberApplicant');
         var $inputSpecificSkill = $('#inputSpecificSkill');
         var $inputYearExperience = $('#inputYearExperience');
-        var $inputJoblevel = $('#joblevel');
-        var $joblevel = $('#joblevel option:selected');
-        var $inputTechnology = $('#technology');
-        var $technology = $('#technology option:selected');
+        var $inputJoblevel = $('#inputJoblevel');
+        var $inputTechnology = $('#inputTechnology');
         var $inputStatus = $('#inputStatus');
         
     	/* ------------------ Date picker format ------------------ */
@@ -17,7 +15,6 @@
     		format: "dd-mm-yyyy",
     		todayBtn : "linked",
 			startView: 2,
-//<<<<<<< cdaddbedc197348e62e97a0c75cbdb4d5039f2e0
 			autoclose: true 
 			}); 
     	
@@ -32,12 +29,6 @@
 		  $(this).prop('readonly', false);
 
 		});
-//=======
-//			autoclose: true,
-//			setDate: new Date()
-//			
-//		}); 
-//>>>>>>> Delete textbox of NameApprove and Get value Name from database
 		
 		
 //    	/* ------------------ajax setup ------------------ */
@@ -228,9 +219,7 @@
         	var yearExperience = $inputYearExperience.val();
         	var status = $inputStatus.val();
         	var requestTechnologyId = $inputTechnology.val();
-        	var requestTechnology = $("#technology option:selected").text();
         	var requestJoblevelId = $inputJoblevel.val();
-        	var requestJoblevel = $("#joblevel option:selected").text();
         	var requestId = $("#requestId").val();
         	
         	var json = {
@@ -238,12 +227,12 @@
         			"numberApplicant" : numberApplicant,
         			"specificSkill": specificSkill,
         			"yearExperience" : yearExperience,
-        			"technology" : {"id" : requestTechnologyId, "name" : $('#technology option:selected').text()},
-        			"joblevel" : {"id" : requestJoblevelId, "name" : $('#joblevel option:selected').text()},
+        			"technology" : {"id" : requestTechnologyId },
+        			"joblevel" : {"id" : requestJoblevelId },
         			"status": status,
         			"requester": {"id" : requestId}
         			};
-        	//console.log(request);
+        	console.log(json);
         	var isValid = $("#requestForm").valid();
             //debugger;
             if(isValid){
@@ -293,16 +282,14 @@
         
         /*-------------------- Edit Function (Fill Data)--------------------*/
         function editShowData(data) {
-        	$('#inputRequesterName').val(data.requesterName);
-            $('#inputRequestDate').val(data.requestDate);
-            $('#inputApprovalName').val(data.approvalName);
-            $('#inputApproveDate').val(data.approveDate);
-            $('#inputNumberApplicant').val(data.numberApplicant);
-            $('#inputSpecificSkill').val(data.specificSkill);
-            $('#inputYearExperience').val(data.yearExperience);
-            $('#joblevel').val(data.joblevelId);
-            $('#technology').val(data.technologyId);
-            $('#inputStatus').val(data.status);
+        	$inputRequesterName.val(data.requesterName);
+        	$inputRequestDate.val(data.requestDate);
+        	$inputNumberApplicant.val(data.numberApplicant);
+        	$inputSpecificSkill.val(data.specificSkill);
+        	$inputYearExperience.val(data.yearExperience);
+        	$inputJoblevel.val(data.joblevelId);
+        	$inputTechnology.val(data.technologyId);
+        	$inputStatus.val(data.status);
         }
        
         /*-------------------- Edit Function --------------------*/
@@ -317,9 +304,9 @@
         	var yearExperience = $inputYearExperience.val();
         	var status = $inputStatus.val();
         	var requestTechnologyId = $inputTechnology.val();
-        	var requestTechnology = $("#technology option:selected").text();
+        	var requestTechnology = $("#inputTechnology option:selected").text();
         	var requestJoblevelId = $inputJoblevel.val();
-        	var requestJoblevel = $("#joblevel option:selected").text();
+        	var requestJoblevel = $("#inputJoblevel option:selected").text();
             
             var index = dtRequest.row(button.closest("tr")).index();
             console.log(id);
@@ -334,9 +321,9 @@
                 'specificSkill': specificSkill,
                 'yearExperience': yearExperience, 
                 'technologyId':requestTechnologyId,
-                'masTechnologyName':$("#technology option:selected").text(),
+                'masTechnologyName':$("#inputTechnology option:selected").text(),
                 'joblevelId':requestJoblevelId,
-                'masJobLevelName':$("#joblevel option:selected").text(),
+                'masJobLevelName':$("#inputJoblevel option:selected").text(),
                 'status': status
             };
             if($("#requestForm").valid()){

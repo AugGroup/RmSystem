@@ -145,21 +145,6 @@ $(document).ready(function(){
 							</select> 
 						</div>
 						<div class="form-group">
-<!-- <<<<<<< cdaddbedc197348e62e97a0c75cbdb4d5039f2e0 -->
-<%-- 							<label for="inputApprovalName"><spring:message code="request.approve.name" /></label>  --%>
-<!-- 							<input type="text" class="form-control" name="inputApprovalName" id="inputApprovalName" /> -->
-<!-- 						</div> -->
-<!-- 						<div class="form-group"> -->
-<%-- 							<label for="inputApproveDate"><spring:message code="request.approve.date" /></label> --%>
-<!-- 							<div class="input-group date"> -->
-<!-- 								<input type="text" class="form-control datepicker_readonly" name="inputApproveDate" id="inputApproveDate"> -->
-<!-- 								<span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span> -->
-<!-- 							</div> -->
-<!-- 							<label for="inputApproveDate" class="error"></label> -->
-<!-- 						</div> -->
-<!-- 						<div class="form-group"> -->
-<!-- ======= -->
-<!-- >>>>>>> Delete textbox of NameApprove and Get value Name from database -->
 							<label for="inputNumberApplicant"><spring:message code="request.number" /></label> 
 							<input type="text" class="form-control" name="inputNumberApplicant" id="inputNumberApplicant"
 								placeholder="<spring:message code="request.text.number"/>" />
