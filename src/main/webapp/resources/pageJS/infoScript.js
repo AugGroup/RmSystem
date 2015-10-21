@@ -211,7 +211,7 @@
 			        }
 				});
 		   		
-//		   	----------------------------------		
+//		   	----------------------------------	
 		   		jQuery.validator.addMethod("onlyThai", function(value, element) {
 			   		  // allow any non-whitespace characters as the host part
 			   		  return this.optional( element ) || /^[ก-๙]+$/.test( value );
@@ -219,7 +219,6 @@
 			   		
 			   		
 				 $('#informationApplicant').validate({
-					
 				rules : {firstNameTH : {required : true,onlyThai : true},
 					lastNameTH : {required : true,onlyThai: true},
 					nickNameTH : {required : true,onlyThai: true},
@@ -321,15 +320,6 @@
  					resumeMultipartFile : {required : resumeMultipartFile},
 					imageMultipartFile :{required : imageMultipartFile}
 				}
-//				},
-//				errorReplacement : function (error,element){
-//					//error.insertAfter(closest("div.form-group"));
-//					if(element.attr("name") === resumeMultipartFile){
-//						error.appendTo($("label.resume"))
-//					}
-//					
-//				}
-
 			});
 
 });

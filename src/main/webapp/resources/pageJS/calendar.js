@@ -524,15 +524,15 @@ function renderCalendar(){
 	            /*,
 	            delay: { "show": 2000, "hide": 0 }*/
 	        });
-		},
-		eventMouseover: function ( event, jsEvent, view ){
-			
-		},
-		eventMouseout : function ( event, jsEvent, view ){
-			
-		}
-		,viewRender : function( view, element ){
-		}
+		}//,
+//		eventMouseover: function ( event, jsEvent, view ){
+//			
+//		},
+//		eventMouseout : function ( event, jsEvent, view ){
+//			
+//		}
+//		,viewRender : function( view, element ){
+//		}
 	}); // end full calendar
 	$calendar.fullCalendar('gotoDate', currentDate());//go to date after fullcalendar redered 
 	$('div.fc-center').addClass('text-center');
