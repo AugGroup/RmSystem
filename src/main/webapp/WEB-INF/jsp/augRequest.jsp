@@ -110,10 +110,12 @@ $(document).ready(function(){
 							<input type="hidden" id="jobLevelId" name="jobLevelId">
 							<input type="hidden" id="technologyId" name="technologyId">
 							<input type="hidden" id="degreeType" name="degreeType">
+							<input type="hidden" id="requestId" name="requestId" value="${ employee.id }">
 						</div>
 						<div class="form-group">
 							<label for="inputRequesterName"><spring:message code="request.human" /></label> 
-							<input type="text" class="form-control" name="inputRequesterName" id="inputRequesterName" />
+							<!-- <input type="text" class="form-control" name="inputRequesterName" id="inputRequesterName" /> -->
+							<input type="text" class="form-control" name="inputRequesterName" id="inputRequesterName" value="${employee.applicant.firstNameEN}" disabled="disabled"/>
 						</div>
 						<div class="form-group">
 							<label for="inputRequestDate"><spring:message code="request.date" /></label>
@@ -139,22 +141,25 @@ $(document).ready(function(){
 							<option value=""><spring:message code="info.select.data"/></option> 
 								<c:forEach items="${technologies}" var="technologyList">
 									<option value="${technologyList.id}">${technologyList.name}</option>
-								</c:forEach>
+								</c:forEach> 
 							</select> 
 						</div>
 						<div class="form-group">
-							<label for="inputApprovalName"><spring:message code="request.approve.name" /></label> 
-							<input type="text" class="form-control" name="inputApprovalName" id="inputApprovalName" />
-						</div>
-						<div class="form-group">
-							<label for="inputApproveDate"><spring:message code="request.approve.date" /></label>
-							<div class="input-group date">
-								<input type="text" class="form-control datepicker_readonly" name="inputApproveDate" id="inputApproveDate">
-								<span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-							</div>
-							<label for="inputApproveDate" class="error"></label>
-						</div>
-						<div class="form-group">
+<!-- <<<<<<< cdaddbedc197348e62e97a0c75cbdb4d5039f2e0 -->
+<%-- 							<label for="inputApprovalName"><spring:message code="request.approve.name" /></label>  --%>
+<!-- 							<input type="text" class="form-control" name="inputApprovalName" id="inputApprovalName" /> -->
+<!-- 						</div> -->
+<!-- 						<div class="form-group"> -->
+<%-- 							<label for="inputApproveDate"><spring:message code="request.approve.date" /></label> --%>
+<!-- 							<div class="input-group date"> -->
+<!-- 								<input type="text" class="form-control datepicker_readonly" name="inputApproveDate" id="inputApproveDate"> -->
+<!-- 								<span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span> -->
+<!-- 							</div> -->
+<!-- 							<label for="inputApproveDate" class="error"></label> -->
+<!-- 						</div> -->
+<!-- 						<div class="form-group"> -->
+<!-- ======= -->
+<!-- >>>>>>> Delete textbox of NameApprove and Get value Name from database -->
 							<label for="inputNumberApplicant"><spring:message code="request.number" /></label> 
 							<input type="text" class="form-control" name="inputNumberApplicant" id="inputNumberApplicant"
 								placeholder="<spring:message code="request.text.number"/>" />
@@ -173,8 +178,6 @@ $(document).ready(function(){
 							<label for="inputStatus"><spring:message code="main.status" /></label> 
 							<select name="inputStatus" id='inputStatus' class="form-control">
 								<option value='New Request' selected='selected'><spring:message code="request.new" /></option>
-								<option value='Approve'><spring:message code="edit.approve" /></option>
-								<option value='Not Approve'><spring:message code="edit.notApprove" /></option>
 							</select>
 						</div>
 						</div>

@@ -17,6 +17,7 @@
     		format: "dd-mm-yyyy",
     		todayBtn : "linked",
 			startView: 2,
+//<<<<<<< cdaddbedc197348e62e97a0c75cbdb4d5039f2e0
 			autoclose: true 
 			}); 
     	
@@ -31,6 +32,14 @@
 		  $(this).prop('readonly', false);
 
 		});
+//=======
+//			autoclose: true,
+//			setDate: new Date()
+//			
+//		}); 
+//>>>>>>> Delete textbox of NameApprove and Get value Name from database
+		
+		
 //    	/* ------------------ajax setup ------------------ */
 //    	$.ajaxSetup({
 //    		/* statusCode: */
@@ -114,7 +123,7 @@
         	 /* order: [[ 2, 'asc' ]], */
         	 ajax: {
         		 type: "GET",
-        		 url: 'request/search',
+        		 url: contextPath + '/request/search',
         	 },
         	columns: [
         	          {data: "id"},
@@ -213,10 +222,7 @@
 
         /*-------------------- Save Function--------------------*/
         function save(button) {
-        	var requestName = $inputRequesterName.val();
         	var requestDate = $inputRequestDate.val();
-        	var approvalName = $inputApprovalName.val();
-        	var approvalDate = $inputApproveDate.val();
         	var numberApplicant = $inputNumberApplicant.val();
         	var specificSkill = $inputSpecificSkill.val();
         	var yearExperience = $inputYearExperience.val();
@@ -225,18 +231,17 @@
         	var requestTechnology = $("#technology option:selected").text();
         	var requestJoblevelId = $inputJoblevel.val();
         	var requestJoblevel = $("#joblevel option:selected").text();
+        	var requestId = $("#requestId").val();
         	
         	var json = {
-        			"requesterName": requestName,
         			"requestDate": requestDate,
-        			"approvalName": approvalName,
-        			"approveDate": approvalDate,
         			"numberApplicant" : numberApplicant,
         			"specificSkill": specificSkill,
         			"yearExperience" : yearExperience,
         			"technology" : {"id" : requestTechnologyId, "name" : $('#technology option:selected').text()},
         			"joblevel" : {"id" : requestJoblevelId, "name" : $('#joblevel option:selected').text()},
-        			"status": status
+        			"status": status,
+        			"requester": {"id" : requestId}
         			};
         	//console.log(request);
         	var isValid = $("#requestForm").valid();
@@ -248,6 +253,7 @@
             		url: 'request/save',
             		data: JSON.stringify(json),
             		success: function (data) {
+            			console.log(data);
             			$('#addRequestModal').modal('hide');
             			dtRequest.ajax.reload();
             			//console.log(data.requesterName);
@@ -399,8 +405,19 @@
         	//console.log(data.requesterName);
         	$('#tx_requester').text(data.requesterName);
             $('#tx_requestDate').text(data.requestDate);
-            $('#tx_approvalName').text(data.approvalName);
-            $('#tx_approveDate').text(data.approveDate);
+            
+            if(!data.approvalName ){
+            	$('#tx_approvalName').text("-");
+            }else {
+            	$('#tx_approvalName').text(data.approvalName);
+            }
+            
+            if(!data.approveDate){
+            	$('#tx_approveDate').text("-");
+            }else {
+            	$('#tx_approveDate').text(data.approveDate);
+            }
+            
             $('#tx_noOfApplicant').text(data.numberApplicant);
             $('#tx_specificSkill').text(data.specificSkill);
             $('#tx_yearExperience').text(data.yearExperience);
@@ -408,6 +425,12 @@
             $('#tx_technology').text(data.masTechnologyName);
             $('#tx_status').text(data.status);
         }
+        
+        //set default date
+        $("#addRequestModal").on('shown.bs.modal', function() {
+        	$("#inputRequestDate").val(moment(new Date()).format('DD-MM-YYYY'));
+        });
+        
         
         function setNotAllowed() {
         	$(".btn_edit").each(function(k,v){

@@ -555,8 +555,8 @@ public class ApplicantController implements Serializable {
 //		model.addAttribute("name", name);
 //		model.addAttribute("id", applicantDto.getId());
 //		model.addAttribute("applicant", applicantDto);
-	
-		return "redirect:/applicant";
+
+		return "redirect:/address/"+applicantDto.getId();
 	}
 
 	@RequestMapping(value = "/address/{id}", method = { RequestMethod.POST })

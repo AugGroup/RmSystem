@@ -5,7 +5,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -15,13 +18,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.aug.hrdb.dto.AugRequestDto;
+import com.aug.hrdb.entities.Applicant;
 import com.aug.hrdb.entities.AugRequest;
+import com.aug.hrdb.entities.Employee;
+import com.aug.hrdb.entities.Login;
 import com.aug.hrdb.entities.MasJoblevel;
 import com.aug.hrdb.entities.MasTechnology;
 import com.aug.hrdb.services.AugRequestService;
+import com.aug.hrdb.services.EmployeeService;
+import com.aug.hrdb.services.LoginService;
 import com.aug.hrdb.services.MasJoblevelService;
 import com.aug.hrdb.services.MasTechnologyService;
 
@@ -42,12 +51,25 @@ public class AugRequestController implements Serializable {
 	private MasTechnologyService masTechnologyService;
 	@Autowired
 	private MasJoblevelService masJoblevelService;
-	
+	@Autowired
+	private LoginService loginService;
+	@Autowired
+	private EmployeeService employeeService;
+
+	@Transactional
 	@RequestMapping(value = "/request", method = { RequestMethod.GET })
-	public String listRequest(){ 
+	public String listRequest(Model model){
+		
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		System.out.println("userName : " + userDetails.getUsername());
+		Login login = loginService.findByUserName(userDetails.getUsername());
+		Employee employee = login.getEmployee();
+		Hibernate.initialize(employee.getApplicant());
+
+		model.addAttribute("employee", employee);
+		
 		return "augRequest";
 	}
-	
 
 	/*-------------------- Search All Request ----Exception handler-------------*/
 	@RequestMapping(value = "/request/search", method = { RequestMethod.GET })
@@ -77,31 +99,12 @@ public class AugRequestController implements Serializable {
 	
 
 	/*-------------------- Save Request--------------------*/
+	@Transactional
 	@RequestMapping(value = "/request/save", method = RequestMethod.POST)
 	public @ResponseBody AugRequest saveRequest(@RequestBody AugRequest augRequest,HttpSession session,Model model){
 		
-//		MasJoblevel masJoblevel = masJoblevelService.find(augRequestDto.getJoblevelId());
-//		MasTechnology masTechnology = masTechnologyService.find(augRequestDto.getTechnologyId());
-		System.out.println("Id : " + augRequest.getId());
-		model.addAttribute("id", augRequest.getId());
-		
 		augRequestService.create(augRequest);
 		AugRequest augRe = augRequestService.findById(augRequest.getId());
-		
-/*		AugRequest augRequest = new AugRequest();
-		augRequest.setId(augRequestDto.getId());
-		augRequest.setRequestDate(augRequestDto.getRequestDate());
-		augRequest.setRequesterName(augRequestDto.getRequesterName());
-		augRequest.setStatus(augRequestDto.getStatus());
-		augRequest.setApprovalName(augRequestDto.getApprovalName());
-		augRequest.setApproveDate(augRequestDto.getApproveDate());
-		augRequest.setJoblevel(masJoblevel);
-		augRequest.setTechnology(masTechnology);
-		augRequest.setNumberApplicant(augRequestDto.getNumberApplicant());
-		augRequest.setSpecificSkill(augRequestDto.getSpecificSkill());
-		augRequest.setYearExperience(augRequestDto.getYearExperience());
-		augRequestService.create(augRequest);*/
-
 		
 		return augRe;
 	}
@@ -117,9 +120,7 @@ public class AugRequestController implements Serializable {
 		
 		augRequest.setId(augRequestDto.getId());
 		augRequest.setRequestDate(augRequestDto.getRequestDate());
-		augRequest.setRequesterName(augRequestDto.getRequesterName());
 		augRequest.setStatus(augRequestDto.getStatus());
-		augRequest.setApprovalName(augRequestDto.getApprovalName());
 		augRequest.setApproveDate(augRequestDto.getApproveDate());
 		augRequest.setJoblevel(masJoblevel);
 		augRequest.setTechnology(masTechnology);

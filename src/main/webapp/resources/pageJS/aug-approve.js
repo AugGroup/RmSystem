@@ -99,11 +99,14 @@
 /*------------------- Approve Function------------------- */
 		function approve(button) {
 			var id = $(button).data("id");
-			var status = $('#inputStatus').val();
+			var status = $('#inputStatus option:selected').val();
 			var index = dtRequest.row(button.closest("tr")).index();
+			var approveId = $('#approveId').val();
 			var json = {
 					'id': id,
-					'status': status
+					'status': status,
+					'approverId': approveId,
+					'approveDate': moment(new Date()).format('DD-MM-YYYY')
 					};
 			
 			$.ajax({
@@ -112,7 +115,7 @@
 				url: 'approve/update/' + id,
 				data: JSON.stringify(json),
 				success: function (data) {
-					//console.log(data.status);
+					
 					var dt = dtRequest.data();
 					dt.id = data.id;
 					dt.requesterName = data.requesterName;
@@ -121,8 +124,12 @@
 					dt.masTechnologyName = data.masTechnologyName;
 					dt.numberApplicant = data.numberApplicant;
 					dt.status = data.status;
-					dtRequest.row(index).data(dt).draw();
+					
 					$("#approveModal").modal('hide');
+					
+					setNotAllowed();
+					
+					dtRequest.ajax.reload();
 					
 					new PNotify({
 				        title: pnotifySuccess,
@@ -141,6 +148,11 @@
 				});
 			}
 		
+        //set default date
+        $("#addRequestModal").on('shown.bs.modal', function() {
+        	$("#inputApproveDate").val(moment(new Date()).format('DD-MM-YYYY'));
+        });
+        
 		function setNotAllowed(data){
 			$(".btn_approve").each(function(i,j){
 				

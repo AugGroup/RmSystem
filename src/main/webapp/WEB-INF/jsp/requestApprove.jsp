@@ -64,6 +64,8 @@
 					<div class="form-group">
 						<input type="hidden" id="jobLevelId" name="jobLevelId">
 						<input type="hidden" id="technologyId" name="technologyId">
+						<input type="hidden" id="approveId" name="approveId" value="${ employee.id }">
+						<input type="hidden" id="approveName" name="approveName" value="${ employee.applicant.firstNameEN }">
 					</div>
 					<div class="form-group">
 						<label for="inputStatus"><spring:message code="request.as" /></label>
@@ -130,8 +132,6 @@
 			</div>
 		</div>
 	</div>
-
-
 
 
 </div>
