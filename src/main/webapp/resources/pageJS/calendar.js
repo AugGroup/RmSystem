@@ -280,7 +280,7 @@ function setApplicantNameList(){//set Applicant
 			$penndingTestNameListSm.empty();
 			$penndingTestNameListMd.empty();
 			$.each(data, function(i, item) {
-			    var getName = data[i].firstNameEN +" "+ data[i].lastNameEN +" ( " + data[i].technologyStr + " " + data[i].joblevelStr + "  )";
+			    var getName = data[i].firstNameEN +" "+ data[i].lastNameEN +" ( " + (data[i].technologyStr == '-' ? '' : data[i].technologyStr) + " " + data[i].joblevelStr + "  )";
 			    var $div = "<div id='"+data[i].id+"' role='button' "+
 			    			"class='list-group-item applicant-list-item' >"+getName+"</div>";
 			    $penndingTestNameListSm.append($div);
@@ -301,7 +301,9 @@ function setApplicantNameList(){//set Applicant
 			$penndingApproveNameListSm.empty();
 			$penndingApproveNameListMd.empty();
 			$.each(data, function(i, item) {
-			    var getName = data[i].firstNameEN +" "+ data[i].lastNameEN +" ( " + data[i].technologyStr + " " + data[i].joblevelStr + "  )";
+				
+				
+			    var getName = data[i].firstNameEN +" "+ data[i].lastNameEN +" ( " + (data[i].technologyStr == '-' ? '' : data[i].technologyStr) + " " + data[i].joblevelStr + "  )";
 			    var $div = "<div id='"+data[i].id+"' role='button' "+
 			    			"class='list-group-item applicant-list-item' >"+getName+"</div>";
 			    $penndingApproveNameListSm.append($div);
@@ -420,7 +422,7 @@ function renderCalendar(){
 				}else{
 					//if current view is date(and choose time range) when click on it insert modal should show
 					//alert(start.format('YYYY-MM-D-HH-mm') +" \n "+ moment().format('YYYY-MM-D-HH-mm'));
-					if(start.format('YYYY-MM-D-HH-mm') < moment().format('YYYY-MM-D-HH-mm')){
+					if(start.format('YYYY-MM-DD-HH-mm') < moment().format('YYYY-MM-DD-HH-mm')){
 						alertify.alert(cantInsPassTime);
 					}else{
 						$validform.resetForm();
@@ -440,7 +442,7 @@ function renderCalendar(){
 		eventDrop: function(event, delta, revertFunc) {
 //			console.log(delta);
 			//alert("event.start : "+event.start.format("YYYY-MM-D-HH-mm")+"\n moment() : "+moment().format("YYYY-MM-D-HH-mm"));
-			if(event.start.format("YYYY-MM-D-HH-mm") < moment().format("YYYY-MM-D-HH-mm")){
+			if(event.start.format("YYYY-MM-DD-HH-mm") < moment().format("YYYY-MM-DD-HH-mm")){
 				alertify.alert(movePassTime);
 				revertFunc();
 			}else{
