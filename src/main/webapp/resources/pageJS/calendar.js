@@ -176,16 +176,23 @@ function removeNotification(parent, appointment) {
 //----------email---------
 
 function updateAppointmentDate(eventToUpdate, revertParam){
-	var updatedata = {id : eventToUpdate.id, start : eventToUpdate.start.tz("Asia/Bangkok").format("YYYY-MM-DD HH:mm:ss"), 
-			end : eventToUpdate.end.tz("Asia/Bangkok").format("YYYY-MM-DD HH:mm:ss"), mailStatus : eventToUpdate.mailStatus};
+	
+	var updatedata = {
+			id : eventToUpdate.id, 
+			start : eventToUpdate.start.format("YYYY-MM-DD HH:mm:ss"), 
+			end : eventToUpdate.end.format("YYYY-MM-DD HH:mm:ss"), 
+			mailStatus : eventToUpdate.mailStatus};
 	alertify.set({ 	buttonReverse: true,
 					labels: {
 					    ok     : yes,
 					    cancel : no
 					}
 	});
+	
 	alertify.confirm(confirmEditAppointmentDate+" "+eventToUpdate.title, function (e) {
 	    if (e) {
+	    	updatedata.start = updatedata.start.tz("Asia/Bangkok");
+	    	updatedata.end = updatedata.end.tz("Asia/Bangkok");
 	    	$.ajax({
 	    		url:"calendar/update",
 	    		type: "POST",
@@ -422,7 +429,7 @@ function renderCalendar(){
 				}
 			}
 		},
-		editable: true,//can't drage to move event to editing
+		editable: true,//can't drag to move event to editing
 		eventDrop: function(event, delta, revertFunc) {
 			updateAppointmentDate(event, revertFunc);
 	    },
@@ -479,7 +486,16 @@ function renderCalendar(){
 		ignoreTimezone:false,
 		eventClick: function(event, element) {
 			/*console.log(event);*/
+			$validform2.resetForm();
+			$("#myModalLabel").text(detailLabel);
+			$('#editBtn').show();
+			$('#deleteBtn').show();
+			$('#saveBtn').hide();
 	        $("#detailModal").modal("show");
+	        $('#detail_topic').show();
+			$('#detail_desciption').show();
+	        $('#appointmentTopicEdt').hide();
+			$('#appoint_detailEdt').hide();
 			id = event.id;
 			$.ajax({
 				url : "calendar/getAppointment/"+id,
@@ -685,28 +701,38 @@ $( function(){
 			}
 		})//endonclick 'insBtn'
 		
-		$("#detailModal").on("click","#editBtn", function () {	
+		$("#detailModal").on("click",('#editBtn'),function () {	
 
 			$.ajax({
 				url : "calendar/getAppointment/"+id,
 				type : "GET",
 				success : function(data){
 					$validform2.resetForm();
+					$("#myModalLabel").text(editLabel);
+					$('#detail_topic').hide();
+					$('#detail_desciption').hide();
+					$('#appointmentTopicEdt').show();
+					$('#appoint_detailEdt').show();
+					$('#saveBtn').show();
+					$('#editBtn').hide();
+					$('#deleteBtn').hide();
 					$('#appointment_show_start').val(moment(data.start).format("DD/MM/YYYY HH:mm"));
 					$('#appointment_show_end').val(moment(data.end).format("DD/MM/YYYY HH:mm"));
 					$('#applicantNameEdt').val(data.applicantName);
 					$('#applicantStatus').val(data.trackingStatus);
 					$('#appointmentTopicEdt').val(data.topic);
 					$('#appoint_detailEdt').val(data.detail);
-					$("#editModal").modal("show");
+					
 				},
 				error : function (error) {
 					console.log(error)
 				}
 			});//end ajax */
+			
 		 }) //end onclick
 		
-		 $("#confirmEditModal").on("click", "#confirmEditModal", function(){
+		 $("#detailModal").on("click", "#saveBtn", function(){
+			 if( $('#formEdit').valid() ) {
 			 var updatedata = {id : id, topic : $("#appointmentTopicEdt").val() , detail : $("#appoint_detailEdt").val()}; 
 			 $.ajax({
 				url:"calendar/updateTopicAndDetail",
@@ -717,10 +743,8 @@ $( function(){
 				success: function(result){
 					$("#detail_topic").text(result.topic);
 					$("#detail_desciption").text(result.detail);
-					//$("#formfield").trigger("reset");
+					$('#detailModal').modal("hide");
 					
-					$('#confirmEditModal').modal("hide");
-					$('#editModal').modal("hide");
 					new PNotify({
 						title: pnotifySuccess,
 					    text: result.title +"<br>" + pnotifyEdit,
@@ -735,16 +759,8 @@ $( function(){
 			    }  
 			
 			 });
-		   
+			 }  
 		 })
-		 
-		 
-		$("#editModal").on("click", "#confirmEditBtn", function(){
-			
-			if( $('#formEdit').valid() ) {
-			$('#confirmEditModal').modal("show");
-			}
-		});//end edit modal
 		
 });//end doc ready
 

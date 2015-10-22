@@ -17,6 +17,15 @@
 	});
 </script>
 
+<style>
+.detailModal{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+</style>
+
 <div id="calendar-container" class="container-fluid">
 	<div><h1 align="center"><spring:message code="request.calendar"/></h1></div>
 	<div class="row">
@@ -207,118 +216,63 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel"><spring:message code="appointment.detail.label" /></h4>
+	        <h4 class="modal-title" id="myModalLabel"></h4>
 	      </div>
 	      <div class="modal-body">
-	        	<table class="table">
-	        		<tr>
-	        			<td><h4><spring:message code="appointment.applicant.name" /></h4></td>
-	        			<td><h4 id="detail_app_name"></h4></td>
-	        		</tr>
-	        		<tr>
-	        			<td><h4><spring:message code="appointment.start" /></h4></td>
-	        			<td colspan="2"><h4 id="start_date"></h4></td>
-	        		</tr>
-	        		<tr>
-	        			<td><h4><spring:message code="appointment.end" /></h4></td>
-	        			<td colspan="2"><h4 id="end_date"></h4></td>
-	        		</tr>
-	        		<tr>
-	        			<td><h4><spring:message code="appointment.topic" /></h4></td>
-	        			<td colspan="2"><h4 id="detail_topic"></h4></td>
-	        		</tr>
-	        		<tr>
-	        			<td colspan="1"><h4 ><spring:message code="appointment.detail" /></h4></td>
-	        			<td colspan="2"><h4 id="detail_desciption"></h4></td>
-	        		</tr>
-	        		<tr>
-	        			<td colspan="1"><h4 ><spring:message code="appointment.appointBy" /></h4></td>
-	        			<td colspan="2"><h4 id="appoint_by"></h4></td>
-	        		</tr>
-	        	</table>
-	        
-	        <div class="text-right">
-		        <button id=editBtn type="button" class="btn btn-warning" data-dissmiss="modal"><span class="glyphicon glyphicon-pencil"></span><spring:message code="button.edit" /></button>
-		        <button id="deleteBtn" type="button" class="btn btn-danger" data-dissmiss="modal"><span class="glyphicon glyphicon-remove-sign"></span><spring:message code="button.delete" /></button><br><br>
+	        <div class="container-fluid"><form id="formEdit">
+	        <div class="row">
+	        	<div class="col-sm-1"></div>
+				<div class="col-sm-3"><h4><spring:message code="appointment.applicant.name" /></h4></div> 
+				<div class="col-sm-7"><h4 id="detail_app_name"></h4></div>   
+				<div class="col-sm-1"></div> 
 	        </div>
+	        <hr class="detailModal">
+	        <div class="row">
+	        	<div class="col-sm-1"></div>
+				<div class="col-sm-3"><h4><spring:message code="appointment.start" /></h4></div> 
+				<div class="col-sm-7"><h4 id="start_date"></h4></div>   
+				<div class="col-sm-1"></div> 
+	        </div>
+	        <hr class="detailModal">
+	        <div class="row">
+	        	<div class="col-sm-1"></div>
+				<div class="col-sm-3"><h4><spring:message code="appointment.end" /></h4></div> 
+				<div class="col-sm-7"><h4 id="end_date"></h4></div>   
+				<div class="col-sm-1"></div> 
+	        </div>
+	        <hr class="detailModal">
+	        <div class="row">
+	        	<div class="col-sm-1"></div>
+				<div class="col-sm-3"><h4><spring:message code="appointment.topic" /></h4></div> 
+				<div class="col-sm-7"><h4 id="detail_topic"></h4><input id="appointmentTopicEdt" class="form-control" placeholder="<spring:message code="appointment.topic" />" name="appointmentTopicEdt"></input></div>   
+				<div class="col-sm-1"></div> 
+	        </div>
+	        <hr class="detailModal">
+	        <div class="row">
+	        	<div class="col-sm-1"></div>
+				<div class="col-sm-3"><h4><spring:message code="appointment.detail" /></h4></div> 
+				<div class="col-sm-7"><h4 id="detail_desciption"></h4><textarea id="appoint_detailEdt" class="form-control" rows="4" placeholder="<spring:message code="appointment.detail" />" name ="appoint_detailEdt"></textarea></div>   
+				<div class="col-sm-1"></div> 
+	        </div>
+	        <hr class="detailModal">
+	        <div class="row">
+	        	<div class="col-sm-1"></div>
+				<div class="col-sm-3"><h4><spring:message code="appointment.appointBy" /></h4></div> 
+				<div class="col-sm-7"><h4 id="appoint_by"></h4></div>   
+				<div class="col-sm-1"></div> 
+	        </div>
+	      </form>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="button.cancel" /></button>
-	      </div>
+	       <button id=saveBtn type="button" class="btn btn-warning" data-dissmiss="modal"><span class="glyphicon glyphicon-save"></span> <spring:message code="edit.button.save"/></button>
+		        <button id=editBtn type="button" class="btn btn-warning" data-dissmiss="modal"><span class="glyphicon glyphicon-pencil"></span><spring:message code="button.edit" /></button>
+		        <button id="deleteBtn" type="button" class="btn btn-danger" data-dissmiss="modal"><span class="glyphicon glyphicon-remove-sign"></span><spring:message code="button.delete" /></button>
+	      </div> 
 	    </div>
 	  </div>
 	</div>
 	
-	<!-- Edit Modal -->
-	<div class="modal fade" id="editModal">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	    
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title"><spring:message code="appointment.edit.label" /></h4>
-	      </div>
-	     
-	      <div class="modal-body">
-	        	<div class="container-fluid"><form id="formEdit">
-	        	 <input type="hidden" id="appointmentId" value="">
-					<div class="row">
-						<div class="col-md-6">
-								<label for="applicantNameEdt"><spring:message code="appointment.applicant.name" /></label> 
-								<input id="applicantNameEdt" class="form-control" placeholder="Applicant Name" readonly></input>
-
-						</div>
-						<div class="col-md-6">
-							<label for="applicantStatus"><spring:message code="appointment.applicant.status" /></label> 
-							<input id="applicantStatus" class="form-control" placeholder="Applicant Status" readonly></input>
-						</div>
-						
-					</div>
-					<div class="row">
-						 <div class='col-md-6'>
-				            <div class="form-group">
-				            <label for="appointment_show_start"><spring:message code="appointment.start" /></label>
-				                <div id="startPicker" class='input-group' >
-			                    	<input type='text' class="form-control" id='appointment_show_start' readonly/>
-			                     	<span class="input-group-addon glyphicon glyphicon-calendar"></span>
-				                </div>
-				            </div>
-       					 </div>
-       					  <div class='col-md-6'>
-				            <div class="form-group">
-				             <label for="appointment_show_end"><spring:message code="appointment.end" /></label>
-				                <div id="endPicker" class='input-group' >
-				                    <input type='text' class="form-control" id='appointment_show_end' readonly/>
-				                    <span class="input-group-addon glyphicon glyphicon-calendar"></span>
-				                </div>
-				            </div>
-       					 </div>
-					</div>
-					<hr/>
-        			<div class="row">
-	        			<div class="col-md-6">
-	        				<label for="appointmentTopicEdt"><spring:message code="appointment.topic" /></label>
-	        				<input id="appointmentTopicEdt" class="form-control" placeholder="<spring:message code="appointment.topic" />" name="appointmentTopicEdt"></input>
-	        			</div>
-					</div>
-					<br>
-					<div class="row">	
-	        			<div class="col-md-12">
-	        				<label for="appoint_detailEdt"><spring:message code="appointment.detail" /></label>
-	        				<textarea id="appoint_detailEdt" class="form-control" rows="4" placeholder="<spring:message code="appointment.detail" />" name ="appoint_detailEdt"></textarea>
-	        			</div>
-        			</div></form>
-	        		</div>
-	      </div><!-- /.modal-body -->
-	      
-	      <div class="modal-footer">
-	        <button id="confirmEditBtn" type="button" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span><spring:message code="button.save" /></button>
-	        <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="button.cancel" /></button>
-	      </div>
-	      
-	    </div><!-- /.modal-content -->
-	  </div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
+	
 	
 	<!-- Delete Modal -->
 	<div class="modal fade" id="delModal">
@@ -389,6 +343,7 @@
 	</div>
 	</div>
 </div>
+</div>
 
 <script type="text/javascript">
 	var contextPath = "${pageContext.request.contextPath}";
@@ -408,6 +363,8 @@
 	var appointmentEmailNosent = "<spring:message code='appointment.email.status.nosend' />";
 	var appointmentEmailSuccess = "<spring:message code='appointment.email.status.success' />";
 	var appointmentEmailNoUpdate = "<spring:message code='appointment.email.status.noupdate' />";
+	var detailLabel = "<spring:message code="appointment.detail.label" />";
+	var editLabel = "<spring:message code="appointment.edit.label" />";
 	var pnotifySuccess="<spring:message code="pnotify.success"/>";
 	var pnotifyError="<spring:message code="pnotify.error"/>";
 	var passDate = "<spring:message code='appointment.pass.date' />";
