@@ -361,13 +361,12 @@
 	var appointmentEmailNosent = "<spring:message code='appointment.email.status.nosend' />";
 	var appointmentEmailSuccess = "<spring:message code='appointment.email.status.success' />";
 	var appointmentEmailNoUpdate = "<spring:message code='appointment.email.status.noupdate' />";
-	var detailLabel = "<spring:message code="appointment.detail.label" />";
-	var editLabel = "<spring:message code="appointment.edit.label" />";
-	var pnotifySuccess="<spring:message code="pnotify.success"/>";
-	var pnotifyError="<spring:message code="pnotify.error"/>";
-	var passDate = "<spring:message code='appointment.pass.date' />";
-
-	
+	var detailLabel = "<spring:message code='appointment.detail.label' />";
+	var editLabel = "<spring:message code='appointment.edit.label' />";
+	var pnotifySuccess="<spring:message code='pnotify.success'/>";
+	var pnotifyError="<spring:message code='pnotify.error'/>";
+	var movePassTime = "<spring:message code='appointment.move.pass.time' />";
+	var cantInsPassTime = "<spring:message code='appointment.insert.pass.time' />";
 </script>
 
 <!-- Validate -->

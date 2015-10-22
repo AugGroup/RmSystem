@@ -177,11 +177,11 @@ function removeNotification(parent, appointment) {
 
 function updateAppointmentDate(eventToUpdate, revertParam){
 	
-	var updatedata = {
-			id : eventToUpdate.id, 
-			start : eventToUpdate.start.format("YYYY-MM-DD HH:mm:ss"), 
-			end : eventToUpdate.end.format("YYYY-MM-DD HH:mm:ss"), 
-			mailStatus : eventToUpdate.mailStatus};
+//	var updatedata = {
+//			id : eventToUpdate.id, 
+//			start : eventToUpdate.start.format("YYYY-MM-DD HH:mm:ss"), 
+//			end : eventToUpdate.end.format("YYYY-MM-DD HH:mm:ss"), 
+//			mailStatus : eventToUpdate.mailStatus};
 	alertify.set({ 	buttonReverse: true,
 					labels: {
 					    ok     : yes,
@@ -191,8 +191,12 @@ function updateAppointmentDate(eventToUpdate, revertParam){
 	
 	alertify.confirm(confirmEditAppointmentDate+" "+eventToUpdate.title, function (e) {
 	    if (e) {
-	    	updatedata.start = updatedata.start.tz("Asia/Bangkok");
-	    	updatedata.end = updatedata.end.tz("Asia/Bangkok");
+	    	var updatedata = {
+	    			id : eventToUpdate.id, 
+	    			start : eventToUpdate.start.tz("Asia/Bangkok").format("YYYY-MM-DD HH:mm:ss"), 
+	    			end : eventToUpdate.end.tz("Asia/Bangkok").format("YYYY-MM-DD HH:mm:ss"), 
+	    			mailStatus : eventToUpdate.mailStatus
+	    		   };
 	    	$.ajax({
 	    		url:"calendar/update",
 	    		type: "POST",
@@ -408,30 +412,40 @@ function renderCalendar(){
 		selectable: true,
 		buttonIcons: true,
 		select: function(start, end) {
-			if(start < moment(moment().format('LL'))){
-				alertify.alert(passDate);
-			}else{
+			
 				var view = $calendar.fullCalendar('getView');//get view object
 				if(view.name == "month"){ //if event that selected is month then show agendaDay view 
-					$calendar.fullCalendar('changeView', 'agendaDay');
-					$calendar.fullCalendar( 'gotoDate', start );
+						$calendar.fullCalendar('changeView', 'agendaDay');
+						$calendar.fullCalendar( 'gotoDate', start );
 				}else{
 					//if current view is date(and choose time range) when click on it insert modal should show
-					$validform.resetForm();
-					$('#formInsert').trigger('reset');
-					setApplicant("all"); 
-					$("#insStartDate").text(moment(start).format("HH:mm MMMM D, YYYY"));
-					$("#insEndDate").text(moment(end).format("HH:mm MMMM D, YYYY"));
-					$('#insModal').modal('show');
-					insStart = start;
-					insEnd = end;
-					$calendar.fullCalendar('unselect');
+					//alert(start.format('YYYY-MM-D-HH-mm') +" \n "+ moment().format('YYYY-MM-D-HH-mm'));
+					if(start.format('YYYY-MM-D-HH-mm') < moment().format('YYYY-MM-D-HH-mm')){
+						alertify.alert(cantInsPassTime);
+					}else{
+						$validform.resetForm();
+						$('#formInsert').trigger('reset');
+						setApplicant("all"); 
+						$("#insStartDate").text(moment(start).format("HH:mm MMMM D, YYYY"));
+						$("#insEndDate").text(moment(end).format("HH:mm MMMM D, YYYY"));
+						$('#insModal').modal('show');
+						insStart = start;
+						insEnd = end;
+						$calendar.fullCalendar('unselect');
+					}
 				}
-			}
+			//}
 		},
 		editable: true,//can't drag to move event to editing
 		eventDrop: function(event, delta, revertFunc) {
-			updateAppointmentDate(event, revertFunc);
+//			console.log(delta);
+			//alert("event.start : "+event.start.format("YYYY-MM-D-HH-mm")+"\n moment() : "+moment().format("YYYY-MM-D-HH-mm"));
+			if(event.start.format("YYYY-MM-D-HH-mm") < moment().format("YYYY-MM-D-HH-mm")){
+				alertify.alert(movePassTime);
+				revertFunc();
+			}else{
+				updateAppointmentDate(event, revertFunc);
+			}
 	    },
 	    eventResize: function(event, delta, revertFunc) {
 	    	updateAppointmentDate(event, revertFunc);
