@@ -70,8 +70,6 @@
 					<div class="form-group">
 						<label for="inputStatus"><spring:message code="request.as" /></label>
 						<select name="inputStatus" id='inputStatus' class="form-control">
-							<option value='New Request' selected='selected'><spring:message
-									code="request.nr" /></option>
 							<option value='Approve'><spring:message
 									code="edit.approve" /></option>
 							<option value='Not Approve'><spring:message

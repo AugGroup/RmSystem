@@ -18,18 +18,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.aug.hrdb.dto.AugRequestDto;
-import com.aug.hrdb.entities.Applicant;
 import com.aug.hrdb.entities.AugRequest;
 import com.aug.hrdb.entities.Employee;
 import com.aug.hrdb.entities.Login;
 import com.aug.hrdb.entities.MasJoblevel;
 import com.aug.hrdb.entities.MasTechnology;
 import com.aug.hrdb.services.AugRequestService;
-import com.aug.hrdb.services.EmployeeService;
 import com.aug.hrdb.services.LoginService;
 import com.aug.hrdb.services.MasJoblevelService;
 import com.aug.hrdb.services.MasTechnologyService;
@@ -46,15 +43,12 @@ public class AugRequestController implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Autowired 
 	private AugRequestService augRequestService;
-//	@Autowired private PositionService positionService;
 	@Autowired
 	private MasTechnologyService masTechnologyService;
 	@Autowired
 	private MasJoblevelService masJoblevelService;
 	@Autowired
 	private LoginService loginService;
-	@Autowired
-	private EmployeeService employeeService;
 
 	@Transactional
 	@RequestMapping(value = "/request", method = { RequestMethod.GET })
@@ -146,13 +140,6 @@ public class AugRequestController implements Serializable {
 		augRequestService.delete(augRequest);
 		return augRequestService.findById(id);
 	}
-
-	/*-------------------- Position List--------------------*/
-//	@ModelAttribute("positionRequest")
-//	public List<Position> getPosition() {
-//		return positionService.findAll();
-//
-//	}
 	
 	/*-------------------- Test Exception Handle 'SQLGrammarException'--------------------*/ //NameNativeQuery is wrong
 /*	@RequestMapping(value = "/request/search/testSQLGrammarException/{id}", method = { RequestMethod.POST, RequestMethod.GET })
@@ -161,14 +148,6 @@ public class AugRequestController implements Serializable {
 		AugRequestDTO augRequest = augRequestService.findAugRequestByIdTest(id);
 		return augRequest;
 	}*/
-	
-	
-	/*if(date!=null){
-		split + call search
-	}else
-		find all
-		
-*/
 	
 	@ModelAttribute("jobLevels")
 	@Transactional

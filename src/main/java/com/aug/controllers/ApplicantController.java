@@ -11,12 +11,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import javax.persistence.criteria.Root;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.FilenameUtils;
 import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,12 +39,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
-// import services.MasDegreeTypeServiceTest;
-
-
-
-
 
 import com.aug.hrdb.dto.AbilityDto;
 import com.aug.hrdb.dto.AddressDto;
@@ -107,7 +99,6 @@ import com.aug.services.UploadService;
 import net.sf.jasperreports.engine.JRParameter;
 
 @Controller
-// @SessionAttributes("applicant")
 public class ApplicantController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -115,12 +106,6 @@ public class ApplicantController implements Serializable {
 
 	@Autowired
 	private ApplicantService applicantService;
-//	@Autowired
-//	private PositionService positionService;
-/*	@Autowired
-	private ReportService reportService;*/
-//	@Autowired
-//	private DepartmentService departmentService;
 	@Autowired
 	private UploadService uploadService;
 	@Autowired
@@ -137,8 +122,6 @@ public class ApplicantController implements Serializable {
 	private CertificationService certificationService;
 	@Autowired
 	private FamilyService familyService;
-	@Autowired
-	private PositionEditor positionEditor;
 	@Autowired
 	private DownloadService downloadService;
 	@Autowired
@@ -188,7 +171,6 @@ public class ApplicantController implements Serializable {
 				Locale.ENGLISH);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(
 				dateFormat, true));
-//		 binder.registerCustomEditor(Position.class,positionEditor);
 		
 	}
 
@@ -266,8 +248,6 @@ public class ApplicantController implements Serializable {
 			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			System.out.println("userName : " + userDetails.getUsername());
 			Login login = loginService.findByUserName(userDetails.getUsername());
-//			Employee employee = login.getEmployee();
-//			System.out.println("employee: " + employee.getNameEng());
 			System.out.println("LOCATIONAPPLICANT :: " + applicant.getMasLocation());
 			
 			EmployeeDto employeeDto = new EmployeeDto();
@@ -277,7 +257,6 @@ public class ApplicantController implements Serializable {
 			String str = employeeService.generateEmployeeCodeFixData(applicant.getMasLocation());
 			System.out.println("SSTRING :: " + str);
 			employee.setEmployeeCode(str);
-//			employee.setEmployeeCode(employeeService.generateEmployeeCodeFixData(applicantDto.getMasLocation()));
 			employee.setStatusemp("Employee");
 			MasDivision masDivision = masDivisionService.findById(5);
 			MasLocation masLocation = masLocationService.find(1);
@@ -778,7 +757,6 @@ public class ApplicantController implements Serializable {
 	public String updateInfo(@ModelAttribute ApplicantDto applicantDto,
 			@PathVariable Integer id, Model  model) {
 		applicantDto = applicantService.findByIdApplicant(id);
-		String tag = "infomation";
 		model.addAttribute("tag","information");
 		applicantDto.setTechnology(masTechnologyService.find(applicantDto.getTechnologyId()));
 		applicantDto.setJoblevel(masJoblevelService.find(applicantDto.getJoblevelId()));
@@ -893,16 +871,7 @@ public class ApplicantController implements Serializable {
 	@RequestMapping(value = "/findByIdFamily/{id}", method = { RequestMethod.POST })
 	public @ResponseBody List<FamilyDto> findByIdFamily(@PathVariable Integer id) {
 		return familyService.findFamilyById(id);
-//		for(FamilyDTO fa : list){
-//			System.out.println(fa.getName());
-//			System.out.println(fa.getRelation());
-//		}
-		 
-//		return new Object() {
-//			public List<FamilyDTO> getData() {
-//				return list;
-//			}
-//		};
+		
 	}
 	
 	@RequestMapping(value = "/findByIdEducation/{id}", method = { RequestMethod.POST })
@@ -967,19 +936,7 @@ public class ApplicantController implements Serializable {
 	@RequestMapping(value = "/findByIdExperience/{id}", method = { RequestMethod.POST })
 	public @ResponseBody Object findByIdExperience(@PathVariable Integer id) {
 		final List<ExperienceDto> list= experienceService.findExperienceById(id);
-		 
-//			for(ExperienceDto fa : list){
-//				System.out.println(fa.getAddress());
-//				System.out.println(fa.getDescription());
-//				System.out.println(fa.getEmployerName());
-//				System.out.println(fa.getPosition());
-//				System.out.println(fa.getPositionOfEmployer());
-//				System.out.println(fa.getReason());
-//				System.out.println(fa.getSalary());
-//				System.out.println(fa.getSupervisor());
-//				System.out.println(fa.getTypeOfBusiness());
-//			}
-		 
+ 
 		return new Object() {
 			public List<ExperienceDto> getData() {
 				return list;
@@ -1171,20 +1128,9 @@ public class ApplicantController implements Serializable {
 		experienceService.deleteById(id);
 		return "success";
 	}
+	
 //	------------------------------------------------
-//	@ModelAttribute("departments")
-//	@Transactional
-//	public List<Department> departmentList() {
-//		System.out.println(departmentService.findAll());
-//		return departmentService.findAll();
-//	}
-//
-//	@ModelAttribute("positions")
-//	@Transactional
-//	public List<Position> positionList() {
-//		//System.out.println(positionService.findAll());
-//		return positionService.findAll();
-//	}
+
 	@ModelAttribute("applicant")
 	public ApplicantDto applicant() {
 		return new ApplicantDto();
@@ -1223,10 +1169,6 @@ public class ApplicantController implements Serializable {
 	@ModelAttribute("degreeTypes")
 	@Transactional
 	public List<MasDegreetype> degreeTypesList(){
-/*		Model model = null;
-		EducationDto educationDto = new EducationDto();
-		Integer ed = educationDto.getMasdegreetypeId();
-		model.addAttribute("masdegreetypeId", ed);*/
 		return masDegreeTypeService.findAll();
 	}
 	
