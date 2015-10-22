@@ -212,67 +212,66 @@
 	
 	<!-- Detail Modal -->
 	<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel"></h4>
-	      </div>
-	      <div class="modal-body">
-	        <div class="container-fluid"><form id="formEdit">
-	        <div class="row">
-	        	<div class="col-sm-1"></div>
-				<div class="col-sm-3"><h4><spring:message code="appointment.applicant.name" /></h4></div> 
-				<div class="col-sm-7"><h4 id="detail_app_name"></h4></div>   
-				<div class="col-sm-1"></div> 
-	        </div>
-	        <hr class="detailModal">
-	        <div class="row">
-	        	<div class="col-sm-1"></div>
-				<div class="col-sm-3"><h4><spring:message code="appointment.start" /></h4></div> 
-				<div class="col-sm-7"><h4 id="start_date"></h4></div>   
-				<div class="col-sm-1"></div> 
-	        </div>
-	        <hr class="detailModal">
-	        <div class="row">
-	        	<div class="col-sm-1"></div>
-				<div class="col-sm-3"><h4><spring:message code="appointment.end" /></h4></div> 
-				<div class="col-sm-7"><h4 id="end_date"></h4></div>   
-				<div class="col-sm-1"></div> 
-	        </div>
-	        <hr class="detailModal">
-	        <div class="row">
-	        	<div class="col-sm-1"></div>
-				<div class="col-sm-3"><h4><spring:message code="appointment.topic" /></h4></div> 
-				<div class="col-sm-7"><h4 id="detail_topic"></h4><input id="appointmentTopicEdt" class="form-control" placeholder="<spring:message code="appointment.topic" />" name="appointmentTopicEdt"></input></div>   
-				<div class="col-sm-1"></div> 
-	        </div>
-	        <hr class="detailModal">
-	        <div class="row">
-	        	<div class="col-sm-1"></div>
-				<div class="col-sm-3"><h4><spring:message code="appointment.detail" /></h4></div> 
-				<div class="col-sm-7"><h4 id="detail_desciption"></h4><textarea id="appoint_detailEdt" class="form-control" rows="4" placeholder="<spring:message code="appointment.detail" />" name ="appoint_detailEdt"></textarea></div>   
-				<div class="col-sm-1"></div> 
-	        </div>
-	        <hr class="detailModal">
-	        <div class="row">
-	        	<div class="col-sm-1"></div>
-				<div class="col-sm-3"><h4><spring:message code="appointment.appointBy" /></h4></div> 
-				<div class="col-sm-7"><h4 id="appoint_by"></h4></div>   
-				<div class="col-sm-1"></div> 
-	        </div>
-	      </form>
-	      </div>
-	      <div class="modal-footer">
-	       <button id=saveBtn type="button" class="btn btn-warning" data-dissmiss="modal"><span class="glyphicon glyphicon-save"></span> <spring:message code="edit.button.save"/></button>
-		        <button id=editBtn type="button" class="btn btn-warning" data-dissmiss="modal"><span class="glyphicon glyphicon-pencil"></span><spring:message code="button.edit" /></button>
-		        <button id="deleteBtn" type="button" class="btn btn-danger" data-dissmiss="modal"><span class="glyphicon glyphicon-remove-sign"></span><spring:message code="button.delete" /></button>
-	      </div> 
-	    </div>
-	  </div>
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel"></h4>
+		      </div>
+		      <div class="modal-body">
+		        <div class="container-fluid"><form id="formEdit">
+		        <div class="row">
+		        	<div class="col-sm-1"></div>
+					<div class="col-sm-3"><h4><spring:message code="appointment.applicant.name" /></h4></div> 
+					<div class="col-sm-7"><h4 id="detail_app_name"></h4></div>   
+					<div class="col-sm-1"></div> 
+		        </div>
+		        <hr class="detailModal">
+		        <div class="row">
+		        	<div class="col-sm-1"></div>
+					<div class="col-sm-3"><h4><spring:message code="appointment.start" /></h4></div> 
+					<div class="col-sm-7"><h4 id="start_date"></h4></div>   
+					<div class="col-sm-1"></div> 
+		        </div>
+		        <hr class="detailModal">
+		        <div class="row">
+		        	<div class="col-sm-1"></div>
+					<div class="col-sm-3"><h4><spring:message code="appointment.end" /></h4></div> 
+					<div class="col-sm-7"><h4 id="end_date"></h4></div>   
+					<div class="col-sm-1"></div> 
+		        </div>
+		        <hr class="detailModal">
+		        <div class="row">
+		        	<div class="col-sm-1"></div>
+					<div class="col-sm-3"><h4><spring:message code="appointment.topic" /></h4></div> 
+					<div class="col-sm-7"><h4 id="detail_topic"></h4><input id="appointmentTopicEdt" class="form-control" placeholder="<spring:message code="appointment.topic" />" name="appointmentTopicEdt"></input></div>   
+					<div class="col-sm-1"></div> 
+		        </div>
+		        <hr class="detailModal">
+		        <div class="row">
+		        	<div class="col-sm-1"></div>
+					<div class="col-sm-3"><h4><spring:message code="appointment.detail" /></h4></div> 
+					<div class="col-sm-7"><h4 id="detail_desciption"></h4><textarea id="appoint_detailEdt" class="form-control" rows="4" placeholder="<spring:message code="appointment.detail" />" name ="appoint_detailEdt"></textarea></div>   
+					<div class="col-sm-1"></div> 
+		        </div>
+		        <hr class="detailModal">
+		        <div class="row">
+		        	<div class="col-sm-1"></div>
+					<div class="col-sm-3"><h4><spring:message code="appointment.appointBy" /></h4></div> 
+					<div class="col-sm-7"><h4 id="appoint_by"></h4></div>   
+					<div class="col-sm-1"></div> 
+		        </div>
+		      </form>
+		      </div>
+		      <div class="modal-footer">
+		       <button id=saveBtn type="button" class="btn btn-warning" data-dissmiss="modal"><span class="glyphicon glyphicon-save"></span> <spring:message code="edit.button.save"/></button>
+			        <button id=editBtn type="button" class="btn btn-warning" data-dissmiss="modal"><span class="glyphicon glyphicon-pencil"></span><spring:message code="button.edit" /></button>
+			        <button id="deleteBtn" type="button" class="btn btn-danger" data-dissmiss="modal"><span class="glyphicon glyphicon-remove-sign"></span><spring:message code="button.delete" /></button>
+		      </div> 
+		    </div>
+		  </div>
+		</div>
 	</div>
-	
-	
 	
 	<!-- Delete Modal -->
 	<div class="modal fade" id="delModal">
@@ -340,7 +339,6 @@
 	      </div>
 	    </div>
 	  </div>
-	</div>
 	</div>
 </div>
 </div>
