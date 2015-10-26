@@ -67,9 +67,12 @@ var datatablei18n = "<c:url value='/static/resources/dt-i18n/${pageContext.respo
 							</div>
 							<div class="form-group">
 								<label for="gender"><spring:message
-										code="info.sex" /> </label> <input type="text" class="form-control"
-									id="gender" name="gender"
-									placeholder="<spring:message code="family.text.name"/>">
+										code="info.sex" /> </label> 
+								<select class="form-control" id="gender" name="gender">
+									<option value=""><spring:message code="info.sex.choose"/></option>
+									<option value="Male"><spring:message code="info.male"/></option>
+									<option value="Female"><spring:message code="info.female"/></option>
+								</select>
 							</div>
 <!-- 						</div> -->
 						<div class="form-group">

@@ -97,7 +97,7 @@ $(document).ready(function() {
 		var reading = $('input[name="reading"]:checked').val();
 		var understanding = $('input[name="understanding"]:checked').val();
 		var writing = $('input[name="writing"]:checked').val();
-		alert("lang"+languagesName);
+		//alert("lang"+languagesName);
 		if($("#languages option:selected").text()=='Other'){
 		var json = {
 				"applicant" : {"id" : id},
