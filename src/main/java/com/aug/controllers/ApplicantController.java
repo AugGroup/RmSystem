@@ -48,6 +48,7 @@ import com.aug.hrdb.dto.EducationDto;
 import com.aug.hrdb.dto.EmployeeDto;
 import com.aug.hrdb.dto.ExperienceDto;
 import com.aug.hrdb.dto.FamilyDto;
+import com.aug.hrdb.dto.JoblevelDto;
 import com.aug.hrdb.dto.LanguageDto;
 import com.aug.hrdb.dto.ReferenceDto;
 import com.aug.hrdb.dto.ReportApplicantDto;
@@ -161,6 +162,7 @@ public class ApplicantController implements Serializable {
 				.getAuthentication().getPrincipal();
 		String name = user.getUsername();
 		model.addAttribute("name", name);
+		
 		return "mainApplicant";
 	}
 
@@ -185,10 +187,12 @@ public class ApplicantController implements Serializable {
 	@RequestMapping(value = "/applicant/search", method = { RequestMethod.POST })
 	public @ResponseBody Object searchByJoblevel(
 			@RequestParam final String joblevelStr) throws Exception {
+		
 		List<ApplicantDto> data = applicantService.findByJoblevel(joblevelStr);
 		if (StringUtils.isEmpty(joblevelStr)) {
 			data = applicantService.findAllApplicant();
 		}
+		
 		final List<ApplicantDto> datas = data;
 		return new Object() {
 			public List<ApplicantDto> getData() {
@@ -484,7 +488,7 @@ public class ApplicantController implements Serializable {
 	//////////////////        SAVE METHOD        /////////////////////
 
 	@RequestMapping(value = "/saveInformations", method = { RequestMethod.POST })
-	public String saveInformations(@ModelAttribute ApplicantDto applicantDto,MultipartFile multipartFile)
+	public String saveInformations(@ModelAttribute ApplicantDto applicantDto,MultipartFile multipartFile,Model model)
 			throws ParseException {
 		
 		int year = Calendar.getInstance().get(Calendar.YEAR);
@@ -534,8 +538,9 @@ public class ApplicantController implements Serializable {
 //		model.addAttribute("name", name);
 //		model.addAttribute("id", applicantDto.getId());
 //		model.addAttribute("applicant", applicantDto);
-
-		return "redirect:/address/"+applicantDto.getId();
+		
+		
+		return "redirect:/applicant";
 	}
 
 	@RequestMapping(value = "/address/{id}", method = { RequestMethod.POST })
@@ -656,9 +661,12 @@ public class ApplicantController implements Serializable {
 	
 
 	@RequestMapping(value = "/informations", method = { RequestMethod.GET })
-	public String informations(Model model) {
+	public ModelAndView informations(/*Model model*/) {
 		LOGGER.info("**** Welcome to Application Controller ****");
-		return "newApplicant";
+		
+		ModelAndView modelView = new ModelAndView();
+		modelView.setViewName("newApplicant");
+		return modelView;
 
 	}
 	
@@ -803,7 +811,7 @@ public class ApplicantController implements Serializable {
 		applicantService.update(applicantDto);
 		model.addAttribute("applicant", applicantDto);
 
-		return "informations";
+		return "redirect:/address/" + id;
 	}
 	
 	@RequestMapping(value = "/findByIdApplicants/{id}", method = { RequestMethod.POST })
@@ -1129,6 +1137,28 @@ public class ApplicantController implements Serializable {
 		return "success";
 	}
 	
+	//CHECKING
+//	
+//	public @ResponseBody String check(Model model){
+//		List<ApplicantDto> check = applicantService.checkTag(true);
+//		for(ApplicantDto list : check){
+//			System.out.println(list.getJoblevelId());
+//		}
+//		
+////		final List<AddressDto> list= addressService.findAddressById(id);
+////		for(AddressDto address : list){
+////			System.out.println(address.getAddressType());
+////			System.out.println(address.getHouseNo());
+////		}
+////		return new Object() {
+////			public List<AddressDto> getData() {
+////				return list;
+////			}
+////		};
+//		
+////		model.addAttribute("", );
+//	} 
+	
 //	------------------------------------------------
 
 	@ModelAttribute("applicant")
@@ -1141,6 +1171,19 @@ public class ApplicantController implements Serializable {
 	public List<MasJoblevel> jobLevelList(){
 		return masJoblevelService.findAll();
 	}
+	
+	@ModelAttribute("checktags")
+	@Transactional
+	public List<JoblevelDto> tagList(){
+//		List<JoblevelDto> check = applicantService.checkTag("t");
+//		
+//		for(JoblevelDto list : check){
+//			System.out.println(list.getJobId());
+//		}
+		
+		return applicantService.checkTag("t");
+	}
+	
 	
 	@ModelAttribute("technologies")
 	@Transactional

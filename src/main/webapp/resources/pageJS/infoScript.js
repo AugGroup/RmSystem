@@ -240,11 +240,11 @@
 					sex : {required : true},
 					applicantStatus : {required : true},
 					numberOfChildren : {required : true, digits : true},
-					spouseName : {required : true,lettersonly: true},
+					spouseName : {required : true},
 					marriageCertificateNo : {required : true},
 					issueOficeMarriage : {required : true},
 					marriageAddress : {required : true},
-					occupationMarriage : {required : true,lettersonly: true},
+					occupationMarriage : {required : true},
 					militaryStatus : {required : true},
 					militaryFromYear : {required : true, digits : true},
 					militarytoYear : {required : true, digits : true},
@@ -255,7 +255,7 @@
 					dateToBeDrafted : {required : true},
 					previousEmployers : {required : true},
  					previousEmployersReason : {required : true},
- 					emergencyName : {required : true,lettersonly: true},
+ 					emergencyName : {required : true},
  					emergencyTel : {required : true},
  					emergencyAddress : {required : true},
  					applyDate : {required : true},
@@ -321,17 +321,27 @@
 					imageMultipartFile :{required : imageMultipartFile}
 				}
 			});
+				
+				 $("#tech").hide();
+				 
 				 $("#joblevel").on("change", function(){
-//					 alert( $("#jobLevel option:selected").val() );
-					 if ( $("#joblevel option:selected").val() == 4 || $("#joblevel option:selected").val() == 11 ) {
-						 $("#tech").show();
-						 //alert( $("#joblevel option:selected").val() );
-					 } else {
-						 $("#technology option:selected").val("6");
-						 $("#tech").hide();
-						 //alert($("#technology option:selected").val());
-					 }
-	});
+					 
+					 var jobSelect = $("#joblevel option:selected").text();
+					 var find = false;
+					 $(".tags").each(function(){
+						 if( $(this).val() == jobSelect){
+							 find = true;
+							 $("#tech").show();
+						 }else{
+							 $("#technology option:selected").val("6");
+							 $("#tech").hide();
+						 }
+						 
+						 if (find == true) {
+							 return false;
+						 }
+					 })
+				 })
 				 
 
 });
