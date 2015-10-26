@@ -214,7 +214,7 @@ function updateAppointmentDate(eventToUpdate, revertParam){
 	    			$calendar.fullCalendar( 'destroy' );
 	    			renderCalendar();
 	    			$calendar.fullCalendar('changeView', view.name);
-	    			$calendar.fullCalendar( 'gotoDate', eventToUpdate.start );
+	    			$calendar.fullCalendar( 'gotoDate', result.start );
     				findNoEmailUpdate();
     				findEmailSent();
     				setEmailAlert();
