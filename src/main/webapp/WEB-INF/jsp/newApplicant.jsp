@@ -9,10 +9,31 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/resources/pageCss/infoCss.css" />
 <script src='<c:url value ="/static/resources/pageJS/newApplicant.js"/>'></script>
 <script src='<c:url value ="/static/resources/js/lodash.min.js"/>'></script>
+<script src='<c:url value ="/static/resources/js/jquery.collapse.js"/>'></script>
+
+
+
 <jsp:include page="infoSpringMessage.jsp" />
 
 <!-- tab informations -->
+<style>
 
+/* .collapse-br{
+	margin-top: 50px;
+}
+
+h3 {
+  margin: 0;
+}
+
+h3 a{
+	display: block !important;
+	color:white !important;
+	text-decoration: none !important;
+}
+
+h3 + div { padding: 20px; } */ 
+</style>
 <script type="text/javascript">
 
 $(document).ready(function(){
@@ -20,6 +41,48 @@ $(document).ready(function(){
 	if("${id}" == null || "${id}" == ""){
 		$("#applicationMenu").hide();
 	}
+	
+   /*  new jQueryCollapse($("#collapse-show-hide-info"), {
+      open: function() {
+        this.slideDown(300);
+      
+       $("#infomation-arrow").removeClass("glyphicon glyphicon-menu-down");
+       $("#infomation-arrow").addClass("glyphicon glyphicon-menu-up"); 
+      },
+      close: function() {
+        this.slideUp(300);
+        
+        $("#infomation-arrow").removeClass("glyphicon glyphicon-menu-up"); 
+        $("#infomation-arrow").addClass("glyphicon glyphicon-menu-down");
+      }
+    });
+    
+    new jQueryCollapse($("#collapse-show-hide-general"), {
+        open: function() {
+          this.slideDown(300);
+          $("#general-arrow").removeClass("glyphicon glyphicon-menu-down");
+          $("#general-arrow").addClass("glyphicon glyphicon-menu-up"); 
+        },
+        close: function() {
+          this.slideUp(300);
+          $("#general-arrow").removeClass("glyphicon glyphicon-menu-up"); 
+          $("#general-arrow").addClass("glyphicon glyphicon-menu-down");
+        }
+      });
+    
+    new jQueryCollapse($("#collapse-show-hide-official"), {
+        open: function() {
+          this.slideDown(300);
+          $("#official-arrow").removeClass("glyphicon glyphicon-menu-down");
+          $("#official-arrow").addClass("glyphicon glyphicon-menu-up"); 
+        },
+        close: function() {
+          this.slideUp(300);
+          $("#official-arrow").removeClass("glyphicon glyphicon-menu-up"); 
+          $("#official-arrow").addClass("glyphicon glyphicon-menu-down");
+        }
+      }); */
+    
 });
 
 </script>
@@ -51,9 +114,11 @@ $(document).ready(function(){
 				<f:hidden path="masLocation"/>
 		
 <!-- ********************	information	  ******************** -->
-		
-				<h3 class="col-sm-12" id="infomation"> <spring:message code="tab.info" /></h3>
-				<div class="row">
+			<div id="collapse-show-hide-info" >
+				<h3 class="col-sm-12 open " id="infomation"><spring:message code="tab.info" /><span class="pull-right glyphicon glyphicon-menu-up" id="infomation-arrow"></span></h3>
+				
+				<div >
+				<div class="row collapse-br" >
 					<div class="col-sm-3 text-center">
 						<div class="row">
 							<div class="col-sm-12">
@@ -129,13 +194,16 @@ $(document).ready(function(){
 				</div>
 				
 				</div>
+				</div>
+			</div>
 <!-- ********************	end information	  ******************** -->
 	
 <!-- ********************	GENERAL	  ******************** -->
-	<h3 class="col-sm-12" id="general" ><spring:message code="info.general" /></h3>
-	
+<div id="collapse-show-hide-general" >
+	<h3 class="col-sm-12 open" id="general" ><spring:message code="info.general" /><span class="pull-right glyphicon glyphicon-menu-up" id="general-arrow"></span></h3>
+	<div>
 	<!-- row 1 -->
-	<div class="row">
+	<div class="row collapse-br" >
 		<div class="col-sm-3">
 			<div class="col-sm-12">
 				<label for="tel"><spring:message code="info.tel"/></label>
@@ -695,9 +763,17 @@ $(document).ready(function(){
 		</div>
 	</div>
 	
-	<h3 class="col-sm-12" id="official"><spring:message code="info.official" /></h3>
+	
+	</div>
+</div>
+	<!-- ********************	END GENERAL	  ******************** -->
+	
+	<div id="collapse-show-hide-official" >	
+	<h3 class="col-sm-12 open" id="official"><spring:message code="info.official" /><span class="pull-right glyphicon glyphicon-menu-up" id="official-arrow"></span></h3>
 <!-- 			<div class="form-group"> -->
-		<div class="row">
+		<div>
+		<div class="row collapse-br">
+			<div class="row">
 			<div class="col-sm-4">
 				<div class="col-sm-12" >
 					<label for="applyDate"><span class="glyphicon glyphicon-calendar"></span><spring:message code="info.apply.date"/></label><br>
@@ -714,6 +790,7 @@ $(document).ready(function(){
 					<spring:message code="info.text.salary" var="salary"/><br>
 					<f:input path="expectedSalary" class="form-control btn-information numberonly" id="expectedSalary" name="expectedSalary" placeholder="${salary}" type="text"></f:input>
 				</div>
+			</div>
 			</div>
 		 </div>
 	
@@ -756,7 +833,9 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
+	</div>
 	
+	</div>
 	<div class="row">
 		<div class="col-sm-12">
 				<div align="right">

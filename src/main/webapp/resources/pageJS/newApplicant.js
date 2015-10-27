@@ -1,6 +1,47 @@
 //<script>
  	$(document).ready(function() {
  		
+ 		 new jQueryCollapse($("#collapse-show-hide-info"), {
+ 		      open: function() {
+ 		        this.slideDown(300);
+ 		      
+ 		       $("#infomation-arrow").removeClass("glyphicon glyphicon-menu-down");
+ 		       $("#infomation-arrow").addClass("glyphicon glyphicon-menu-up"); 
+ 		      },
+ 		      close: function() {
+ 		        this.slideUp(300);
+ 		        
+ 		        $("#infomation-arrow").removeClass("glyphicon glyphicon-menu-up"); 
+ 		        $("#infomation-arrow").addClass("glyphicon glyphicon-menu-down");
+ 		      }
+ 		    });
+ 		    
+ 		    new jQueryCollapse($("#collapse-show-hide-general"), {
+ 		        open: function() {
+ 		          this.slideDown(300);
+ 		          $("#general-arrow").removeClass("glyphicon glyphicon-menu-down");
+ 		          $("#general-arrow").addClass("glyphicon glyphicon-menu-up"); 
+ 		        },
+ 		        close: function() {
+ 		          this.slideUp(300);
+ 		          $("#general-arrow").removeClass("glyphicon glyphicon-menu-up"); 
+ 		          $("#general-arrow").addClass("glyphicon glyphicon-menu-down");
+ 		        }
+ 		      });
+ 		    
+ 		    new jQueryCollapse($("#collapse-show-hide-official"), {
+ 		        open: function() {
+ 		          this.slideDown(300);
+ 		          $("#official-arrow").removeClass("glyphicon glyphicon-menu-down");
+ 		          $("#official-arrow").addClass("glyphicon glyphicon-menu-up"); 
+ 		        },
+ 		        close: function() {
+ 		          this.slideUp(300);
+ 		          $("#official-arrow").removeClass("glyphicon glyphicon-menu-up"); 
+ 		          $("#official-arrow").addClass("glyphicon glyphicon-menu-down");
+ 		        }
+ 		      });
+ 		
  			$('.input-group.date').datepicker({
  							startView : 2,
  							todayBtn : "linked",
