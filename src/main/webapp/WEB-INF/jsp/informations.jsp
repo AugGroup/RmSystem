@@ -8,6 +8,8 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/resources/pageCss/infoCss.css" />
 <script src='<c:url value ="/static/resources/pageJS/infoScript.js"/>'></script>
+<script src='<c:url value ="/static/resources/js/jquery.collapse.js"/>'></script>
+
 <jsp:include page="infoSpringMessage.jsp" />
 
 <!-- tab informations -->
@@ -51,8 +53,11 @@ $(document).ready(function(){
 		
 <!-- ********************	information	  ******************** -->
 		
-				<h3 class="col-sm-12" id="infomation"> <spring:message code="tab.info" /></h3>
-				<div class="row">
+			<div id="collapse-show-hide-info" >
+				<h3 class="col-sm-12 open " id="infomation"><spring:message code="tab.info" /><span class="pull-right glyphicon glyphicon-menu-up" id="infomation-arrow"></span></h3>
+				
+				<div >
+				<div class="row" style="margin-top:100px;" >
 					<div class="col-sm-3 text-center">
 						<div class="row">
 							<div class="col-sm-12">
@@ -73,8 +78,7 @@ $(document).ready(function(){
 									<span class="glyphicon glyphicon-picture"></span> Add Photo 
 									<input id="imageMultipartFile" name="imageMultipartFile" type="file" accept="image/*" class="file"/>
 								</span>
-								<f:hidden path="image" /><br><label for="imageMultipartFile" class="error"></label>
-								
+								<f:hidden path="image" />
 							</div>
 						</div>
 					</div>
@@ -129,13 +133,16 @@ $(document).ready(function(){
 				</div>
 				
 				</div>
+				</div>
+			</div>
 <!-- ********************	end information	  ******************** -->
 	
 <!-- ********************	GENERAL	  ******************** -->
-	<h3 class="col-sm-12" id="general" ><spring:message code="info.general" /></h3>
-	
+<div id="collapse-show-hide-general" >
+	<h3 class="col-sm-12 open" id="general" ><spring:message code="info.general" /><span class="pull-right glyphicon glyphicon-menu-up" id="general-arrow"></span></h3>
+	<div>
 	<!-- row 1 -->
-	<div class="row">
+	<div class="row collapse-br">
 		<div class="col-sm-3">
 			<div class="col-sm-12">
 				<label for="tel"><spring:message code="info.tel"/></label>
@@ -695,9 +702,14 @@ $(document).ready(function(){
 	      </c:choose>
 		</div>
 	</div>
-	
-	<h3 class="col-sm-12" id="official"><spring:message code="info.official" /></h3>
+	</div>
+	</div>
+<!-----------------------------------------end general----------------------------------------------------- -->
+	<div id="collapse-show-hide-official" >	
+	<h3 class="col-sm-12 open" id="official"><spring:message code="info.official" /><span class="pull-right glyphicon glyphicon-menu-up" id="official-arrow"></span></h3>
 <!-- 			<div class="form-group"> -->
+		<div>
+		<div class="row collapse-br">
 		<div class="row">
 			<div class="col-sm-4">
 				<div class="col-sm-12" >
@@ -756,7 +768,10 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
-	
+	</div>
+	</div>
+	</div>
+	<!-- -----------------------------end official------------------------------------------- -->
 	<div class="row">
 		<div class="col-sm-12">
 				<div align="right">
