@@ -273,15 +273,6 @@
 					"joblevel.id" : {required : joblevelVal},
 					"technology.id" : {required : technologyVal}//,
 				}
-//				},
-//				errorReplacement : function (error,element){
-//					//error.insertAfter(closest("div.form-group"));
-//					if(element.attr("name") === resumeMultipartFile){
-//						error.appendTo($("label.resume"))
-//					}
-//					
-//				}
-
 			});
 
 			 //---------------------check tech---------------------

@@ -17,33 +17,36 @@ var $appointmentListModal;
 
 var $validform = $("#formInsert").validate({			
 	rules:{
+		applicantName: {
+			required:true
+		},
 		appointmentTopic:{
 			required:true,
 			minlength:10,
 		},
 		appoint_detail:{
 			required:true
-		},
-		 applicantName: {
-			required:true
 		}
 	},
 	
 	messages: {
+		applicantName:{
+			required: validateApplicant
+		},
 		appointmentTopic:{
 			required: validateTopic,
 			minlength: validateTopicLenght,
 		},
 		appoint_detail:{
 			required: validateDatail
-		},
-		applicantName:{
-			required: validateApplicant
 		}
 	},
 	
  	invalidHandler: function(event, validator) {
-		$('#appointmentTopic').focus();
+ 		var errors = $validform.numberOfInvalids();
+ 	    if (errors) {
+ 	    	$validform.errorList[0].element.focus(); //Set Focus
+ 	    }
 	} 
 	
 });
@@ -72,8 +75,11 @@ var $validform2 = $("#formEdit").validate({
 		
 	},
 	
- 	invalidHandler: function(event, validator) {
-		$('#appointmentTopicEdt').focus();
+ 	invalidHandler: function(form, validator) {
+ 		var errors = $validform2.numberOfInvalids();
+ 	    if (errors) {
+ 	    	$validform2.errorList[0].element.focus(); //Set Focus
+ 	    }
 	} 
 	
 });
