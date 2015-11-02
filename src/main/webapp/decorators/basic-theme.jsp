@@ -129,7 +129,7 @@ $(document).ready(function(){
 </style>
 <style type="text/css">
 	 html, body {
-      height: 85%;
+      height: 100%;
       margin: 0 0 1px;
       padding: 0;
 }
