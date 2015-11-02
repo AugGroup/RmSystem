@@ -127,7 +127,13 @@ $(document).ready(function(){
 		text-decoration:none;
 	}
 </style>
-
+<style type="text/css">
+	 html, body {
+      height: 85%;
+      margin: 0 0 1px;
+      padding: 0;
+}
+</style>
 <!-- Page Context -->
 <script type="text/javascript">
 	var contextPath = "${pageContext.request.contextPath}";
@@ -148,11 +154,9 @@ $(document).ready(function(){
 <body background="${ pageContext.request.contextPath }/static/decorators/BG_W.jpg">
 
 <jsp:include page="header.jsp" />
-<div class="body" ><decorator:body /></div>
+<div class="container"> <decorator:body /></div>
 <a href="#" class="scrollToTop" id="goToTop"><img src = "${ pageContext.request.contextPath }/static/decorators/uparrow.png" width="54px" height="54px" /></a>
-<div class="footer">
-		<p class="text-muted credit">&copy; 2011-2015 Augmentis (Thailand) Limited. All rights reserved.</p>
-</div>
+<jsp:include page="footer.jsp"></jsp:include>
 
 </body>
 </html>
